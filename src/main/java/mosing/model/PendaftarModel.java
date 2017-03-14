@@ -1,6 +1,7 @@
 package mosing.model;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,4 +28,7 @@ public class PendaftarModel extends UserAdmisiModel  {
 	private String provinsi;
 	private String kota;
 	private byte jenis_kelamin;
+	private String no_daftar;
+	private String no_ujian;
+	
 }

@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdiTersediaModel {
+public class LPTerakhirModel extends UserAdmisiModel {
 
-	private String nama_prodi;
-	private int daya_tampung;
-	private String nama_fakultas;
-	private String id_jalur;
+	private String nama_lembaga;
+	private String provinsi;
+	private String kota;
 }
