@@ -92,10 +92,18 @@ footer {
     }
 }
 
-@media (min-width: 768px) {
+@media(min-width: 768px) {
   .navbar-nav.navbar-edit {
     position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
   }
+}
+
+.navbar-center {
+	width: 56%;
+	align: center;
+	margin: 0 auto;
+}
+
+h4 {
+	text-align: center;
 }
