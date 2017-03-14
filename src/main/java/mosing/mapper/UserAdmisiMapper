@@ -1,0 +1,26 @@
+package id.ac.ui.cs.eaap.kelompok1A.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.One;
+
+import id.ac.ui.cs.eaap.kelompok1A.domain.MataKuliahModel;
+import id.ac.ui.cs.eaap.kelompok1B.domain.UserModel;
+
+@Mapper
+public interface UserLoginMapper
+{
+    
+    
+    @Insert("INSERT INTO `user`(`id_prodi`, `username`, `password`, `role`, `flag`) VALUES (#{idProdi},#{username},#{password},'ROLE_SIAK',1)")
+	void addUser(UserModel user);
+}
