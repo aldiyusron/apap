@@ -1,4 +1,4 @@
-package mosing;
+/*package mosing;
 
 import javax.sql.DataSource;
 
@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/kelas/**").hasRole("SIAK")
 				.antMatchers("/jadwal/**").hasRole("SIAK")
 				.antMatchers("/kehadiran/**").hasRole("SIAK")
-				*/
+				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll().and().logout().permitAll();
 	}
@@ -64,3 +64,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 }
+*/
