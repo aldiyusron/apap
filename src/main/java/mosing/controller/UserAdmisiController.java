@@ -35,7 +35,7 @@ public class UserAdmisiController {
 	public String selectUser(@RequestParam(value ="username", required = false)String username){
 		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
 		
-		if(userAdmisi.getRole().equals("KPMB")){
+		if(userAdmisi.getRole().equals("KPM")){
 			return "kpmb";
 		}
 		else {
