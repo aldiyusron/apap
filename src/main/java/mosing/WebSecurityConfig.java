@@ -21,7 +21,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/**").permitAll()
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/img/**").permitAll()
@@ -33,11 +32,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login").permitAll().and().logout().permitAll();
 	}
 	
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth
+//			.inMemoryAuthentication()
+//				.withUser("KPMB1").password("password1").roles("KPM")
+//				.and()
+//				.withUser("admin").password("admin123").roles("ADMIN");
+//	}
+	
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 				//.passwordEncoder(passwordEncoder())
-				.usersByUsernameQuery("select username, password from user where username=?")
+				.usersByUsernameQuery("select username, password, enabled from user where username=?")
 				.authoritiesByUsernameQuery("select username, role from user where username=?");
 	}
 	
