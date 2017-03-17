@@ -67,7 +67,7 @@ a.active, a:active, a:focus, a:hover {
 .btn-primary.active, .btn-primary:active, .btn-primary:focus,
 	.btn-primary:hover, .open .dropdown-toggle.btn-primary {
 	color: #fff;
-	background-color: #fec503;
+	background-color: #fece00;
 	border-color: #f6bf01
 }
 
@@ -137,16 +137,22 @@ a.active, a:active, a:focus, a:hover {
 
 .navbar-custom .nav li a, .navbar-custom .navbar-toggle {
 	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #fff;
+	color: #fed136;
 	text-transform: uppercase
 }
 
 .navbar-custom .navbar-collapse {
-	border-color: rgba(255, 255, 255, .02)
+	border-color: rgba(255, 255, 255, .02);
+	padding-top: -100px
+}
+
+.navbar-collapse2
+{
+	padding-top: 40px
 }
 
 .navbar-custom .navbar-toggle {
-	background-color: #fed136;
+	background-color: #000000;
 	border-color: #fed136;
 	font-size: 12px
 }
@@ -169,7 +175,14 @@ a.active, a:active, a:focus, a:hover {
 .navbar-custom .navbar-nav>.active>a {
 	border-radius: 0;
 	color: #fff;
-	background-color: #fed136
+	background-color: #fed136;
+	margin-left: 10px
+}
+
+.container .logomosing
+{
+	padding-top: 60px;
+	padding-left: 1px
 }
 
 .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.active>a:hover
@@ -833,7 +846,7 @@ hr {
 	margin-top: -2.5px;
 }
 
-.wall {
+.wall{
 	background-image: url('../img/header-bg.jpg');
 	background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -842,4 +855,5 @@ hr {
 	-moz-background-size: cover;
 	background-size: cover;
 	-o-background-size: cover;
+	padding-top: -10%;
 }
