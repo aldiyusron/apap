@@ -13,24 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
+import mosing.model.UserAdmisiModel;
 import mosing.service.PendaftarService;
+import mosing.service.UserAdmisiService;
 
 @Controller
 public class PendaftarController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
+	UserAdmisiService userDAO;
 
-	@RequestMapping("/pendaftar/registrasi")
-	public String add() {
-		return "form-registrasi";
-	}
+//	@RequestMapping("/pendaftar/registrasi")
+//	public String add() {
+//		return "form-registrasi";
+//	}
 
-	@RequestMapping("/pendaftar/registrasi/submit")
-	public String addSubmit(@RequestParam(value = "username", required = false) String username,
-			@RequestParam(value = "password", required = false) String password,
-			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "role", required = false) String role,
+	@RequestMapping("/pendaftar/register/{username}")
+	public String addSubmit(Model model, @PathVariable(value = "username") String username,
+			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "no_id", required = false) String no_id,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
 			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
@@ -40,7 +41,6 @@ public class PendaftarController {
 			@RequestParam(value = "negara", required = false) String negara,
 			@RequestParam(value = "kewarganegaraan", required = false) String kewarganegaraan,
 			@RequestParam(value = "alamat_tetap", required = false) String alamat_tetap,
-			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "alamat_sekarang", required = false) String alamat_sekarang,
 			@RequestParam(value = "tgl_lahir", required = false) String tgl_lahir,
 			@RequestParam(value = "provinsi", required = false) String provinsi,
@@ -50,9 +50,14 @@ public class PendaftarController {
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
-		PendaftarModel pendaftar = new PendaftarModel(username, password, email, role, no_id, nama_id, nama_ijazah,
+		UserAdmisiModel user = userDAO.selectUser(username);
+		model.addAttribute("user", user);
+		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 				provinsi, kota, jk, "", "");
+//		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
+//				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
+//				provinsi, kota, jk, "", "");
 		pendaftarDAO.addPendaftar(pendaftar);
 		return "success-registration";
 	}

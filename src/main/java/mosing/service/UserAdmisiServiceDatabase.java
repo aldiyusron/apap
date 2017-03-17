@@ -2,24 +2,27 @@ package mosing.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.UserAdmisiMapper;
 import mosing.model.UserAdmisiModel;
 
 @Slf4j
 @Service
+public class UserAdmisiServiceDatabase implements UserAdmisiService {
 
-public class UserAdmisiServiceDatabase implements UserAdmisiService
-{
 	@Autowired
-	private UserAdmisiMapper userAdmisiMapper;
+	UserAdmisiMapper userAdmisiMapper;
 	
 	@Override
-    public UserAdmisiModel selectUser (String username)
-    {
-    	log.info ("select user with username {}", username);
-        return userAdmisiMapper.selectUser (username);
-    }
+	public void addUser(UserAdmisiModel user)
+	{
+		userAdmisiMapper.addUser(user);
+	}
 	
-
+	@Override
+	public UserAdmisiModel selectUser(String username)
+	{
+		return userAdmisiMapper.selectUser(username);
+	}
 }
