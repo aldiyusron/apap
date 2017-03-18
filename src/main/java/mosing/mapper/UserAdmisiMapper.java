@@ -1,6 +1,5 @@
 package mosing.mapper;
 
-
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +11,7 @@ import mosing.model.UserAdmisiModel;
 
 @Mapper
 public interface UserAdmisiMapper {
+	
 	@Select("select username from user where username = #{username}")
     @Results(value = {
         @Result(property="username", column="username"),
@@ -21,7 +21,6 @@ public interface UserAdmisiMapper {
     })
     UserAdmisiModel selectUser (@Param("username") String username);
 	
-	@Insert("INSERT INTO user (username, password, email, role) VALUES"
-			+ "(#{username}, #{password}, #{email}, #{role}")
+	@Insert("insert into user (username, password, email, role, enabled) values (#{username}, #{password}, #{email}, #{role}, 1)")
 	void addUser(UserAdmisiModel user);
 }
