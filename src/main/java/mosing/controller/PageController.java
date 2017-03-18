@@ -50,4 +50,9 @@ public class PageController {
 			return "login";
 		}
 	}
+
+	@RequestMapping("/done")
+	public String done() {
+		return "done";
+	}
 }

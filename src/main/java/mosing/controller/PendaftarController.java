@@ -24,10 +24,10 @@ public class PendaftarController {
 	PendaftarService pendaftarDAO;
 	UserAdmisiService userDAO;
 
-//	@RequestMapping("/pendaftar/registrasi")
-//	public String add() {
-//		return "form-registrasi";
-//	}
+	// @RequestMapping("/pendaftar/registrasi")
+	// public String add() {
+	// return "form-registrasi";
+	// }
 
 	@RequestMapping("/pendaftar/register/{username}")
 	public String addSubmit(Model model, @PathVariable(value = "username") String username,
@@ -52,15 +52,23 @@ public class PendaftarController {
 		Date tanggal_lahir = format.parse(tgl_lahir);
 		UserAdmisiModel user = userDAO.selectUser(username);
 		model.addAttribute("user", user);
+
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 				provinsi, kota, jk, "");
 //		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
 //				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 //				provinsi, kota, jk, "", "");
+
 		pendaftarDAO.addPendaftar(pendaftar);
 		//pendaftar.getNo_daftar();
 		//pendaftar.getNo_ujian();
 		return "success-registration";
+	}
+
+	@RequestMapping("/forgotPwd")
+	public String forgotPwd()
+	{
+		return "forgotPwd";
 	}
 }
