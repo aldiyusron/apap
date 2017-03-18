@@ -22,12 +22,13 @@ public class UserAdmisiController {
 	}
 	
 	@RequestMapping("/pendaftar/register/next")
-	public String addUser(@RequestParam(value = "username", required = false) String username,
+	public String addUser(
+			@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "password", required = false) String password,
 			@RequestParam(value = "email", required = false) String email)
 	{
 		UserAdmisiModel user = new UserAdmisiModel(username, password, email, "PEN");
-		userDAO.addUser(user);
+		userDAO.addUser(user);	
 		return "form-registrasi2";
 	}
 	
