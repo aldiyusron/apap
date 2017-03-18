@@ -27,7 +27,7 @@ public class UserAdmisiController {
 			@RequestParam(value = "email", required = false) String email)
 	{
 		UserAdmisiModel user = new UserAdmisiModel(username, password, email, "PEN");
-		userDAO.addUser(user);
+		userDAO.addUser(user);	
 		return "form-registrasi2";
 	}
 	
