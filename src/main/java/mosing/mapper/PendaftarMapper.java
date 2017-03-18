@@ -20,6 +20,6 @@ public interface PendaftarMapper {
 			+ "(#{username}, #{no_id}, #{nama_id}, "
 			+ "#{nama_ijazah}, #{foto}, #{no_hp}, #{no_telp}, #{negara}, #{kewarganegaraan},"
 			+ "#{alamat_tetap}, #{jenis_id}, #{alamat_sekarang}, #{tgl_lahir}, #{provinsi}, "
-			+ "#{kota}, #{jenis_kelamin})")
+			+ "#{kota}, #{jenis_kelamin}, no_daftar)")
 	void addPendaftar(PendaftarModel pendaftar);
 }

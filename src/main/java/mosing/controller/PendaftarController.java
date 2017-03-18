@@ -54,11 +54,13 @@ public class PendaftarController {
 		model.addAttribute("user", user);
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				provinsi, kota, jk, "", "");
+				provinsi, kota, jk, "");
 //		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
 //				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 //				provinsi, kota, jk, "", "");
 		pendaftarDAO.addPendaftar(pendaftar);
+		//pendaftar.getNo_daftar();
+		//pendaftar.getNo_ujian();
 		return "success-registration";
 	}
 }

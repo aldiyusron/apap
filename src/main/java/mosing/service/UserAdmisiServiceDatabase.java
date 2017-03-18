@@ -1,6 +1,8 @@
 package mosing.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +23,15 @@ public class UserAdmisiServiceDatabase implements UserAdmisiService {
 	}
 	
 	@Override
-	public UserAdmisiModel selectUser(String username)
-	{
+	public UserAdmisiModel selectUser(String username){
+		
 		return userAdmisiMapper.selectUser(username);
 	}
+//	@Override
+//	public UserAdmisiModel selectUser()
+//	{
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		String username = auth.getName();
+//		return userAdmisiMapper.selectUser(username);
+//	}
 }

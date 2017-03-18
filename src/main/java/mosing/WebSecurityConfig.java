@@ -18,15 +18,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	DataSource dataSource;
-
+	
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http
+//			.authorizeRequests()
+//				.antMatchers("/", "/home").permitAll()
+//				.antMatchers("/helloAdmin").hasRole("ADMIN").anyRequest().authenticated()
+//				//.anyRequest().authenticated()
+//				.and()
+//			.formLogin()
+//				.loginPage("/login").permitAll()
+//				.and()
+//			.logout()
+//				.permitAll();
+//	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/**").permitAll()
+		http.authorizeRequests().antMatchers("/index").permitAll()
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/img/**").permitAll()
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/font-awesome/**").permitAll()
+				.antMatchers("/home").hasRole("PEN").anyRequest().authenticated()
+				.antMatchers("/kpmb").hasRole("KPM").anyRequest().authenticated()
 				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll().and().logout().permitAll();

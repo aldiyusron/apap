@@ -30,7 +30,7 @@ public class PendaftarModel {
 	private String kota;
 	private byte jenis_kelamin;
 	private String no_daftar;
-	private String no_ujian;
+//	private String no_ujian;
 
 //	public PendaftarModel(UserAdmisiModel user, String no_id, String nama_id, String nama_ijazah, String foto,
 //			String no_hp, String no_telp, String negara, String kewarganegaraan, String alamat_tetap, String jenis_id,
