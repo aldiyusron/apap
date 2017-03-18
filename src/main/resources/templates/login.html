@@ -6,6 +6,7 @@
 
 <title>Penerimaan UI | Login</title>
 <!-- Tell the browser to be responsive to screen width -->
+<meta charset="utf-8" />
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport" />
@@ -37,7 +38,7 @@
 		<div class="login-box-body">
 			<div th:if="${param.error}">Invalid username or password.</div>
 			<div th:if="${param.logout}">You have been logged out.</div>
-			<p class="login-box-msg">Sign in to start your session</p>
+			<!-- <p class="login-box-msg">Sign in to start your session</p>  -->
 
 			<form th:action="@{/login}" method="post">
 				<div class="login">

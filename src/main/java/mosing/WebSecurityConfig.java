@@ -35,8 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	}
 	
 	@Override
+//<<<<<<< Updated upstream
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/index").permitAll()
+//		http.authorizeRequests().antMatchers("/index").permitAll()
+////=======
+//	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/**").permitAll()
+//>>>>>>> Stashed changes
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/img/**").permitAll()
 				.antMatchers("/js/**").permitAll()
@@ -63,6 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().dataSource(dataSource)
 				//.passwordEncoder(passwordEncoder())
 				.usersByUsernameQuery("select username, password, enabled from user where username=?")
+
 				.authoritiesByUsernameQuery("select username, role from user where username=?");
 	}
 	

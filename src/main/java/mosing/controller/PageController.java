@@ -39,17 +39,24 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String selectUser(@RequestParam(value ="username", required = false) String username){
-		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
-		
-		if(userAdmisi.getRole().equals("ROLE_KPMB")){
-			return "kpmb";
-		} else if(userAdmisi.getRole().equals("ROLE_PEND")){
-			return "home";
-		} else {
-			return "login";
-		}
+	public String home(Model model, @RequestParam(value ="username", required = false) String username){
+		UserAdmisiModel user = userDAO.selectUser(username);
+		model.addAttribute("user", user);
+		return "home";
 	}
+	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String selectUser(@RequestParam(value ="username", required = false) String username){
+//		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
+//		
+//		if(userAdmisi.getRole().equals("ROLE_KPMB")){
+//			return "kpmb";
+//		} else if(userAdmisi.getRole().equals("ROLE_PEND")){
+//			return "home";
+//		} else {
+//			return "login";
+//		}
+//	}
 
 	@RequestMapping("/done")
 	public String done() {
