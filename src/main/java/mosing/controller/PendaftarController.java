@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
@@ -29,8 +30,16 @@ public class PendaftarController {
 	// return "form-registrasi";
 	// }
 
-	@RequestMapping("/pendaftar/register/{username}")
-	public String addSubmit(Model model, @PathVariable(value = "username") String username,
+	@RequestMapping("/profile/update/{username}")
+	public String add(Model model, @PathVariable(value = "username") String username)
+	{
+//		UserAdmisiModel user = userDAO.selectUser(username);
+		model.addAttribute("username", username);
+		return "form-registrasi2";
+	}
+	
+	@RequestMapping("/profile/submit")
+	public String profileSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "no_id", required = false) String no_id,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
@@ -45,17 +54,16 @@ public class PendaftarController {
 			@RequestParam(value = "tgl_lahir", required = false) String tgl_lahir,
 			@RequestParam(value = "provinsi", required = false) String provinsi,
 			@RequestParam(value = "kota", required = false) String kota,
-			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin) throws ParseException {
+			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
+			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
 
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
-		UserAdmisiModel user = userDAO.selectUser(username);
-		model.addAttribute("user", user);
 
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				provinsi, kota, jk, "");
+				provinsi, kota, jk, null);
 //		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
 //				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 //				provinsi, kota, jk, "", "");

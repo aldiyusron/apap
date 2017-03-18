@@ -38,11 +38,16 @@ public class PageController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, @RequestParam(value ="username", required = false) String username){
-		UserAdmisiModel user = userDAO.selectUser(username);
-		model.addAttribute("user", user);
+	@RequestMapping("/")
+	public String home(){
+		UserAdmisiModel user = userDAO.selectUser();
 		return "home";
+//		if(user.getRole().equals("ROLE_PEND"))
+//			return "home";
+//		else if(user.getRole().equals("ROLE_KPMB"))
+//			return "home2";
+//		else
+//			return "home3";
 	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
