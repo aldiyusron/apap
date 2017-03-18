@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+      
+  <head>
+    <title>Forgot Password</title>
+  </head>
+  <body >
+    
+     
+        <form action="forgotPwd" th:action="@{/forgotPwd}" method="post">
+          <input type="email" class="form-control" name="email" placeholder="Email"/>           
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+        </form>      
+  
+  </body>
+ </html>
