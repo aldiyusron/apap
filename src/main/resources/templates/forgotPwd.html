@@ -9,9 +9,9 @@
   <body >
     
      
-        <form action="forgotPwd" th:action="@{/forgotPwd}" method="post">
+        <form action="forgotPwd" th:action="@{/done}" method="post">
           <input type="email" class="form-control" name="email" placeholder="Email"/>           
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat" action="/done" >Submit</button>
         </form>      
   
   </body>

@@ -20,4 +20,9 @@ public class PageController {
 	public String login() {
 		return "login";
 	}
+	
+	@RequestMapping("/done")
+	public String done() {
+		return "done";
+	}
 }
