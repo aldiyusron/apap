@@ -133,7 +133,7 @@
 	<header class="wall">
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-heading" th:text="Halo + ${#httpServletRequest.remoteUser}"></div>
+				<div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}"></div>
 				<!-- <div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
 				<div th:unless = "${user.role} eq 'ROLE_PEND'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div> -->
 			</div>

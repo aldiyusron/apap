@@ -847,7 +847,7 @@ hr {
 }
 
 .wall{
-	background-image: url('../img/header-bg.jpg');
+	background-image: url('../img/home.jpg');
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -856,4 +856,5 @@ hr {
 	background-size: cover;
 	-o-background-size: cover;
 	padding-top: -10%;
+
 }
