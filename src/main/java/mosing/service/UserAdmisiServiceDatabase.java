@@ -27,11 +27,11 @@ public class UserAdmisiServiceDatabase implements UserAdmisiService {
 		
 		return userAdmisiMapper.selectUser(username);
 	}
-//	@Override
-//	public UserAdmisiModel selectUser()
-//	{
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String username = auth.getName();
-//		return userAdmisiMapper.selectUser(username);
-//	}
+	@Override
+	public UserAdmisiModel selectUser()
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		return userAdmisiMapper.selectUser(username);
+	}
 }

@@ -28,8 +28,20 @@ public class UserAdmisiController {
 			@RequestParam(value = "password", required = false) String password,
 			@RequestParam(value = "email", required = false) String email)
 	{
-		UserAdmisiModel user = new UserAdmisiModel(username, password, email, "PEN");
+		UserAdmisiModel user = new UserAdmisiModel(username, password, email, "ROLE_PEND");
 		userDAO.addUser(user);	
 		return "form-registrasi2";
 	}
+	
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String selectUser(@RequestParam(value ="username", required = false)String username){
+//		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
+//		
+//		if(userAdmisi.getRole().equals("KPM")){
+//			return "kpmb";
+//		}
+//		else {
+//			return "error";
+//		}
+//	}
 }
