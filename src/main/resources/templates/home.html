@@ -92,9 +92,7 @@
 									</button>
 								</span>
 							</div>
-						</form>
-						
-						<!--  INI HARUSNYA PALING UJUNG DI SEBELAH SEARCH-->
+						</form> <!--  INI HARUSNYA PALING UJUNG DI SEBELAH SEARCH-->
 						<ul class="nav navbar-nav navbar-right">
 							<li class="active"><a href="#"><span
 									class="glyphicon glyphicon-user"
@@ -132,12 +130,48 @@
 
 	<header class="wall">
 		<div class="container">
+<<<<<<< HEAD
 			<div class="intro-text">
 				<div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}"></div>
+=======
+<<<<<<< HEAD
+			<div class="intro-text">
 				<div class="intro-heading" th:text="Halo + ${#httpServletRequest.remoteUser}"></div>
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 				<a th:href="'/profile/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Profile</a>
 				<div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
 				<div th:unless = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div>
+				
+=======
+			<div class="intro-text">
+				<div class="intro-heading"
+					th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}"></div>
+				<div th:if="${user.role} eq 'ROLE_KPMB'">
+					<a href="#" class="page-scroll btn btn-xl">Konfigurasi Jalur
+						Masuk</a> <a href="#" class="page-scroll btn btn-xl">Seleksi
+						Pendaftar</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_PEND'">
+					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}"
+						class="page-scroll btn btn-xl">Daftar Seleksi</a> <a href="#"
+						class="page-scroll btn btn-xl">Biaya Pendidikan</a> <a href="#"
+						class="page-scroll btn btn-xl">Cara Pembayaran</a> <a href="#"
+						class="page-scroll btn btn-xl">Lihat Hasil Seleksi</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_LPT'">
+					<a href="#" class="page-scroll btn btn-xl">Masukkan Data
+						Pendaftar</a> <a href="#" class="page-scroll btn btn-xl">Daftar
+						Siswa</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_PENG_U'">
+					<a href="#" class="page-scroll btn btn-xl">Isi Data Diri</a>
+				</div>
+				<div
+					th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' 
+					or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
+					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+				</div>
+>>>>>>> refs/remotes/origin/master
 			</div>
 		</div>
 	</header>
