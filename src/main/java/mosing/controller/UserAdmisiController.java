@@ -27,35 +27,19 @@ public class UserAdmisiController {
 	@RequestMapping("/register/submit")
 	public String addSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "password", required = false) String password,
-			@RequestParam(value = "email", required = false) String email)
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "role", required = false) String role)
 	{
-		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, "ROLE_PEND");
+		if(role.equalsIgnoreCase("Pendaftar Seleksi"))
+		{
+			role = "ROLE_PEND";
+		}
+		else
+		{
+			role = "ROLE_PENG_U";
+		}
+		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, role);
 		userDAO.addUser(userAdmisi);
-		return "success-registration";
+		return "login";
 	}
-	
-//	@RequestMapping("/pendaftar/register/next")
-//	public String addUser(Model model,
-//			@RequestParam(value = "username", required = false) String username,
-//			@RequestParam(value = "password", required = false) String password,
-//			@RequestParam(value = "email", required = false) String email)
-//	{
-//		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, "ROLE_PEND");
-//		userDAO.addUser(userAdmisi);
-//		UserAdmisiModel user = userDAO.selectUser(username);
-//		model.addAttribute("user", user);
-//		return "form-registrasi2";
-//	}
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String selectUser(@RequestParam(value ="username", required = false)String username){
-//		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
-//		
-//		if(userAdmisi.getRole().equals("KPM")){
-//			return "kpmb";
-//		}
-//		else {
-//			return "error";
-//		}
-//	}
 }
