@@ -81,9 +81,10 @@
 					</li>
                 </ul>
             </div>
-        <form action="forgotPwd" th:action="@{/done}" method="post">
-          <input type="email" class="form-control" name="email" placeholder="Email"/>           
-          <button type="submit" class="btn btn-primary btn-block btn-flat" action="/done" >Submit</button>
+        <form action="/resetPassword" method="post">
+          <input type="username" class="form-control" name="username" placeholder="Username"/> 
+          <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>          
+          <button type="submit" class="btn btn-primary btn-block btn-flat" action="save" >Submit</button>
         </form>      
   
   </body>

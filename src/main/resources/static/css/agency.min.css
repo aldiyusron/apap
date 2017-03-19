@@ -51,11 +51,11 @@ a.active, a:active, a:focus, a:hover {
 }
 
 .bg-light-gray {
-	background-color: #eee
+	background-color: #f6f6f6	
 }
 
 .bg-darkest-gray {
-	background-color: #222
+	background-color: #464646
 }
 
 .btn-primary {
@@ -94,6 +94,17 @@ a.active, a:active, a:focus, a:hover {
 	border-radius: 3px;
 	font-size: 18px;
 	padding: 20px 40px
+}
+.btn-s
+{
+	color: #fff;
+	background-color: #fed136;
+	border-color: #fed136;
+	border-radius: 3px;
+	font-size: 12px;
+	padding: 5px 15px;
+	float: right;
+	margin-bottom: 10px
 }
 
 .btn-xl.active, .btn-xl:active, .btn-xl:focus, .btn-xl:hover, .open .dropdown-toggle.btn-xl
@@ -143,12 +154,18 @@ a.active, a:active, a:focus, a:hover {
 
 .navbar-custom .navbar-collapse {
 	border-color: rgba(255, 255, 255, .02);
-	padding-top: -100px
+	padding-top: -100px;
 }
 
 .navbar-collapse2
 {
-	padding-top: 40px
+	padding-top: 20px;
+	padding-bottom: 20px
+}
+#mainNav 
+{
+background-color: #fff;
+padding-top: 10px
 }
 
 .navbar-custom .navbar-toggle {
@@ -181,10 +198,26 @@ a.active, a:active, a:focus, a:hover {
 
 .container .logomosing
 {
-	padding-top: 10px;
-	padding-left: 1px
+	padding-top: 70px;
+	padding-bottom: 20px;
+	width: 10px;
+	height: 10px
 }
 
+.gambarberita 
+{
+	float: left;
+	width: 30%;
+	box-sizing: border-box;
+	padding-right: 2em
+}
+
+.gambarberita img {
+	width: 100%
+}
+.kedua {
+	padding-top: 50px
+}
 .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.active>a:hover
 	{
 	color: #fff;
@@ -666,7 +699,8 @@ footer {
 footer span.copyright {
 	line-height: 40px;
 	text-transform: uppercase;
-	text-transform: none
+	text-transform: none;
+	margin-top: 1px
 }
 
 footer ul.quicklinks {
@@ -674,6 +708,11 @@ footer ul.quicklinks {
 	line-height: 40px;
 	text-transform: uppercase;
 	text-transform: none
+}
+
+ul.social-buttons .socialtitle{
+	position: left;
+	margin-left: 5px
 }
 
 ul.social-buttons {
@@ -825,7 +864,7 @@ img::-moz-selection {
 
 .link-new {
 	color: inherit;
-	text-decoration: inherit;
+	text-decoration: inherit;	
 }
 
 .link-new:link {
@@ -836,7 +875,10 @@ img::-moz-selection {
 .link-new:hover {
 	color: inherit;
 	text-decoration: inherit;
+	-webkit-animation: vibration 0.5s infinite;
+  	opacity: 0.6
 }
+
 
 hr {
 	border: 0;
