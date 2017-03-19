@@ -23,7 +23,6 @@ public class UserAdmisiController {
 		return "form-registrasi1";
 	}
 	
-	
 	@RequestMapping("/register/submit")
 	public String addSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "password", required = false) String password,
@@ -41,5 +40,31 @@ public class UserAdmisiController {
 		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, role);
 		userDAO.addUser(userAdmisi);
 		return "login";
+	}
+	
+	@RequestMapping(value = "/forgotPassword")
+	public String forgotPassword() {
+		return "forgotPwd";
+	}
+
+	@RequestMapping(value = "/resetPassword")
+	public String resetRequest(Model model, @RequestParam(value = "username") String username) {
+		UserAdmisiModel user = userDAO.selectUser(username);
+		if(user == null)
+			return "login";
+		model.addAttribute("user", user);
+		return "newPassword";
+	}
+
+	@RequestMapping(value = "/resetPassword/submit")
+	public String resetRequest(@RequestParam(value = "username") String username,
+			@RequestParam(value = "password") String password, @RequestParam(value = "email") String email) {
+
+		UserAdmisiModel user = userDAO.selectUser(username);
+		if (user == null)
+			return "login";
+		user.setPassword(password);
+		userDAO.updateUser(user);
+		return "success-registration";
 	}
 }

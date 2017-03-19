@@ -58,32 +58,16 @@ public class PendaftarController {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
-<<<<<<< HEAD
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-<<<<<<< HEAD
 				provinsi, kota, jk, null);
-=======
-				provinsi, kota, jk);
-//		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
-//				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-//				provinsi, kota, jk, "", "");
-=======
-		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
-				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk, null);
->>>>>>> origin/master
->>>>>>> refs/remotes/origin/master
-
 		pendaftarDAO.addPendaftar(pendaftar);
 		return "success-registration";
-<<<<<<< HEAD
 	}
 	
 	@RequestMapping("/forgotPwd")
 	public String forgotPwd()
 	{
 		return "forgotPwd";
-=======
->>>>>>> refs/remotes/origin/master
 	}
 }

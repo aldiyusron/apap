@@ -36,70 +36,10 @@ public class PageController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
-	}
-<<<<<<< HEAD
+	}	
 	
-=======
-<<<<<<< HEAD
-	
-
-//	@RequestMapping("/")
-//	public String home(Model model){
-//		UserAdmisiModel user = userDAO.selectUser();
-//		model.addAttribute("user", user);
-//		return "home";
-////		if(user.getRole().equals("ROLE_PEND"))
-////			return "home";
-////		else if(user.getRole().equals("ROLE_KPMB"))
-////			return "home2";
-////		else
-////			return "home3";
-//	}
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String selectUser(@RequestParam(value ="username", required = false) String username){
-//		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
-//		
-//		if(userAdmisi.getRole().equals("ROLE_KPMB")){
-//			return "kpmb";
-//		} else if(userAdmisi.getRole().equals("ROLE_PEND")){
-//			return "home";
-//		} else {
-//			return "login";
-//		}
-//	}
-=======
->>>>>>> origin/master
-
->>>>>>> refs/remotes/origin/master
 	@RequestMapping("/done")
 	public String done() {
 		return "done";
-	}
-
-	@RequestMapping(value = "/forgotPassword")
-	public String forgotPassword() {
-		return "forgotPwd";
-	}
-
-	@RequestMapping(value = "/resetPassword")
-	public String resetRequest(Model model, @RequestParam(value = "username") String username) {
-		UserAdmisiModel user = userDAO.selectUser(username);
-		if(user == null)
-			return "login";
-		model.addAttribute("user", user);
-		return "newPassword";
-	}
-
-	@RequestMapping(value = "/resetPassword/submit")
-	public String resetRequest(@RequestParam(value = "username") String username,
-			@RequestParam(value = "password") String password, @RequestParam(value = "email") String email) {
-
-		UserAdmisiModel user = userDAO.selectUser(username);
-		if (user == null)
-			return "login";
-		user.setPassword(password);
-		userDAO.updateUser(user);
-		return "success-registration";
 	}
 }
