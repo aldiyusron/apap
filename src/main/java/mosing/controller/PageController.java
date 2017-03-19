@@ -39,8 +39,9 @@ public class PageController {
 	}
 	
 	@RequestMapping("/")
-	public String home(){
+	public String home(Model model){
 		UserAdmisiModel user = userDAO.selectUser();
+		model.addAttribute("user", user);
 		return "home";
 //		if(user.getRole().equals("ROLE_PEND"))
 //			return "home";

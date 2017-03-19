@@ -30,9 +30,14 @@ public class PendaftarController {
 	// return "form-registrasi";
 	// }
 
-	@RequestMapping("/profile/update/{username}")
+	@RequestMapping("/profile/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username)
 	{
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+		if(pendaftar != null)
+		{
+			return "profile";
+		}
 //		UserAdmisiModel user = userDAO.selectUser(username);
 		model.addAttribute("username", username);
 		return "form-registrasi2";
@@ -56,7 +61,7 @@ public class PendaftarController {
 			@RequestParam(value = "kota", required = false) String kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
-
+		
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);

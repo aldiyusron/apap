@@ -11,8 +11,8 @@ import mosing.model.UserAdmisiModel;
 @Mapper
 public interface PendaftarMapper {
 
-	@Select("select * from pendaftar where no_id = #{no_id}")
-	PendaftarModel selectPendaftar(@Param("no_id") String no_id);
+	@Select("select * from pendaftar where username = #{username}")
+	PendaftarModel selectPendaftar(@Param("username") String username);
 
 	@Insert("INSERT INTO pendaftar (username, no_id, nama_id, "
 			+ "nama_ijazah, foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, "

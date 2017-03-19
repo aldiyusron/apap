@@ -12,7 +12,7 @@ import mosing.model.UserAdmisiModel;
 @Mapper
 public interface UserAdmisiMapper {
 
-	@Select("select username from user where username = #{username}")
+	@Select("select * from user where username = #{username}")
 	@Results(value = { @Result(property = "username", column = "username"),
 			@Result(property = "password", column = "password"), @Result(property = "email", column = "email"),
 			@Result(property = "role", column = "role") })
