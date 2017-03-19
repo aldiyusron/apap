@@ -41,8 +41,6 @@ public class UserAdmisiController {
 		userDAO.addUser(userAdmisi);
 		return "login";
 	}
-<<<<<<< HEAD
-=======
 	
 	@RequestMapping(value = "/forgotPassword")
 	public String forgotPassword() {
@@ -69,5 +67,4 @@ public class UserAdmisiController {
 		userDAO.updateUser(user);
 		return "success-registration";
 	}
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 }

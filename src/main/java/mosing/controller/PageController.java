@@ -36,11 +36,15 @@ public class PageController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
+<<<<<<< HEAD
+	}
+=======
 	}	
-	
+
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> origin/master
 	
 
 //	@RequestMapping("/")
@@ -68,8 +72,7 @@ public class PageController {
 //			return "login";
 //		}
 //	}
-=======
->>>>>>> origin/master
+
 
 >>>>>>> refs/remotes/origin/master
 =======
