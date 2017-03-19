@@ -181,7 +181,7 @@ a.active, a:active, a:focus, a:hover {
 
 .container .logomosing
 {
-	padding-top: 60px;
+	padding-top: 10px;
 	padding-left: 1px
 }
 
@@ -847,7 +847,7 @@ hr {
 }
 
 .wall{
-	background-image: url('../img/header-bg.jpg');
+	background-image: url('../img/home.jpg');
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
