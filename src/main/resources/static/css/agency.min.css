@@ -900,3 +900,7 @@ hr {
 	-o-background-size: cover;
 	padding-top: -10%;
 }
+
+.text-center{
+	padding: 280px;
+}

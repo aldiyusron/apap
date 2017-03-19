@@ -3574,7 +3574,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-warning {
 	color: #fff;
 	background-color: #f0ad4e;
-	border-color: #eea236
+	border-color: #eea236;
+	margin-left:80%;
 }
 
 .btn-warning.focus, .btn-warning:focus {
@@ -3626,8 +3627,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-danger {
 	color: #fff;
-	background-color: #d9534f;
-	border-color: #d43f3a
+	background-color: #fece00;
+	border-color: #fece00;
+	width:40%;
+	margin-left:-35%;
+	
 }
 
 .btn-danger.focus, .btn-danger:focus {
@@ -7399,5 +7403,11 @@ button.close {
 	.hidden-print {
 		display: none !important
 	}
+}
+
+.btn btn-sso {
+	color: #fff;
+	background-color: #f0ad4e;
+	border-color: #eea236;
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
