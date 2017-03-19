@@ -36,47 +36,9 @@ public class PageController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
-<<<<<<< HEAD
 	}
-=======
-	}	
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
-	
-
-//	@RequestMapping("/")
-//	public String home(Model model){
-//		UserAdmisiModel user = userDAO.selectUser();
-//		model.addAttribute("user", user);
-//		return "home";
-////		if(user.getRole().equals("ROLE_PEND"))
-////			return "home";
-////		else if(user.getRole().equals("ROLE_KPMB"))
-////			return "home2";
-////		else
-////			return "home3";
-//	}
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String selectUser(@RequestParam(value ="username", required = false) String username){
-//		UserAdmisiModel userAdmisi = userDAO.selectUser(username);
-//		
-//		if(userAdmisi.getRole().equals("ROLE_KPMB")){
-//			return "kpmb";
-//		} else if(userAdmisi.getRole().equals("ROLE_PEND")){
-//			return "home";
-//		} else {
-//			return "login";
-//		}
-//	}
 
 
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 	@RequestMapping("/done")
 	public String done() {
 		return "done";

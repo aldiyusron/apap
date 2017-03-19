@@ -1535,7 +1535,8 @@ p {
 }
 
 .text-center {
-	text-align: center
+	text-align: center;
+	margin-left:25%;
 }
 
 .text-justify {
