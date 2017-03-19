@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Registrasi</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<h1 class="page-header">Problem Editor</h1>
+
+	<form action="/profile/submit" method="post">
+		<div>
+			<label for="username">Username</label> <input type="text" name="username"
+				readonly="readonly" th:value="${username}" />
+		</div>
+		<div>
+			<label for="nama">Nama</label> <input type="text"
+				name="nama" />
+		</div>
+		<div>
+			<label for="jabatan">Jabatan</label> <input type="text" name="jabatan" />
+		</div>
+		<div>
+			<label for="lokasi">Lokasi</label> <input type="text"
+				name="lokasi" />
+		</div>
+		<div>
+			<button type="submit" name="action" value="save">Submit</button>
+		</div>
+	</form>
+
+</body>
+
+</html>
+
