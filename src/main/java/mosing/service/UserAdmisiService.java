@@ -8,6 +8,5 @@ public interface UserAdmisiService {
 	UserAdmisiModel selectUser(String username);
 	UserAdmisiModel selectUser();
 	void updateUser(UserAdmisiModel user);
-//	void createPasswordResetTokenForUser(UserAdmisiModel user, String token);
 }
 
