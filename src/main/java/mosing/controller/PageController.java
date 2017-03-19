@@ -15,18 +15,16 @@ public class PageController {
 	@Autowired
 	UserAdmisiService userDAO;
 	
-//	@RequestMapping("/")
-//	public String login(Model model){
-//		UserAdmisiModel user = userDAO.selectUser();
-//		model.addAttribute("user", user);
-//		if(user.getRole().equals("ROLE_PEND")){
-//			return "home";
-//		} else if(user.getRole().equals("ROLE_KPMB")){
-//			return "kpmb";
-//		} else {
-//			return "error";
-//		}
-//	}
+	@RequestMapping("/")
+	public String login(Model model){
+		UserAdmisiModel user = userDAO.selectUser();
+		model.addAttribute("user", user);
+		if(user!=null){
+		return "home";
+		} else {
+			return "login";
+		}
+	}
 
 	@RequestMapping("/index")
 	public String index() {
@@ -38,12 +36,12 @@ public class PageController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, @RequestParam(value ="username", required = false) String username){
-		UserAdmisiModel user = userDAO.selectUser(username);
-		model.addAttribute("user", user);
-		return "home";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(Model model, @RequestParam(value ="username", required = false) String username){
+//		UserAdmisiModel user = userDAO.selectUser(username);
+//		model.addAttribute("user", user);
+//		return "home";
+//	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String selectUser(@RequestParam(value ="username", required = false) String username){

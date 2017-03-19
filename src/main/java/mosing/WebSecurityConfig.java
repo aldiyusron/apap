@@ -47,8 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/font-awesome/**").permitAll()
-				.antMatchers("/home").hasRole("PEN").anyRequest().authenticated()
-				.antMatchers("/kpmb").hasRole("KPM").anyRequest().authenticated()
 				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll().and().logout().permitAll();

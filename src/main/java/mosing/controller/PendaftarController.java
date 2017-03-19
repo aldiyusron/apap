@@ -55,7 +55,7 @@ public class PendaftarController {
 
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				provinsi, kota, jk, "");
+				provinsi, kota, jk);
 //		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
 //				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
 //				provinsi, kota, jk, "", "");

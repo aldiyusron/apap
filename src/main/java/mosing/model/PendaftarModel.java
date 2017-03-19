@@ -29,7 +29,7 @@ public class PendaftarModel {
 	private String provinsi;
 	private String kota;
 	private byte jenis_kelamin;
-	private String no_daftar;
+//	private String no_daftar;
 //	private String no_ujian;
 
 //	public PendaftarModel(UserAdmisiModel user, String no_id, String nama_id, String nama_ijazah, String foto,
