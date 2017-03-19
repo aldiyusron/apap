@@ -36,9 +36,9 @@ public class PageController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
-	}
-<<<<<<< HEAD
+	}	
 	
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 	
@@ -72,34 +72,10 @@ public class PageController {
 >>>>>>> origin/master
 
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 	@RequestMapping("/done")
 	public String done() {
 		return "done";
-	}
-
-	@RequestMapping(value = "/forgotPassword")
-	public String forgotPassword() {
-		return "forgotPwd";
-	}
-
-	@RequestMapping(value = "/resetPassword")
-	public String resetRequest(Model model, @RequestParam(value = "username") String username) {
-		UserAdmisiModel user = userDAO.selectUser(username);
-		if(user == null)
-			return "login";
-		model.addAttribute("user", user);
-		return "newPassword";
-	}
-
-	@RequestMapping(value = "/resetPassword/submit")
-	public String resetRequest(@RequestParam(value = "username") String username,
-			@RequestParam(value = "password") String password, @RequestParam(value = "email") String email) {
-
-		UserAdmisiModel user = userDAO.selectUser(username);
-		if (user == null)
-			return "login";
-		user.setPassword(password);
-		userDAO.updateUser(user);
-		return "success-registration";
 	}
 }

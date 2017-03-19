@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package mosing.model;
 
 import lombok.AllArgsConstructor;
@@ -25,3 +26,21 @@ public class UserAdmisiModel  {
 		// TODO Auto-generated constructor stub
 	}
 }
+=======
+package mosing.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserAdmisiModel  {
+
+	private String username;
+	private String password;
+	private String email;
+	private String role;
+}
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git

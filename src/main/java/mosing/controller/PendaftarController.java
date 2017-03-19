@@ -58,9 +58,9 @@ public class PendaftarController {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
-<<<<<<< HEAD
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				provinsi, kota, jk, null);
 =======
@@ -74,7 +74,16 @@ public class PendaftarController {
 >>>>>>> origin/master
 
 >>>>>>> refs/remotes/origin/master
+=======
+				provinsi, kota, jk, null);
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 		pendaftarDAO.addPendaftar(pendaftar);
 		return "success-registration";
+	}
+	
+	@RequestMapping("/forgotPwd")
+	public String forgotPwd()
+	{
+		return "forgotPwd";
 	}
 }

@@ -130,6 +130,14 @@
 
 	<header class="wall">
 		<div class="container">
+<<<<<<< HEAD
+			<div class="intro-text">
+				<div class="intro-heading" th:text="Halo + ${#httpServletRequest.remoteUser}"></div>
+				<a th:href="'/profile/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Profile</a>
+				<div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
+				<div th:unless = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div>
+				
+=======
 			<div class="intro-text">
 				<div class="intro-heading"
 					th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}"></div>
@@ -158,6 +166,7 @@
 					or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
 					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
 				</div>
+>>>>>>> refs/remotes/origin/master
 			</div>
 		</div>
 	</header>

@@ -30,13 +30,17 @@ public class PendaftarModel {
 	private String kota;
 	private byte jenis_kelamin;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 //	private String no_daftar;
 //	private String no_ujian;
 	
+=======
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 	private String no_daftar;
+<<<<<<< HEAD
 	//private String no_ujian;
 
 	public PendaftarModel(String username, String no_id, String nama_id, String nama_ijazah, String foto,
@@ -85,4 +89,6 @@ public class PendaftarModel {
 //	}
 >>>>>>> origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 }
