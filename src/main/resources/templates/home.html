@@ -133,24 +133,11 @@
 	<header class="wall">
 		<div class="container">
 			<div class="intro-text">
-<<<<<<< HEAD
-				<div class="intro-heading" th:text="Halo + ${#httpServletRequest.remoteUser}"></div>
-				
-				<div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
-				<div th:unless = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div>
-=======
-<<<<<<< HEAD
 				<div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}"></div>
-				<!-- <div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
-				<div th:unless = "${user.role} eq 'ROLE_PEND'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div> -->
-=======
 				<div class="intro-heading" th:text="Halo + ${#httpServletRequest.remoteUser}"></div>
 				<a th:href="'/profile/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Profile</a>
 				<div th:if = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test1</a></div>
 				<div th:unless = "${user.role} eq 'ROLE_KPMB'"><a href="#" class="page-scroll btn btn-xl">Test2</a></div>
-				
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 			</div>
 		</div>
 	</header>

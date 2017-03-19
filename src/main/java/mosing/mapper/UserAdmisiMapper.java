@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import mosing.model.UserAdmisiModel;
 
@@ -20,4 +21,7 @@ public interface UserAdmisiMapper {
 
 	@Insert("insert into user (username, password, email, role, enabled) values (#{username}, #{password}, #{email}, #{role}, 1)")
 	void addUser(UserAdmisiModel user);
+	
+	@Update("UPDATE user SET password = #{password} WHERE username = #{username}")
+	void updateUser(UserAdmisiModel user);
 }
