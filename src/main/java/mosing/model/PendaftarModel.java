@@ -29,7 +29,6 @@ public class PendaftarModel {
 	private String provinsi;
 	private String kota;
 	private byte jenis_kelamin;
-<<<<<<< HEAD
 
 //	private String no_daftar;
 //	private String no_ujian;
@@ -39,7 +38,7 @@ public class PendaftarModel {
 
 	public PendaftarModel(String username, String no_id, String nama_id, String nama_ijazah, String foto,
 			String no_hp, String no_telp, String negara, String kewarganegaraan, String alamat_tetap, String jenis_id,
-			String alamat_sekarang, Date tgl_lahir, String provinsi, String kota, byte jenis_kelamin) {
+			String alamat_sekarang, Date tgl_lahir, String provinsi, String kota, byte jenis_kelamin, String no_daftar) {
 		this.username = username;
 		this.no_id = no_id;
 		this.nama_id = nama_id;
@@ -56,9 +55,9 @@ public class PendaftarModel {
 		this.provinsi = provinsi;
 		this.kota = kota;
 		this.jenis_kelamin = jenis_kelamin;
-	}
-=======
-	private String no_daftar;
+		this.no_daftar = no_daftar;
+	
+	}}
 	
 //	public PendaftarModel(String username, String no_id, String nama_id, String nama_ijazah, String foto,
 //			String no_hp, String no_telp, String negara, String kewarganegaraan, String alamat_tetap, String jenis_id,
@@ -81,5 +80,4 @@ public class PendaftarModel {
 //		this.kota = kota;
 //		this.jenis_kelamin = jenis_kelamin;
 //	}
->>>>>>> origin/master
-}
+

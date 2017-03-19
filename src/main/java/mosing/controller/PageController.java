@@ -37,7 +37,6 @@ public class PageController {
 	public String login() {
 		return "login";
 	}
-<<<<<<< HEAD
 	
 
 //	@RequestMapping("/")
@@ -65,8 +64,7 @@ public class PageController {
 //			return "login";
 //		}
 //	}
-=======
->>>>>>> origin/master
+
 
 	@RequestMapping("/done")
 	public String done() {

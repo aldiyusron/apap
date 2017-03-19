@@ -710,9 +710,10 @@ footer ul.quicklinks {
 	text-transform: none
 }
 
-ul.social-buttons .socialtitle{
-	position: left;
-	margin-left: 5px
+.socialtitle{
+	text-align: left;
+	margin-top: -225px;
+	padding-left: 100px
 }
 
 ul.social-buttons {
