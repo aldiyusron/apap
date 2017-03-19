@@ -28,15 +28,13 @@ public class PendaftarController {
 	@RequestMapping("/profile/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
-		if(pendaftar != null)
-		{
+		if (pendaftar != null) {
 			return "profile";
 		}
-//		UserAdmisiModel user = userDAO.selectUser(username);
 		model.addAttribute("username", username);
 		return "form-registrasi2";
 	}
-	
+
 	@RequestMapping("/profile/submit")
 	public String profileSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
@@ -55,21 +53,28 @@ public class PendaftarController {
 			@RequestParam(value = "kota", required = false) String kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
-		
+
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
+<<<<<<< HEAD
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah,
 				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
+<<<<<<< HEAD
 				provinsi, kota, jk, null);
+=======
+				provinsi, kota, jk);
+//		PendaftarModel pendaftar = new PendaftarModel(user, no_id, nama_id, nama_ijazah,
+//				foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
+//				provinsi, kota, jk, "", "");
+=======
+		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
+				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk, null);
+>>>>>>> origin/master
+
+>>>>>>> refs/remotes/origin/master
 		pendaftarDAO.addPendaftar(pendaftar);
 		return "success-registration";
-	}
-
-	@RequestMapping("/forgotPwd")
-	public String forgotPwd()
-	{
-		return "forgotPwd";
 	}
 }
