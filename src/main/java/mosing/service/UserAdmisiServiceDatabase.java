@@ -34,4 +34,10 @@ public class UserAdmisiServiceDatabase implements UserAdmisiService {
 		String username = auth.getName();
 		return userAdmisiMapper.selectUser(username);
 	}
+	
+	@Override
+	public void updateUser(UserAdmisiModel user)
+	{
+		userAdmisiMapper.updateUser(user);
+	}
 }
