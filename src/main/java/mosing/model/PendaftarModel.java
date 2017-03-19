@@ -33,6 +33,8 @@ public class PendaftarModel {
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -100,3 +102,4 @@ public class PendaftarModel {
 =======
 >>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 }
+>>>>>>> origin/master
