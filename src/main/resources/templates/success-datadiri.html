@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Reset Password</title>
+<title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -105,6 +105,15 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#"><span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Log Out</button>
+							</form></li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -135,110 +144,6 @@
 		</div>
 
 	</div>
-
-	<form class="well form-horizontal" action="/resetPassword/submit"
-		method="post" id="contact_form">
-		<fieldset>
-
-			<!-- Form Name -->
-			<legend>
-				<center>
-					<h2>
-						<b>Reset Password</b>
-					</h2>
-				</center>
-			</legend>
-			<br />
-			<div>
-				<input type="hidden" readonly="readonly" name="username"
-					th:value="${user.username}" />
-			</div>
-			<div class="form-group">
-				<label class="col-md-4 control-label">Password</label>
-				<div class="col-md-4 inputGroupContainer">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user"></i></span> <input name="password"
-							placeholder="New Password" class="form-control" type="password" />
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="col-md-4 control-label">Confirm Password</label>
-				<div class="col-md-4 inputGroupContainer">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user"></i></span> <input
-							name="confirm_password" placeholder="Confirm Password"
-							class="form-control" type="password" />
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<input type="hidden" readonly="readonly" th:value="${user.email}"
-					name="email" />
-			</div>
-
-			<input type="hidden" th:name="${_csrf.parameterName}"
-				th:value="${_csrf.token}" />
-
-			<!-- Button -->
-			<div class="form-group" style="position: center">
-				<label class="col-md-4 control-label"></label>
-				<div class="col-md-4">
-					<br /> <input type="hidden" th:name="${_csrf.parameterName}"
-						th:value="${_csrf.token}" />
-					<button value="save" name="action" type="submit"
-						class="btn btn-warning">Submit</button>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-
-	<!-- /.container -->
-	<script>
-	  $(document).ready(function() {
-		    $('#contact_form').bootstrapValidator({
-		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        fields: {
-		            password: {
-		                validators: {
-		                        stringLength: {
-		                        min: 2,
-		                    },
-		                        notEmpty: {
-		                        message: 'Please enter your new password'
-		                    }
-		                }
-		            }
-		    )   
- .on('success.form.bv', function(e) {
-		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-		                $('#contact_form').data('bootstrapValidator').resetForm();
-
-		            // Prevent form submission
-		            e.preventDefault();
-
-		            // Get the form instance
-		            var $form = $(e.target);
-
-		            // Get the BootstrapValidator instance
-		            var bv = $form.data('bootstrapValidator');
-
-		            // Use Ajax to submit form data
-		            $.post($form.attr('action'), $form.serialize(), function(result) {
-		                console.log(result);
-		            }, 'json');
-		        });
-		});
-	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
