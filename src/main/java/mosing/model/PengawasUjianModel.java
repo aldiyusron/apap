@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PengawasUjianModel extends UserAdmisiModel {
-
+public class PengawasUjianModel {
+	
+	private String username;
 	private boolean status;
 	private String jabatan;
 	private String nama;
-	private LokasiModel lokasi;
+	private String lokasi;
 }

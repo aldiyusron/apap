@@ -1,4 +1,0 @@
-[0315/182448.077:ERROR:exception_handler_server.cc(524)] ConnectNamedPipe: The pipe is being closed. (0xE8)
-[0318/171425.122:ERROR:crash_report_database_win.cc(426)] unexpected header
-[0318/171510.048:ERROR:crash_report_database_win.cc(426)] unexpected header
-[0318/171747.055:ERROR:crash_report_database_win.cc(426)] unexpected header

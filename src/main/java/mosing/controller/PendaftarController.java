@@ -25,17 +25,17 @@ public class PendaftarController {
 	PendaftarService pendaftarDAO;
 	UserAdmisiService userDAO;
 
-	@RequestMapping("/profile/{username}")
+	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
 		if (pendaftar != null) {
-			return "profile";
+			return "success-regisSeleksi";
 		}
 		model.addAttribute("username", username);
 		return "form-registrasi2";
 	}
 
-	@RequestMapping("/profile/submit")
+	@RequestMapping("/pendaftar/submit")
 	public String profileSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "no_id", required = false) String no_id,
@@ -62,10 +62,6 @@ public class PendaftarController {
 				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk, null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-		return "success-registration";
+		return "success-regisSeleksi";
 	}
-	
-
-	
-	
 }

@@ -11,22 +11,23 @@
 
 	<h1 class="page-header">Problem Editor</h1>
 
-	<form action="/profile/submit" method="post">
+	<form action="/pengawas/submit" method="post">
 		<div>
-			<label for="username">Username</label> <input type="text" name="username"
-				readonly="readonly" th:value="${username}" />
+			<label for="username">Username</label> <input type="text"
+				name="username" readonly="readonly" th:value="${username}" />
 		</div>
 		<div>
-			<label for="nama">Nama</label> <input type="text"
-				name="nama" />
+			<label for="nama">Nama</label> <input type="text" name="nama" />
 		</div>
 		<div>
-			<label for="jabatan">Jabatan</label> <input type="text" name="jabatan" />
+			<label for="jabatan">Jabatan</label> <input type="text"
+				name="jabatan" />
 		</div>
 		<div>
-			<label for="lokasi">Lokasi</label> <input type="text"
-				name="lokasi" />
+			<label for="lokasi">Lokasi</label> <input type="text" name="lokasi" />
 		</div>
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" />
 		<!-- test -->
 		<div>
 			<button type="submit" name="action" value="save">Submit</button>
