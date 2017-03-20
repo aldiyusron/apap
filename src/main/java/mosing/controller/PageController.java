@@ -30,7 +30,7 @@ public class PageController {
 
 	@RequestMapping("/index")
 	public String index() {
-		return "index";
+		return "index2";
 	}
 
 	@RequestMapping("/login")

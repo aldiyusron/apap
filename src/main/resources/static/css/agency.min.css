@@ -193,7 +193,7 @@ padding-top: 10px
 .navbar-custom .navbar-nav>.active>a {
 	border-radius: 0;
 	color: #fff;
-	background-color: #fed136;
+	background-color: black;
 	margin-left: 10px
 }
 
@@ -222,7 +222,7 @@ padding-top: 10px
 .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.active>a:hover
 	{
 	color: #fff;
-	background-color: #fec503
+	background-color: black
 }
 
 @media ( min-width :768px) {
@@ -711,15 +711,6 @@ footer ul.quicklinks {
 	text-transform: none
 }
 
-ul.social-buttons .socialtitle{
-	position: left;
-	margin-left: 5px
-}
-
-ul.social-buttons {
-	margin-bottom: 0
-}
-
 ul.social-buttons li a {
 	display: block;
 	background-color: #222;
@@ -857,8 +848,8 @@ img::-moz-selection {
 }
 
 #box-new {
-	color: black;
-	background-color: #F8F8F8;
+	color: #fed136;
+	background-color: #434343;
 	padding: 5px 15px;
 	margin-top: 15%;
 }
@@ -1613,10 +1604,10 @@ footer ul.quicklinks {
 	text-transform: none
 }
 
-.socialtitle{
+ul .socialtitle li{
 	text-align: left;
-	margin-top: -225px;
-	padding-left: 100px
+	padding-left: 10px;
+	float: left
 }
 
 ul.social-buttons {
@@ -1801,13 +1792,4 @@ hr {
 	-moz-background-size: cover;
 	background-size: cover;
 	-o-background-size: cover;
-	padding-top: -10%;
-<<<<<<< HEAD
-}
-
-.text-center{
-	padding: 280px;
-=======
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 }
