@@ -2,82 +2,471 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-
-<title>Registrasi</title>
+<title>Penerimaan UI | Registrasi</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<!-- Bootstrap 3.3.6 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="/plugins/ionicons-2.0.1/css/ionicons.min.css" />
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/AdminLTE.min.css" />
+<!-- iCheck -->
+<link rel="stylesheet" href="/plugins/iCheck/square/blue.css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 
-<body>
+<body> <!-- TINGGAL HEADER SAMA FOOTER -->
+	<div class="container">
+		<form class="well form-horizontal" action="/profile/submit" method="post"
+			id="contact_form">
+			<fieldset>
 
-	<h1 class="page-header">Problem Editor</h1>
+				<!-- Form Name -->
+				<legend>
+					<center>
+						<h2>
+							<b>Formulir Registrasi</b>
+						</h2>
+					</center>
+				</legend>
+				<br/>
+				
+				<!-- Text input-->
 
-	<form action="/profile/submit" method="post">
-		<div>
-			<label for="username">Username</label> <input type="text" name="username"
+				<div class="form-group">
+					<label class="col-md-4 control-label">Username</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input type="text" name="username"
 				readonly="readonly" th:value="${username}" />
-		</div>
-		<div>
-			<label for="jenis_id">Jenis ID</label> <input type="text"
-				name="jenis_id" />
-		</div>
-		<div>
-			<label for="no_id">No. ID</label> <input type="text" name="no_id" />
-		</div>
-		<div>
-			<label for="nama_id">Nama ID</label> <input type="text"
-				name="nama_id" />
-		</div>
-		<div>
-			<label for="nama_ijazah">Nama Ijazah</label> <input type="text"
-				name="nama_ijazah" />
-		</div>
-		<div>
-			<label for="foto">Link Foto</label> <input type="text" name="foto" />
-		</div>
-		<div>
-			<label for="no_hp">No. HP</label> <input type="text" name="no_hp" />
-		</div>
-		<div>
-			<label for="no_telp">No. Telepon</label> <input type="text"
-				name="no_telp" />
-		</div>
-		<div>
-			<label for="negara">Negara</label> <input type="text" name="negara" />
-		</div>
-		<div>
-			<label for="kewarganegaraan">Kewarganegaraan</label> <input
-				type="text" name="kewarganegaraan" />
-		</div>
-		<div>
-			<label for="alamat_tetap">Alamat Tetap</label> <input type="text"
-				name="alamat_tetap" />
-		</div>
-		<div>
-			<label for="alamat_sekarang">Alamat Sekarang</label> <input
-				type="text" name="alamat_sekarang" />
-		</div>
-		<div>
-			<label for="tgl_lahir">Tanggal Lahir</label> <input type="text"
-				name="tgl_lahir" />
-		</div>
-		<div>
-			<label for="provinsi">Provinsi</label> <input type="text"
-				name="provinsi" />
-		</div>
-		<div>
-			<label for="kota">Kota</label> <input type="text" name="kota" />
-		</div>
-		<div>
-			<label for="jenis_kelamin">Jenis Kelamin</label> <input type="text"
-				name="jenis_kelamin" />
-		</div>
-		<input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-		<div>
-			<button type="submit" name="action" value="save">Submit</button>
-		</div>
-	</form>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label">Jenis ID</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="jenis_id"
+								placeholder="Jenis ID" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Text input-->
 
+				<div class="form-group">
+					<label for="no_id" class="col-md-4 control-label">Nomor ID</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="no_id"
+								placeholder="Nomor ID" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="nama_id" class="col-md-4 control-label">Nama ID</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
+								placeholder="Nama ID" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="nama_ijazah" class="col-md-4 control-label">Nama Ijazah</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <input name="nama_ijazah"
+								placeholder="Nama Ijazah" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="foto" class="col-md-4 control-label">Link Foto</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-picture"></i></span> <input name="foto"
+								placeholder="Link Foto" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="no_hp" class="col-md-4 control-label">Nomor HP</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-phone"></i></span> <input name="no_hp"
+								placeholder="+62xxxx" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="negara" class="col-md-4 control-label">Negara</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-flag"></i></span> <input name="negara"
+								placeholder="Negara" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="kewarganegaraan" class="col-md-4 control-label">Kewarganegaraan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-globe"></i></span> <input name="kewarganegaraan"
+								placeholder="Kewarganegaraan" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="alamat_tetap" class="col-md-4 control-label">Alamat Tetap</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input name="alamat_tetap"
+								placeholder="Alamat Tetap" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="alamat_sekarang" class="col-md-4 control-label">Alamat Sekarang</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input name="alamat_sekarang"
+								placeholder="Alamat Sekarang" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="tgl_lahir" class="col-md-4 control-label">Tanggal Lahir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input name="tgl_lahir"
+								placeholder="DD/MM/YYYY" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="provinsi" class="col-md-4 control-label">Provinsi</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <input name="provinsi"
+								placeholder="Provinsi" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="kota" class="col-md-4 control-label">Kota</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <input name="kota"
+								placeholder="Kota" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis Kelamin</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="jenis_kelamin"
+								placeholder="Jenis Kelamin" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		
+				<!-- Button -->
+				<div class="form-group" style="position: center">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<br/>
+						<input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+						
+						<button value="cancel" name="action" type="cancel" class="btn btn-info">Batal</button>
+						<button value="save" name="action" type="submit" class="btn btn-warning">Simpan</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	
+	<!-- /.container -->
+	<script>
+	  $(document).ready(function() {
+		    $('#contact_form').bootstrapValidator({
+		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		            jenis_id: {
+		                validators: {
+		                        stringLength: {
+		                        min: 2,
+		                    },
+		                        notEmpty: {
+		                        message: 'Please enter your ID Type'
+		                    }
+		                }
+		            },
+		             no_id: {
+		                validators: {
+		                     stringLength: {
+		                        min: 2,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your ID Number'
+		                    }
+		                }
+		            },
+					 nama_id: {
+		                validators: {
+		                     stringLength: {
+		                        min: 2,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your ID Name'
+		                    }
+		                }
+		            },
+					 nama_ijazah: {
+		                validators: {
+		                     stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your Ijazah Name'
+		                    }
+		                }
+		            },
+					foto: {
+		                validators: {
+		                     stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your photo link'
+		                    }
+		                }
+		            },
+		            no_hp: {
+		                validators: {
+		                    stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your Phone Number'
+		                    }
+		                }
+		            },
+		            negara: {
+		                validators: {
+		                  stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your Country Name'
+		                    }
+		            },
+					 kewarganegaraan: {
+		                validators: {
+		                    stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your Nationality'
+		                    }
+		            },
+		            alamat_tetap: {
+		                validators: {
+		                    stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Please enter your Address'
+		                    }
+		            },
+		                }
+		            }
+		        })
+		        .on('success.form.bv', function(e) {
+		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+		                $('#contact_form').data('bootstrapValidator').resetForm();
+
+		            // Prevent form submission
+		            e.preventDefault();
+
+		            // Get the form instance
+		            var $form = $(e.target);
+
+		            // Get the BootstrapValidator instance
+		            var bv = $form.data('bootstrapValidator');
+
+		            // Use Ajax to submit form data
+		            $.post($form.attr('action'), $form.serialize(), function(result) {
+		                console.log(result);
+		            }, 'json');
+		        });
+		});
+	</script>
 </body>
+
+<!-- <body class="hold-transition login-page">
+	<div class="login-box">
+		<h1 class="page-header">Edit Profil</h1>
+		<div class="login-box-body">
+			<form action="/profile/submit" method="post">
+				<div class="login">
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Jenis ID"
+							name="jenis_id" id="jenis_id" value="" /> <span
+							class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Nomor ID"
+							name="no_id" id="no_id" value="" /> <span
+							class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Nama ID"
+							name="nama_id" id="nama_id" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Nama Ijazah"
+							name="nama_ijazah" id="nama_ijazah" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Link Foto"
+							name="link_foto" id="link_foto" value="" /> <span
+							class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Nomor HP"
+							name="no_hp" id="no_hp" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Negara"
+							name="negara" id="negara" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Kewarganegaraan"
+							name="kewarganegaraan" id="kewarganegaraan" value="" /> <span
+							class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Alamat Tetap"
+							name="alamat_tetap" id="alamat_tetap" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Alamat Sekarang"
+							name="alamat_sekarang" id="alamat_sekarang" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Tanggal Lahir"
+							name="tgl_lahir" id="tgl_lahir" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div><div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Provinsi"
+							name="provinsi" id="provinsi" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div><div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Kota"
+							name="kota" id="kota" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div><div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Jenis Kelamin"
+							name="jenis_kelamin" id="jenis_kelamin" /> <span
+							class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="row">
+						<div class="col-xs-8">
+							<div class="checkbox icheck"></div>
+						</div>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	Bootstrap 3.3.6
+	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	iCheck
+	<script src="/plugins/iCheck/icheck.min.js"></script>
+</body> -->
 
 </html>
 
