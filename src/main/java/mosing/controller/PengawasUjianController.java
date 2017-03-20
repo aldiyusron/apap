@@ -38,6 +38,6 @@ public class PengawasUjianController {
 		//LokasiModel lokasi_pengawas = lokasiDAO.selectLokasi(lokasi);
 		PengawasUjianModel pengawas = new PengawasUjianModel(username, false, jabatan, nama, lokasi);
 		pengawasDAO.addPengawas(pengawas);
-		return "success-registration";
+		return "success-datadiri";
 	}
 }

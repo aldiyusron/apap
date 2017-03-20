@@ -105,6 +105,15 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#"><span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Log Out</button>
+							</form></li>
+					</ul>
 				</ul>
 			</div>
 		</div>

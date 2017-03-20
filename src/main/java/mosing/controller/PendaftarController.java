@@ -29,7 +29,7 @@ public class PendaftarController {
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
 		if (pendaftar != null) {
-			return "success-regisSeleksi";
+			return "success-datadiri";
 		}
 		model.addAttribute("username", username);
 		return "form-registrasi2";
