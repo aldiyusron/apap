@@ -25,11 +25,8 @@ public interface LokasiMapper {
 				@Result(property = "kota", column = "kota")})
 	LokasiModel selectLokasi(@Param("nama_lokasi") String nama_lokasi);
 	
-<<<<<<< HEAD
-	@Select("select * from lokasi")
-=======
 	@Select("select alamat, no_telp, nama_lokasi, provinsi, kota from lokasi")
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
+
 	@Results(value = { 
     		@Result(property = "alamat", column = "alamat"), 
     		@Result(property = "no_telp", column = "no_telp"),

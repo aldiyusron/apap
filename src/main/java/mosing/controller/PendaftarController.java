@@ -29,11 +29,7 @@ public class PendaftarController {
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
 		if (pendaftar != null) {
-<<<<<<< HEAD
-			return "success-datadiri";
-=======
 			return "success-registration";
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 		}
 		model.addAttribute("username", username);
 		return "form-registrasi2";
@@ -71,10 +67,6 @@ public class PendaftarController {
 				null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-<<<<<<< HEAD
-		return "success-regisSeleksi";
-=======
 		return "success-regisdatadiri";
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 	}
 }
