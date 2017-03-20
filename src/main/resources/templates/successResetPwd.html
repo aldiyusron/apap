@@ -8,7 +8,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Penerimaan UI | Forget Password</title>
+    <title>Penerimaan UI | Reset Password</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -115,97 +115,23 @@
 		         </ul>
             </div>
   	</div>
-         
-        <form class="well form-horizontal" action="/resetPassword" method="post"
-			id="contact_form">
-			<fieldset>
-
-				<!-- Form Name -->
-				<legend>
-					<center>
-						<h2>
-							<b>Forget Password</b>
-						</h2>
-					</center>
-				</legend>
+         	
 				<br/>	
+<!-- Success message -->
+
+				<div class="alert alert-success" role="alert" id="success_message">
+					Password has been changed!
+				</div>
 				
-				<div class="form-group">
-					<label class="col-md-4 control-label">Username</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="username"
-								placeholder="Username" class="form-control" type="text" />
-						</div>
-					</div>
-				</div>     
-				
-				<input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-		
 				<!-- Button -->
 				<div class="form-group" style="position: center">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<br/>
 						<input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-						<button value="save" name="action" type="submit" class="btn btn-warning">Submit</button>
+						<a th:href="'/home/'" class="page-scroll btn btn-xl">Back</a>
 					</div>
 				</div>
-			</fieldset>
-		</form>
-	
-        <!-- /.container -->
-	<script>
-	  $(document).ready(function() {
-		    $('#contact_form').bootstrapValidator({
-		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        fields: {
-		            username: {
-		                validators: {
-		                        stringLength: {
-		                        min: 2,
-		                    },
-		                        notEmpty: {
-		                        message: 'Please enter your username'
-		                    }
-		                }
-		            }
-		    )   
- .on('success.form.bv', function(e) {
-		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-		                $('#contact_form').data('bootstrapValidator').resetForm();
-
-		            // Prevent form submission
-		            e.preventDefault();
-
-		            // Get the form instance
-		            var $form = $(e.target);
-
-		            // Get the BootstrapValidator instance
-		            var bv = $form.data('bootstrapValidator');
-
-		            // Use Ajax to submit form data
-		            $.post($form.attr('action'), $form.serialize(), function(result) {
-		                console.log(result);
-		            }, 'json');
-		        });
-		});
-	</script>
-	<br /><br /><br /><br /><br /><br /><br />
-	 <footer>
-        <div class="container bg-darkest-gray">
-            <div class="row">
-                <div class="col-md-4">
-                <span class="copyright">Penerimaan Mahasiswa Baru - Universitas Indonesia</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
- </html>
+	</body>
+	</html>
+				

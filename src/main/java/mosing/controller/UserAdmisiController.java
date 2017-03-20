@@ -65,6 +65,6 @@ public class UserAdmisiController {
 			return "login";
 		user.setPassword(password);
 		userDAO.updateUser(user);
-		return "success-registration";
+		return "successResetPwd";
 	}
 }

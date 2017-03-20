@@ -65,9 +65,7 @@ public class PendaftarController {
 		return "success-registration";
 	}
 	
-	@RequestMapping("/forgotPwd")
-	public String forgotPwd()
-	{
-		return "forgotPwd";
-	}
+
+	
+	
 }
