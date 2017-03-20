@@ -29,7 +29,7 @@ public class PendaftarController {
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
 		if (pendaftar != null) {
-			return "success-regisSeleksi";
+			return "success-registration";
 		}
 		model.addAttribute("username", username);
 		return "form-registrasi2";
@@ -54,14 +54,19 @@ public class PendaftarController {
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
 
+		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
+			jenis_kelamin = "1";
+		else
+			jenis_kelamin = "0";
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
-				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk, null);
+				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk,
+				null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-		return "success-regisSeleksi";
+		return "success-regisdatadiri";
 	}
 }
