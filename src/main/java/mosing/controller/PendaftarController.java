@@ -28,6 +28,12 @@ public class PendaftarController {
 	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+<<<<<<< HEAD
+=======
+		if (pendaftar != null) {
+			return "success-registration";
+		}
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 		model.addAttribute("username", username);
 		return "form-registrasi2";
 	}
@@ -50,21 +56,34 @@ public class PendaftarController {
 			@RequestParam(value = "kota", required = false) String kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
+<<<<<<< HEAD
 		
 		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
 			jenis_kelamin = "1";
 			else
 			jenis_kelamin = "0";
 		
+=======
+
+		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
+			jenis_kelamin = "1";
+		else
+			jenis_kelamin = "0";
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
-				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk, null);
+				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk,
+				null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
+<<<<<<< HEAD
 		return "success-datadiri";
 		
+=======
+		return "success-regisdatadiri";
+>>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
 	}
 }
