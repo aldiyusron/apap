@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-!
- * Start Bootstrap - Agency v3.3.7+1 (http://startbootstrap.com/template-overviews/agency)
+/* Start Bootstrap - Agency v3.3.7+1 (http://startbootstrap.com/template-overviews/agency)
  * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE) */
 
 .btn-primary.active, .btn-primary:active, .btn-xl.active, .btn-xl:active,
 	.open .dropdown-toggle.btn-primary, .open .dropdown-toggle.btn-xl {
@@ -698,10 +696,8 @@ footer {
 }
 
 footer span.copyright {
-	line-height: 40px;
 	text-transform: uppercase;
 	text-transform: none;
-	margin-top: 1px
 }
 
 footer ul.quicklinks {

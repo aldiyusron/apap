@@ -174,7 +174,8 @@ fieldset {
 
 legend {
 	padding: 0;
-	border: 0
+	border: 0;
+	margin-left: 20px
 }
 
 textarea {
@@ -1536,7 +1537,7 @@ p {
 
 .text-center {
 	text-align: center;
-	margin-left:25%;
+	
 }
 
 .text-justify {
@@ -2928,7 +2929,9 @@ input[type=search] {
 .form-group {
 	margin-bottom: 15px
 }
-
+.isian {
+	margin-left: -145px
+}
 .checkbox, .radio {
 	position: relative;
 	display: block;
@@ -3281,8 +3284,7 @@ select[multiple].input-lg, textarea.input-lg {
 }
 
 .form-horizontal .form-group {
-	margin-right: -15px;
-	margin-left: -15px
+	margin-left: 100px
 }
 
 @media ( min-width :768px) {
@@ -3572,12 +3574,29 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	color: #5bc0de;
 	background-color: #fff
 }
-
+.warning {
+	color: #ff0000;
+	text-align: center;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	margin-left: 30px
+}
 .btn-warning {
 	color: #fff;
 	background-color: #f0ad4e;
-	border-color: #eea236;
-	margin-left:80%;
+	border-color: #eea236; 
+	width:120%
+}
+
+.btn-warning1 {
+	color: #fff;
+	background-color: #f0ad4e;
+	border-color: #eea236; 
+	width:70%;
+	margin-top: -15px;
+	float: right;
+	margin-right: -30px 
+
 }
 
 .btn-warning.focus, .btn-warning:focus {
@@ -3631,9 +3650,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	color: #fff;
 	background-color: #fece00;
 	border-color: #fece00;
-	width:40%;
-	margin-left:-35%;
 	
+}
+
+.btn-danger1 {
+	color: #fff;
+	background-color: #fece00;
+	border-color: #fece00;
+	width: 70%;
+	margin-left: -97px;
+	margin-top: -20px
 }
 
 .btn-danger.focus, .btn-danger:focus {
@@ -4156,7 +4182,7 @@ tbody.collapse.in {
 	position: relative;
 	z-index: 2;
 	float: left;
-	width: 100%;
+	width: 125%;
 	margin-bottom: 0
 }
 

@@ -14,8 +14,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
+
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -119,7 +120,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="#">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/index">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -144,7 +145,7 @@
 			<legend>
 				<center>
 					<h2>
-						<b>Forget Password</b>
+						<b>Reset Password</b>
 					</h2>
 				</center>
 			</legend>
@@ -171,7 +172,7 @@
 					<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 						th:value="${_csrf.token}" />
 					<button value="save" name="action" type="submit"
-						class="btn btn-warning">Submit</button>
+						class="btn btn-warning">Lanjut</button>
 				</div>
 			</div>
 		</fieldset>
