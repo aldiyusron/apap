@@ -11,18 +11,14 @@
 <title>Penerimaan UI | Daftar Akun</title>
 
 <!-- Bootstrap Core CSS -->
-<<<<<<< HEAD
+
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-=======
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
->>>>>>> branch 'master' of https://github.com/propensi2017/a6.git
-	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -126,7 +122,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="#">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/index">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -185,9 +181,9 @@
 				</div> -->
 
 				<!-- Text input-->
-
+<div class="isian">
 				<div class="form-group">
-					<label for="username" class="col-md-4 control-label">Username</label>
+					<label for="username" class="col-md-4 control-label"></label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -200,11 +196,11 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="password" class="col-md-4 control-label">Password</label>
+					<label for="password" class="col-md-4 control-label"></label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="password"
+								class="glyphicon glyphicon-lock"></i></span> <input name="password"
 								placeholder="Password" class="form-control" type="password" required = "true" />
 						</div>
 					</div>
@@ -213,12 +209,12 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label class="col-md-4 control-label">Confirm Password</label>
+					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input
-								name="confirm_password" placeholder="Confirm Password"
+								class="glyphicon glyphicon-lock"></i></span> <input
+								name="confirm_password" placeholder="Konfirmasi Password"
 								class="form-control" type="password" required = "true" />
 						</div>
 					</div>
@@ -226,32 +222,31 @@
 
 				<!-- Text input-->
 				<div class="form-group">
-					<label for="email" class="col-md-4 control-label">E-Mail</label>
+					<label for="email" class="col-md-4 control-label"></label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-								placeholder="E-Mail Address" class="form-control" type="text" required = "true" />
+								placeholder="Alamat E-mail" class="form-control" type="text" required = "true" />
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="role" class="col-md-4 control-label">Daftar
-						Sebagai</label>
+					<label for="role" class="col-md-4 control-label"></label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-list"></i></span> <select required="required" name="role"
 								class="form-control selectpicker" >
-								<option value="">Pilihan</option>
+								<option value="">Daftar Sebagai..</option>
 								<option>Pendaftar Seleksi</option>
 								<option>Pengawas Ujian</option>
 							</select>
 						</div>
 					</div>
 				</div>
-
+</div>
 				<!-- Text input-->
 
 				<!-- <div class="form-group">
@@ -280,14 +275,15 @@
 						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" />
 						<button value="save" name="action" type="submit"
-							class="btn btn-warning">Simpan</button>
-						<button value="save" name="action" type="submit"
-							class="btn btn-danger">Batal</button>
+							class="btn btn-warning1">Simpan</button>
+						<a href="/index" class="btn btn-danger1">Batal</a>
 					</div>
 				</div>
 			</fieldset>
 		</form>
+		
 	</div>
+	
 	<!-- /.container -->
 	<script>
 		$(document)

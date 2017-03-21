@@ -28,6 +28,7 @@ public class PendaftarController {
 	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+
 		if (pendaftar != null) {
 			return "success-registration";
 		}
@@ -56,6 +57,11 @@ public class PendaftarController {
 
 		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
 			jenis_kelamin = "1";
+			else
+			jenis_kelamin = "0";
+
+		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
+			jenis_kelamin = "1";
 		else
 			jenis_kelamin = "0";
 		byte jk = Byte.parseByte(jenis_kelamin);
@@ -67,6 +73,6 @@ public class PendaftarController {
 				null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-		return "success-regisdatadiri";
+		return "success-datadiri";
 	}
 }

@@ -39,7 +39,7 @@ public class UserAdmisiController {
 		}
 		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, role);
 		userDAO.addUser(userAdmisi);
-		return "login";
+		return "success-registration";
 	}
 	
 	@RequestMapping(value = "/forgotPassword")
