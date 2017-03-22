@@ -10,27 +10,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
-import mosing.model.UserAdmisiModel;
 import mosing.service.PendaftarService;
-import mosing.service.UserAdmisiService;
 
 @Controller
 public class PendaftarController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
-	UserAdmisiService userDAO;
 
 	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
 
 		if (pendaftar != null) {
-			return "success-registration";
+			return "sudahdaftarseleksi";
 		}
 		model.addAttribute("username", username);
 		return "form-registrasi2";
@@ -60,10 +56,6 @@ public class PendaftarController {
 			else
 			jenis_kelamin = "0";
 
-		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
-			jenis_kelamin = "1";
-		else
-			jenis_kelamin = "0";
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
@@ -73,6 +65,7 @@ public class PendaftarController {
 				null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-		return "success-datadiri";
+		//return "success-datadiri";
+		return "success-daftarseleksi";
 	}
 }

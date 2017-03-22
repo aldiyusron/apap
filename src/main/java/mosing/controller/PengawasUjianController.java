@@ -19,12 +19,17 @@ public class PengawasUjianController {
 
 	@Autowired
 	PengawasUjianService pengawasDAO;
+	@Autowired
 	LokasiService lokasiDAO;
 
 	@RequestMapping("/pengawas/{username}")
 	public String addPengawas(Model model, @PathVariable(value = "username") String username) {
-//		List<LokasiModel> listLokasi = lokasiDAO.selectAllLokasi();
-//		model.addAttribute("listLokasi", listLokasi);
+		PengawasUjianModel pengawas = pengawasDAO.selectPengawas(username);
+		if(pengawas != null){
+			return "sudahdaftarseleksi";
+		}
+		List<LokasiModel> listLokasi = lokasiDAO.selectAllLokasi();
+		model.addAttribute("listLokasi", listLokasi);
 		model.addAttribute("username", username);
 		return "form-registrasi3";
 	}
@@ -36,6 +41,6 @@ public class PengawasUjianController {
 			@RequestParam(value = "lokasi", required = false) String lokasi) {
 		PengawasUjianModel pengawas = new PengawasUjianModel(username, false, jabatan, nama, lokasi);
 		pengawasDAO.addPengawas(pengawas);
-		return "success-datadiri";
+		return "success-daftarpengawas";
 	}
 }

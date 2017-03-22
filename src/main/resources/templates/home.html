@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Home</title>
+<title>Penerimaan UI | Beranda</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -105,14 +105,17 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#"><span
-								class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
-						<li><form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Log Out</button>
-							</form></li>
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#" class="btn btn-default" style="margin-right: 15px; height: 35px; margin-top: 8px">
+								<span class="glyphicon glyphicon-user" th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+							</a>
+						</li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit" value="Sign Out">Keluar</button>
+							</form>
+						</li>
 					</ul>
 				</ul>
 			</div>
@@ -128,7 +131,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/home">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -142,111 +145,93 @@
 				</li>
 			</ul>
 		</div>
-
 	</div>
+	
+	<header class="wall">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
+                <div th:if="${user.role} eq 'ROLE_KPMB'">
+                	<a href="#" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
+                	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
+                </div>
+              	<div th:if="${user.role} eq 'ROLE_PEND'">
+					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_LPT'">
+					<a href="#" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
+					<a href="#" class="page-scroll btn btn-xl">Daftar Siswa</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_PENG_U'">
+					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
+				</div>
+				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
+					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+				</div>
+            </div>
+        </div>
+    </header>
 
-	<div class="container">
-		<div class="intro-text">
-			<div class="intro-heading"
-				th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser}">
-			</div>
-			<div th:if="${user.role} eq 'ROLE_KPMB'">
-				<a href="#" class="page-scroll btn btn-xl">Konfigurasi Jalur
-					Masuk</a> <a href="#" class="page-scroll btn btn-xl">Seleksi
-					Pendaftar</a>
-			</div>
-			<div th:if="${user.role} eq 'ROLE_PEND'">
-				<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}"
-					class="page-scroll btn btn-xl">Daftar Seleksi</a>
-			</div>
-			<div th:if="${user.role} eq 'ROLE_LPT'">
-				<a href="#" class="page-scroll btn btn-xl">Masukkan Data
-					Pendaftar</a> <a href="#" class="page-scroll btn btn-xl">Daftar
-					Siswa</a>
-			</div>
-			<div th:if="${user.role} eq 'ROLE_PENG_U'">
-				<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}"
-					class="page-scroll btn btn-xl">Isi Data Diri</a>
-			</div>
-			<div
-				th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' 
-					or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
-				<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="container" style="margin-top: 2.5%;">
-		<div class="row" style="margin-bottom: 2.5%">
+	<div class="container" style="margin-top:2.5%;">
+		<div class="row" style="margin-bottom:2.5%">
 			<div id="exTab3" class="container col-md-8">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#1b" data-toggle="tab">Pengumuman</a></li>
-					<li><a href="#2b" data-toggle="tab">Berita</a></li>
+  					<li class="active"><a href="#1b" data-toggle="tab">Pengumuman</a></li>
+  					<li><a href="#2b" data-toggle="tab">Informasi</a></li>
 				</ul>
-				<br />
+				<br/>
 				<div class="tab-content clearfix">
-					<div class="tab-pane fade in active" id="1b">
-						<ul>
-							<li>
-								<h4>Same as example 1 but we have now styled the tab's
-									corner</h4>
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</li>
-							<li>
-								<h4>Same as example 1 but we have now styled the tab's
-									corner</h4>
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</li>
-						</ul>
+			  		<div class="tab-pane fade in active" id="1b">
+			  			<article class= "pertama">
+			  				<a href="#">
+			  				<div class= "gambarberita"><img src="img/berita1.jpg"/></div>
+			  				<h4 class="link-new" style="padding-left:30%; color: black">Penerimaan Spesialis FK UI smt. Gasal 2017</h4></a>
+			  				<p class="text-muted" style="padding-left:30%">Program Pendidikan Dokter Spesialis membuka penerimaan mahasiswa baru Semester Gasal tahun akademik 2017 dengan jadwal kegiatan terdiri dari:...</p>
+			  			</article>
+			  			<article class="kedua">
+			  				<a href="#">
+			  				<div class= "gambarberita"><img src="img/berita2.png"/></div>
+			  				<h4 class="link-new" style="padding-left:30%; color: black">UI Buka Penerimaan Mahasiswa S1 Melalui SNMPTN, SBMPTN, dan SIMAK UI</h4></a>
+			  				<p class="text-muted" style="padding-left:30%">Universitas Indonesia (UI) menerima mahasiswa baru jenjang Sarjana Strata Satu (S1) melalui tiga seleksi masuk yaitu SNMPTN (Seleksi Nasional Masuk...</p>
+			  			</article>
+			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>
 					</div>
 					<div class="tab-pane fade" id="2b">
-						<ul>
-							<li>
-								<h4>Same as example 1 but we have now styled the tab's
-									corner</h4>
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</li>
-							<li>
-								<h4>Same as example 1 but we have now styled the tab's
-									corner</h4>
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</li>
-						</ul>
-					</div>
+						<article class= "pertama">
+			  				<a href="#">
+			  				<div class= "gambarberita"><img src="img/daftar.jpg"/></div>
+			  				<h4 class="link-new" style="padding-left:30%; color: black">Jalur Masuk UI 2017</h4></a>
+			  				<p class="text-muted" style="padding-left:30%; color: black">Universitas Indonesia membuka penerimaan Mahasiswa Baru melalui beberapa jalur masuk. Kategori jalur masuk untuk lulusan SMA/Sederajat yang ada di...</p>
+			  			</article>
+			  			<article class="kedua">
+			  				<a href="#">
+			  				<div class= "gambarberita"><img src="img/tanyajawab.jpg"/></div>
+			  				<h4 class="link-new" style="padding-left:30%; color: black">Tanya Jawab Penerimaan Mahasiswa Baru UI</h4></a>
+			  				<p class="text-muted" style="padding-left:30%">1. Ada program pendidikan apa saja di UI? Universitas Indonesia menyelenggarakan program pendidikan jenjang D3, S1, S2, S3, Profesi dan Spesialis....</p>
+			  			</article>
+			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>			  		</div>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div id="box-new" class="">
-					<h4 style="padding-left: 5%">Lihat Hasil Seleksi</h4>
+				<div id="box-new" style = "padding-bottom: 35px; margin-top: 62px; " class="">
+					<h4 style="padding-left:5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
 						<form>
-							<div class="form-group">
-								<label>No. Ujian:</label> <input type="text"
-									class="form-control" />
+  							<div class="form-group">
+    							<label>No. Ujian:</label>
+    							<input type="text" class="form-control"/>
+  							</div>
+  							<div class="form-group">
+  								<label for="sel1">Jalur Masuk:</label>
+  								<select class="form-control" id="sel1">
+    								<option>SNMPTN</option>
+    								<option>SBMPTN</option>
+    								<option>PPKB</option>
+    								<option>SIMAK UI</option>
+    								<option>Talent Scouting</option>
+  								</select>
 							</div>
-							<div class="form-group">
-								<label for="sel1">Jalur Masuk:</label> <select
-									class="form-control" id="sel1">
-									<option>SNMPTN</option>
-									<option>SBMPTN</option>
-									<option>PPKB</option>
-									<option>SIMAK UI</option>
-									<option>Talent Scouting</option>
-								</select>
-							</div>
-							<button type="submit" class="btn btn-warning">Lihat</button>
+  							<button type="submit" class="btn btn-s">Lihat</button>
 						</form>
 					</div>
 				</div>
@@ -259,7 +244,7 @@
 			<div class="col-md-3">
 				<a href="#" class="link-new"> <span class="fa-stack fa-4x">
 						<i class="fa fa-circle fa-stack-2x text-primary"></i> <i
-						class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+						class="fa fa-book fa-stack-1x fa-inverse"></i>
 				</span>
 					<h4 class="service-heading">Panduan Pendaftaran</h4>
 				</a>
@@ -267,7 +252,7 @@
 			<div class="col-md-3">
 				<a href="#" class="link-new"> <span class="fa-stack fa-4x">
 						<i class="fa fa-circle fa-stack-2x text-primary"></i> <i
-						class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+						class="fa fa-money fa-stack-1x fa-inverse"></i>
 				</span>
 					<h4 class="service-heading">Biaya Pendidikan</h4>
 				</a>
@@ -275,7 +260,7 @@
 			<div class="col-md-3">
 				<a href="#" class="link-new"> <span class="fa-stack fa-4x">
 						<i class="fa fa-circle fa-stack-2x text-primary"></i> <i
-						class="fa fa-lock fa-stack-1x fa-inverse"></i>
+						class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
 				</span>
 					<h4 class="service-heading">Cara Pembayaran</h4>
 				</a>
@@ -283,7 +268,7 @@
 			<div class="col-md-3">
 				<a href="#" class="link-new"> <span class="fa-stack fa-4x">
 						<i class="fa fa-circle fa-stack-2x text-primary"></i> <i
-						class="fa fa-lock fa-stack-1x fa-inverse"></i>
+						class="fa fa-calendar fa-stack-1x fa-inverse"></i>
 				</span>
 					<h4 class="service-heading">Jadwal Pendaftaran</h4>
 				</a>
@@ -344,7 +329,7 @@
 	<footer>
 		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4" style="width: 100%; height: 50px; padding-top: 1.5%">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>

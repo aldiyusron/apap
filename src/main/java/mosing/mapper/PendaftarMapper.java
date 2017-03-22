@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import mosing.model.PendaftarModel;
-import mosing.model.UserAdmisiModel;
 
 @Mapper
 public interface PendaftarMapper {
