@@ -38,6 +38,16 @@
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -174,7 +184,7 @@
 
 				<div class="form-group">
 					<label for="jenis_id" class="col-md-4 control-label">Jenis
-						ID</label>
+						Identitas Pengenal</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -194,12 +204,12 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Nomor ID</label>
+					<label for="no_id" class="col-md-4 control-label">Nomor Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="no_id"
-								placeholder="Nomor ID" class="form-control" type="text"
+								placeholder="Nomor Identitas" class="form-control" type="text"
 								required="true" />
 						</div>
 					</div>
@@ -208,12 +218,12 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="nama_id" class="col-md-4 control-label">Nama ID</label>
+					<label for="nama_id" class="col-md-4 control-label">Nama Sesuai Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
-								placeholder="Nama ID" class="form-control" type="text"
+								placeholder="Nama Pada Identitas" class="form-control" type="text"
 								required="true" />
 						</div>
 					</div>
@@ -222,13 +232,13 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="nama_ijazah" class="col-md-4 control-label">Nama
+					<label for="nama_ijazah" class="col-md-4 control-label">Nama Sesuai
 						Ijazah</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <input
-								name="nama_ijazah" placeholder="Nama Ijazah"
+								name="nama_ijazah" placeholder="Nama Sesuai Ijazah"
 								class="form-control" type="text" required="true" />
 						</div>
 					</div>
@@ -256,7 +266,7 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tgl_lahir"
 								name="tgl_lahir" placeholder="DD/MM/YYYY" class="form-control"
 								type="text" required="true" />
 						</div>
@@ -487,6 +497,25 @@
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
 
+	<!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
 </body>
 
 </html>
