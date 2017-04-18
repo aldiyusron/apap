@@ -13,6 +13,8 @@ import mosing.service.UserAdmisiService;
 
 @Controller
 public class UserAdmisiController {
+	
+	//test
 
 	@Autowired
 	UserAdmisiService userDAO;
