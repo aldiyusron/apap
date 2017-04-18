@@ -9,8 +9,8 @@ import mosing.model.JalurMasukModel;
 @Mapper
 public interface JalurMasukMapper {
 	
-	@Update("update jalur_masuk set flag=0 where id_jalur=#{id_jalur}")
+	@Update("update jalur_masuk set flag_aktif=0 where id_jalur=#{id_jalur}")
 	void deleteJalurMasuk(JalurMasukModel jalurMasuk);
 	@Select("select * from Jalur_masuk where id_jalur=#{id_jalur}") 
-	JalurMasukModel selectJalurMasuk(String id_jalur);
+	JalurMasukModel selectJalurMasuk(int id_jalur);
 }

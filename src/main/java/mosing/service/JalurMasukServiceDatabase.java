@@ -21,7 +21,7 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	}
 
 	@Override
-	public JalurMasukModel selectJalurMasuk(String id_jalur) {
+	public JalurMasukModel selectJalurMasuk(int id_jalur) {
 		// TODO Auto-generated method stub
 		return jalurMasukMapper.selectJalurMasuk(id_jalur);
 	}

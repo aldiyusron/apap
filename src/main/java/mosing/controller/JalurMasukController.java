@@ -13,10 +13,15 @@ public class JalurMasukController {
 	JalurMasukService jalurMasukDAO;
 	
 	@RequestMapping("/daftarjalurmasuk/delete/{id_jalur}")
-	public String deletejalurmasuk(Model model, @PathVariable(value = "id_jalur")String id_jalur) {
+	public String deletejalurmasuk(Model model, @PathVariable(value = "id_jalur")int id_jalur) {
 		JalurMasukModel jalurmasuk=jalurMasukDAO.selectJalurMasuk(id_jalur);
-		//if (jalurmasuk != null || jalurmasuk.flag)
-		return "notifikasidelete";
+		if (jalurmasuk != null && jalurmasuk.getFlag_aktif() == 1){
+			jalurMasukDAO.deleteJalurMasuk(jalurmasuk);
+			return "notifikasidelete";
+		}
+		else {
+			return "jalurmasuknotfound";
+		}
 	}
 	
 	
