@@ -15,34 +15,34 @@ import mosing.model.LokasiModel;
 @Mapper
 public interface LokasiMapper {
 
-	@Select("select * from lokasi where id_lokasi = #{id_lokasi}")
+	@Select("select * from lokasi where id_lokasi = #{id_lokasi} and flag_aktif = 1")
 	@Results(value = { 
 	    		@Result(property = "alamat", column = "alamat"), 
 	    		@Result(property = "no_telp", column = "no_telp"),
 				@Result(property = "nama_lokasi", column = "nama_lokasi"),
-				@Result(property = "id_provinsi", column = "id_provinsi"),
-				@Result(property = "id_kota", column = "id_kota"),
+				@Result(property = "nama_provinsi", column = "nama_provinsi"),
+				@Result(property = "nama_kota", column = "nama_kota"),
 				@Result(property = "kuota_peng", column = "kuota_peng"),
 				@Result(property = "kuota_pendaftar", column = "kuota_pendaftar")})
 	LokasiModel selectLokasi(@Param("id_lokasi") int id_lokasi);
 	
-	@Select("select alamat, no_telp, nama_lokasi, provinsi, kota from lokasi")
+	@Select("select * from lokasi where flag_aktif = 1")
 	@Results(value = { 
     		@Result(property = "alamat", column = "alamat"), 
     		@Result(property = "no_telp", column = "no_telp"),
 			@Result(property = "nama_lokasi", column = "nama_lokasi"),
-			@Result(property = "id_provinsi", column = "id_provinsi"),
-			@Result(property = "id_kota", column = "id_kota"),
+			@Result(property = "nama_provinsi", column = "nama_provinsi"),
+			@Result(property = "nama_kota", column = "nama_kota"),
 			@Result(property = "kuota_peng", column = "kuota_peng"),
 			@Result(property = "kuota_pendaftar", column = "kuota_pendaftar")})
 	List<LokasiModel> selectAllLokasi();
 
-	@Insert("insert into lokasi (alamat, no_telp, nama_lokasi, id_provinsi, id_kota, kuota_peng, kuota_pendaftar) values (#{alamat}, #{no_telp}, #{nama_lokasi}, #{id_provinsi}, #{id_kota}, #{kuota_peng}, #{kuota_pendaftar})")
+	@Insert("insert into lokasi (id_lokasi, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) values (default, #{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")
 	void addLokasiUjian(LokasiModel lokasi);
 
-	@Update("update lokasi set alamat = #{alamat}, no_telp = #{no_telp}, nama_lokasi = #{nama_lokasi}, id_provinsi = #{id_provinsi}, id_kota = #{id_kota}, kuota_peng = #{kuota_peng}, kuota_pendaftar = #{kuota_pendaftar} where id_lokasi = #{id_lokasi}")
+	@Update("update lokasi set alamat = #{alamat}, no_telp = #{no_telp}, nama_lokasi = #{nama_lokasi}, nama_provinsi = #{nama_provinsi}, nama_kota = #{nama_kota}, kuota_peng = #{kuota_peng}, kuota_pendaftar = #{kuota_pendaftar} where id_lokasi = #{id_lokasi} and flag_aktif = 1")
 	void updateLokasiUjian(LokasiModel lokasi);
 
-	@Update("update lokasi set flag = 0 where id_lokasi = #{id_lokasi}}")
+	@Update("update lokasi set flag_aktif = 0 where id_lokasi = #{id_lokasi}")
 	void deleteLokasiUjian(LokasiModel lokasi);
 }

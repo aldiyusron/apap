@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LokasiModel {
 
-	private int id_jalur;
+	private int id_lokasi;
 	private String alamat;
 	private String no_telp;
 	private String nama_lokasi;
@@ -17,5 +17,5 @@ public class LokasiModel {
 	private String nama_kota;
 	private int kuota_peng;
 	private int kuota_pendaftar;
-	private int flag;
+	private int flag_aktif;
 }
