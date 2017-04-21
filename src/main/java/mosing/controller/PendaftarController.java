@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
+import mosing.model.UserAdmisiModel;
 import mosing.service.PendaftarService;
+import mosing.service.UserAdmisiService;
 
 @Controller
 public class PendaftarController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
+	
+	@Autowired
+	UserAdmisiService userDAO;
 
 	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
@@ -56,16 +61,16 @@ public class PendaftarController {
 			else
 			jenis_kelamin = "0";
 
+		UserAdmisiModel user = userDAO.selectUser(username);
 		byte jk = Byte.parseByte(jenis_kelamin);
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 
-		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
-				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk,
-				null);
+		PendaftarModel pendaftar = new PendaftarModel(user.getId_user(), no_id, nama_id, nama_ijazah, foto, no_hp,
+				no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi,
+				kota, jk, null);
 
 		pendaftarDAO.addPendaftar(pendaftar);
-		//return "success-datadiri";
 		return "success-daftarseleksi";
 	}
 }

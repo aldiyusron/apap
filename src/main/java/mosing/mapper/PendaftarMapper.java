@@ -10,13 +10,13 @@ import mosing.model.PendaftarModel;
 @Mapper
 public interface PendaftarMapper {
 
-	@Select("select * from pendaftar where username = #{username}")
+	@Select("select u.id_user, u.username, p.* from user u, pendaftar p where u.username = #{username} and u.id_user = p.id_user")
 	PendaftarModel selectPendaftar(@Param("username") String username);
 
-	@Insert("INSERT INTO pendaftar (username, no_id, nama_id, "
+	@Insert("INSERT INTO pendaftar (id_user, no_id, nama_id, "
 			+ "nama_ijazah, foto, no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, "
 			+ "jenis_id, alamat_sekarang, tgl_lahir, provinsi, kota, jenis_kelamin) VALUES"
-			+ "(#{username}, #{no_id}, #{nama_id}, "
+			+ "(#{id_user}, #{no_id}, #{nama_id}, "
 			+ "#{nama_ijazah}, #{foto}, #{no_hp}, #{no_telp}, #{negara}, #{kewarganegaraan},"
 			+ "#{alamat_tetap}, #{jenis_id}, #{alamat_sekarang}, #{tgl_lahir}, #{provinsi}, "
 			+ "#{kota}, #{jenis_kelamin})")
