@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LPTerdahuluModel {
-
+	private int id_user;
 	private String nama_lembaga;
-	private String provinsi;
-	private String kota;
+	private String nama_provinsi;
+	private String nama_kota;
 }
