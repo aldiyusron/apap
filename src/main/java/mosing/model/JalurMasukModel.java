@@ -18,5 +18,5 @@ public class JalurMasukModel {
 	private String nama_jenjang;
 	private String nama_program;
 	private String persyaratan;
-	private byte flag_aktif;
+	private int flag_aktif;
 }

@@ -29,4 +29,9 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	public void addJalurMasuk(JalurMasukModel jalur_masuk) {
 		JalurMasukMapper.addJalurMasuk (jalur_masuk);
 	}
+	
+	@Override
+	public void updateJalurMasuk(JalurMasukModel jalur_masuk) {
+		JalurMasukMapper.updateJalurMasuk (jalur_masuk);
+	}
 }
