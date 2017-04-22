@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mosing.service.LPTerdahuluService;
 import mosing.model.LPTerdahuluModel;
+import mosing.model.NilaiModel;
 
 @Controller
 public class LPTerdahuluController {
@@ -17,7 +18,7 @@ public class LPTerdahuluController {
 	LPTerdahuluService lptDAO;
 	
 	@RequestMapping("/data-pendaftar")
-	public String add(Model model){
+	public String addData(Model model){
 		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
 		model.addAttribute("allLPT", allLPT);
 		return "form-data-terdahulu";

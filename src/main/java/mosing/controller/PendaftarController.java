@@ -49,7 +49,9 @@ public class PendaftarController {
 			@RequestParam(value = "provinsi", required = false) String provinsi,
 			@RequestParam(value = "kota", required = false) String kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
-			@RequestParam(value = "no_daftar", required = false) String no_daftar) throws ParseException {
+			@RequestParam(value = "no_daftar", required = false) String no_daftar,
+			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
+			@RequestParam(value = "jurusan", required = false) String jurusan) throws ParseException {
 
 		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
 			jenis_kelamin = "1";
@@ -62,7 +64,7 @@ public class PendaftarController {
 
 		PendaftarModel pendaftar = new PendaftarModel(username, no_id, nama_id, nama_ijazah, foto, no_hp, no_telp,
 				negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, provinsi, kota, jk,
-				null);
+				null, nama_lembaga, jurusan);
 
 		pendaftarDAO.addPendaftar(pendaftar);
 		//return "success-datadiri";

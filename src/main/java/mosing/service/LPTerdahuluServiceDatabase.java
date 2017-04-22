@@ -18,12 +18,6 @@ public class LPTerdahuluServiceDatabase implements LPTerdahuluService {
 	LPTerdahuluMapper lpterdahuluMapper;
 	
 	@Override
-	public void addNilai(NilaiModel nilai)
-	{
-		lpterdahuluMapper.addNilai(nilai);
-	}
-
-	@Override
 	public List<LPTerdahuluModel> selectAllLPT() {
 		return lpterdahuluMapper.selectAllLPT();
 	}

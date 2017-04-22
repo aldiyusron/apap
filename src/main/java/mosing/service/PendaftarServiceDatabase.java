@@ -25,5 +25,9 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	{
 		pendaftarMapper.addPendaftar (pendaftar);
 	}
-	
+
+	@Override
+	public void addPendaftar2(PendaftarModel pendaftar) {
+		pendaftarMapper.addPendaftar2(pendaftar);
+	}
 }

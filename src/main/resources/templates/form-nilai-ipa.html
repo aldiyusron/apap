@@ -7,6 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 <title>Penerimaan UI | Memasukkan Nilai Siswa</title>
 
@@ -39,14 +42,18 @@
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
 <!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
 <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,7 +61,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
-
 </head>
 
 <body id="page-top" class="index">
@@ -183,221 +189,88 @@
 					th:value="${username}" />
 
 				<div class="form-group">
-					<label for="jenis_id" class="col-md-4 control-label">Jenis
-						Identitas Pengenal</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> <select
-								required="required" name="jenis_id"
-								class="form-control selectpicker">
-								<option value="">Pilihan</option>
-								<option>KTP</option>
-								<option>SIM</option>
-								<option>Paspor</option>
-								<option>Kartu Pelajar</option>
-							</select>
-						</div>
-					</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Mata Pelajaran</th>
+								<th>KKM</th>
+								<th>Semester 1</th>
+								<th>Semester 2</th>
+								<th>Semester 3</th>
+								<th>Semester 4</th>
+								<th>Semester 5</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Matematika</td>
+								<td><input type="text" name="kkm_math" /></td>
+								<td><input type="text" name="math1" /></td>
+								<td><input type="text" name="math2" /></td>
+								<td><input type="text" name="math3" /></td>
+								<td><input type="text" name="math4" /></td>
+								<td><input type="text" name="math5" /></td>
+							</tr>
+							<tr>
+								<td>Kimia</td>
+								<td><input type="text" name="kkm_chem" /></td>
+								<td><input type="text" name="chem1" /></td>
+								<td><input type="text" name="chem2" /></td>
+								<td><input type="text" name="chem3" /></td>
+								<td><input type="text" name="chem4" /></td>
+								<td><input type="text" name="chem5" /></td>
+							</tr>
+							<tr>
+								<td>Fisika</td>
+								<td><input type="text" name="kkm_phy" /></td>
+								<td><input type="text" name="phy1" /></td>
+								<td><input type="text" name="phy2" /></td>
+								<td><input type="text" name="phy3" /></td>
+								<td><input type="text" name="phy4" /></td>
+								<td><input type="text" name="phy5" /></td>
+							</tr>
+							<tr>
+								<td>Biologi</td>
+								<td><input type="text" name="kkm_bio" /></td>
+								<td><input type="text" name="bio1" /></td>
+								<td><input type="text" name="bio2" /></td>
+								<td><input type="text" name="bio3" /></td>
+								<td><input type="text" name="bio4" /></td>
+								<td><input type="text" name="bio5" /></td>
+							</tr>
+							<tr>
+								<td>Bahasa Indonesia</td>
+								<td><input type="text" name="kkm_indo" /></td>
+								<td><input type="text" name="indo1" /></td>
+								<td><input type="text" name="indo2" /></td>
+								<td><input type="text" name="indo3" /></td>
+								<td><input type="text" name="indo4" /></td>
+								<td><input type="text" name="indo5" /></td>
+							</tr>
+							<tr>
+								<td>Bahasa Inggris</td>
+								<td><input type="text" name="kkm_eng" /></td>
+								<td><input type="text" name="eng1" /></td>
+								<td><input type="text" name="eng2" /></td>
+								<td><input type="text" name="eng3" /></td>
+								<td><input type="text" name="eng4" /></td>
+								<td><input type="text" name="eng5" /></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Nomor Identitas</label>
+					<label for="no_id" class="col-md-4 control-label">Rata-rata
+						Nilai Rapor</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="no_id"
-								placeholder="Nomor Identitas" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="nama_id" class="col-md-4 control-label">Nama Sesuai Identitas</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
-								placeholder="Nama Pada Identitas" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="nama_ijazah" class="col-md-4 control-label">Nama Sesuai
-						Ijazah</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-education"></i></span> <input
-								name="nama_ijazah" placeholder="Nama Sesuai Ijazah"
-								class="form-control" type="text" required="true" />
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
-						Kelamin</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" />Laki-laki</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" />Perempuan</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="tgl_lahir" class="col-md-4 control-label">Tanggal
-						Lahir</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input id="tgl_lahir"
-								name="tgl_lahir" placeholder="DD/MM/YYYY" class="form-control"
+								class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
+								placeholder="Rata-rata nilai rapor" class="form-control"
 								type="text" required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="foto" class="col-md-4 control-label">Link Foto</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-picture"></i></span> <input name="foto"
-								placeholder="Link Foto" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="no_hp" class="col-md-4 control-label">Nomor HP</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-phone"></i></span> <input name="no_hp"
-								placeholder="+62xxxx" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="no_hp" class="col-md-4 control-label">Nomor
-						Telepon</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-phone"></i></span> <input name="no_telp"
-								placeholder="+62xxxx" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="kewarganegaraan" class="col-md-4 control-label">Kewarganegaraan</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<div class="radio">
-								<label><input type="radio" name="kewarganegaraan"
-									required="required" value="WNI" />WNI</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="kewarganegaraan"
-									required="required" value="WNA" />WNA</label>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="negara" class="col-md-4 control-label">Negara</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-flag"></i></span> <input name="negara"
-								placeholder="Negara" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="provinsi" class="col-md-4 control-label">Provinsi
-						Asal</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="provinsi"
-								placeholder="Provinsi" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="kota" class="col-md-4 control-label">Kota Asal</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="kota"
-								placeholder="Kota" class="form-control" type="text"
-								required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="alamat_tetap" class="col-md-4 control-label">Alamat
-						Tetap</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <textarea name="alamat_tetap"
-								 placeholder="Alamat tempat tinggal orang tua/wali. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ" class="form-control" rows="5" type="text"
-								required="true"></textarea>
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="alamat_sekarang" class="col-md-4 control-label">Alamat
-						Sekarang</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <textarea
-								name="alamat_sekarang" placeholder="Alamat tempat tinggal sekarang. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
-								class="form-control" type="text" rows="5" required="true" ></textarea>
 						</div>
 					</div>
 				</div>
@@ -498,24 +371,29 @@
 	<script th:src="@{js/agency.min.js}"></script>
 
 	<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				})
+	</script>
 </body>
 
 </html>

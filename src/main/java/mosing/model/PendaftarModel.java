@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class PendaftarModel {
 
-	private String username;
+	private String id_user;
 	private String no_id;
 	private String nama_id;
 	private String nama_ijazah;
@@ -29,27 +29,15 @@ public class PendaftarModel {
 	private String kota;
 	private byte jenis_kelamin;
 	private String no_daftar;
+	private String nama_lembaga;
+	private String jurusan;
 	
-//	public PendaftarModel(String username, String no_id, String nama_id, String nama_ijazah, String foto,
-//			String no_hp, String no_telp, String negara, String kewarganegaraan, String alamat_tetap, String jenis_id,
-//			String alamat_sekarang, Date tgl_lahir, String provinsi, String kota, byte jenis_kelamin, String no_daftar) {
-//		this.username = username;
-//		this.no_id = no_id;
-//		this.nama_id = nama_id;
-//		this.nama_ijazah = nama_ijazah;
-//		this.foto = foto;
-//		this.no_hp = no_hp;
-//		this.no_telp = no_telp;
-//		this.negara = negara;
-//		this.kewarganegaraan = kewarganegaraan;
-//		this.alamat_tetap = alamat_tetap;
-//		this.jenis_id = jenis_id;
-//		this.alamat_sekarang = alamat_sekarang;
-//		this.tgl_lahir = tgl_lahir;
-//		this.provinsi = provinsi;
-//		this.kota = kota;
-//		this.jenis_kelamin = jenis_kelamin;
-//		this.no_daftar = no_daftar;
-//	
-//	}
+	public PendaftarModel(String no_id, String nama_id, String nama_ijazah, String nama_lembaga, String jurusan) {
+		this.no_id = no_id;
+		this.nama_id = nama_id;
+		this.nama_ijazah = nama_ijazah;
+		this.nama_lembaga = nama_lembaga;
+		this.jurusan = jurusan;
+	
+	}
 }
