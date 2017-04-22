@@ -37,7 +37,7 @@ public class UserAdmisiController {
 		{
 			role = "ROLE_PENG_U";
 		}
-		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, role);
+		UserAdmisiModel userAdmisi = new UserAdmisiModel(null, username, password, email, role);
 		userDAO.addUser(userAdmisi);
 		return "success-registration";
 	}

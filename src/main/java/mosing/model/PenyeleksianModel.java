@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserAdmisiModel  {
+public class PenyeleksianModel {
 
-	private String id_user;
-	private String username;
-	private String password;
-	private String email;
-	private String role;
-
+	private String no_daftar;
+	private int status;
+	private String id_jalur;
+	private String berkas;
 }

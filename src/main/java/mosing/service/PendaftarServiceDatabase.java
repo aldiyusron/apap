@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.PendaftarMapper;
 import mosing.model.PendaftarModel;
+import mosing.model.PenyeleksianModel;
 
 @Slf4j
 @Service
@@ -26,4 +27,9 @@ public class PendaftarServiceDatabase implements PendaftarService {
 		pendaftarMapper.addPendaftar (pendaftar);
 	}
 	
+	@Override
+	public PenyeleksianModel selectPenyeleksian (String no_daftar)
+	{
+		return pendaftarMapper.selectPenyeleksian(no_daftar);
+	}
 }

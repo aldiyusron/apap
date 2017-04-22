@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JalurMasukModel {
-
 	private String id_jalur;
 	private String nama;
 	private Date tanggal_buka;
@@ -18,4 +17,6 @@ public class JalurMasukModel {
 	private byte status;
 	private String nama_jenjang;
 	private String nama_program;
+	private String persyaratan;
+	private int flag_aktif;
 }

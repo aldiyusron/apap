@@ -39,14 +39,18 @@
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
 <!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
 <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -166,7 +170,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/pendaftar/submit"
+		<form class="well form-horizontal" action="/pendaftar/rencanastudi"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -181,6 +185,24 @@
 
 				<input type="hidden" name="username" readonly="readonly"
 					th:value="${username}" />
+
+				<div class="form-group">
+					<label for="id_jalur" class="col-md-4 control-label">Jalur Masuk yang Diinginkan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="id_jalur"
+								class="form-control selectpicker">
+								<option value="">Pilihan</option>
+								<div th:each="jalurMasuk,iterationStatus: ${jalurMasuk}">
+									<option th:value="${jalurMasuk.id_jalur}"
+										th:text="${jalurMasuk.nama} + ' ' + ${jalurMasuk.nama_jenjang} + ' ' + ${jalurMasuk.nama_program}"></option>
+								</div>
+							</select>
+						</div>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<label for="jenis_id" class="col-md-4 control-label">Jenis
@@ -204,7 +226,8 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Nomor Identitas</label>
+					<label for="no_id" class="col-md-4 control-label">Nomor
+						Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -218,13 +241,14 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="nama_id" class="col-md-4 control-label">Nama Sesuai Identitas</label>
+					<label for="nama_id" class="col-md-4 control-label">Nama
+						Sesuai Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
-								placeholder="Nama Pada Identitas" class="form-control" type="text"
-								required="true" />
+								placeholder="Nama Pada Identitas" class="form-control"
+								type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -232,8 +256,8 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="nama_ijazah" class="col-md-4 control-label">Nama Sesuai
-						Ijazah</label>
+					<label for="nama_ijazah" class="col-md-4 control-label">Nama
+						Sesuai Ijazah</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -273,9 +297,7 @@
 					</div>
 				</div>
 
-				<!-- Text input-->
-
-				<div class="form-group">
+				<!-- 				<div class="form-group">
 					<label for="foto" class="col-md-4 control-label">Link Foto</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
@@ -285,7 +307,7 @@
 								required="true" />
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Text input-->
 
@@ -380,9 +402,10 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <textarea name="alamat_tetap"
-								 placeholder="Alamat tempat tinggal orang tua/wali. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ" class="form-control" rows="5" type="text"
-								required="true"></textarea>
+								class="glyphicon glyphicon-home"></i></span>
+							<textarea name="alamat_tetap"
+								placeholder="Alamat tempat tinggal orang tua/wali. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
+								class="form-control" rows="5" type="text" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -395,9 +418,22 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <textarea
-								name="alamat_sekarang" placeholder="Alamat tempat tinggal sekarang. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
-								class="form-control" type="text" rows="5" required="true" ></textarea>
+								class="glyphicon glyphicon-home"></i></span>
+							<textarea name="alamat_sekarang"
+								placeholder="Alamat tempat tinggal sekarang. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
+								class="form-control" type="text" rows="5" required="true"></textarea>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="alamat_sekarang" class="col-md-4 control-label">Jurusan SMA</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <input name="jurusan"
+								placeholder="Jurusan SMA" class="form-control" type="text"
+								required="true" />
 						</div>
 					</div>
 				</div>
@@ -498,24 +534,29 @@
 	<script th:src="@{js/agency.min.js}"></script>
 
 	<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				})
+	</script>
 </body>
 
 </html>
