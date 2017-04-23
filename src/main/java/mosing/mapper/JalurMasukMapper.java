@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.One;
 
 import mosing.model.JalurMasukModel;
 import mosing.model.ProdiModel;
@@ -26,8 +27,8 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_jenjang", column = "nama_jenjang"),
 			@Result(property = "nama_program", column = "nama_program"),
 			@Result(property = "persyaratan", column = "persyaratan"),
-			@Result(property = "listProdi", column = "id_prodi",
-				javaType=List.class, many=@Many(select="selectProdi"))})
+			@Result(property = "listProdi", column = "id_jalur",
+				javaType=List.class, one=@One(select="selectProdiJalurMasuk"))})
 	JalurMasukModel selectJalurMasuk(@Param("id_jalur") int id_jalur);
 	
 	@Insert("INSERT INTO jalur_masuk (nama, tanggal_buka, tanggal_tutup,"
@@ -51,10 +52,10 @@ public interface JalurMasukMapper {
 			@Result(property = "persyaratan", column = "persyaratan")})
 	List<JalurMasukModel> selectAllJalurMasuk();
 	
-//	@Select("select nama_prodi, daya_tampung, nama_fakultas from jalur_masuk j, prodi_tersedia p where p.id_jalur = #{id_jalur}")
-//	@Results(value = { 
-//    		@Result(property = "nama_prodi", column = "nama_prodi"), 
-//    		@Result(property = "daya_tampung", column = "daya_tampung"),
-//			@Result(property = "nama_fakultas", column = "nama_fakultas")})
-//	List<ProdiModel> selectProdiJalurMasuk();
+	@Select("select nama_prodi, daya_tampung, nama_fakultas from prodi_tersedia p where p.id_jalur = #{id_jalur}")
+	@Results(value = { 
+    		@Result(property = "nama_prodi", column = "nama_prodi"), 
+    		@Result(property = "daya_tampung", column = "daya_tampung"),
+			@Result(property = "nama_fakultas", column = "nama_fakultas")})
+	List<ProdiModel> selectProdiJalurMasuk();
 }

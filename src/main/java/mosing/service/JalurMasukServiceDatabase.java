@@ -28,10 +28,10 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 		return JalurMasukMapper.selectAllJalurMasuk();
 	}
 	
-//	@Override
-//	public List<ProdiModel> selectProdiJalurMasuk() {
-//		return JalurMasukMapper.selectProdiJalurMasuk();
-//	}
+	@Override
+	public List<ProdiModel> selectProdiJalurMasuk() {
+		return JalurMasukMapper.selectProdiJalurMasuk();
+	}
 
 	@Override
 	public void addJalurMasuk(JalurMasukModel jalur_masuk) {

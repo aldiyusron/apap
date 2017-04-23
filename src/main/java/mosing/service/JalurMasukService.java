@@ -10,5 +10,5 @@ public interface JalurMasukService {
 	List<JalurMasukModel> selectAllJalurMasuk();
 	void addJalurMasuk(JalurMasukModel jalur_masuk);
 	void updateJalurMasuk(JalurMasukModel jalur_masuk);
-//	List<ProdiModel> selectProdiJalurMasuk();
+	List<ProdiModel> selectProdiJalurMasuk();
 }

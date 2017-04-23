@@ -29,6 +29,12 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -183,13 +189,13 @@
 								</tr>
 							</thead>
 
-							<tbody th:object="${jalur_masuk.listProdi}">
-								<div th:each="listProdi,iterationStatus: ${jalur_masuk.listProdi}"> 	<!-- Belum bener -->
+							<tbody>
+								<div th:each="prodi,iterationStatus: ${jalur_masuk.listProdi}"> 	<!-- Belum bener -->
 									<tr>
 										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${listProdi.nama_prodi}">Nama Jalur Masuk</td>
-										<td th:text="${listProdi.daya_tampung}">Daya Tampung</td>
-										<td th:text="${listProdi.nama_fakultas}">Nama Fakultas</td>
+										<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
+										<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
+										<td th:text="${prodi.nama_fakultas}">Nama Fakultas</td>
 									</tr>
 								</div>
 							</tbody>
@@ -261,7 +267,7 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{js/bootstrap.min.js}"></script>
@@ -271,6 +277,12 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
 		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
 		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+	</script>
+	
+	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+	</script>
 
 	<!-- Contact Form JavaScript -->
 	<script th:src="@{js/jqBootstrapValidation.js}"></script>

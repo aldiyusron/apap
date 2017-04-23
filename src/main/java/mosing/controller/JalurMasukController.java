@@ -22,12 +22,14 @@ import mosing.model.ProdiModel;
 import mosing.model.JalurMasukModel;
 import mosing.service.JalurMasukService;
 import mosing.service.PendaftarService;
+import mosing.service.ProdiService;
 import mosing.service.UserAdmisiService;
 
 @Controller
 public class JalurMasukController {
 	@Autowired
 	JalurMasukService JalurMasukDAO;
+	ProdiService ProdiDAO;
 
 	@RequestMapping("/jalur-masuk")
 	public String lihatDaftarJalurMasuk(Model model) {
@@ -43,10 +45,8 @@ public class JalurMasukController {
 
 		if (jalur_masuk != null) {
 			model.addAttribute("jalur_masuk", jalur_masuk);
-			// List<ProdiModel> allProdi =
-			// JalurMasukDAO.selectProdiJalurMasuk();
-			// model.addAttribute("allProdi", allProdi);
-			model.addAttribute("id_jalur", id_jalur);
+//			List<ProdiModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
+//			model.addAttribute("allProdi", allProdi);
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
