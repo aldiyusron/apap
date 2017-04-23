@@ -1,6 +1,5 @@
 package mosing.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +55,12 @@ public class LokasiController {
 			@RequestParam(value = "nama_provinsi", required = false) String nama_provinsi,
 			@RequestParam(value = "nama_kota", required = false) String nama_kota,
 			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
-			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) throws ParseException {
+			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
+		
 		LokasiModel lokasi = new LokasiModel(0, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
 				kuota_pendaftar, 1);
 		lokasiDAO.addLokasiUjian(lokasi);
+		System.out.println(lokasi.getNama_provinsi());
 
 		return "success-add-lokasi";
 	}
