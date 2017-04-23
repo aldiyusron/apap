@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.JalurMasukMapper;
 import mosing.model.JalurMasukModel;
+import mosing.model.ProdiModel;
 import mosing.service.JalurMasukService;
 
+@Slf4j
+@Service
 public class JalurMasukServiceDatabase implements JalurMasukService {
 	@Autowired
 	JalurMasukMapper JalurMasukMapper;
@@ -24,6 +27,11 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	public List<JalurMasukModel> selectAllJalurMasuk() {
 		return JalurMasukMapper.selectAllJalurMasuk();
 	}
+	
+//	@Override
+//	public List<ProdiModel> selectProdiJalurMasuk() {
+//		return JalurMasukMapper.selectProdiJalurMasuk();
+//	}
 
 	@Override
 	public void addJalurMasuk(JalurMasukModel jalur_masuk) {

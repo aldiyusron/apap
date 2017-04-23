@@ -1,6 +1,7 @@
 package mosing.model;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class JalurMasukModel {
 	private String nama_program;
 	private String persyaratan;
 	private int flag_aktif;
+	private List<ProdiModel> listProdi;
 }

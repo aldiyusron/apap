@@ -146,8 +146,8 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/jalur-masuk/add/submit"
-			method="post" id="contact_form">
+		<form class="well form-horizontal" action="/jalur-masuk/update/submit"
+			method="post" id="contact_form" th:object="${jalur}">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -162,26 +162,28 @@
 
 				<!-- Text input-->
 
+				<input type="hidden" name="id_jalur" readonly="readonly" th:value="${id_jalur}" />
+				
 				<div class="form-group">
 					<label class="col-md-4 control-label">Nama Jalur Masuk</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
-								name="nama" th:value="${nama}" />
+								name="nama" th:value="${jalur.nama}" />
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="tanggal_buka" class="col-md-4 control-label">Tanggal
+					<label th:for="tanggal_buka" class="col-md-4 control-label">Tanggal
 						Buka</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_buka"
 								name="tanggal_buka" placeholder="DD/MM/YYYY" class="form-control"
-								type="text" required="true" />
+								type="text" required="true" th:value="${jalur.tanggal_buka}"/>
 						</div>
 					</div>
 				</div>
@@ -194,7 +196,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_tutup"
 								name="tanggal_tutup" placeholder="DD/MM/YYYY" class="form-control"
-								type="text" required="true" />
+								type="text" required="true" th:value="${jalur.tanggal_tutup}"/>
 						</div>
 					</div>
 				</div>
@@ -205,11 +207,11 @@
 						<div class="input-group">
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" />Aktif</label>
+									required="required" value='1'/>Aktif</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" />Tidak aktif</label>
+									required="required" value='0'/>Tidak aktif</label>
 							</div>
 						</div>
 					</div>
@@ -267,7 +269,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-home"></i></span> <input name="persyaratan"
-								placeholder="Persyaratan" class="form-control" type="text" />
+								placeholder="Persyaratan" class="form-control" type="text" th:value="${jalur.persyaratan}"/>
 						</div>
 					</div>
 				</div>

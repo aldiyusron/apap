@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
+import mosing.model.ProdiModel;
 import mosing.model.JalurMasukModel;
 import mosing.service.JalurMasukService;
 import mosing.service.PendaftarService;
@@ -27,22 +28,39 @@ import mosing.service.UserAdmisiService;
 public class JalurMasukController {
 	@Autowired
 	JalurMasukService JalurMasukDAO;
-	
+
 	@RequestMapping("/jalur-masuk")
 	public String lihatDaftarJalurMasuk(Model model) {
 		List<JalurMasukModel> allJalur = JalurMasukDAO.selectAllJalurMasuk();
 		model.addAttribute("allJalur", allJalur);
 
-		return "view-alljalur"; //belum bener
-}
-	
-	@RequestMapping("/jalur-masuk/add")
-	public String tambahJalurMasuk() {
-		return "form-addjalur"; //masih belum bener pagenya
+		return "view-alljalur";
 	}
-	
+
+	@RequestMapping("/jalur-masuk/view/{id_jalur}")
+	public String lihatJalurMasuk(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
+		JalurMasukModel jalur_masuk = JalurMasukDAO.selectJalurMasuk(id_jalur);
+
+		if (jalur_masuk != null) {
+			model.addAttribute("jalur_masuk", jalur_masuk);
+			// List<ProdiModel> allProdi =
+			// JalurMasukDAO.selectProdiJalurMasuk();
+			// model.addAttribute("allProdi", allProdi);
+			model.addAttribute("id_jalur", id_jalur);
+			return "view-jalurmasuk";
+		} else {
+			model.addAttribute("id_jalur", id_jalur);
+			return "viewnotfound_jalurmasuk";
+		}
+	}
+
+	@RequestMapping("/jalur-masuk/add")
+	public String add() {
+		return "form-addjalur"; // masih belum bener pagenya
+	}
+
 	@RequestMapping("/jalur-masuk/add/submit")
-	public String jalurSubmit(@RequestParam(value = "nama", required = false) String nama,
+	public String addSubmit(@RequestParam(value = "nama", required = false) String nama,
 			@RequestParam(value = "tanggal_buka", required = false) String tanggal_buka,
 			@RequestParam(value = "tanggal_tutup", required = false) String tanggal_tutup,
 			@RequestParam(value = "status", required = false) String status,
@@ -50,7 +68,7 @@ public class JalurMasukController {
 			@RequestParam(value = "nama_program", required = false) String nama_program,
 			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
 
-		if (status.equalsIgnoreCase("Buka"))
+		if (status.equalsIgnoreCase("Aktif"))
 			status = "1";
 		else
 			status = "0";
@@ -60,27 +78,49 @@ public class JalurMasukController {
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
 
-		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, persyaratan, 1);
+		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
+				nama_program, persyaratan, 1, null);
 
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
-		return "success-addjalur"; //belum bener
+		return "success-addjalur"; // belum bener
 	}
-	
-	@GetMapping("/jalur-masuk/update/{id_jalur}")
-	public String updateJalurMasuk(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
+
+	@RequestMapping("/jalur-masuk/update/{id_jalur}")
+	public String update(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
 		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
 		if (jalur != null) {
 			model.addAttribute("jalur", jalur);
-			return "update-lokasi"; //belum bener
+			return "form-updatejalur"; // belum bener
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
-			return "error"; //belum bener
+			return "error"; // belum bener
 		}
 	}
 
-	@PostMapping("/jalur-masuk/update")
-	public String updateJalurMasukSubmit(@ModelAttribute JalurMasukModel jalur) {
-		JalurMasukDAO.updateJalurMasuk(jalur);
-		return "success-update-lokasi"; //belum bener
-}
+	@RequestMapping(value = "/jalur-masuk/update/submit", method = RequestMethod.POST)
+    public String updateSubmit(@RequestParam(value = "id_jalur", required = false) int id_jalur, @RequestParam(value = "nama", required = false) String nama,
+			@RequestParam(value = "tanggal_buka", required = false) String tanggal_buka,
+			@RequestParam(value = "tanggal_tutup", required = false) String tanggal_tutup,
+			@RequestParam(value = "status", required = false) String status,
+			@RequestParam(value = "nama_jenjang", required = false) String nama_jenjang,
+			@RequestParam(value = "nama_program", required = false) String nama_program,
+			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
+
+		if (status.equalsIgnoreCase("Aktif"))
+			status = "1";
+		else
+			status = "0";
+		byte stat = Byte.parseByte(status);
+		DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
+		Date tgl_buka = format1.parse(tanggal_buka);
+		Date tgl_tutup = format2.parse(tanggal_tutup);
+		
+		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
+
+		JalurMasukModel jalur_masuk = new JalurMasukModel(jalur.getId_jalur(), nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, persyaratan, 1, null);
+
+		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
+		return "success-addjalur"; //belum bener
+	}
 }

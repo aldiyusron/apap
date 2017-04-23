@@ -57,25 +57,25 @@ CREATE TABLE IF NOT EXISTS LEMBAGA_PENDIDIKAN_TERAKHIR
 
 CREATE TABLE IF NOT EXISTS PENDAFTAR
 (
-	id_user INTEGER NOT NULL PRIMARY KEY,
+	id_user INTEGER,
 	no_id VARCHAR(20) NOT NULL,
 	nama_id VARCHAR(50) NOT NULL,
 	nama_ijazah VARCHAR(50) NOT NULL,
-	foto VARCHAR(100) NOT NULL,
-	no_hp VARCHAR(14) NOT NULL,
+	foto VARCHAR(100),
+	no_hp VARCHAR(14),
 	no_telp VARCHAR(14),
-	nama_negara VARCHAR(50) NOT NULL,
-	kewarganegaraan VARCHAR(3) NOT NULL,
-	alamat_tetap VARCHAR(100) NOT NULL,
-	jenis_id VARCHAR(20) NOT NULL,
-	alamat_sekarang VARCHAR(100) NOT NULL,
-	tgl_lahir DATE NOT NULL,
-	nama_provinsi VARCHAR(50) NOT NULL,
-	nama_kota VARCHAR(50) NOT NULL,
-	jenis_kelamin TINYINT(1) NOT NULL,
+	nama_negara VARCHAR(50),
+	kewarganegaraan VARCHAR(3),
+	alamat_tetap VARCHAR(100),
+	jenis_id VARCHAR(20),
+	alamat_sekarang VARCHAR(100),
+	tgl_lahir DATE,
+	nama_provinsi VARCHAR(50),
+	nama_kota VARCHAR(50),
+	jenis_kelamin TINYINT(1),
 	nama_lembaga VARCHAR(50),
 	jurusan CHAR(3),
-	no_daftar INTEGER NOT NULL AUTO_INCREMENT UNIQUE KEY,
+	no_daftar INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
