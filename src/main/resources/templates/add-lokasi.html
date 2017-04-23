@@ -51,12 +51,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-	
+
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" />
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -178,7 +180,7 @@
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
 		<form class="well form-horizontal" action="/detail-ujian/add/submit"
-			method="post" id="contact_form" name="lokasi">
+			method="post" id="contact_form">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -218,12 +220,12 @@
 				</div>
 
 				<div class="form-group">
-					<label for="provinsi" class="col-md-4 control-label">Provinsi</label>
+					<label for="nama_provinsi" class="col-md-4 control-label">Provinsi</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
-								required="required" name="provinsi" onChange="showData()"
+								required="required" name="nama_provinsi"
 								class="selectpicker form-control" data-live-search="true">
 								<option value="">Pilihan provinsi</option>
 								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
@@ -234,35 +236,59 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="nama_kota" class="col-md-4 control-label">Kota</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="nama_kota"
+								class="form-control selectpicker" data-live-search="true">
+								<option value="">Pilihan kota</option>
+								<div th:each="kota,iterationStatus: ${allKota}">
+									<option th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
+								</div>
+							</select>
+						</div>
+					</div>
+				</div>
+				
 
-				<!-- belum bisa nampilin sesuai provinsinya-->
+				<!--
 				<div class="form-group">
 					<label for="kota" class="col-md-4 control-label">Kota</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
-								required="required" name="kota"
+								required="required" name="kota" id="kota"
 								class="form-control selectpicker" data-live-search="true">
-									<option value="">Pilihan kota</option>
-									<div th:each="kota,iterationStatus: ${allKota}">
-										<option id="provinsi2" th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
+								<option value="">Pilihan kota</option>
+								<option value=""></option>
+								<div th:each="kota,iterationStatus: ${allKota}">
+									<div
+										th:if="${kota.id_provinsi} eq theSelect[theSelect.selectedIndex].value">
+										<option th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
 										<script>
-							 function showData() {
-							        var theSelect = lokasi.provinsi;
-							        var provinsi2 = document.getElementById('provinsi2');
-							        provinsi2.innerHTML = theSelect[theSelect.selectedIndex].value;
-							    }
-							</script>
+											function showData() {
+												var theSelect = lokasi.provinsi;
+												var provinsi2 = document
+														.getElementById('provinsi2');
+												provinsi2.innerHTML = theSelect[theSelect.selectedIndex].value;
+											}
+										</script>
 									</div>
-							</select>
-							
-							<!-- nyimpen value provinsi yang dipilih -->
+								</div>
+							nyimpen value provinsi yang dipilih
 							<p id="provinsi2"></p>
-							
+
+							</select>
+
+
 						</div>
 					</div>
-				</div>
+				</div>-->
 
 				<!-- Text input-->
 
@@ -335,7 +361,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -344,11 +370,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="http://www.twitter.com/simak_ui"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="http://www.facebook.com/simak.ui/"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="mailto:penerimaan@ui.ac.id"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -410,8 +439,32 @@
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	
 
+	<!-- <script>
+	var listKota = [[${allKota}]];
+	var id = 1;
+	
+	function selectFilter(idFilter){
+		if(idFilter == 1)
+			selectKota();
+		else
+			id++;
+			selectKota();
+	}
+	
+	function selectKota(){
+		var result="";
+		for (var i in listKota){
+			var id = listKota[i].id_kota;
+			var name  = listKota[i].nama_kota;
+			
+			result += '<option value="' + id + '">' + name + '></option>'
+		}
+		document.getElementById("kota").innerHtml = result;
+	}
+	</script> -->
+	
+	
 	<script>
 		$(document).ready(
 				function() {
@@ -425,14 +478,8 @@
 						autoclose : true,
 					})
 				});
-		
+
 		$('.select').selectpicker();
-		
-		var e = document.getElementById("provinsi");
-		var value = e.options[e.selectedIndex].value;
-		var text = e.options[e.selectedIndex].text;
 	</script>
 </body>
-
 </html>
-
