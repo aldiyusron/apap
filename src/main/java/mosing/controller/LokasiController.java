@@ -65,12 +65,23 @@ public class LokasiController {
 		return "success-add-lokasi";
 	}
 
-	@RequestMapping("/detail-ujian/delete/{id_lokasi}")
+	@GetMapping("/detail-ujian/delete/{id_lokasi}")
 	public String hapusLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		if(lokasi != null) {
+			model.addAttribute("lokasi", lokasi);
+			return "delete-lokasi";
+		}
+		else
+			model.addAttribute("id_lokasi", id_lokasi);
+			return "error";
+	}
+	
+	@PostMapping("/detail-ujian/delete/submit")
+	public String hapusLokasiKonfirmasi(@ModelAttribute LokasiModel lokasi) {
 		lokasiDAO.deleteLokasiUjian(lokasi);
 
-		return "delete-lokasi";
+		return "success-delete-lokasi";
 	}
 
 	@GetMapping("/detail-ujian/update/{id_lokasi}")
@@ -85,7 +96,7 @@ public class LokasiController {
 		}
 	}
 
-	@PostMapping("/detail-ujian/update")
+	@PostMapping("/detail-ujian/update/submit")
 	public String updateLokasiSubmit(@ModelAttribute LokasiModel lokasi) {
 		lokasiDAO.updateLokasiUjian(lokasi);
 		return "success-update-lokasi";
