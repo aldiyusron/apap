@@ -13,15 +13,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.KotaModel;
 import mosing.model.LokasiModel;
+import mosing.model.ProvinsiModel;
+import mosing.service.KotaService;
 import mosing.service.LokasiService;
+import mosing.service.ProvinsiService;
 
 @Controller
 public class LokasiController {
 
 	@Autowired
 	LokasiService lokasiDAO;
-
+	
+	@Autowired
+	ProvinsiService provinsiDAO;
+	
+	@Autowired
+	KotaService kotaDAO;
+	
 	@RequestMapping("/detail-ujian")
 	public String lihatDaftarLokasi(Model model) {
 		List<LokasiModel> allLokasi = lokasiDAO.selectAllLokasi();
@@ -31,7 +41,11 @@ public class LokasiController {
 	}
 
 	@RequestMapping("/detail-ujian/add")
-	public String tambahLokasi() {
+	public String tambahLokasi(Model model) {
+		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+		model.addAttribute("allProvinsi", allProvinsi);
+		model.addAttribute("allKota", allKota);
 		return "add-lokasi";
 	}
 
