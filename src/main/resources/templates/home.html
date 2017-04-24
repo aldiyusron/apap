@@ -151,8 +151,9 @@
             <div class="intro-text">
                 <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
                 <div th:if="${user.role} eq 'ROLE_KPMB'">
-                	<a href="#" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
+                	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
                 	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
+                	<a href="/detail-ujian" class="page-scroll btn btn-xl">Detail Ujian</a>
                 </div>
               	<div th:if="${user.role} eq 'ROLE_PEND'">
 					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
@@ -281,7 +282,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
