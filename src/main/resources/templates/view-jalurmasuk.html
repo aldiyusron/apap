@@ -192,7 +192,7 @@
 						</table>
 				</div>
 				<div class="tab-content clearfix">
-						<table id="tableDetail" class="stripe">
+						<table id="tableDetail" class="stripe" th:if="${jalur_masuk.listProdi} != NULL">
 							<thead>
 								<tr>
 									<th>No.</th>
@@ -201,7 +201,7 @@
 									<th>Fakultas</th>
 								</tr>
 							</thead>
-
+							
 							<tbody>
 								<div th:each="prodi,iterationStatus: ${jalur_masuk.listProdi}"> 	<!-- Belum bener -->
 									<tr>
@@ -213,6 +213,8 @@
 								</div>
 							</tbody>
 						</table>
+					
+						<p th:if="${jalur_masuk.listProdi} eq 1">Belum punya prodi</p>
 				</div>
 			</div>
 		</div>
