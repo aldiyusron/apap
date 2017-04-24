@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,16 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	
 	@Override
 	public void deleteJalurMasuk(JalurMasukModel jalurMasuk) {
-		// TODO Auto-generated method stub
 		jalurMasukMapper.deleteJalurMasuk(jalurMasuk);
 	}
 
 	@Override
 	public JalurMasukModel selectJalurMasuk(int id_jalur) {
-		// TODO Auto-generated method stub
 		return jalurMasukMapper.selectJalurMasuk(id_jalur);
 	}
-
+	
+	@Override
+	public List<JalurMasukModel> selectAllJalurMasuk() {
+		return jalurMasukMapper.selectAllJalurMasuk();
+	}
 }

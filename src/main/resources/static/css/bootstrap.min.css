@@ -2637,9 +2637,15 @@ th {
 	border-bottom-width: 2px
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-	background-color: #f9f9f9
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
 }
+
+tr.found{
+    background-color:#CECBCB;
+}
+
 
 .table-hover>tbody>tr:hover {
 	background-color: #f5f5f5
@@ -3333,6 +3339,17 @@ select[multiple].input-lg, textarea.input-lg {
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px
+}
+
+.btn-custom {  
+    background-color: #FFFFFF;
+    border-color: #CCCCCC;
+    color: #333333;
+ }
+.btn-custom:hover {
+   background-color: #d8d8d8;
+   border-color: #fff;
+   color: #aa0000;
 }
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
@@ -4555,6 +4572,12 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	margin-top: -1px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0
+}
+
+.tambahjalur {
+	float: right;
+	margin-top: 10px;
+	color: #464646
 }
 
 .navbar {
@@ -7132,6 +7155,7 @@ button.close {
 		{
 		margin-right: -10px
 	}
+
 	.carousel-caption {
 		right: 20%;
 		left: 20%;
@@ -7437,5 +7461,10 @@ button.close {
 	color: #fff;
 	background-color: #f0ad4e;
 	border-color: #eea236;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
