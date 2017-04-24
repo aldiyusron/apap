@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import mosing.model.DaftarPilihanModel;
 import mosing.model.PendaftarModel;
@@ -27,4 +28,7 @@ public interface PendaftarMapper {
 	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
 			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan})")
 	void addDaftarPilihan(DaftarPilihanModel daftar);
+	
+	@Update("Update pendaftar set foto=#{foto} where id_user=#{id_user}")
+	void updateFoto(@Param("foto") String foto, @Param("id_user") String id_user);
 }

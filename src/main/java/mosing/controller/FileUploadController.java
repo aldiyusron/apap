@@ -1,5 +1,7 @@
 package mosing.controller;
 
+import mosing.model.PendaftarModel;
+import mosing.service.PendaftarService;
 import mosing.service.StorageFileNotFoundException;
 import mosing.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,52 +21,54 @@ import java.util.stream.Collectors;
 @Controller
 public class FileUploadController {
 
-    private final StorageService storageService;
+	private final StorageService storageService;
+	@Autowired
+	PendaftarService pendaftarDAO;
 
-    @Autowired
-    public FileUploadController(StorageService storageService) {
-        this.storageService = storageService;
-    }
+	@Autowired
+	public FileUploadController(StorageService storageService) {
+		this.storageService = storageService;
+	}
 
-    @GetMapping("/pendaftar/upload")
-    public String listUploadedFiles(Model model) throws IOException {
+	@GetMapping("/pendaftar/upload/{username}")
+	public String listUploadedFiles(Model model, @PathVariable(value = "username") String username) throws IOException {
 
-        model.addAttribute("files", storageService
-                .loadAll()
-                .map(path ->
-                        MvcUriComponentsBuilder
-                                .fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
-                                .build().toString())
-                .collect(Collectors.toList()));
+		model.addAttribute("files",
+				storageService.loadAll()
+						.map(path -> MvcUriComponentsBuilder
+								.fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
+								.build().toString())
+						.collect(Collectors.toList()));
 
-        return "uploadForm";
-    }
+		return "uploadForm";
+	}
 
-    @GetMapping("/files/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+	@GetMapping("/files/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
-        Resource file = storageService.loadAsResource(filename);
-        return ResponseEntity
-                .ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
-                .body(file);
-    }
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
+	}
 
-    @PostMapping("/pendaftar/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+	@PostMapping("/pendaftar/upload/{username}")
+	public String handleFileUpload(Model model, @PathVariable(value = "username") String username,
+			@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 
-        storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+		storageService.store(file);
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file.getOriginalFilename() + "!");
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+		String foto = file.getOriginalFilename();
+		pendaftarDAO.updateFoto(foto, pendaftar.getId_user());
+		return "redirect:/pendaftar/upload/" + username;
+	}
 
-        return "redirect:/upload";
-    }
-
-    @ExceptionHandler(StorageFileNotFoundException.class)
-    public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
-        return ResponseEntity.notFound().build();
-    }
+	@ExceptionHandler(StorageFileNotFoundException.class)
+	public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
+		return ResponseEntity.notFound().build();
+	}
 
 }

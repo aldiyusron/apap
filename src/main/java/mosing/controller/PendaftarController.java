@@ -78,6 +78,7 @@ public class PendaftarController {
 			@RequestParam(value = "provinsi", required = false) String provinsi,
 			@RequestParam(value = "kota", required = false) String kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
+			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
 			@RequestParam(value = "jurusan", required = false) String jurusan) throws ParseException {
 
 		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
@@ -92,7 +93,7 @@ public class PendaftarController {
 
 		PendaftarModel pendaftar = new PendaftarModel(user.getId_user(), no_id, nama_id, nama_ijazah, "www.xxx.com",
 				no_hp, no_telp, negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				provinsi, kota, jk, 0, jurusan, null);
+				provinsi, kota, jk, 0, nama_lembaga, jurusan);
 
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar(username);
@@ -105,28 +106,37 @@ public class PendaftarController {
 		model.addAttribute("prodiTersedia", prodiTersedia);
 		model.addAttribute("no_daftar", no_daftar);
 		model.addAttribute("id_jalur", id_jalur);
+		model.addAttribute("username", username);
 		return "formrencanastudi";
 	}
 
 	@RequestMapping("/pendaftar/rencanastudi/submit")
-	public String rencanaStudiSubmit(@RequestParam(value = "no_daftar", required = false) int no_daftar,
+	public String rencanaStudiSubmit(Model model, @RequestParam(value = "username", required = false) String username,
+			@RequestParam(value = "no_daftar", required = false) int no_daftar,
 			@RequestParam(value = "id_jalur", required = false) int id_jalur,
 			@RequestParam(value = "pilihan1", required = false) int pilihan1,
-			@RequestParam(value = "pilihan2", required = false) int pilihan2) {
-		// @RequestParam(value = "pilihan3", required = false) String pilihan3,
-		// @RequestParam(value = "pilihan4", required = false) String pilihan4,
-		// @RequestParam(value = "pilihan5", required = false) String pilihan5,
-		// @RequestParam(value = "pilihan6", required = false) String pilihan6
+			@RequestParam(value = "pilihan2", required = false) int pilihan2,
+			@RequestParam(value = "pilihan3", required = false) int pilihan3,
+			@RequestParam(value = "pilihan4", required = false) int pilihan4,
+			@RequestParam(value = "pilihan5", required = false) int pilihan5,
+			@RequestParam(value = "pilihan6", required = false) int pilihan6) {
 		JalurMasukModel jalurmasuk = jalurmasukDAO.selectJalurMasuk(id_jalur);
 		List<Integer> pilihanProdi = new ArrayList<Integer>();
 		pilihanProdi.add(pilihan1);
 		pilihanProdi.add(pilihan2);
+		pilihanProdi.add(pilihan3);
+		pilihanProdi.add(pilihan4);
+		pilihanProdi.add(pilihan5);
+		pilihanProdi.add(pilihan6);
 		for (int i = 0; i < pilihanProdi.size(); i++) {
 			int prodi = Integer.parseInt(pilihanProdi.get(i).toString());
-			DaftarPilihanModel daftarPilihan = new DaftarPilihanModel(no_daftar, jalurmasuk.getNama_jenjang(),
-					jalurmasuk.getNama_program(), prodi, i + 1);
-			pendaftarDAO.addDaftarPilihan(daftarPilihan);
+			if (prodi != 0) {
+				DaftarPilihanModel daftarPilihan = new DaftarPilihanModel(no_daftar, jalurmasuk.getNama_jenjang(),
+						jalurmasuk.getNama_program(), prodi, i + 1);
+				pendaftarDAO.addDaftarPilihan(daftarPilihan);
+			}
 		}
-		return "success-daftarpengawas"; // blm selesai
+		model.addAttribute("username", username);
+		return "success-rencanastudi"; // blm selesai
 	}
 }

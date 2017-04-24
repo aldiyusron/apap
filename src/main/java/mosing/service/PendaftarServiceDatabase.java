@@ -33,4 +33,10 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	{
 		pendaftarMapper.addDaftarPilihan(daftar);
 	}
+	
+	@Override
+	public void updateFoto(String foto, String id_user)
+	{
+		pendaftarMapper.updateFoto(foto, id_user);
+	}
 }
