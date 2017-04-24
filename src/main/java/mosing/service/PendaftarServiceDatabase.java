@@ -29,8 +29,31 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public List<PendaftarModel> selectAllSiswa() {
+	public List<PendaftarModel> selectAllPendaftarTerverifikasi(Integer id_value) {
 		// TODO Auto-generated method stub
-		return pendaftarMapper.selectAllSiswa();
+		return pendaftarMapper.selectAllPendaftarTerverifikasi(id_value);
 	}
+
+	@Override
+	public List<PendaftarModel> selectAllPendaftarTakTerverifikasi(Integer id_value) {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarTakTerverifikasi(id_value);
+	}
+	
+	public List<PendaftarModel> selectAllPendaftar() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftar();
+	}
+
+	@Override
+	public List<PendaftarModel> selectTakTerverifikasi() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectTakTerverifikasi();
+	}
+
+	@Override
+	public List<PendaftarModel> selectTerverifikasi() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectTerverifikasi();	}
+	
 }

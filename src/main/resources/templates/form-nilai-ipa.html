@@ -172,7 +172,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/pendaftar/submit"
+		<form class="well form-horizontal" action="/nilai-ipa/submit"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -185,8 +185,10 @@
 					</center>
 				</legend>
 
-				<input type="hidden" name="username" readonly="readonly"
-					th:value="${username}" />
+				<input type="hidden" name="no_daftar" readonly="readonly"
+					th:value="${pendaftar2.no_daftar}" />
+				<input type="hidden" name="jurusan" readonly="readonly"
+					th:value="${pendaftar2.jurusan}" />
 
 				<div class="form-group">
 					<table class="table table-striped">

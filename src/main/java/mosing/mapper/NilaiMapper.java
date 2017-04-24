@@ -9,10 +9,10 @@ import mosing.model.NilaiModel;
 public interface NilaiMapper {
 	@Insert("INSERT INTO nilai_rapor (no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, "
 			+ "kkm_biologi, kkm_sejarah, kkm_geografi, kkm_ekonomi, "
-			+ "kkm_bindo, kkm_bing, mtk, kimia, fisika, biologi, sejarah, geografi, " + "ekonomi, bindo, bing) VALUES"
+			+ "kkm_bindo, kkm_bing, mtk, kimia, fisika, biologi, sejarah, geografi, " + "ekonomi, bindo, bing, semester) VALUES"
 			+ "(#{no_daftar}, #{kkm_mtk}, #{kkm_kimia}, #{kkm_fisika}, "
 			+ "#{kkm_biologi}, #{kkm_sejarah}, #{kkm_geografi}, #{kkm_ekonomi}, "
 			+ "#{kkm_bindo}, #{kkm_bing}, #{mtk}, #{kimia}, #{fisika}, #{biologi}, #{sejarah}, #{geografi}, "
-			+ "#{ekonomi}, #{bindo}, #{bing})")
+			+ "#{ekonomi}, #{bindo}, #{bing}, #{semester})")
 	void addNilai(NilaiModel nilai);
 }

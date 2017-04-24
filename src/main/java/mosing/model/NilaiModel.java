@@ -28,4 +28,5 @@ public class NilaiModel {
 	private int ekonomi;
 	private int bindo;
 	private int bing;
+	private int semester;
 }
