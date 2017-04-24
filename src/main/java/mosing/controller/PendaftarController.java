@@ -50,8 +50,7 @@ public class PendaftarController {
 			@RequestParam(value = "nama_kota", required = false) String nama_kota,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
-			@RequestParam(value = "jurusan", required = false) String jurusan,
-			@RequestParam(value = "no_daftar", required = false) int no_daftar) throws ParseException {
+			@RequestParam(value = "jurusan", required = false) String jurusan) throws ParseException {
 
 		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
 			jenis_kelamin = "1";
@@ -76,6 +75,30 @@ public class PendaftarController {
 		List<PendaftarModel> allSiswa = pendaftarDAO.selectAllSiswa();
 		model.addAttribute("allSiswa", allSiswa);
 
-		return "list-siswa";
+		return "list-siswa-ppkb";
+	}
+	
+	@RequestMapping("/data-siswa/submit")
+	public String dataSubmit(@RequestParam(value = "no_id", required = false) String no_id,
+			@RequestParam(value = "nama_id", required = false) String nama_id,
+			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,	
+			@RequestParam(value = "jenis_id", required = false) String jenis_id,
+			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
+			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
+			@RequestParam(value = "jurusan", required = false) String jurusan) throws ParseException {
+
+		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
+			jenis_kelamin = "1";
+		else
+			jenis_kelamin = "0";
+
+		byte jk = Byte.parseByte(jenis_kelamin);
+		PendaftarModel pendaftar = new PendaftarModel(5, no_id, nama_id, nama_ijazah, null, null, null, null,
+				null, null, jenis_id, null, null, null, null, jk,
+				nama_lembaga, jurusan, 0);
+
+		pendaftarDAO.addPendaftar(pendaftar);
+		// return "success-datadiri";
+		return "success-daftarseleksi";
 	}
 }

@@ -165,7 +165,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/data-pendaftar/submit"
+		<form class="well form-horizontal" action="/data-siswa/submit"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -203,6 +203,23 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
+						Kelamin</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" />Laki-laki</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" />Perempuan</label>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- Text input-->
 
@@ -216,6 +233,7 @@
 						</div>
 					</div>
 				</div>
+				<input type="hidden" name="jenis_id" value="NISN" />
 				<div class="form-group">
 					<label for="nama_lembaga" class="col-md-4 control-label">Sekolah Asal</label>
 					
