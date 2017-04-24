@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,8 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public void addPendaftar2(PendaftarModel pendaftar) {
-		pendaftarMapper.addPendaftar2(pendaftar);
+	public List<PendaftarModel> selectAllSiswa() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllSiswa();
 	}
 }

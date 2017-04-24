@@ -23,24 +23,14 @@ public class NilaiController {
 	@Autowired
 	PendaftarService pendaftarDAO;
 	
-	@RequestMapping("/nilai-pendaftar/{no_id}")
-	public String addNilai(Model model, @PathVariable(value="no_id") String no_id) {
-		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
-		if (pendaftar.getJurusan() == "IPA")
-		return "form-nilai-ipa";
-		else
-			return "form-nilai-ips";
-	}
-	
-	@RequestMapping("/nilai-pendaftar/submit")
-	public String addNilaiSubmit(@RequestParam(value="nama_id", required=false) String nama_id,
-			@RequestParam(value="nama_ijazah", required=false) String nama_ijazah,
-			@RequestParam(value="nisn", required=false) int nisn,
-			@RequestParam(value="nama_lembaga", required=false) String nama_lembaga,
-			@RequestParam(value="jurusan", required=false) String jurusan) throws ParseException {
-		PendaftarModel pendaftar = new PendaftarModel(null, nama_id, nama_ijazah, nama_lembaga, jurusan);
+//	@RequestMapping("/nilai-pendaftar/{no_id}")
+//	public String add(Model model, @PathVariable(value = "no_id") String no_id) {
+//		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
+//		if (pendaftar.getJurusan().equals("IPA"))
+//			return "form-nilai-ipa";
+//		else
+//			return "form-nilai-ips";
+//	}
 
-		pendaftarDAO.addPendaftar2(pendaftar);
-		return "";
-	}
+	
 }
