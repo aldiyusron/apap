@@ -81,22 +81,89 @@ public class LokasiController {
 		
 		return "success-delete-lokasi";
 	}
-
-	@GetMapping("/detail-ujian/update/{id_lokasi}")
-	public String updateLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
+	
+	@RequestMapping("/detail-ujian/update/{id_lokasi}")
+	public String updateLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi){
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
-		if (lokasi != null) {
-			model.addAttribute("lokasi", lokasi);
-			return "update-lokasi";
-		} else {
-			model.addAttribute("id_lokasi", id_lokasi);
-			return "error";
-		}
+		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+		model.addAttribute("lokasi", lokasi);
+		model.addAttribute("allProvinsi", allProvinsi);
+		model.addAttribute("allKota", allKota);
+		return "update-lokasi";
 	}
-
-	@PostMapping("/detail-ujian/update/submit")
-	public String updateLokasiSubmit(@ModelAttribute LokasiModel lokasi) {
+	
+	@RequestMapping(value = "/detail-ujian/update/submit/{id_lokasi}", method = RequestMethod.POST)
+	public String updateLokasiSubmit(@PathVariable(value = "id_lokasi") int id_lokasi, @RequestParam(value = "alamat", required = false) String alamat,
+			@RequestParam(value = "nama_lokasi", required = false) String nama_lokasi,
+			@RequestParam(value = "no_telp", required = false) String no_telp,
+			@RequestParam(value = "nama_provinsi", required = false) String nama_provinsi,
+			@RequestParam(value = "nama_kota", required = false) String nama_kota,
+			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
+			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
+			
+		LokasiModel lokasi = new LokasiModel(id_lokasi, alamat, nama_lokasi, no_telp, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, 1);
 		lokasiDAO.updateLokasiUjian(lokasi);
 		return "success-update-lokasi";
 	}
-}
+	}
+
+//	@RequestMapping(value = "/detail-ujian/update/{id_lokasi}", method=RequestMethod.GET)
+//	public String updateLokasi(Model model, @PathVariable(value="id_lokasi") int id_lokasi){
+//		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+//		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+//		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+//		model.addAttribute("lokasi", lokasi);
+//		model.addAttribute("allProvinsi", allProvinsi);
+//		model.addAttribute("allKota", allKota);
+//		return "update-lokasi";
+//	}
+//	
+//	@RequestMapping(value="/detail-ujian/delete/submit/{id_lokasi}")
+//	public String updateLokasiSubmit(Model model, @PathVariable(value="id_lokasi") int id_lokasi){
+//		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+//		model.addAttribute("lokasi", lokasi);
+//		lokasiDAO.updateLokasiUjian(lokasi);
+//		
+//		return "success-update-lokasi";
+//	}
+	
+//	@GetMapping("/detail-ujian/update/{id_lokasi}")
+//	public String updateLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
+//		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+//		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+//		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+//		if (lokasi != null) {
+//			model.addAttribute("lokasi", lokasi);
+//			model.addAttribute("allProvinsi", allProvinsi);
+//			model.addAttribute("allKota", allKota);
+//			return "update-lokasi";
+//		} else {
+//			model.addAttribute("id_lokasi", id_lokasi);
+//			return "error";
+//		}
+//	}
+//	
+//	@RequestMapping("/detail-ujian/update/submit/{id_lokasi}")
+//	public String updateLokasiSubmit(Model model, @PathVariable(value="id_lokasi") int id_lokasi,
+//			@RequestParam(value = "alamat", required = false) String alamat,
+//			@RequestParam(value = "nama_lokasi", required = false) String nama_lokasi,
+//			@RequestParam(value = "no_telp", required = false) String no_telp,
+//			@RequestParam(value = "nama_provinsi", required = false) String nama_provinsi,
+//			@RequestParam(value = "nama_kota", required = false) String nama_kota,
+//			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
+//			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
+//		
+//		LokasiModel lokasi = new LokasiModel(id_lokasi, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
+//				kuota_pendaftar, 1);
+//		lokasiDAO.addLokasiUjian(lokasi);
+//
+//		return "success-update-lokasi";
+//	}
+
+//	@PostMapping("/detail-ujian/update/submit")
+//	public String updateLokasiSubmit(@ModelAttribute LokasiModel lokasi) {		
+//		lokasiDAO.updateLokasiUjian(lokasi);
+//		return "success-update-lokasi";
+//	}
+
