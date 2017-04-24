@@ -95,6 +95,12 @@ public class FileUploadController {
 		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
 		String berkas = file.getOriginalFilename();
 		penyeleksianDAO.updateBerkas(berkas, penyeleksian.getNo_daftar());
+		return "redirect:/pendaftar/suksesdaftarseleksi";
+	}
+	
+	@RequestMapping("/pendaftar/suksesdaftarseleksi")
+	public String success() {
+
 		return "sudahdaftarseleksi";
 	}
 

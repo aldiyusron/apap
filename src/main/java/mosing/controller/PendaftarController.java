@@ -54,7 +54,7 @@ public class PendaftarController {
 			}
 		}
 
-		List<JalurMasukModel> jalurMasuk = jalurmasukDAO.selectAllJalurMasuk();
+		List<JalurMasukModel> jalurMasuk = jalurmasukDAO.selectAllJalurTulis();
 		model.addAttribute("username", username);
 		model.addAttribute("jalurMasuk", jalurMasuk);
 		return "form-registrasi2";

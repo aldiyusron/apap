@@ -20,7 +20,7 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	@Override
 	public JalurMasukModel selectJalurMasuk(int id_jalur)
 	{
-		return JalurMasukMapper.selectJalurMasukdanProdi(id_jalur);
+		return JalurMasukMapper.selectJalurMasuk(id_jalur);
 	}
 	
 	@Override
@@ -42,5 +42,11 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	public List<ProdiTersediaModel> selectAllProdi(int id_jalur)
 	{
 		return JalurMasukMapper.selectAllProdi(id_jalur);
+	}
+	
+	@Override
+	public List<JalurMasukModel> selectAllJalurTulis()
+	{
+		return JalurMasukMapper.selectAllJalurTulis();
 	}
 }
