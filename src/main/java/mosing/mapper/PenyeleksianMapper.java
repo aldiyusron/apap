@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import mosing.model.PenyeleksianModel;
 
@@ -18,4 +19,7 @@ public interface PenyeleksianMapper {
 	
 	@Select("select p.* from penyeleksian p where p.no_daftar = #{no_daftar}")
 	PenyeleksianModel selectPenyeleksian2(@Param("no_daftar") int no_daftar);
+	
+	@Update("update penyeleksian set berkas=#{berkas} where no_daftar=#{no_daftar}")
+	void updateBerkas(@Param("berkas") String berkas, @Param("no_daftar") int no_daftar);
 }

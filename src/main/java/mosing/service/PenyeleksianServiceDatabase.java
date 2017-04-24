@@ -29,4 +29,10 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	{
 		return penyeleksianMapper.selectPenyeleksian2(no_daftar);
 	}
+	
+	@Override
+	public void updateBerkas(String berkas, int no_daftar)
+	{
+		penyeleksianMapper.updateBerkas(berkas, no_daftar);
+	}
 }
