@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.KotaModel;
@@ -60,27 +61,24 @@ public class LokasiController {
 		LokasiModel lokasi = new LokasiModel(0, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
 				kuota_pendaftar, 1);
 		lokasiDAO.addLokasiUjian(lokasi);
-		System.out.println(lokasi.getNama_provinsi());
 
 		return "success-add-lokasi";
 	}
-
-	@GetMapping("/detail-ujian/delete/{id_lokasi}")
-	public String hapusLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
+	
+	@RequestMapping(value = "/detail-ujian/delete/{id_lokasi}", method=RequestMethod.GET)
+	public String hapusLokasi(Model model, @PathVariable(value="id_lokasi") int id_lokasi){
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
-		if(lokasi != null) {
-			model.addAttribute("lokasi", lokasi);
-			return "delete-lokasi";
-		}
-		else
-			model.addAttribute("id_lokasi", id_lokasi);
-			return "error";
+		model.addAttribute("lokasi", lokasi);
+		
+		return "delete-lokasi";
 	}
 	
-	@PostMapping("/detail-ujian/delete/submit")
-	public String hapusLokasiKonfirmasi(@ModelAttribute LokasiModel lokasi) {
+	@RequestMapping(value="/detail-ujian/delete/submit/{id_lokasi}")
+	public String hapusLokasiSubmit(Model model, @PathVariable(value="id_lokasi") int id_lokasi){
+		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		model.addAttribute("lokasi", lokasi);
 		lokasiDAO.deleteLokasiUjian(lokasi);
-
+		
 		return "success-delete-lokasi";
 	}
 
