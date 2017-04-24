@@ -8,15 +8,14 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Masuk</title>
+<title>Penerimaan UI | Detail Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
-
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -29,6 +28,12 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -70,7 +75,7 @@
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
 									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
@@ -106,6 +111,15 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#"><span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Log Out</button>
+							</form></li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -120,7 +134,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/index">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="#">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -136,78 +150,218 @@
 		</div>
 
 	</div>
-	<!--  NAVBAR SELESAI -->
-	<br/>
-	<br/>
+	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" th:action="@{/login}" method="post"
-			id="contact_form">
+		<form class="well form-horizontal" action="/jalur-masuk/add/submit"
+			method="post" id="contact_form">
 			<fieldset>
+
 				<!-- Form Name -->
 				<legend>
 					<center>
 						<h2>
-							<b>MASUK</b>
+							<b>Formulir Jalur Masuk</b>
 						</h2>
 					</center>
 				</legend>
 				<br />
-				<div class="warning" th:if="${param.error}">Nama pengguna atau kata sandi tidak valid.</div>
-				<div class="warning" th:if="${param.logout}">Anda telah keluar.</div>
-				<div class="form-group" style="margin-left: -20px; float: center">
 
-					<label for="username" class="col-md-4 control-label"></label>
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="username" class="col-md-4 control-label">Nama Jalur Masuk</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="username"
-								placeholder="Nama Pengguna" class="form-control" type="text" required="true" />
+								class="glyphicon glyphicon-user"></i></span> <input type="text"
+								name="nama" th:value="${nama}" />
 						</div>
 					</div>
 				</div>
-				<div class="form-group" style="margin-left: -20px; float: center">
-					<label for="password" class="col-md-4 control-label"></label>
+
+				<div class="form-group">
+					<label for="tanggal_buka" class="col-md-4 control-label">Tanggal
+						Buka</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input name="password"
-								placeholder="Kata Sandi" class="form-control" type="password" required="true" />
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_buka"
+								name="tanggal_buka" placeholder="DD/MM/YYYY" class="form-control"
+								type="text" required="true" />
 						</div>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="tanggal_tutup" class="col-md-4 control-label">Tanggal
+						Tutup</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_tutup"
+								name="tanggal_tutup" placeholder="DD/MM/YYYY" class="form-control"
+								type="text" required="true" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="status" class="col-md-4 control-label">Status</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="status"
+									required="required" />Aktif</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="status"
+									required="required" />Tidak aktif</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="nama_jenjang" class="col-md-4 control-label">Nama Jenjang</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S1"/>S1</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S2"/>S2</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S3"/>S3</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="Spesialis"/>Spesialis</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="nama_program" class="col-md-4 control-label">Nama Program</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Reguler"/>Reguler</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Paralel"/>Paralel</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Tidak ada"/>Tidak ada</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label for="persyaratan" class="col-md-4 control-label">Persyaratan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input name="persyaratan"
+								placeholder="Persyaratan" class="form-control" type="text" />
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
 
 				<!-- Button -->
 				<div class="form-group" style="position: center">
 					<label class="col-md-4 control-label"></label>
-					<div class="col-md-4" style="margin-left: 2px">
+					<div class="col-md-4">
 						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" />
-						<button value="sign in" name="action" type="submit"
-							class="btn btn-warning" style="margin-top:-25px; margin-left: -82.5px; width:138%">Masuk</button>
-							<a href="/forgotPassword" class="text-center" style="float: right; margin-right: -30px; color: black; margin-top:1%; margin-bottom: 2.25%;">Forgot password?</a>
-							
-					</div>
-					<a href="#" class="btn btn-danger" style="margin-left:266.5px; width:42%;">Masuk dengan SSO</a>
-				</div>
 
+						<button value="cancel" name="action" type="cancel"
+							class="btn btn-info">Batal</button>
+						<button value="save" name="action" type="submit"
+							class="btn btn-warning">Simpan</button>
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>
 
-	<!-- jQuery 2.2.3 -->
-	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- /.container -->
+	<script>
+	  $(document).ready(function() {
+		    $('#contact_form').bootstrapValidator({
+		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+					 nama: {
+		                validators: {
+		                     stringLength: {
+		                        min: 2,
+		                    },
+		                    notEmpty: {
+		                        message: 'Tolong masukan nama jalur'
+		                    }
+		                }
+		            },
+					 persyaratan: {
+		                validators: {
+		                     stringLength: {
+		                        min: 8,
+		                    },
+		                    notEmpty: {
+		                        message: 'Tolong masukkan persyaratan'
+		                    }
+		                }
+		            }
+		        }
+		        })
+		        .on('success.form.bv', function(e) {
+		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+		                $('#contact_form').data('bootstrapValidator').resetForm();
 
-	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+		            // Prevent form submission
+		            e.preventDefault();
 
-	<script src="/plugins/iCheck/icheck.min.js"></script>
+		            // Get the form instance
+		            var $form = $(e.target);
 
+		            // Get the BootstrapValidator instance
+		            var bv = $form.data('bootstrapValidator');
+
+		            // Use Ajax to submit form data
+		            $.post($form.attr('action'), $form.serialize(), function(result) {
+		                console.log(result);
+		            }, 'json');
+		        });
+		});
+	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
+						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -225,10 +379,10 @@
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
 					<ul class="socialtitle"
-						style="list-style: none; margin-top: -62%; text-align: left; margin-left: 20%">
-						<li style="margin-bottom: 16%"><h4>@SIMAK_UI</h4></li>
-						<li style="margin-bottom: 14%"><h4>SIMAK-UI</h4></li>
-						<li style="margin-bottom: 11%"><h4>penerimaan@ui.ac.id</h4></li>
+						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
+						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
 						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
 					</ul>
 				</div>
@@ -254,8 +408,9 @@
 	<footer>
 		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4" style="width: 100%; height: 50px; padding-top: 1.5%">
-					<span class="copyright" style="color: #fed136">Penerimaan Mahasiswa Baru - Universitas Indonesia</span>
+				<div class="col-md-4">
+					<span class="copyright" style="color: #fed136">Penerimaan
+						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
 			</div>
 		</div>
@@ -282,3 +437,4 @@
 </body>
 
 </html>
+

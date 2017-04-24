@@ -10,6 +10,29 @@ CREATE TABLE IF NOT EXISTS USER
 
 CREATE TABLE IF NOT EXISTS FAKULTAS
 (
+	id_user INTEGER NOT NULL PRIMARY KEY,
+	no_id VARCHAR(20) NOT NULL,
+	nama_id VARCHAR(50) NOT NULL,
+	nama_ijazah VARCHAR(50) NOT NULL,
+	foto VARCHAR(100) NOT NULL,
+	no_hp VARCHAR(14) NOT NULL,
+	no_telp VARCHAR(14),
+	id_negara INTEGER NOT NULL,
+	kewarganegaraan VARCHAR(3) NOT NULL,
+	alamat_tetap VARCHAR(100) NOT NULL,
+	jenis_id VARCHAR(20) NOT NULL,
+	alamat_sekarang VARCHAR(100) NOT NULL,
+	tgl_lahir DATE NOT NULL,
+	id_provinsi INTEGER NOT NULL,
+	id_kota INTEGER NOT NULL,
+	jenis_kelamin TINYINT(1) NOT NULL,
+	nama_lembaga VARCHAR(50),
+	jurusan CHAR(3),
+	no_daftar INTEGER NOT NULL AUTO_INCREMENT UNIQUE KEY,
+	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(id_negara) REFERENCES NEGARA (id_negara) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(id_provinsi) REFERENCES PROVINSI (id_provinsi) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(id_kota) REFERENCES KOTA (id_kota) ON UPDATE CASCADE ON DELETE CASCADE,
 	id_fakultas INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	fakultas VARCHAR(50) NOT NULL
 );
@@ -50,38 +73,33 @@ CREATE TABLE IF NOT EXISTS LEMBAGA_PENDIDIKAN_TERAKHIR
 (
 	id_user INTEGER NOT NULL PRIMARY KEY,
 	nama_lembaga VARCHAR(50) NOT NULL,
-	id_provinsi INTEGER NOT NULL,
-	id_kota INTEGER NOT NULL,
-	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_provinsi) REFERENCES PROVINSI (id_provinsi) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_kota) REFERENCES KOTA (id_kota) ON UPDATE CASCADE ON DELETE CASCADE
+	nama_provinsi VARCHAR(50) NOT NULL,
+	nama_kota VARCHAR(50) NOT NULL,
+	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS PENDAFTAR
 (
-	id_user INTEGER NOT NULL PRIMARY KEY,
+	id_user INTEGER,
 	no_id VARCHAR(20) NOT NULL,
 	nama_id VARCHAR(50) NOT NULL,
 	nama_ijazah VARCHAR(50) NOT NULL,
-	foto VARCHAR(100) NOT NULL,
-	no_hp VARCHAR(14) NOT NULL,
+	foto VARCHAR(100),
+	no_hp VARCHAR(14),
 	no_telp VARCHAR(14),
-	id_negara INTEGER NOT NULL,
-	kewarganegaraan VARCHAR(3) NOT NULL,
-	alamat_tetap VARCHAR(100) NOT NULL,
-	jenis_id VARCHAR(20) NOT NULL,
-	alamat_sekarang VARCHAR(100) NOT NULL,
-	tgl_lahir DATE NOT NULL,
-	id_provinsi INTEGER NOT NULL,
-	id_kota INTEGER NOT NULL,
-	jenis_kelamin TINYINT(1) NOT NULL,
+	nama_negara VARCHAR(50),
+	kewarganegaraan VARCHAR(3),
+	alamat_tetap VARCHAR(100),
+	jenis_id VARCHAR(20),
+	alamat_sekarang VARCHAR(100),
+	tgl_lahir DATE,
+	nama_provinsi VARCHAR(50),
+	nama_kota VARCHAR(50),
+	jenis_kelamin TINYINT(1),
 	nama_lembaga VARCHAR(50),
-	jurusan CHAR(3),
-	no_daftar INTEGER NOT NULL AUTO_INCREMENT UNIQUE KEY,
-	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_negara) REFERENCES NEGARA (id_negara) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_provinsi) REFERENCES PROVINSI (id_provinsi) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_kota) REFERENCES KOTA (id_kota) ON UPDATE CASCADE ON DELETE CASCADE
+	jurusan VARCHAR(50),
+	no_daftar INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS LOKASI
@@ -90,12 +108,11 @@ CREATE TABLE IF NOT EXISTS LOKASI
 	alamat VARCHAR(100) NOT NULL,
 	no_telp VARCHAR(14) NOT NULL,
 	nama_lokasi VARCHAR(50) NOT NULL,
-	id_provinsi INTEGER NOT NULL,
-	id_kota INTEGER NOT NULL,
+	nama_provinsi VARCHAR(50) NOT NULL,
+	nama_kota VARCHAR(50) NOT NULL,
 	kuota_peng INTEGER NOT NULL,
 	kuota_pendaftar INTEGER NOT NULL,
-	FOREIGN KEY(id_provinsi) REFERENCES PROVINSI (id_provinsi) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_kota) REFERENCES KOTA (id_kota) ON UPDATE CASCADE ON DELETE CASCADE
+	flag_aktif TINYINT(1) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS PENGAWAS_UJIAN
@@ -200,7 +217,7 @@ CREATE TABLE IF NOT EXISTS NILAI_UJIAN
 
 CREATE TABLE IF NOT EXISTS NILAI_RAPOR
 (
-	no_daftar INTEGER NOT NULL PRIMARY KEY,
+	no_daftar INTEGER NOT NULL,
 	kkm_mtk INTEGER,
 	kkm_kimia INTEGER,
 	kkm_fisika INTEGER,
@@ -219,6 +236,8 @@ CREATE TABLE IF NOT EXISTS NILAI_RAPOR
 	ekonomi INTEGER,
 	bindo INTEGER,
 	bing INTEGER,
+	semester INTEGER NOT NULL,
+	PRIMARY KEY (no_daftar, semester),
 	FOREIGN KEY(no_daftar) REFERENCES PENYELEKSIAN(no_daftar) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -290,17 +309,17 @@ INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Bekasi');
 INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Sukabumi');
 INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (3,'Tangerang');
 
-INSERT INTO LEMBAGA_PENDIDIKAN_TERAKHIR (id_user,nama_lembaga,id_provinsi,id_kota) VALUES (5,'MTS Pramudito',1,2);
+INSERT INTO LEMBAGA_PENDIDIKAN_TERAKHIR (id_user,nama_lembaga,nama_provinsi,nama_kota) VALUES (5,'MTS Pramudito','DKI Jakarta','Jakarta Timur');
 
-INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,id_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,id_provinsi,id_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (4,'1706520000','Pendaftar1','Pendaftar1i','foto1.jpg','82124360370','7987325',1,'WNI','Jl. Juragan Sinda','KTP','Jl. Padepokan Timur','1999-07-24',2,6,'1','IPA',null);
-INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,id_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,id_provinsi,id_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (7,'1706521090','Pendaftar2','Pendaftar2i','foto2.png','82124360371','7987326',2,'WNA','Jl. Zimbabwe','SIM','Jl. Mangga Besar','2000-08-29',1,5,'1',null,null);
-INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,id_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,id_provinsi,id_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (8,'8906528000','Pendaftar3','Pendaftar3i','foto3.jpeg','82124360372','7987327',1,'WNI','Jl. In Aja Dulu','KTP','Jl. Indah','2000-04-03',1,5,'0',null,null);
-INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,id_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,id_provinsi,id_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (9,'81706520110','Pendaftar4','Pendaftar4i','foto4.png','82124360373','7987328',1,'WNI','Jl. Kebenaran','KTP','Jl. Besar','1999-01-19',3,11,'0',null,null);
-INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,id_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,id_provinsi,id_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (10,'71896520001','Pendaftar5','Pendaftar5i','foto5.jpg','82124360374','7987329',3,'WNA','Jl. Lurus','KTP','Jl. Kecil','1999-11-11',2,2,'1',null,null);
+INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,nama_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,nama_provinsi,nama_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (4,'1706520000','Pendaftar1','Pendaftar1i','foto1.jpg','82124360370','7987325','Indonesia','WNI','Jl. Juragan Sinda','KTP','Jl. Padepokan Timur','1999-07-24','Jawa Barat','Depok','1','IPA',null);
+INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,nama_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,nama_provinsi,nama_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (7,'1706521090','Pendaftar2','Pendaftar2i','foto2.png','82124360371','7987326','Malaysia','WNA','Jl. Zimbabwe','SIM','Jl. Mangga Besar','2000-08-29','Dan lain-lain','Dan lain-lain','1',null,null);
+INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,nama_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,nama_provinsi,nama_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (8,'8906528000','Pendaftar3','Pendaftar3i','foto3.jpeg','82124360372','7987327','Indonesia','WNI','Jl. In Aja Dulu','KTP','Jl. Indah','2000-04-03','DKI Jakarta','Jakarta Selatan','0',null,null);
+INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,nama_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,nama_provinsi,nama_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (9,'81706520110','Pendaftar4','Pendaftar4i','foto4.png','82124360373','7987328','Indonesia','WNI','Jl. Kebenaran','KTP','Jl. Besar','1999-01-19','Banten','Tangerang','0',null,null);
+INSERT INTO PENDAFTAR (id_user,no_id,nama_id,nama_ijazah,foto,no_hp,no_telp,nama_negara,kewarganegaraan,alamat_tetap,jenis_id,alamat_sekarang,tgl_lahir,nama_provinsi,nama_kota,jenis_kelamin,jurusan,nama_lembaga) VALUES (10,'71896520001','Pendaftar5','Pendaftar5i','foto5.jpg','82124360374','7987329','Singapura','WNA','Jl. Lurus','KTP','Jl. Kecil','1999-11-11','Dan lain-lain','Dan lain-lain','1',null,null);
 
-INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,id_provinsi,id_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Lengkeng','8886677','SMAN 1000',2,6,12,120);
-INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,id_provinsi,id_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Mangga','7779933','SMAN 1001',1,1,10,150);
-INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,id_provinsi,id_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Semangka','9894212','SMAN 1002',1,5,20,200);
+INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,nama_provinsi,nama_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Lengkeng','8886677','SMAN 1000','Jawa Barat','Depok',12,120);
+INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,nama_provinsi,nama_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Mangga','7779933','SMAN 1001','DKI Jakarta','Jakarta Utara',10,150);
+INSERT INTO LOKASI (alamat,no_telp,nama_lokasi,nama_provinsi,nama_kota,kuota_peng,kuota_pendaftar) VALUES ('Jl. Semangka','9894212','SMAN 1002','DKI Jakarta','Jakarta Selatan',20,200);
 
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (6,true,'Pegawai UI','Aqua',1);
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (11,true,'Mahasiswa','Prima',2);
@@ -334,6 +353,6 @@ INSERT INTO PENYELEKSIAN (no_daftar,status,id_jalur,berkas) VALUES (2,0,3,null);
 
 INSERT INTO NILAI_UJIAN (no_daftar,tpa,mtk_dasar,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (1,80,78,68,56,78,75,null,null,null,80,90);
 
-INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90);
+INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90,1);
 
 INSERT INTO CALON_MAHASISWA (no_daftar, npm, id_prodi, id_jalur, jenjang) VALUES (1,'1708888889',1,1,'S1');
