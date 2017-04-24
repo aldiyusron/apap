@@ -184,6 +184,6 @@ public class PendaftarController {
 //			return "form-nilai-ipa";
 //		else
 //			return "form-nilai-ips";
-		return "success-registration";
+		return "success-update-data";
 	}
 }

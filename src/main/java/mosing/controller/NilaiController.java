@@ -92,7 +92,7 @@ public class NilaiController {
 
 			nilaiDAO.addNilai(nilai);
 		}
-		return "successResetPwd";
+		return "success-insert-nilai";
 	}
 
 	@RequestMapping("/nilai-ipa/submit")
@@ -151,6 +151,6 @@ public class NilaiController {
 
 			nilaiDAO.addNilai(nilai);
 		}
-		return "successResetPwd";
+		return "success-insert-nilai";
 	}
 }
