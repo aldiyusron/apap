@@ -50,7 +50,7 @@ public class JalurMasukController {
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
-			return "viewnotfound_jalurmasuk";
+			return "viewnotfound-jalurmasuk";
 		}
 	}
 
@@ -93,7 +93,7 @@ public class JalurMasukController {
 			return "form-updatejalur"; // belum bener
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
-			return "error"; // belum bener
+			return "error-updatejalur"; // belum bener
 		}
 	}
 
@@ -121,6 +121,6 @@ public class JalurMasukController {
 		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, persyaratan, 1, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
-		return "success-registration"; //belum bener
+		return "success-updatejalur"; //belum bener
 	}
 }
