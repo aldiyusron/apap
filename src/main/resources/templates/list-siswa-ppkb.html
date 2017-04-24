@@ -8,14 +8,19 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Detail Lokasi Ujian</title>
+<title>Penerimaan UI | Daftar Siswa</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
+
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom Fonts -->
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -29,15 +34,23 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+
+<!--  jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -146,219 +159,193 @@
 		<h1>Daftar Siswa Pendaftar Seleksi</h1>
 		<div class="row" style="margin-top: 2.5%;">
 			<div id="exTab3" class="container">
+				<form th:action="@{/data-pendaftar}" method="post">
+							<input type="submit" value="+ Tambah Siswa" /> <br />
+						</form>
+				<br />
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#1b" data-toggle="tab">PPKB</a></li>
-					<li><a href="#2b" data-toggle="tab">Talent Scouting</a></li>
+					<li class="active"><a href="#1b" data-toggle="tab">Verifikasi</a></li>
+					<li><a href="#2b" data-toggle="tab">Belum Verifikasi</a></li>
 				</ul>
 				<br />
 				<div class="tab-content clearfix">
 					<div class="tab-pane fade in active" id="1b">
+						<table id="daftarSiswa" class="table stripe">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Siswa</th>
+									<th>NISN</th>
+									<th>Jurusan</th>
+									<th>Jalur</th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<th:block th:each="pendaftarVerif,iterationStatus: ${pendaftarVerif}">
+									<tr>
+										<td th:text="${iterationStatus.count}">No.</td>
+										<td th:text="${pendaftarVerif.nama_id}">Nama Siswa</td>
+										<td th:text="${pendaftarVerif.no_id}">NISN</td>
+										<td th:text="${pendaftarVerif.jurusan}">Jurusan</td>
+										<td><a
+											th:href="'/data-pendaftar/update/'+ ${pendaftarVerif.no_id}">Ubah</a></td>
+										
+										<!-- <th:block th:each="penyeleksian.iterationStatus: ${penyeleksian}">
+											
+											<th:block th:each="jalurUndangan.iterationStatus: ${jalurUndangan}">
+												<th:block th:if="(${penyelek.id_jalur} == ${jalurUndang.id_jalur}) and (${penyelek.no_daftar} == ${pendVerif.no_daftar})"></th:block>
+													<td th:text="${jalurUndangan.nama}">Jalur</td>
+												
+											</th:block>
+										</th:block> -->
+										<!-- <td><a th:href="'/detail-ujian/update/'+ ${siswa.no_id}">Ubah</a></td> -->
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="2b">
 						<form th:action="@{/detail-ujian/add}" method="post">
 							<input class="btn btn-default"
 								style="width: 18%; margin-bottom: 2%; margin-top: 1.5%"
-								type="submit" value="+ Tambah Siswa" /> <br />
-							<div class="form-group">
-								<form action="/daftar-siswa" method="get">
-
-									<label for="id_filter"></label>
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group">
-												<label for="id_filter"></label> <select name="id_filter"
-													onchange="selectFilter(this.value)" class="form-control">
-													<option value="0">Filter ...</option>
-													<option value="1">Sudah verifikasi</option>
-													<option value="2">Belum verifikasi</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label for="id_value"></label> <select id="idValue"
-													name="id_value" class="form-control">
-													<option value="0"></option>
-												</select>
-											</div>
-										</div>
-									</div>
-
-									<div class="form-group" style="text-align: center">
-										<button type="submit" name="action" value="save"
-											class="btn btn-primary">Cari</button>
-									</div>
-								</form>
-
-								<table id="daftarSiswa" class="table stripe">
-									<thead>
-										<tr>
-											<th>No.</th>
-											<th>Nama Siswa</th>
-											<th>NISN</th>
-											<th>Jurusan</th>
-											<th>Keterangan</th>
-											<th></th>
-											<th></th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<div th:each="siswa,iterationStatus: ${allSiswa}">
-											<tr>
-												<td th:text="${iterationStatus.count}">No.</td>
-												<td th:text="${siswa.nama_id}">Nama Siswa</td>
-												<td th:text="${siswa.no_id}">NISN</td>
-												<td th:text="${siswa.jurusan}">Jurusan</td>
-												<td th:text="${siswa.no_telp}">Keterangan</td>
-												<td><a
-													th:href="'/detail-ujian/update/'+ ${siswa.no_id}">Ubah</a></td>
-												<td><a
-													th:href="'/detail-ujian/delete/'+ ${siswa.no_id}">Hapus
-														Siswa</a></td>
-											</tr>
-										</div>
-									</tbody>
-								</table>
-							</div>
-							<div class="tab-pane fade" id="2b">
-								<form th:action="@{/detail-ujian/add}" method="post">
-									<input class="btn btn-default"
-										style="width: 18%; margin-bottom: 2%; margin-top: 1.5%"
-										type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-								</form>
+								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
+						</form>
 
 
-								<table id="daftarLokasi2" class="table stripe">
-									<thead>
-										<tr>
-											<th>No.</th>
-											<th>Nama Siswa</th>
-											<th>NISN</th>
-											<th>Jurusan</th>
-											<th>Keterangan</th>
-											<th></th>
-											<th></th>
-										</tr>
-									</thead>
+						<table id="daftarLokasi2" class="table stripe">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Siswa</th>
+									<th>NISN</th>
+									<th>Jurusan</th>
+									<th>Keterangan</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
 
-									<tbody>
-										<div th:each="lokasi,iterationStatus: ${allLokasi}">
-											<tr>
-												<td th:text="${lokasi.id_lokasi}">No.</td>
-												<td th:text="${lokasi.nama_lokasi}">Nama Siswa</td>
-												<td th:text="${lokasi.alamat}">NISN</td>
-												<td th:text="${lokasi.nama_kota}">Jurusan</td>
-												<td th:text="${lokasi.nama_provinsi}">Keterangan</td>
-												<td><a
-													th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}">Ubah</a></td>
-												<td><a
-													th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}">Hapus
-														Lokasi</a></td>
-											</tr>
-										</div>
-									</tbody>
-								</table>
-							</div>
+							<tbody>
+								<div th:each="lokasi,iterationStatus: ${allLokasi}">
+									<tr>
+										<td th:text="${lokasi.id_lokasi}">No.</td>
+										<td th:text="${lokasi.nama_lokasi}">Nama Siswa</td>
+										<td th:text="${lokasi.alamat}">NISN</td>
+										<td th:text="${lokasi.nama_kota}">Jurusan</td>
+										<td th:text="${lokasi.nama_provinsi}">Keterangan</td>
+										<td><a
+											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}">Ubah</a></td>
+										<td><a
+											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}">Hapus
+												Lokasi</a></td>
+									</tr>
+								</div>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="container bg-light-gray">
-			<div class="row" style="padding-top: 5%; padding-bottom: 2%">
-				<div class="col-sm-4">
-					<div style="margin-left: 12%">
-						<a class="twitter-timeline" data-lang="en" data-width="300"
-							data-height="300" data-theme="dark" data-link-color="#FAD136"
-							href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
-						<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>
+	<div class="container bg-light-gray">
+		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
+			<div class="col-sm-4">
+				<div style="margin-left: 12%">
+					<a class="twitter-timeline" data-lang="en" data-width="300"
+						data-height="300" data-theme="dark" data-link-color="#FAD136"
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
+					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
-						<hr />
-						<ul class="social-buttons" style="list-style: none">
-							<li style="margin-bottom: 5%"><a href="#"><i
-									class="fa fa-twitter"></i></a></li>
-							<li style="margin-bottom: 5%"><a href="#"><i
-									class="fa fa-facebook"></i></a></li>
-							<li style="margin-bottom: 5%"><a href="#"><i
-									class="glyphicon glyphicon-envelope"></i></a></li>
-							<li><a href="#"><i class="fa fa-phone"></i></a></li>
-						</ul>
-						<ul class="socialtitle"
-							style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
-							<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
-							<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
-							<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
-							<li><h4>(021)78849129, 7864126, 78849124</h4></li>
-						</ul>
-					</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="team-member">
+					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
+					<hr />
+					<ul class="social-buttons" style="list-style: none">
+						<li style="margin-bottom: 5%"><a href="#"><i
+								class="fa fa-twitter"></i></a></li>
+						<li style="margin-bottom: 5%"><a href="#"><i
+								class="fa fa-facebook"></i></a></li>
+						<li style="margin-bottom: 5%"><a href="#"><i
+								class="glyphicon glyphicon-envelope"></i></a></li>
+						<li><a href="#"><i class="fa fa-phone"></i></a></li>
+					</ul>
+					<ul class="socialtitle"
+						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
+						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
+						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
+					</ul>
 				</div>
-				<div class="col-sm-4">
-					<div>
-						<h3 style="margin-left: 11%">KONTAK</h3>
-						<hr />
-						<ul style="list-style: none">
-							<li style="margin-bottom: 5%"><p style="width: 90%">Kantor
-									Penerimaan Mahasiswa Baru UI Gedung PHB UI (ex. BNI) Samping
-									Balai Sidang UI Kampus UI Depok, 16424</p></li>
-							<li><p>
-									Jam Operasional<br />Senin-Jumat: 08.00-16.00 WIB<br />(Istirahat:
-									12.00-13.00 WIB)
-								</p></li>
-						</ul>
-					</div>
+			</div>
+			<div class="col-sm-4">
+				<div>
+					<h3 style="margin-left: 11%">KONTAK</h3>
+					<hr />
+					<ul style="list-style: none">
+						<li style="margin-bottom: 5%"><p style="width: 90%">Kantor
+								Penerimaan Mahasiswa Baru UI Gedung PHB UI (ex. BNI) Samping
+								Balai Sidang UI Kampus UI Depok, 16424</p></li>
+						<li><p>
+								Jam Operasional<br />Senin-Jumat: 08.00-16.00 WIB<br />(Istirahat:
+								12.00-13.00 WIB)
+							</p></li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<footer>
-			<div class="container bg-darkest-gray">
-				<div class="col-md-4"
-					style="width: 100%; height: 50px; padding-top: 1.5%">
-					<span class="copyright" style="color: #fed136">Penerimaan
-						Mahasiswa Baru - Universitas Indonesia</span>
+	<footer>
+		<div class="container bg-darkest-gray">
+			<div class="col-md-4"
+				style="width: 100%; height: 50px; padding-top: 1.5%">
+				<span class="copyright" style="color: #fed136">Penerimaan
+					Mahasiswa Baru - Universitas Indonesia</span>
 
-				</div>
 			</div>
-		</footer>
+		</div>
+	</footer>
 
-		<!-- jQuery -->
-		<script th:src="@{/js/jquery.min.js}"></script>
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.min.js}"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script th:src="@{js/bootstrap.min.js}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-		<!-- Plugin JavaScript -->
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-			integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-			crossorigin="anonymous"></script>
+	<!-- Contact Form JavaScript -->
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
-		<script
-			src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
-			
-		</script>
+	<!-- Theme JavaScript -->
+	<script th:src="@{/js/agency.min.js}"></script>
 
-		<script
-			src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
-			
-		</script>
+	<!-- Include jQuery -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<!-- Contact Form JavaScript -->
-		<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-		<!-- Theme JavaScript -->
-		<script th:src="@{js/agency.min.js}"></script>
-		<script>
-			$(document).ready(function() {
-				$("#daftarLokasi").DataTable();
-			});
-
-			$(document).ready(function() {
-				$("#daftarLokasi2").DataTable();
-			});
-		</script>
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				})
+	</script>
 </body>
 </html>

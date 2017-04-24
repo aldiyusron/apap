@@ -8,9 +8,8 @@ public interface PendaftarService {
 
 	void addPendaftar(PendaftarModel pendaftar);
 	PendaftarModel selectPendaftar(String no_id);
-	List<PendaftarModel> selectAllPendaftarTerverifikasi(Integer id_value);
-	List<PendaftarModel> selectAllPendaftarTakTerverifikasi(Integer id_value);
+	List<PendaftarModel> selectAllPendaftarTerverifikasi();
+	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 	List<PendaftarModel> selectAllPendaftar();
-	List<PendaftarModel> selectTakTerverifikasi();
-	List<PendaftarModel> selectTerverifikasi();
+	void updateDataPendaftar(PendaftarModel pendaftar);
 }

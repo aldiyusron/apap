@@ -9,7 +9,6 @@
 <meta name="author" content="" />
 
 <title>Penerimaan UI | Formulir Data Siswa</title>
-
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
@@ -170,13 +169,13 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/data-pendaftar/submit"
+		<form class="well form-horizontal" action="/data-pendaftar/update/submit"
 			method="post" id="contact_form">
 			<fieldset>
 				<div class="progress">
 					<div class="progress-bar progress-bar-warning" role="progressbar"
 						aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-						style="width: 50%">50% Complete</div>
+						style="width: 25%">0% Complete</div>
 				</div>
 				<!-- Form Name -->
 				<legend>
@@ -195,7 +194,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
 								placeholder="Nama Lengkap Siswa" class="form-control"
-								type="text" required="true" />
+								type="text" required="true" th:value="${pendaftar.nama_id}" />
 						</div>
 					</div>
 				</div>
@@ -210,7 +209,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_ijazah"
 								placeholder="Nama Sesuai Ijazah" class="form-control"
-								type="text" required="true" />
+								type="text" required="true" th:value="${pendaftar.nama_ijazah}" />
 						</div>
 					</div>
 				</div>
@@ -218,15 +217,26 @@
 				<div class="form-group">
 					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
 						Kelamin</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
+					<div class="col-md-4 selectContainer"
+						th:switch="${pendaftar.jenis_kelamin}">
+						<div class="input-group" th:case="1">
 							<div class="radio">
 								<label><input type="radio" name="jenis_kelamin"
-									required="required" />Laki-laki</label>
+									required="required" value="Laki-laki" checked="checked" />Laki-laki</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="jenis_kelamin"
-									required="required" />Perempuan</label>
+									required="required" value="Perempuan" />Perempuan</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="0">
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" value="Laki-laki" />Laki-laki</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" value="Perempuan" checked="checked" />Perempuan</label>
 							</div>
 						</div>
 					</div>
@@ -240,7 +250,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <input name="no_id"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" required="true"
+								th:value="${pendaftar.no_id}" />
 						</div>
 					</div>
 				</div>
@@ -269,8 +280,28 @@
 
 				<div class="form-group">
 					<label for="jurusan" class="col-md-4 control-label">Jurusan</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
+					<div class="col-md-4 selectContainer" th:switch="${pendaftar.jurusan}">
+						<div class="input-group" th:case="IPA">
+							<div class="radio">
+								<label><input type="radio" name="jurusan"
+									required="required" value="IPA" checked="checked" />IPA</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jurusan"
+									required="required" value="IPS" />IPS</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="IPS">
+							<div class="radio">
+								<label><input type="radio" name="jurusan"
+									required="required" value="IPA" />IPA</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jurusan"
+									required="required" value="IPS" checked="checked" />IPS</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="NULL">
 							<div class="radio">
 								<label><input type="radio" name="jurusan"
 									required="required" value="IPA" />IPA</label>
@@ -282,6 +313,21 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="jalur_undangan"
+								class="form-control selectpicker">
+								<option value="">Pilih Jalur</option>
+								<div
+									th:each="jalurUndangan,iterationStatus: ${jalurUndangan}">
+									<option th:value="${jalurUndangan.id_jalur}" th:text="${jalurUndangan.nama}"></option>
+								</div>
+							</select>
+						</div>
+					</div>
 
 				<!-- Text input-->
 
