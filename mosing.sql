@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS PENDAFTAR
 	nama_kota VARCHAR(50),
 	jenis_kelamin TINYINT(1),
 	nama_lembaga VARCHAR(50),
-	jurusan CHAR(3),
+	jurusan VARCHAR(50),
 	no_daftar INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS NILAI_UJIAN
 
 CREATE TABLE IF NOT EXISTS NILAI_RAPOR
 (
-	no_daftar INTEGER NOT NULL PRIMARY KEY,
+	no_daftar INTEGER NOT NULL,
 	kkm_mtk INTEGER,
 	kkm_kimia INTEGER,
 	kkm_fisika INTEGER,
@@ -213,6 +213,8 @@ CREATE TABLE IF NOT EXISTS NILAI_RAPOR
 	ekonomi INTEGER,
 	bindo INTEGER,
 	bing INTEGER,
+	semester INTEGER NOT NULL,
+	PRIMARY KEY (no_daftar, semester),
 	FOREIGN KEY(no_daftar) REFERENCES PENYELEKSIAN(no_daftar) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -328,6 +330,6 @@ INSERT INTO PENYELEKSIAN (no_daftar,status,id_jalur,berkas) VALUES (2,0,3,null);
 
 INSERT INTO NILAI_UJIAN (no_daftar,tpa,mtk_dasar,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (1,80,78,68,56,78,75,null,null,null,80,90);
 
-INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90);
+INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90,1);
 
 INSERT INTO CALON_MAHASISWA (no_daftar, npm, id_prodi, id_jalur, jenjang) VALUES (1,'1708888889',1,1,'S1');

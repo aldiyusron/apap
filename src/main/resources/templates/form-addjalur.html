@@ -29,6 +29,12 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -163,7 +169,7 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label class="col-md-4 control-label">Nama Jalur Masuk</label>
+					<label for="username" class="col-md-4 control-label">Nama Jalur Masuk</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -250,6 +256,10 @@
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
 									required="required" value="Paralel"/>Paralel</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_program"

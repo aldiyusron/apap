@@ -112,6 +112,15 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#"><span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Log Out</button>
+							</form></li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -151,29 +160,33 @@
 							<tbody th:object="${jalur_masuk}">
 									<tr>
 										<th>Nama Jalur Masuk</th>
-										<th th:text="${jalur_masuk.nama}"></th>
+										<td th:text="${jalur_masuk.nama}"></td>
 										<th>Tanggal Buka</th>
-										<th th:text="${#dates.format(jalur_masuk.tanggal_buka, 'dd-MMM-yyyy')}"></th>
+										<td th:text="${#dates.format(jalur_masuk.tanggal_buka, 'dd-MMM-yyyy')}"></td>
 										<th>Tanggal Tutup</th>
-										<th th:text="${#dates.format(jalur_masuk.tanggal_tutup, 'dd-MMM-yyyy')}"></th>
+										<td th:text="${#dates.format(jalur_masuk.tanggal_tutup, 'dd-MMM-yyyy')}"></td>
 										<th>Status</th>
 										<div th:if="${jalur_masuk.status} == 1">
-										<th>Aktif</th>
+										<td>Aktif</td>
 										</div>
 										<div th:if="${jalur_masuk.status} != 1">
-										<th>Tidak Aktif</th>
+										<td>Tidak Aktif</td>
 										</div>
 										<th>Nama Jenjang</th>
-										<th th:text="${jalur_masuk.nama_jenjang}"></th>
+										<td th:text="${jalur_masuk.nama_jenjang}"></td>
 										<th>Nama Program</th>
 										<div th:if="${jalur_masuk.nama_program} eq NULL">
-										<th>Tidak ada</th>
+										<td>Tidak ada</td>
 										</div>
 										<div th:if="${jalur_masuk.nama_program} != NULL">
-										<th th:text="${jalur_masuk.nama_jenjang}"></th>
+										<td th:text="${jalur_masuk.nama_program}"></td>
 										</div>
 										<th>Persyaratan</th>
-										<th th:text="${jalur_masuk.persyaratan}"></th>
+										<td th:text="${jalur_masuk.persyaratan}"></td>
+										<td><a th:href="'/jalur-masuk/delete/'+ ${id_jalur}">Hapus
+												Jalur Masuk</a></td>
+										<td><a th:href="'/jalur-masuk/update/'+ ${id_jalur}">Update
+												Jalur Masuk</a></td>
 									</tr>
 							</tbody>
 						</table>

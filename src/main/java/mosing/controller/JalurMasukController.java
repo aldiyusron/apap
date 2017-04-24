@@ -118,9 +118,9 @@ public class JalurMasukController {
 		
 		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
 
-		JalurMasukModel jalur_masuk = new JalurMasukModel(jalur.getId_jalur(), nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, persyaratan, 1, null);
+		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, persyaratan, 1, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
-		return "success-addjalur"; //belum bener
+		return "success-registration"; //belum bener
 	}
 }

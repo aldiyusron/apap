@@ -112,6 +112,15 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#"><span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Log Out</button>
+							</form></li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -151,7 +160,7 @@
 							<input type="submit" value="+ Tambah Jalur Masuk" /> <br />
 						</form>
 
-						<table id="daftarJalur" class="stripe">
+						<table id="daftarJalur" class="table stripe">
 							<thead>
 								<tr>
 									<th>No.</th>
@@ -170,6 +179,9 @@
 											th:href="'/jalur-masuk/view/'+ ${jalur.id_jalur}">Detail</a></td>
 										<td><a
 											th:href="'/jalur-masuk/delete/'+ ${jalur.id_jalur}">Hapus
+												Jalur Masuk</a></td>
+										<td><a
+											th:href="'/jalur-masuk/update/'+ ${jalur.id_jalur}">Update
 												Jalur Masuk</a></td>
 									</tr>
 								</div>

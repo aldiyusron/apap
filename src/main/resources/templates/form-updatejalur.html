@@ -29,9 +29,21 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	mhref="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -203,15 +215,25 @@
 
 				<div class="form-group">
 					<label for="status" class="col-md-4 control-label">Status</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
+					<div class="col-md-4 selectContainer" th:switch="${jalur.status}">
+						<div class="input-group" th:case="1">
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" value='1'/>Aktif</label>
+									required="required" value="Aktif" checked="checked"/>Aktif</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" value='0'/>Tidak aktif</label>
+									required="required" value="Tidak aktif"/>Tidak aktif</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="0">
+							<div class="radio">
+								<label><input type="radio" name="status"
+									required="required" value="Aktif"/>Aktif</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="status"
+									required="required" value="Tidak aktif" checked="checked"/>Tidak aktif</label>
 							</div>
 						</div>
 					</div>
@@ -219,11 +241,11 @@
 
 				<div class="form-group">
 					<label for="nama_jenjang" class="col-md-4 control-label">Nama Jenjang</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
+					<div class="col-md-4 selectContainer" th:switch="${jalur.nama_jenjang}">
+						<div class="input-group" th:case="S1">
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1"/>S1</label>
+									required="required" value="S1" checked="checked"/>S1</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
@@ -238,13 +260,103 @@
 									required="required" value="Spesialis"/>Spesialis</label>
 							</div>
 						</div>
+						<div class="input-group" th:case="S2">
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S1"/>S1</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S2" checked="checked"/>S2</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S3"/>S3</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="Spesialis"/>Spesialis</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="S3">
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S1"/>S1</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S2"/>S2</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S3" checked="checked"/>S3</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="Spesialis"/>Spesialis</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="Spesialis">
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S1"/>S1</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S2"/>S2</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="S3" checked="checked"/>S3</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_jenjang"
+									required="required" value="Spesialis" checked="checked"/>Spesialis</label>
+							</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="nama_program" class="col-md-4 control-label">Nama Program</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
+					<div class="col-md-4 selectContainer" th:switch="${jalur.nama_program}">
+						<div class="input-group" th:case="Reguler">
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Reguler" checked="checked"/>Reguler</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Paralel"/>Paralel</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Tidak ada"/>Tidak ada</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="Paralel">
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Reguler"/>Reguler</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Paralel" checked="checked"/>Paralel</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Tidak ada"/>Tidak ada</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="Kelas Internasional">
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
 									required="required" value="Reguler"/>Reguler</label>
@@ -255,7 +367,29 @@
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional" checked="checked"/>Kelas Internasional</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
 									required="required" value="Tidak ada"/>Tidak ada</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="Tidak ada">
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Reguler"/>Reguler</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Paralel"/>Paralel</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="nama_program"
+									required="required" value="Tidak ada" checked="checked"/>Tidak ada</label>
 							</div>
 						</div>
 					</div>
@@ -425,6 +559,46 @@
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
+	
+	<!-- Include jQuery -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tanggal_buka"]'); //our date input has the name "tgl_buka"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				});
+		$('.select').selectpicker();
+	</script>
+	
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tanggal_tutup"]'); //our date input has the name "tgl_buka"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				});
+		$('.select').selectpicker();
+	</script>
 
 </body>
 
