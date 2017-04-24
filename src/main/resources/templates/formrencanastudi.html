@@ -11,11 +11,11 @@
 <title>Penerimaan UI | Perbarui Kata Sandi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -164,79 +164,68 @@
 						<h2>Masuk</h2>
 					</div>
 					<div class="tab-pane fade" id="2b">
-						<div id="room_fileds" class="room_fileds">
-							<div>
-								<div class="form-group">
-									<label for="jenjang" class="col-md-4 control-label">Jenjang</label>
-									<div class="col-md-4 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												required="required" name="jenjang"
-												class="form-control selectpicker">
-												<option value="">Pilihan</option>
-												<option>S1</option>
-												<option>S2</option>
-												<option>S3</option>
-											</select>
-										</div>
-									</div>
-								</div>
+						<form class="well form-horizontal" action="/pendaftar/rencanastudi/submit"
+							method="post" id="contact_form">
+							<div id="room_fileds" class="room_fileds">
+								<div>
+									<input type="hidden" name="no_daftar" th:value="${no_daftar}" />
+									<input type="hidden" name="id_jalur" th:value="${id_jalur}" />
+									<div class="form-group">
+										<label for="pilihan1" class="col-md-4 control-label">Pilihan
+											1</label>
+										<div class="col-md-4 selectContainer">
 
-								<div class="form-group">
-									<label for="pilihan1" class="col-md-4 control-label">Pilihan
-										1</label>
-									<div class="col-md-4 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												required="required" name="pilihan1"
-												class="form-control selectpicker">
-												<option value="">Pilihan</option>
-												<div
-													th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-													<option th:value="${prodiTersedia.id_prodi}"
-														th:text="${prodiTersedia.nama_prodi}"></option>
-												</div>
-											</select>
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													required="required" name="pilihan1"
+													class="form-control selectpicker">
+													<option value="">Pilihan</option>
+													<div
+														th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+														<option th:value="${prodiTersedia.id_prodi}"
+															th:text="${prodiTersedia.nama_prodi}"></option>
+													</div>
+												</select>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="pilihan2" class="col-md-4 control-label">Pilihan
-										2</label>
-									<div class="col-md-4 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												required="required" name="pilihan2"
-												class="form-control selectpicker">
-												<option value="">Pilihan</option>
-												<div
-													th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-													<option th:value="${prodiTersedia.id_prodi}"
-														th:text="${prodiTersedia.nama_prodi}"></option>
-												</div>
-											</select>
+									<div class="form-group">
+										<label for="pilihan2" class="col-md-4 control-label">Pilihan
+											2</label>
+										<div class="col-md-4 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													required="required" name="pilihan2"
+													class="form-control selectpicker">
+													<option value="">Pilihan</option>
+													<div
+														th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+														<option th:value="${prodiTersedia.id_prodi}"
+															th:text="${prodiTersedia.nama_prodi}"></option>
+													</div>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" />
+							<input type="hidden" th:name="${_csrf.parameterName}"
+								th:value="${_csrf.token}" />
 
-						<!-- Button -->
-						<div class="form-group" style="position: center">
-							<label class="col-md-4 control-label"></label>
-							<div class="col-md-4">
-								<input type="hidden" th:name="${_csrf.parameterName}"
-									th:value="${_csrf.token}" /> <a href="/"
-									class="btn btn-default">Batal</a>
-								<button style="width: 30%" value="save" name="action"
-									type="submit" class="btn btn-warning">Simpan</button>
+							<!-- Button -->
+							<div class="form-group" style="position: center">
+								<label class="col-md-4 control-label"></label>
+								<div class="col-md-4">
+									<input type="hidden" th:name="${_csrf.parameterName}"
+										th:value="${_csrf.token}" /> <a href="/"
+										class="btn btn-default">Batal</a>
+									<button style="width: 30%" value="save" name="action"
+										type="submit" class="btn btn-warning">Simpan</button>
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -308,13 +297,13 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
 	<!-- Include jQuery -->
 	<script type="text/javascript"

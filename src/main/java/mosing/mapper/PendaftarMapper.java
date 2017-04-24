@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import mosing.model.DaftarPilihanModel;
 import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 
@@ -22,7 +23,8 @@ public interface PendaftarMapper {
 			+ "#{alamat_tetap}, #{jenis_id}, #{alamat_sekarang}, #{tgl_lahir}, #{provinsi}, "
 			+ "#{kota}, #{jenis_kelamin}, #{nama_lembaga}, #{jurusan})")
 	void addPendaftar(PendaftarModel pendaftar);
-	
-	@Select("select * from penyeleksian where no_daftar = #{no_daftar}")
-	PenyeleksianModel selectPenyeleksian(@Param("no_daftar") String no_daftar);
+
+	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
+			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan})")
+	void addDaftarPilihan(DaftarPilihanModel daftar);
 }

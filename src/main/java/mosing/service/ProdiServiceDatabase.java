@@ -23,7 +23,7 @@ public class ProdiServiceDatabase implements ProdiService {
 	}
 	
 	@Override
-	public List<ProdiTersediaModel> selectAllProdi(String id_jalur)
+	public List<ProdiTersediaModel> selectAllProdi(int id_jalur)
 	{
 		return prodiMapper.selectAllProdi(id_jalur);
 	}

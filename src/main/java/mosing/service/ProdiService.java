@@ -7,5 +7,5 @@ import mosing.model.ProdiTersediaModel;
 public interface ProdiService {
 
 	ProdiTersediaModel selectProdi(int id_prodi);
-	List<ProdiTersediaModel> selectAllProdi(String id_jalur);
+	List<ProdiTersediaModel> selectAllProdi(int id_jalur);
 }

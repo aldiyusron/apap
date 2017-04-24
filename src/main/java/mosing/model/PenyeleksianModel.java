@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PenyeleksianModel {
 
-	private String no_daftar;
-	private int status;
-	private String id_jalur;
+	private int no_daftar;
+	private byte status;
+	private int id_jalur;
 	private String berkas;
 }

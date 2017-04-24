@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.PendaftarMapper;
+import mosing.model.DaftarPilihanModel;
 import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 
@@ -16,9 +17,9 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	PendaftarMapper pendaftarMapper;
 	
 	@Override
-	public PendaftarModel selectPendaftar (String no_id)
+	public PendaftarModel selectPendaftar (String username)
 	{
-		return pendaftarMapper.selectPendaftar(no_id);
+		return pendaftarMapper.selectPendaftar(username);
 	}
 	
 	@Override
@@ -28,8 +29,8 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 	
 	@Override
-	public PenyeleksianModel selectPenyeleksian (String no_daftar)
+	public void addDaftarPilihan (DaftarPilihanModel daftar)
 	{
-		return pendaftarMapper.selectPenyeleksian(no_daftar);
+		pendaftarMapper.addDaftarPilihan(daftar);
 	}
 }
