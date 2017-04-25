@@ -394,6 +394,32 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="nama_program" class="col-md-4 control-label">Jenis Jalur</label>
+					<div class="col-md-4 selectContainer" th:switch="${jalur.jenis_jalur}">
+						<div class="input-group" th:case="1">
+							<div class="radio">
+								<label><input type="radio" name="jenis_jalur"
+									required="required" value="Undangan" checked="checked"/>Undangan</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jenis_jalur"
+									required="required" value="Tertulis" />Tertulis</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="0">
+							<div class="radio">
+								<label><input type="radio" name="jenis_jalur"
+									required="required" value="Undangan" />Undangan</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jenis_jalur"
+									required="required" value="Tertulis" checked="checked"/>Tertulis</label>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- Text input-->
 
