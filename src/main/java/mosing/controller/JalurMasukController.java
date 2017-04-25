@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.PendaftarModel;
-import mosing.model.ProdiModel;
+import mosing.model.ProdiTersediaModel;
 import mosing.model.DetailUjianModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.LokasiModel;
@@ -60,8 +60,8 @@ public class JalurMasukController {
 			model.addAttribute("jalur_masuk", jalur_masuk);
 			model.addAttribute("detail", detail);
 			
-//			List<ProdiModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
-//			model.addAttribute("allProdi", allProdi);
+			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
+			model.addAttribute("allProdi", allProdi);
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
@@ -89,7 +89,7 @@ public class JalurMasukController {
 		else
 			status = "0";
 		
-		if(jenis_jalur.equalsIgnoreCase("Undangan"))
+		if(jenis_jalur.equalsIgnoreCase("Jalur Tulis"))
 			jenis_jalur = "1";
 		else
 			jenis_jalur = "0";
@@ -112,8 +112,7 @@ public class JalurMasukController {
 		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
 		if (jalur != null) {
 			model.addAttribute("jalur", jalur);
-			System.out.println(id_jalur);
-			System.out.println(jalur.getPersyaratan());
+			
 			return "form-updatejalur"; // belum bener
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
@@ -121,7 +120,7 @@ public class JalurMasukController {
 		}
 	}
 
-	@RequestMapping("/jalur-masuk/update/submit")
+	@RequestMapping(value = "/jalur-masuk/update/submit", method=RequestMethod.POST)
     public String updateSubmit(@RequestParam(value = "id_jalur", required = false) int id_jalur, @RequestParam(value = "nama", required = false) String nama,
 			@RequestParam(value = "tanggal_buka", required = false) String tanggal_buka,
 			@RequestParam(value = "tanggal_tutup", required = false) String tanggal_tutup,
@@ -136,7 +135,7 @@ public class JalurMasukController {
 		else
 			status = "0";
 		
-		if(jenis_jalur.equalsIgnoreCase("Undangan"))
+		if(jenis_jalur.equalsIgnoreCase("Jalur Tulis"))
 			jenis_jalur = "1";
 		else
 			jenis_jalur = "0";

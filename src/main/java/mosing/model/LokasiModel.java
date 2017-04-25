@@ -18,4 +18,5 @@ public class LokasiModel {
 	private int kuota_peng;
 	private int kuota_pendaftar;
 	private int flag_aktif;
+
 }

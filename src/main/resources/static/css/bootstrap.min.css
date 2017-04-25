@@ -3668,7 +3668,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-danger {
 	color: #fff;
 	background-color: #fece00;
-	border-color: #fece00;
+	border-color: #fece00
 	
 }
 
@@ -7470,12 +7470,10 @@ table {
 	border-collapse: collapse
 }
 
-daftarjalurmasuk {
-	float: left;
-}
-
 edit-delete {
 	margin-left: 550px;
 	margin-top: -10px
 }
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */

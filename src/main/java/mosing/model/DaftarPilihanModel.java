@@ -1,5 +1,8 @@
 package mosing.model;
 
+import java.util.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdiTersediaModel {
+public class DaftarPilihanModel {
 
+	private int no_daftar;
+	private String jenjang;
+	private String nama_program;
 	private int id_prodi;
-	private String nama_prodi;
-	private int daya_tampung;
-	private String nama_fakultas;
-	private int id_jalur;
+	private int pilihan;
 }

@@ -3,7 +3,7 @@ package mosing.service;
 import java.util.List;
 
 import mosing.model.JalurMasukModel;
-import mosing.model.ProdiModel;
+import mosing.model.ProdiTersediaModel;
 
 public interface JalurMasukService {
 	void deleteJalurMasuk(int id_jalur);
@@ -11,5 +11,8 @@ public interface JalurMasukService {
 	List<JalurMasukModel> selectAllJalurMasuk();
 	void addJalurMasuk(JalurMasukModel jalur_masuk);
 	void updateJalurMasuk(JalurMasukModel jalur_masuk);
-	List<ProdiModel> selectProdiJalurMasuk();
+	List<ProdiTersediaModel> selectProdiJalurMasuk(int id_jalur);
+	List<ProdiTersediaModel> selectAllProdi(int id_jalur);
+	List<JalurMasukModel> selectAllJalurTulis();
+
 }

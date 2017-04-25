@@ -12,10 +12,10 @@
 
 <!-- Bootstrap Core CSS -->
 
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -147,10 +147,7 @@ WARNING: Respond.js doesn't work if you view the page via file://
 				</li>
 			</ul>
 		</div>
-	</div>
-	<br/>
-	<br/>
-	<div class="alert alert-success col-md-10 col-md-offset-1" role="alert" id="success_message">
+		<div style="margin-top: 5%" class="alert alert-success col-md-10 col-md-offset-1" role="alert" id="success_message">
 		Anda sudah melakukan pendaftaran.</div>
 
 	<!-- Button -->
@@ -159,8 +156,10 @@ WARNING: Respond.js doesn't work if you view the page via file://
 		<div class="col-md-4 col-md-offset-7" style="margin-top:-2%">
 			<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" /> <a th:href="'/'"
-				class="btn btn-warning" style="width: 30%; margin-left: 72.25%">Kembali</a>
+				class="btn btn-s" style="width: 30%; margin-left: 72.25%">Kembali</a>
+				
 		</div>
+	</div>
 	</div>
 	
 	<div class="container bg-light-gray">
@@ -221,17 +220,6 @@ WARNING: Respond.js doesn't work if you view the page via file://
 			<div class="row">
 				<div class="col-md-4"
 					style="width: 100%; height: 50px; padding-top: 1.5%">
-					<span class="copyright" style="color: #fed136">Penerimaan
-						Mahasiswa Baru - Universitas Indonesia</span>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-	<footer>
-		<div class="container bg-darkest-gray">
-			<div class="row">
-				<div class="col-md-4" style="width: 100%; height: 50px; padding-top: 1.5%">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
