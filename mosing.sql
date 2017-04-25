@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS JALUR_MASUK
 	status TINYINT(1) NOT NULL,
 	nama_jenjang VARCHAR(20) NOT NULL,
 	nama_program VARCHAR (20),
+	jenis_jalur TINYINT(1) NOT NULL,
 	persyaratan VARCHAR(200) NOT NULL,
 	flag_aktif TINYINT(1) NOT NULL
 );
@@ -302,9 +303,9 @@ INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (6,tru
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (11,true,'Mahasiswa','Prima',2);
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (12,true,'Mahasiswa','Ades',3);
 
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-05-11','2017-08-11',1,'S1','Reguler','Pendaftar merupakan mahasiswa teladan',1);
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-03-10','2017-06-10',1,'S2',null,'Pendaftar merupakan lulusan terdaftar univ tertentu',1);
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,persyaratan,flag_aktif) VALUES ('MASUK UI KUY','2018-05-11','2018-08-11',0,'S1','Paralel','Pendaftar harus punya SIM dan STNK',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-05-11','2017-08-11',1,'S1','Reguler',1,'Pendaftar merupakan mahasiswa teladan',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-03-10','2017-06-10',1,'S2',null,1,'Pendaftar merupakan lulusan terdaftar univ tertentu',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('MASUK UI KUY','2018-05-11','2018-08-11',0,'S1','Paralel',0,'Pendaftar harus punya SIM dan STNK',1);
 
 INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,nama_fakultas,id_jalur) VALUES ('Sistem Informasi',100,'Fasilkom',1);
 INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,nama_fakultas,id_jalur) VALUES ('Ilmu Komputer',100,'Fasilkom',1);

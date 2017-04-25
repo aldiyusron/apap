@@ -169,7 +169,8 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="username" class="col-md-4 control-label">Nama Jalur Masuk</label>
+					<label for="username" class="col-md-4 control-label">Nama
+						Jalur Masuk</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -185,22 +186,22 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_buka"
-								name="tanggal_buka" placeholder="DD/MM/YYYY" class="form-control"
-								type="text" required="true" />
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="tanggal_tutup" class="col-md-4 control-label">Tanggal
 						Tutup</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_tutup"
-								name="tanggal_tutup" placeholder="DD/MM/YYYY" class="form-control"
-								type="text" required="true" />
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -211,59 +212,62 @@
 						<div class="input-group">
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" />Aktif</label>
+									required="required" value="Aktif"/>Aktif</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="status"
-									required="required" />Tidak aktif</label>
+									required="required" value="Tidak aktif"/>Tidak aktif</label>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="nama_jenjang" class="col-md-4 control-label">Nama Jenjang</label>
+					<label for="nama_jenjang" class="col-md-4 control-label">Nama
+						Jenjang</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1"/>S1</label>
+									required="required" value="S1" />S1</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S2"/>S2</label>
+									required="required" value="S2" />S2</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S3"/>S3</label>
+									required="required" value="S3" />S3</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_jenjang"
-									required="required" value="Spesialis"/>Spesialis</label>
+									required="required" value="Spesialis" />Spesialis</label>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="nama_program" class="col-md-4 control-label">Nama Program</label>
+					<label for="nama_program" class="col-md-4 control-label">Nama
+						Program</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
-									required="required" value="Reguler"/>Reguler</label>
+									required="required" value="Reguler" />Reguler</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
-									required="required" value="Paralel"/>Paralel</label>
+									required="required" value="Paralel" />Paralel</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
-									required="required" value="Kelas Internasional"/>Kelas Internasional</label>
+									required="required" value="Kelas Internasional" />Kelas
+									Internasional</label>
 							</div>
 							<div class="radio">
 								<label><input type="radio" name="nama_program"
-									required="required" value="Tidak ada"/>Tidak ada</label>
+									required="required" value="Tidak ada" />Tidak ada</label>
 							</div>
 						</div>
 					</div>
@@ -276,8 +280,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <input name="persyaratan"
-								placeholder="Persyaratan" class="form-control" type="text" />
+								class="glyphicon glyphicon-home"></i></span> <textarea rows="3" style="resize:none" name="persyaratan"
+								placeholder="Persyaratan" class="form-control" type="text"> </textarea>
 						</div>
 					</div>
 				</div>
@@ -292,10 +296,62 @@
 						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" />
 
-						<button value="cancel" name="action" type="cancel"
+						
+					</div>
+				</div>
+
+				<!-- Trigger the modal with a button -->
+				<button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#myModal1">Cancel</button>
+				<button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#myModal2">Submit</button>
+
+				<!-- Modal -->
+				<div id="myModal1" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body">
+								<p>Some text in the modal.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+							<button value="cancel" name="action" type="cancel"
 							class="btn btn-info">Batal</button>
-						<button value="save" name="action" type="submit"
+						</div>
+
+					</div>
+				</div>
+				<!-- Modal -->
+				<div id="myModal2" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body">
+								<p>Some text in the modal.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+							<div class="modal-footer">
+								<button value="save" name="action" type="submit"
 							class="btn btn-warning">Simpan</button>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</fieldset>
@@ -304,56 +360,62 @@
 
 	<!-- /.container -->
 	<script>
-	  $(document).ready(function() {
-		    $('#contact_form').bootstrapValidator({
-		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        fields: {
-					 nama: {
-		                validators: {
-		                     stringLength: {
-		                        min: 2,
-		                    },
-		                    notEmpty: {
-		                        message: 'Tolong masukan nama jalur'
-		                    }
-		                }
-		            },
-					 persyaratan: {
-		                validators: {
-		                     stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Tolong masukkan persyaratan'
-		                    }
-		                }
-		            }
-		        }
-		        })
-		        .on('success.form.bv', function(e) {
-		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-		                $('#contact_form').data('bootstrapValidator').resetForm();
+		$(document).ready(
+				function() {
+					$('#contact_form').bootstrapValidator({
+						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							nama : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Tolong masukan nama jalur'
+									}
+								}
+							},
+							persyaratan : {
+								validators : {
+									stringLength : {
+										min : 8,
+									},
+									notEmpty : {
+										message : 'Tolong masukkan persyaratan'
+									}
+								}
+							}
+						}
+					}).on(
+							'success.form.bv',
+							function(e) {
+								$('#success_message').slideDown({
+									opacity : "show"
+								}, "slow") // Do something ...
+								$('#contact_form').data('bootstrapValidator')
+										.resetForm();
 
-		            // Prevent form submission
-		            e.preventDefault();
+								// Prevent form submission
+								e.preventDefault();
 
-		            // Get the form instance
-		            var $form = $(e.target);
+								// Get the form instance
+								var $form = $(e.target);
 
-		            // Get the BootstrapValidator instance
-		            var bv = $form.data('bootstrapValidator');
+								// Get the BootstrapValidator instance
+								var bv = $form.data('bootstrapValidator');
 
-		            // Use Ajax to submit form data
-		            $.post($form.attr('action'), $form.serialize(), function(result) {
-		                console.log(result);
-		            }, 'json');
-		        });
-		});
+								// Use Ajax to submit form data
+								$.post($form.attr('action'), $form.serialize(),
+										function(result) {
+											console.log(result);
+										}, 'json');
+							});
+				});
 	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -420,7 +482,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
