@@ -1832,7 +1832,9 @@ pre code {
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
-	margin-left: auto
+	margin-left: auto;
+	margin-top: 40px
+	
 }
 
 @media ( min-width :768px) {
@@ -7466,5 +7468,14 @@ button.close {
 table {
 	border-spacing: 0;
 	border-collapse: collapse
+}
+
+daftarjalurmasuk {
+	float: left;
+}
+
+edit-delete {
+	margin-left: 550px;
+	margin-top: -10px
 }
 /*# sourceMappingURL=bootstrap.min.css.map */

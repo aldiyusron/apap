@@ -18,6 +18,7 @@ public class JalurMasukModel {
 	private int status;
 	private String nama_jenjang;
 	private String nama_program;
+	private byte jenis_jalur;
 	private String persyaratan;
 	private int flag_aktif;
 	private List<ProdiModel> listProdi;

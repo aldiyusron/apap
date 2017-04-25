@@ -107,14 +107,15 @@ WARNING: Respond.js doesn't work if you view the page via file://
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="#" class="btn btn-default" style="margin-right: 15px; height: 35px; margin-top: 8px">
-								<span class="glyphicon glyphicon-user" th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-							</a>
-						</li>
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit" value="Sign Out">Keluar</button>
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -124,10 +125,10 @@ WARNING: Respond.js doesn't work if you view the page via file://
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png" alt="logo" /></a>
-				</li>
+				<a id="logo"><img src="/img/MOSINGlogo.png"
+						alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -162,7 +163,7 @@ WARNING: Respond.js doesn't work if you view the page via file://
 		</div>
 	</div>
 	
-	<div class="container bg-light-gray" style="margin-top: 10%">
+	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
@@ -177,11 +178,14 @@ WARNING: Respond.js doesn't work if you view the page via file://
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -211,6 +215,18 @@ WARNING: Respond.js doesn't work if you view the page via file://
 			</div>
 		</div>
 	</div>
+
+	<footer>
+		<div class="container bg-darkest-gray">
+			<div class="row">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
+					<span class="copyright" style="color: #fed136">Penerimaan
+						Mahasiswa Baru - Universitas Indonesia</span>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	<footer>
 		<div class="container bg-darkest-gray">

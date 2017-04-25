@@ -44,7 +44,7 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	}
 	
 	@Override
-	public void deleteJalurMasuk(JalurMasukModel jalurMasuk) {
-		JalurMasukMapper.deleteJalurMasuk(jalurMasuk);
+	public void deleteJalurMasuk(int id_jalur) {
+		JalurMasukMapper.deleteJalurMasuk(id_jalur);
 	}
 }

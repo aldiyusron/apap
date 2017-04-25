@@ -6,7 +6,7 @@ import mosing.model.JalurMasukModel;
 import mosing.model.ProdiModel;
 
 public interface JalurMasukService {
-	void deleteJalurMasuk(JalurMasukModel jalurMasuk);
+	void deleteJalurMasuk(int id_jalur);
 	JalurMasukModel selectJalurMasuk(int id_jalur);
 	List<JalurMasukModel> selectAllJalurMasuk();
 	void addJalurMasuk(JalurMasukModel jalur_masuk);
