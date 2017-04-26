@@ -5,17 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.DetailUjianModel;
 import mosing.model.KotaModel;
 import mosing.model.LokasiModel;
 import mosing.model.ProvinsiModel;
+import mosing.service.DetailUjianService;
 import mosing.service.KotaService;
 import mosing.service.LokasiService;
 import mosing.service.ProvinsiService;
@@ -32,11 +31,13 @@ public class LokasiController {
 	@Autowired
 	KotaService kotaDAO;
 	
+	@Autowired
+	DetailUjianService detailUjianDAO;
+	
 	@RequestMapping("/detail-ujian")
 	public String lihatDaftarLokasi(Model model) {
 		List<LokasiModel> allLokasi = lokasiDAO.selectAllLokasi();
 		model.addAttribute("allLokasi", allLokasi);
-
 		return "view-all-lokasi";
 	}
 
