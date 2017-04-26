@@ -71,4 +71,8 @@ public interface JalurMasukMapper {
 	
 	@Select("select * from jalur_masuk where jenis_jalur = 0 and flag_aktif=1")
 	List<JalurMasukModel> selectAllJalurTulis();
+	
+	@Select("select * from jalur_masuk where jenis_jalur=1 and flag_aktif=1")
+	List<JalurMasukModel> selectAllJalurUndangan();
+
 }
