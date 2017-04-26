@@ -27,14 +27,7 @@ public interface LokasiMapper {
 	LokasiModel selectLokasi(@Param("id_lokasi") int id_lokasi);
 	
 	@Select("select * from lokasi where flag_aktif = 1")
-	@Results(value = { 
-    		@Result(property = "alamat", column = "alamat"), 
-    		@Result(property = "no_telp", column = "no_telp"),
-			@Result(property = "nama_lokasi", column = "nama_lokasi"),
-			@Result(property = "nama_provinsi", column = "nama_provinsi"),
-			@Result(property = "nama_kota", column = "nama_kota"),
-			@Result(property = "kuota_peng", column = "kuota_peng"),
-			@Result(property = "kuota_pendaftar", column = "kuota_pendaftar")})
+	
 	List<LokasiModel> selectAllLokasi();
 
 	@Insert("insert into lokasi (alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) values (#{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")

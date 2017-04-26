@@ -11,8 +11,8 @@ public class LokasiModel {
 
 	private int id_lokasi;
 	private String alamat;
-	private String nama_lokasi;
 	private String no_telp;
+	private String nama_lokasi;
 	private String nama_provinsi;
 	private String nama_kota;
 	private int kuota_peng;
