@@ -20,6 +20,7 @@ public class JalurMasukModel {
 	private String nama_program;
 	private byte jenis_jalur;
 	private String persyaratan;
+	private Date waktu_ujian;
 	private int flag_aktif;
 	private List<ProdiModel> listProdi;
 }

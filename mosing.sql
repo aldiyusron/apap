@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS JALUR_MASUK
 	nama_program VARCHAR (20),
 	jenis_jalur TINYINT(1) NOT NULL,
 	persyaratan VARCHAR(200) NOT NULL,
+	waktu_ujian DATETIME NOT NULL,
 	flag_aktif TINYINT(1) NOT NULL
 );
 
@@ -146,8 +147,7 @@ CREATE TABLE IF NOT EXISTS DETAIL_UJIAN
 	no_ujian CHAR(10) NOT NULL,
 	id_jalur INTEGER NOT NULL,
 	id_lokasi INTEGER NOT NULL,
-	waktu_ujian TIME NOT NULL,
-	tanggal_ujian DATE NOT NULL,
+	waktu_ujian DATETIME NOT NULL,
 	PRIMARY KEY (no_daftar, no_ujian),
 	FOREIGN KEY(no_daftar) REFERENCES DAFTAR_PILIHAN (no_daftar) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_jalur) REFERENCES JALUR_MASUK (id_jalur) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -268,24 +268,142 @@ INSERT INTO NEGARA (nama_negara) VALUES ('Indonesia');
 INSERT INTO NEGARA (nama_negara) VALUES ('Malaysia');
 INSERT INTO NEGARA (nama_negara) VALUES ('Singapura');
 
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (1,'DKI Jakarta');
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (1,'Jawa Barat');
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (1,'Banten');
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (1,'Jawa Tengah');
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (1,'Jawa Timur');
-INSERT INTO PROVINSI (id_negara,nama_provinsi) VALUES (2,'Dan lain-lain');
+INSERT INTO `provinsi` (`id_provinsi`, `id_negara`, `nama_provinsi`) VALUES
+(1, 1, 'Aceh'),
+(2, 1, 'Bali'),
+(3, 1, 'Banten'),
+(4, 1, 'Bengkulu'),
+(5, 1, 'Gorontalo'),
+(6, 1, 'Jakarta'),
+(7, 1, 'Jambi'),
+(8, 1, 'Jawa Barat'),
+(9, 1, 'Jawa Tengah'),
+(10, 1, 'Jawa Timur'),
+(11, 1, 'Kalimantan Barat'),
+(12, 1, 'Kalimantan Selatan'),
+(13, 1, 'Kalimantan Tengah'),
+(14, 1, 'Kalimantang Timur'),
+(15, 1, 'Kalimantan Utara'),
+(16, 1, 'Kepulauan Bangka Belitung'),
+(17, 1, 'Kepulauan Riau'),
+(18, 1, 'Lampung'),
+(19, 1, 'Maluku'),
+(20, 1, 'Maluku Utara'),
+(21, 1, 'Nusa Tenggara Barat'),
+(22, 1, 'Nusa Tenggara TImur'),
+(23, 1, 'Papua'),
+(24, 1, 'Papua Barat'),
+(25, 1, 'Riau'),
+(26, 1, 'Sulawesi Barat'),
+(27, 1, 'Sulawesi Selatan'),
+(28, 1, 'Sulawesi Tengah'),
+(29, 1, 'Sulawesi Tenggara'),
+(30, 1, 'Sulawesi Utara'),
+(31, 1, 'Sumatera Barat'),
+(32, 1, 'Sumatera Selatan'),
+(33, 1, 'Sumatera Utara'),
+(34, 1, 'Yogyakarta');
 
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (1,'Jakarta Utara');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (1,'Jakarta Timur');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (1,'Jakarta Pusat');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (1,'Jakarta Barat');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (1,'Jakarta Selatan');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Depok');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Bogor');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Bandung');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Bekasi');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (2,'Sukabumi');
-INSERT INTO KOTA (id_provinsi,nama_kota) VALUES (3,'Tangerang');
+INSERT INTO `kota` (`id_kota`, `id_provinsi`, `nama_kota`) VALUES
+(1, 1, 'Banda Aceh'),
+(2, 1, 'Langsa'),
+(3, 1, 'Lhokseumawe'),
+(4, 1, 'Meulaboh'),
+(5, 1, 'Sabang'),
+(6, 1, 'Subulussalam'),
+(7, 2, 'Denpasar'),
+(8, 16, 'Pangkalpinang'),
+(9, 3, 'Cilegon'),
+(10, 3, 'Serang'),
+(11, 3, 'Tangerang'),
+(12, 3, 'Tangerang Selatan'),
+(13, 4, 'Bengkulu'),
+(14, 5, 'Gorontalo'),
+(15, 6, 'Jakarta Barat'),
+(16, 6, 'Jakarta Pusat'),
+(17, 6, 'Jakarta Selatan'),
+(18, 6, 'Jakarta TImur'),
+(19, 6, 'Jakarta Utara'),
+(20, 7, 'Sungai Penuh'),
+(21, 7, 'Jambi'),
+(22, 8, 'Bandung'),
+(23, 8, 'Bekasi'),
+(24, 8, 'Bogor'),
+(25, 8, 'Cimahi'),
+(26, 8, 'Cirebon'),
+(27, 8, 'Depok'),
+(28, 8, 'Sukabumi'),
+(29, 8, 'Tasikmalaya'),
+(30, 8, 'Banjar'),
+(31, 9, 'Magelang'),
+(32, 9, 'Pekalongan'),
+(33, 9, 'Purwokerto'),
+(34, 9, 'Salatiga'),
+(35, 9, 'Semarang'),
+(36, 9, 'Surakarta'),
+(37, 9, 'Tegal'),
+(38, 10, 'Batu'),
+(39, 10, 'Blitar'),
+(40, 10, 'Kediri'),
+(41, 10, 'Madiun'),
+(42, 10, 'Malang'),
+(43, 10, 'Mojokerto'),
+(44, 10, 'Pasuruan'),
+(45, 10, 'Probolinggo'),
+(46, 10, 'Surabaya'),
+(47, 11, 'Pontianak'),
+(48, 11, 'Singkawang'),
+(49, 12, 'Banjarbatu'),
+(50, 12, 'Banjarmasin'),
+(51, 13, 'Palangkaraya'),
+(52, 14, 'Balikpapan'),
+(53, 14, 'Bontang'),
+(54, 14, 'Samarinda'),
+(55, 15, 'Tarakan'),
+(56, 17, 'Batam'),
+(57, 17, 'Tanjungpinang'),
+(58, 18, 'Bandar Lampung'),
+(59, 18, 'Metro'),
+(60, 20, 'Ternate'),
+(61, 20, 'Tidore Kepulauan'),
+(62, 19, 'Ambon'),
+(63, 19, 'Tual'),
+(64, 21, 'Bima'),
+(65, 21, 'Mataram'),
+(66, 22, 'Kupang'),
+(67, 23, 'Jayapura'),
+(68, 24, 'Sorong'),
+(69, 25, 'Dumai'),
+(70, 25, 'Pekanbaru'),
+(71, 27, 'Makassar'),
+(72, 27, 'Palopo'),
+(73, 27, 'Parepare'),
+(74, 28, 'Palu'),
+(75, 29, 'Bau-bau'),
+(76, 29, 'Kendari'),
+(77, 30, 'Bitung'),
+(78, 30, 'Kotamobago'),
+(79, 30, 'Manado'),
+(80, 30, 'Tomohon'),
+(81, 31, 'Bukittinggi'),
+(82, 31, 'Padang'),
+(83, 31, 'Padangpanjang'),
+(84, 31, 'Pariaman'),
+(85, 31, 'Payakumbuh'),
+(86, 31, 'Sawahlunto'),
+(87, 31, 'Solok'),
+(88, 32, 'Lubuklinggau'),
+(89, 32, 'Pagaralam'),
+(90, 32, 'Palembang'),
+(91, 32, 'Prabumulih'),
+(92, 33, 'Binjai'),
+(93, 33, 'Medan'),
+(94, 33, 'Padang Sidempuan'),
+(95, 33, 'Pematangsiantar'),
+(96, 33, 'Sibolga'),
+(97, 33, 'Tanjungbalai'),
+(98, 33, 'Tebingtinggi'),
+(99, 34, 'Yogyakarta');
 
 INSERT INTO LEMBAGA_PENDIDIKAN_TERAKHIR (id_user,nama_lembaga,nama_provinsi,nama_kota) VALUES (5,'MTS Pramudito','DKI Jakarta','Jakarta Timur');
 
@@ -303,9 +421,9 @@ INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (6,tru
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (11,true,'Mahasiswa','Prima',2);
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,id_lokasi) VALUES (12,true,'Mahasiswa','Ades',3);
 
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-05-11','2017-08-11',1,'S1','Reguler',1,'Pendaftar merupakan mahasiswa teladan',1);
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('SIMAK UI','2017-03-10','2017-06-10',1,'S2',null,1,'Pendaftar merupakan lulusan terdaftar univ tertentu',1);
-INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,flag_aktif) VALUES ('MASUK UI KUY','2018-05-11','2018-08-11',0,'S1','Paralel',0,'Pendaftar harus punya SIM dan STNK',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,waktu_ujian,flag_aktif) VALUES ('SIMAK UI','2017-05-11','2017-08-11',1,'S1','Reguler',1,'Pendaftar merupakan mahasiswa teladan','2017-07-07 09:00:00.000000',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,waktu_ujian,flag_aktif) VALUES ('SIMAK UI','2017-03-10','2017-06-10',1,'S2',null,1,'Pendaftar merupakan lulusan terdaftar univ tertentu','2017-10-08 09:00:00.000000',1);
+INSERT INTO JALUR_MASUK (nama,tanggal_buka,tanggal_tutup,status,nama_jenjang,nama_program,jenis_jalur,persyaratan,waktu_ujian,flag_aktif) VALUES ('MASUK UI KUY','2018-05-11','2018-08-11',0,'S1','Paralel',0,'Pendaftar harus punya SIM dan STNK','2017-08-10 09:00:00.000000',1);
 
 INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,nama_fakultas,id_jalur) VALUES ('Sistem Informasi',100,'Fasilkom',1);
 INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,nama_fakultas,id_jalur) VALUES ('Ilmu Komputer',100,'Fasilkom',1);
@@ -320,7 +438,7 @@ INSERT INTO DAFTAR_PILIHAN (no_daftar,jenjang,nama_program,id_prodi,pilihan) VAL
 INSERT INTO DAFTAR_PILIHAN (no_daftar,jenjang,nama_program,id_prodi,pilihan) VALUES (3,'S1','Reguler',1,1);
 INSERT INTO DAFTAR_PILIHAN (no_daftar,jenjang,nama_program,id_prodi,pilihan) VALUES (4,'S1','Reguler',2,1);
 
-INSERT INTO DETAIL_UJIAN (no_daftar,no_ujian,id_jalur,id_lokasi,waktu_ujian,tanggal_ujian) VALUES (1,'0000000001',1,1,'09:00:00','2017-06-11');
+INSERT INTO DETAIL_UJIAN (no_daftar,no_ujian,id_jalur,id_lokasi,waktu_ujian) VALUES (1,'0000000001',1,1,'2017-07-07 09:00:00.000000');
 
 INSERT INTO RIWAYAT_PENDAFTARAN (no_pendaftaran,tahun,id_jalur,nama_jenjang,nama_program) VALUES (1, '2017', 1, 'S1', 'Reguler');
 INSERT INTO RIWAYAT_PENDAFTARAN (no_pendaftaran,tahun,id_jalur,nama_jenjang,nama_program) VALUES (2, '2016', 1, 'S1', 'Reguler');
@@ -331,6 +449,6 @@ INSERT INTO PENYELEKSIAN (no_daftar,status,id_jalur,berkas) VALUES (2,0,3,null);
 
 INSERT INTO NILAI_UJIAN (no_daftar,tpa,mtk_dasar,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (1,80,78,68,56,78,75,null,null,null,80,90);
 
-INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90,1);
+INSERT INTO NILAI_RAPOR (no_daftar,kkm_mtk,kkm_kimia,kkm_fisika,kkm_biologi,kkm_sejarah,kkm_geografi,kkm_ekonomi,kkm_bindo,kkm_bing,mtk,kimia,fisika,biologi,sejarah,geografi,ekonomi,bindo,bing,semester) VALUES (2,78,78,78,78,null,null,null,78,78,80,82,78,88,null,null,null,80,90,1);
 
 INSERT INTO CALON_MAHASISWA (no_daftar, npm, id_prodi, id_jalur, jenjang) VALUES (1,'1708888889',1,1,'S1');

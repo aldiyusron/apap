@@ -67,7 +67,8 @@ public class JalurMasukController {
 			@RequestParam(value = "nama_jenjang", required = false) String nama_jenjang,
 			@RequestParam(value = "nama_program", required = false) String nama_program,
 			@RequestParam(value = "jenis_jalur", required = false) String jenis_jalur,
-			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
+			@RequestParam(value = "persyaratan", required = false) String persyaratan,
+			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian) throws ParseException {
 
 		if (status.equalsIgnoreCase("Aktif"))
 			status = "1";
@@ -81,11 +82,13 @@ public class JalurMasukController {
 		byte jenis = Byte.parseByte(jenis_jalur);
 		DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format3 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
+		Date waktu = format3.parse(waktu_ujian);
 
 		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
-				nama_program, jenis, persyaratan, 1, null);
+				nama_program, jenis, persyaratan, waktu, 1, null);
 
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
 		return "success-addjalur"; // belum bener
@@ -111,7 +114,8 @@ public class JalurMasukController {
 			@RequestParam(value = "nama_jenjang", required = false) String nama_jenjang,
 			@RequestParam(value = "nama_program", required = false) String nama_program,
 			@RequestParam(value = "jenis_jalur", required = false) String jenis_jalur,
-			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
+			@RequestParam(value = "persyaratan", required = false) String persyaratan,
+			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian) throws ParseException {
 
 		if (status.equalsIgnoreCase("Aktif"))
 			status = "1";
@@ -125,12 +129,15 @@ public class JalurMasukController {
 		byte jenis = Byte.parseByte(jenis_jalur);
 		DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format3 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
+		Date waktu = format3.parse(waktu_ujian);
 		
 		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
 
-		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenis, persyaratan, 1, null);
+		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenis, persyaratan, waktu, 1, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
 		return "success-updatejalur"; //belum bener
