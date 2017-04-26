@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PengawasUjianModel {
 	
-	private String username;
+	private int id_user;
 	private boolean status;
 	private String jabatan;
 	private String nama;
-	private String lokasi;
+	private int lokasi;
 }
