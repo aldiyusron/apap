@@ -156,7 +156,7 @@
 	</div>
 	<div class="container">
 		<h1>Daftar Lokasi Ujian</h1>
-		<div class="row" style="margin-top: 2.5%; margin-bottom: -60px">
+		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1b" data-toggle="tab">SIMAK
@@ -168,7 +168,7 @@
 					<div class="tab-pane fade in active" id="1b">
 						<form th:action="@{/detail-ujian/add}" method="post">
 							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left:82%"
+								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
 						</form>
 
@@ -190,7 +190,7 @@
 
 							<tbody>
 								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-bottom: 20px; padding-left: 10px">
+									style="padding-left: 10px">
 									<tr>
 										<td th:text="${iterationStatus.count}">No.</td>
 										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
@@ -203,7 +203,7 @@
 										<td><a
 											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
 												class="input-group-btn">
-													<button type="button" class="btn btn-sm btn-custom" id="as"
+													<button type="button" class="btn-sm btn-custom" id="as"
 														name="as" value="Go">
 														<span class="glyphicon glyphicon-edit"
 															style="float: right"></span>
@@ -228,7 +228,7 @@
 					<div class="tab-pane fade" id="2b">
 						<form th:action="@{/detail-ujian/add}" method="post">
 							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; float: right"
+								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
 						</form>
 
@@ -250,7 +250,7 @@
 
 							<tbody>
 								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-bottom: 20px; padding-left: 10px">
+									style="padding-left: 10px">
 									<tr>
 										<td th:text="${lokasi.id_lokasi}">No.</td>
 										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>

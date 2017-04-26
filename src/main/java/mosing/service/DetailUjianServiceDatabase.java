@@ -18,5 +18,15 @@ public class DetailUjianServiceDatabase implements DetailUjianService {
 	public DetailUjianModel selectDetail(int id_jalur) {
 		return detailUjianMapper.selectDetail(id_jalur);
 	}
+	
+//	@Override
+//	public DetailUjianModel selectDetailS1(int id_jalur) {
+//		return detailUjianMapper.selectDetailS1(id_jalur);
+//	}
+//
+//	@Override
+//	public DetailUjianModel selectDetailPascasarjana(int id_jalur) {
+//		return detailUjianMapper.selectDetailPascasarjana(id_jalur);
+//	}
 
 }
