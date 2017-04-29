@@ -28,18 +28,19 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_program", column = "nama_program"),
 			@Result(property = "jenis_jalur", column = "jenis_jalur"),
 			@Result(property = "persyaratan", column = "persyaratan"),
+			@Result(property = "waktu_ujian", column = "waktu_ujian"),
 			@Result(property = "listProdi", column = "id_jalur",
 				javaType=List.class, one=@One(select="selectProdiJalurMasuk"))})
 	JalurMasukModel selectJalurMasuk(@Param("id_jalur") int id_jalur);
 	
 	@Insert("INSERT INTO jalur_masuk (nama, tanggal_buka, tanggal_tutup,"
-			+ "status, nama_jenjang, nama_program, jenis_jalur, persyaratan, flag_aktif) VALUES"
+			+ "status, nama_jenjang, nama_program, jenis_jalur, persyaratan, waktu_ujian, flag_aktif) VALUES"
 			+ "(#{nama}, #{tanggal_buka}, #{tanggal_tutup}, "
-			+ "#{status}, #{nama_jenjang}, #{nama_program}, #{jenis_jalur} ,#{persyaratan}, #{flag_aktif})")
+			+ "#{status}, #{nama_jenjang}, #{nama_program}, #{jenis_jalur} ,#{persyaratan}, #{waktu_ujian}, 1)")
 	void addJalurMasuk(JalurMasukModel jalur_masuk);
 	
 	@Update("UPDATE jalur_masuk SET nama = #{nama}, tanggal_buka=#{tanggal_buka}, tanggal_tutup=#{tanggal_tutup}, status=#{status}, "
-			+ "nama_jenjang=#{nama_jenjang}, nama_program=#{nama_program}, jenis_jalur = #{jenis_jalur}, persyaratan=#{persyaratan}, flag_aktif=#{flag_aktif} WHERE id_jalur=#{id_jalur}")
+			+ "nama_jenjang=#{nama_jenjang}, nama_program=#{nama_program}, jenis_jalur = #{jenis_jalur}, persyaratan=#{persyaratan}, waktu_ujian=#{waktu_ujian}, flag_aktif=1 WHERE id_jalur=#{id_jalur}")
 	void updateJalurMasuk(JalurMasukModel jalur_masuk);
 	
 	@Select("select * from jalur_masuk where flag_aktif = 1")
@@ -69,6 +70,10 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_prodi", column = "nama_prodi") })
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);
 	
-	@Select("select * from jalur_masuk where jenis_jalur = 1 and flag_aktif=1")
+	@Select("select * from jalur_masuk where jenis_jalur = 0 and flag_aktif=1")
 	List<JalurMasukModel> selectAllJalurTulis();
+	
+	@Select("select * from jalur_masuk where jenis_jalur=1 and flag_aktif=1")
+	List<JalurMasukModel> selectAllJalurUndangan();
+
 }

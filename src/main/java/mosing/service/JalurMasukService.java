@@ -14,4 +14,6 @@ public interface JalurMasukService {
 	List<ProdiTersediaModel> selectProdiJalurMasuk(int id_jalur);
 	List<ProdiTersediaModel> selectAllProdi(int id_jalur);
 	List<JalurMasukModel> selectAllJalurTulis();
+	List<JalurMasukModel> selectAllJalurUndangan();
+
 }

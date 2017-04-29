@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mosing.model.UserAdmisiModel;
 import mosing.service.UserAdmisiService;
-
+//testing
 @Controller
 public class PageController {
 	@Autowired

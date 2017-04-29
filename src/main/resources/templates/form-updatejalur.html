@@ -223,8 +223,8 @@
 						<div class="input-group" th:case="1">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							<select class="custom-select" required="required" name="status" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
 							  <option name="status" required="required" value="Aktif" selected="selected">Aktif</option>
 							  <option name="status" required="required" value="Tidak Aktif">Tidak Aktif</option>
 							</select>
@@ -232,8 +232,8 @@
 						<div class="input-group" th:case="0">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							<select class="custom-select" required="required" name="status" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
 							  <option name="status" required="required" value="Aktif">Aktif</option>
 							  <option name="status" required="required" value="Tidak Aktif" selected="selected">Tidak Aktif</option>
 							</select>
@@ -247,19 +247,19 @@
 						<div class="input-group" th:case="1">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
-							  <option name="status" required="required" value="Jalur Tulis" selected="selected">Jalur Tulis</option>
-							  <option name="status" required="required" value="Jalur Undangan">Jalur Undangan</option>
+							<select class="custom-select" required="required" name="jenis_jalur" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
+							  <option name="jenis_jalur" required="required" value="Jalur Tulis" selected="selected">Jalur Tulis</option>
+							  <option name="jenis_jalur" required="required" value="Jalur Undangan">Jalur Undangan</option>
 							</select>
 						</div>
 						<div class="input-group" th:case="0">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
-							  <option name="status" required="required" value="Jalur Tulis">Jalur Tulis</option>
-							  <option name="status" required="required" value="Jalur Undangan" selected="selected">Jalur Undangan</option>
+							<select class="custom-select" required="required" name="jenis_jalur" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
+							  <option name="jenis_jalur" required="required" value="Jalur Tulis">Jalur Tulis</option>
+							  <option name="jenis_jalur" required="required" value="Jalur Undangan" selected="selected">Jalur Undangan</option>
 							</select>
 						</div>
 					</div>
@@ -271,8 +271,8 @@
 						<div class="input-group" th:case="S1">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							<select class="custom-select" required="required" name="nama_jenjang" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
 							  <option name="nama_jenjang" required="required" value="S1" selected="selected">S1</option>
 							  <option name="nama_jenjang" required="required" value="S2">S2</option>
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
@@ -283,9 +283,9 @@
 						<div class="input-group" th:case="S2" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
-							<select class="custom-select" style="height: 35px">
+							<select class="custom-select" required="required" name="nama_jenjang" style="height: 35px">
 							
-							  <option>Status jalur masuk</option>
+							  <option value="">Status jalur masuk</option>
 							  <option name="nama_jenjang" required="required" value="S1">S1</option>
 							  <option name="nama_jenjang" required="required" value="S2" selected="selected">S2</option>
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
@@ -295,8 +295,8 @@
 						<div class="input-group" th:case="S3" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							<select class="custom-select" required="required" name="nama_jenjang" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
 							  <option name="nama_jenjang" required="required" value="S1">S1</option>
 							  <option name="nama_jenjang" required="required" value="S2">S2</option>
 							  <option name="nama_jenjang" required="required" value="S3" selected="selected">S2</option>
@@ -306,8 +306,8 @@
 						<div class="input-group" th:case="Spesialis" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
-							<select class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							<select class="custom-select" required="required" name="nama_jenjang" style="height: 35px">
+							  <option value="">Status jalur masuk</option>
 							  <option name="nama_jenjang" required="required" value="S1">S1</option>
 							  <option name="nama_jenjang" required="required" value="S2">S2</option>
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
@@ -324,7 +324,7 @@
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select name="nama_program" required="required" class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							  <option value="">Status jalur masuk</option>
 							  <option value="Reguler" selected="selected">Reguler</option>
 							  <option value="Paralel">Paralel</option>
 							  <option value="Kelas Internasional">Kelas Internasional</option>
@@ -335,7 +335,7 @@
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select name="nama_program" required="required" class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							  <option value="">Status jalur masuk</option>
 							  <option value="Reguler">Reguler</option>
 							  <option value="Paralel" selected="selected">Paralel</option>
 							  <option value="Kelas Internasional">Kelas Internasional</option>
@@ -346,7 +346,7 @@
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select name="nama_program" required="required" class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							  <option value="">Status jalur masuk</option>
 							  <option value="Reguler">Reguler</option>
 							  <option value="Paralel">Paralel</option>
 							  <option value="Kelas Internasional" selected="selected">Kelas Internasional</option>
@@ -357,12 +357,26 @@
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select name="nama_program" required="required" class="custom-select" style="height: 35px">
-							  <option>Status jalur masuk</option>
+							  <option value="">Status jalur masuk</option>
 							  <option value="Reguler">Reguler</option>
 							  <option value="Paralel">Paralel</option>
 							  <option value="Kelas Internasional">Kelas Internasional</option>
 							  <option value="Tidak ada" selected="selected">Tidak ada</option>
 							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="waktu_ujian" class="col-md-4 control-label">Waktu
+						Ujian </label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class='input-group date' id='datetimepicker1'>
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="waktu_ujian" name="waktu_ujian"
+								placeholder="BB/HH/TTTT JJ:MM AM/PM" class="form-control"
+								type="text" required="true" th:value="${jalur.waktu_ujian}" />
 						</div>
 					</div>
 				</div>

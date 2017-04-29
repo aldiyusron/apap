@@ -226,13 +226,21 @@
 										<dd th:text="${jalur_masuk.nama_program}"></dd>
 									</div>
 									<br />
+									<dt>Waktu Ujian</dt>
+									<dd
+										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'dd-MMM-yyyy')}"></dd>
+									<br />
 									<dt>Persyaratan</dt>
 									<dd th:text="${jalur_masuk.persyaratan}"></dd>
+<<<<<<< HEAD
 									<!-- <br />
 
 									<dt>Tanggal Ujian</dt>
 									<dd
 										th:text="${#dates.format(detail.tanggal_ujian, 'dd-MMM-yyyy')}"></dd> -->
+=======
+									
+>>>>>>> branch 'emma' of https://github.com/propensi2017/a6.git
 								</dl>
 							</thead>
 						</table>
