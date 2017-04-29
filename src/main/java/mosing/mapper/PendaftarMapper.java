@@ -20,7 +20,7 @@ public interface PendaftarMapper {
 	@Select("select u.id_user, u.username, p.* from user u, pendaftar p where u.username = #{username} and u.id_user = p.id_user")
 	PendaftarModel selectPendaftar2(@Param("username") String username);
 
-	@Select("select p.* from pendaftar where no_id=#{no_id}")
+	@Select("select * from pendaftar where no_id=#{no_id}")
 	PendaftarModel selectPendaftar(@Param("no_id") String no_id);
 
 	@Insert("INSERT INTO pendaftar (id_user, no_id, nama_id, "

@@ -15,11 +15,12 @@ public class JalurMasukModel {
 	private String nama;
 	private Date tanggal_buka;
 	private Date tanggal_tutup;
-	private int status;
+	private byte status;
 	private String nama_jenjang;
 	private String nama_program;
 	private byte jenis_jalur;
 	private String persyaratan;
+	private Date waktu_ujian;
 	private int flag_aktif;
 	List<ProdiTersediaModel> listProdi;
 }
