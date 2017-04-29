@@ -21,5 +21,5 @@ public class JalurMasukModel {
 	private byte jenis_jalur;
 	private String persyaratan;
 	private int flag_aktif;
-	List<ProdiTersediaModel> listProdi;
+	private List<ProdiTersediaModel> listProdi;
 }

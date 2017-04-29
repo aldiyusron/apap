@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Update;
 
 import mosing.model.DaftarPilihanModel;
 import mosing.model.PendaftarModel;
-import mosing.model.PenyeleksianModel;
 
 @Mapper
 public interface PendaftarMapper {

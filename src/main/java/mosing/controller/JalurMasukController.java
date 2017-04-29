@@ -9,28 +9,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mosing.model.PendaftarModel;
 import mosing.model.ProdiTersediaModel;
-import mosing.model.DetailUjianModel;
 import mosing.model.JalurMasukModel;
-import mosing.model.LokasiModel;
 import mosing.service.DetailUjianService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
-import mosing.service.PendaftarService;
 import mosing.service.ProdiService;
-import mosing.service.UserAdmisiService;
 
 @Controller
 public class JalurMasukController {
+	
 	@Autowired
 	JalurMasukService JalurMasukDAO;
 	
@@ -54,11 +47,8 @@ public class JalurMasukController {
 	@RequestMapping("/jalur-masuk/view/{id_jalur}")
 	public String lihatJalurMasuk(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
 		JalurMasukModel jalur_masuk = JalurMasukDAO.selectJalurMasuk(id_jalur);
-		DetailUjianModel detail = detailDAO.selectDetail(id_jalur);
-	//	LokasiModel allLokasi = lokasiDAO.selectAllLokasi();
-		if (jalur_masuk != null && detail != null) {
+		if (jalur_masuk != null) {
 			model.addAttribute("jalur_masuk", jalur_masuk);
-			model.addAttribute("detail", detail);
 			
 			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
 			model.addAttribute("allProdi", allProdi);
@@ -99,6 +89,7 @@ public class JalurMasukController {
 		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
+		
 
 		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
 				nama_program, jenisjalur, persyaratan, 1, null);
@@ -145,8 +136,6 @@ public class JalurMasukController {
 		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
-		System.out.println(id_jalur);
-		System.out.print(persyaratan);
 		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenisjalur, persyaratan, 1, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
