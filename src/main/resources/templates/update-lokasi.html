@@ -178,7 +178,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" th:action="@{'/detail-ujian/update/submit/' + ${id_lokasi}}"
+		<form class="well form-horizontal" th:action="@{'/lokasi-ujian/update/submit/' + ${id_lokasi}}"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -343,7 +343,7 @@
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/detail-ujian" class="btn btn-default">Batal</a>
+							th:value="${_csrf.token}" /> <a th:href="@{'/jalur-masuk/view/'+ ${lokasi.id_jalur}}" class="btn btn-default">Batal</a>
 						<button style="width: 30%; margin-left: 5px; margin-top: 0" value="save" name="action"
 							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>

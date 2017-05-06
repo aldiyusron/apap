@@ -10,10 +10,10 @@
 
 <title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -157,7 +157,7 @@ file:// [if lt IE 9]> -->
 
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/detail-ujian/add/submit"
+		<form class="well form-horizontal" th:action="@{'/lokasi-ujian/add/submit/' + ${id_jalur}}"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -169,6 +169,9 @@ file:// [if lt IE 9]> -->
 						</h2>
 					</center>
 				</legend>
+				
+				<input type="hidden" name="id_jalur" readonly="readonly"
+					th:value="${id_jalur}" />
 
 				<div class="form-group">
 					<label for="nama_lokasi" class="col-md-4 control-label">Nama
@@ -207,7 +210,7 @@ file:// [if lt IE 9]> -->
 								class="selectpicker form-control" data-live-search="true">
 								<option value="">Pilihan provinsi</option>
 								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
-									<option th:value="${provinsi.id_provinsi}"
+									<option th:value="${provinsi.nama_provinsi}"
 										th:text="${provinsi.nama_provinsi}">Pilihan</option>
 								</div>
 							</select>
@@ -225,7 +228,7 @@ file:// [if lt IE 9]> -->
 								class="form-control selectpicker" data-live-search="true">
 								<option value="">Pilihan kota</option>
 								<div th:each="kota,iterationStatus: ${allKota}">
-									<option th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
+									<option th:value="${kota.nama_kota}" th:text="${kota.nama_kota}"></option>
 								</div>
 							</select>
 						</div>
@@ -322,7 +325,7 @@ file:// [if lt IE 9]> -->
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/detail-ujian" class="btn btn-default">Batal</a>
+							th:value="${_csrf.token}" /> <a th:href="@{'/jalur-masuk/view/'+ ${id_jalur}}" class="btn btn-default">Batal</a>
 						<button style="width: 30%; margin-left: 5px; margin-top: 0" value="save" name="action"
 							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>

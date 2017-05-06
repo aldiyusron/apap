@@ -30,7 +30,7 @@ public interface LokasiMapper {
 	
 	List<LokasiModel> selectAllLokasi();
 
-	@Insert("insert into lokasi (alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) values (#{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")
+	@Insert("insert into lokasi (id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) values (#{id_jalur}, #{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")
 	void addLokasiUjian(LokasiModel lokasi);
 
 	@Update("update lokasi set alamat = #{alamat}, no_telp = #{no_telp}, nama_lokasi = #{nama_lokasi}, nama_provinsi = #{nama_provinsi}, nama_kota = #{nama_kota}, kuota_peng = #{kuota_peng}, kuota_pendaftar = #{kuota_pendaftar} where id_lokasi = #{id_lokasi} and flag_aktif = 1")
@@ -38,4 +38,7 @@ public interface LokasiMapper {
 
 	@Update("update lokasi set flag_aktif = 0 where id_lokasi = #{id_lokasi}")
 	void deleteLokasiUjian(LokasiModel lokasi);
+	
+	@Select("select * from lokasi where id_jalur = #{id_jalur} and flag_aktif = 1")
+	List<LokasiModel> selectLokasiJalur(@Param("id_jalur") int id_jalur);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.ProdiTersediaModel;
 import mosing.model.JalurMasukModel;
+import mosing.model.LokasiModel;
 import mosing.service.DetailUjianService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
@@ -46,10 +47,11 @@ public class JalurMasukController {
 	@RequestMapping("/jalur-masuk/view/{id_jalur}")
 	public String lihatJalurMasuk(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
 		JalurMasukModel jalur_masuk = JalurMasukDAO.selectJalurMasuk(id_jalur);
-	//	LokasiModel allLokasi = lokasiDAO.selectAllLokasi();
+		
 		if (jalur_masuk != null) {
 			model.addAttribute("jalur_masuk", jalur_masuk);
-			
+			List<LokasiModel> listLokasi = lokasiDAO.selectLokasiJalur(id_jalur);
+			model.addAttribute("listLokasi", listLokasi);
 			
 			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
 			model.addAttribute("allProdi", allProdi);
@@ -97,7 +99,7 @@ public class JalurMasukController {
 		Date waktu = format3.parse(waktu_ujian);
 
 		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
-				nama_program, jenisjalur, persyaratan, waktu, 1, null);
+				nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
 
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
 		return "success-addjalur"; // belum bener
@@ -145,7 +147,7 @@ public class JalurMasukController {
 		Date waktu = format3.parse(waktu_ujian);
 		System.out.println(id_jalur);
 		System.out.print(persyaratan);
-		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenisjalur, persyaratan, waktu, 1, null);
+		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
 		return "success-updatejalur"; //belum bener

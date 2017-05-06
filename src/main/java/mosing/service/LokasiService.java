@@ -9,5 +9,6 @@ public interface LokasiService {
 	void updateLokasiUjian (LokasiModel lokasi);
 	void deleteLokasiUjian (LokasiModel lokasi);
 	List<LokasiModel> selectAllLokasi();
+	List<LokasiModel> selectLokasiJalur(int id_jalur);
 	LokasiModel selectLokasi(int id_lokasi);
 }
