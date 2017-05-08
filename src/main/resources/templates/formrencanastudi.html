@@ -11,11 +11,11 @@
 <title>Penerimaan UI | Perbarui Kata Sandi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -107,9 +107,10 @@
 							</div>
 						</form>
 					</li>
+					
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
 								class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
@@ -150,22 +151,31 @@
 		</div>
 
 	</div>
-	<div class="container" style="margin-top: 2.5%;">
-		<div class="row" style="margin-bottom: 2.5%">
-			<div id="exTab3" class="container col-md-8">
+	<div class="container">
+		<!-- <div class="row" style="margin-bottom: 2.5%"> -->
 				<form class="well form-horizontal"
 					action="/pendaftar/rencanastudi/submit" method="post"
 					id="contact_form">
+					<fieldset>
+					<!-- Form Name -->
+				<legend>
+					<center>
+						<h2>
+							<b>Formulir Isian Rencana Studi</b>
+						</h2>
+					</center>
+				</legend>
+				<br />
 
 					<input type="hidden" name="username" readonly="readonly"
 						th:value="${username}" />
-					<h4>* Jika hanya ingin memilih 1 program studi, harap memilih
-						program studi yang sama dengan pilihan 1</h4>
+					<p style="align: center">Isilah pilihan rencana studi berdasarkan prioritas anda</p>
+					<br />
 					<input type="hidden" name="no_daftar" th:value="${no_daftar}" /> <input
 						type="hidden" name="id_jalur" th:value="${id_jalur}" />
 					<div class="form-group">
 						<label for="pilihan1" class="col-md-4 control-label">Pilihan
-							1</label>
+							1<label style="color: red">*</label></label>
 						<div class="col-md-4 selectContainer">
 
 							<div class="input-group">
@@ -173,7 +183,7 @@
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan1"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 1</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -184,14 +194,14 @@
 					</div>
 					<div class="form-group">
 						<label for="pilihan2" class="col-md-4 control-label">Pilihan
-							2</label>
+							2<label style="color: red">*</label></label>
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan2"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 2</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -200,19 +210,17 @@
 							</div>
 						</div>
 					</div>
-					<hr />
-					<h4>* Setiap tambahan pilihan dibawah, akan dikenakan biaya
-						pendaftaran tambahan Rp 50.000</h4>
+					
 					<div class="form-group">
 						<label for="pilihan3" class="col-md-4 control-label">Pilihan
-							3</label>
+							3<label style="color: red">**</label></label>
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan3"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 3</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -223,14 +231,14 @@
 					</div>
 					<div class="form-group">
 						<label for="pilihan4" class="col-md-4 control-label">Pilihan
-							4</label>
+							4<label style="color: red">**</label></label>
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan4"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 4</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -241,14 +249,14 @@
 					</div>
 					<div class="form-group">
 						<label for="pilihan5" class="col-md-4 control-label">Pilihan
-							5</label>
+							5<label style="color: red">**</label></label>
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan5"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 5</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -259,14 +267,14 @@
 					</div>
 					<div class="form-group">
 						<label for="pilihan6" class="col-md-4 control-label">Pilihan
-							6</label>
+							6<label style="color: red">**</label></label>
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									required="required" name="pilihan6"
 									class="form-control selectpicker">
-									<option value="0">Pilihan</option>
+									<option value="0">Pilih jurusan studi 6</option>
 									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
 										<option th:value="${prodiTersedia.id_prodi}"
 											th:text="${prodiTersedia.nama_prodi}"></option>
@@ -275,6 +283,9 @@
 							</div>
 						</div>
 					</div>
+					<br />
+					
+					
 					<input type="hidden" th:name="${_csrf.parameterName}"
 						th:value="${_csrf.token}" />
 
@@ -285,13 +296,26 @@
 							<input type="hidden" th:name="${_csrf.parameterName}"
 								th:value="${_csrf.token}" /> <a href="/"
 								class="btn btn-default">Batal</a>
-							<button style="width: 30%" value="save" name="action"
-								type="submit" class="btn btn-warning">Simpan</button>
+							<button style="width: 30%; margin-left: 10px; margin-top: 1px" value="save" name="action"
+								type="submit" class="btn btn-danger1">Simpan</button>
 						</div>
 					</div>
+					<br/>
+					<br/>
+					<div class="keterangan">
+					<h5>Keterangan:</h5>
+					<p>Urutan pilihan mempengaruhi prioritas</p>
+					<p>Pilihan 1 adalah prioritas utama</p>
+					<p>* Jika hanya ingin memilih 1 program studi, harap memilih
+						program studi yang sama dengan pilihan 1</p>
+					<p>** Setiap tambahan diatas 2 pilihan studi, akan dikenakan biaya
+						pendaftaran tambahan Rp 50.000</p>
+					</div>
+					
+					</fieldset>
 				</form>
-			</div>
-		</div>
+			
+		<!-- </div> -->
 	</div>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -299,7 +323,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -308,11 +332,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>

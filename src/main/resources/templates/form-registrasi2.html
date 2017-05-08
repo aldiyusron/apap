@@ -11,16 +11,10 @@
 <title>Penerimaan UI | Daftar Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -38,10 +32,6 @@
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
-<!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
 <link rel="stylesheet"
 	href="https://formden.com/static/cdn/bootstrap-iso.css" />
@@ -51,6 +41,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -126,8 +119,8 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
 								class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
@@ -144,10 +137,10 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png"
-						alt="logo" /></a></li>
+				<a id="logo"><img src="/img/MOSINGlogo.png"
+						alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -198,6 +191,7 @@
 								<div th:each="jalurMasuk,iterationStatus: ${jalurMasuk}">
 									<option th:value="${jalurMasuk.id_jalur}"
 										th:text="${jalurMasuk.nama} + ' ' + ${jalurMasuk.nama_jenjang} + ' ' + ${jalurMasuk.nama_program}"></option>
+									
 								</div>
 							</select>
 						</div>
@@ -366,30 +360,38 @@
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="form-group">
-					<label for="provinsi" class="col-md-4 control-label">Provinsi
-						Asal</label>
-					<div class="col-md-4 inputGroupContainer">
+					<label for="provinsi" class="col-md-4 control-label">Provinsi Asal</label>
+					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="provinsi"
-								placeholder="Provinsi" class="form-control" type="text"
-								required="true" />
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="provinsi"
+								class="selectpicker form-control" data-live-search="true">
+								<option value="">Pilihan provinsi</option>
+								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
+									<option th:value="${provinsi.id_provinsi}"
+										th:text="${provinsi.nama_provinsi}">Pilihan</option>
+								</div>
+							</select>
 						</div>
 					</div>
 				</div>
-
-				<!-- Text input-->
-
+				
 				<div class="form-group">
 					<label for="kota" class="col-md-4 control-label">Kota Asal</label>
-					<div class="col-md-4 inputGroupContainer">
+					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="kota"
-								placeholder="Kota" class="form-control" type="text"
-								required="true" />
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="kota"
+								class="form-control selectpicker" data-live-search="true">
+								<option value="">Pilihan kota</option>
+								<div th:each="kota,iterationStatus: ${allKota}">
+									<option th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -461,8 +463,8 @@
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
-						<button style="width: 30%" value="save" name="action"
-							type="submit" class="btn btn-warning">Simpan</button>
+						<button style="width: 30%; margin-left: 1%; margin-top: 0" value="save" name="action"
+							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
@@ -477,7 +479,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -486,11 +488,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -534,7 +539,7 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{js/bootstrap.min.js}"></script>
@@ -545,17 +550,17 @@
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
 
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
+
+<script type="text/javascript">
+
+$('.select').selectpicker();</script>
 	<script>
+		
+	
 		$(document).ready(
 				function() {
 					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"

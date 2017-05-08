@@ -48,18 +48,18 @@ public class FileUploadController {
 		return "uploadForm";
 	}
 
-	@GetMapping("/pendaftar/uploadberkas/{username}")
-	public String listUploadedBerkas(Model model, @PathVariable(value = "username") String username) throws IOException {
-
-		model.addAttribute("files",
-				storageService.loadAll()
-						.map(path -> MvcUriComponentsBuilder
-								.fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
-								.build().toString())
-						.collect(Collectors.toList()));
-
-		return "uploadFormBerkas";
-	}
+//	@GetMapping("/pendaftar/uploadberkas/{username}")
+//	public String listUploadedBerkas(Model model, @PathVariable(value = "username") String username) throws IOException {
+//
+//		model.addAttribute("files",
+//				storageService.loadAll()
+//						.map(path -> MvcUriComponentsBuilder
+//								.fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
+//								.build().toString())
+//						.collect(Collectors.toList()));
+//
+//		return "uploadFormBerkas";
+//	}
 	
 	@GetMapping("/files/{filename:.+}")
 	@ResponseBody
@@ -77,30 +77,29 @@ public class FileUploadController {
 
 		storageService.store(file);
 		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
-		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+				"Kamu telah berhasil mengunggah " + file.getOriginalFilename() + "!");
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
 		String foto = file.getOriginalFilename();
 		pendaftarDAO.updateFoto(foto, pendaftar.getId_user());
-		return "redirect:/pendaftar/uploadberkas/" + username;
+		return "redirect:/pendaftar/uploadfoto/" + username;
 	}
 	
-	@PostMapping("/pendaftar/uploadberkas/{username}")
-	public String handleBerkasUpload(Model model, @PathVariable(value = "username") String username,
-			@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-
-		storageService.store(file);
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
-		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
-		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
-		String berkas = file.getOriginalFilename();
-		penyeleksianDAO.updateBerkas(berkas, penyeleksian.getNo_daftar());
-		return "redirect:/pendaftar/suksesdaftarseleksi";
-	}
+//	@PostMapping("/pendaftar/uploadberkas/{username}")
+//	public String handleBerkasUpload(Model model, @PathVariable(value = "username") String username,
+//			@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+//
+//		storageService.store(file);
+//		redirectAttributes.addFlashAttribute("message",
+//				"You successfully uploaded " + file.getOriginalFilename() + "!");
+//		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(username);
+//		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
+//		String berkas = file.getOriginalFilename();
+//		penyeleksianDAO.updateBerkas(berkas, penyeleksian.getNo_daftar());
+//		return "redirect:/pendaftar/uploadberkas/{username}";
+//	}
 	
 	@RequestMapping("/pendaftar/suksesdaftarseleksi")
 	public String success() {
-
 		return "sudahdaftarseleksi";
 	}
 

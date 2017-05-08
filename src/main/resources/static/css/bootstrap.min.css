@@ -1832,7 +1832,9 @@ pre code {
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
-	margin-left: auto
+	margin-left: auto;
+	margin-top: 40px
+	
 }
 
 @media ( min-width :768px) {
@@ -2637,9 +2639,15 @@ th {
 	border-bottom-width: 2px
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-	background-color: #f9f9f9
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
 }
+
+tr.found{
+    background-color:#CECBCB;
+}
+
 
 .table-hover>tbody>tr:hover {
 	background-color: #f5f5f5
@@ -3335,6 +3343,17 @@ select[multiple].input-lg, textarea.input-lg {
 	border-radius: 4px
 }
 
+.btn-custom {  
+    background-color: #FFFFFF;
+    border-color: #CCCCCC;
+    color: #333333;
+ }
+.btn-custom:hover {
+   background-color: #d8d8d8;
+   border-color: #fff;
+   color: #aa0000;
+}
+
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
 	.btn:active:focus, .btn:focus {
 	outline: 5px auto -webkit-focus-ring-color;
@@ -3649,7 +3668,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-danger {
 	color: #fff;
 	background-color: #fece00;
-	border-color: #fece00;
+	border-color: #fece00
 	
 }
 
@@ -4555,6 +4574,12 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	margin-top: -1px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0
+}
+
+.tambahjalur {
+	float: right;
+	margin-top: 10px;
+	color: #464646
 }
 
 .navbar {
@@ -7132,6 +7157,7 @@ button.close {
 		{
 		margin-right: -10px
 	}
+
 	.carousel-caption {
 		right: 20%;
 		left: 20%;
@@ -7438,4 +7464,22 @@ button.close {
 	background-color: #f0ad4e;
 	border-color: #eea236;
 }
+
+<<<<<<< HEAD
+table {
+	border-spacing: 0;
+	border-collapse: collapse
+}
+
+edit-delete {
+	margin-left: 550px;
+	margin-top: -10px
+}
+
+
+.resizedTextBox {
+	width:60px;
+	height:20px
+}
+
 /*# sourceMappingURL=bootstrap.min.css.map */

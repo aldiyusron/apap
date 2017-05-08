@@ -126,7 +126,7 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
+						<li><a href="#" class="btn-default"
 							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
 								class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
@@ -146,7 +146,7 @@
 	<div class="container">
 		<div class="logomosing">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png"
+				<li><a id="logo"><img src="/img/MOSINGlogo.png"
 						alt="logo" /></a></li>
 			</ul>
 		</div>
@@ -168,29 +168,56 @@
 		</div>
 
 	</div>
-
-	<div class="container">
+	
+	<div style="margin-top: 3%" class="alert alert-success col-md-10 col-md-offset-1" role="alert"
+		id="success_message">Sukses mengunggah foto!</div>
+		
+<div class="container" style="margin-top:8%" >
+		<form class="well form-horizontal" action="#" method="post" id="contact_form">
+		<fieldset>
+		<!-- Form Name -->
+				<legend>
+					<center>
+						<h2>
+							<b>Unggah berkas raport</b>
+						</h2>
+					</center>
+				</legend>
+				
 		<div th:if="${message}">
 			<h2 th:text="${message}" />
 		</div>
-
-		<div>
+		
+		<div class="spesifikasi">
+			<h4>Spesifikasi Berkas:</h4>
+			<ol class="list-group">
+	            <li class="list-group-item">1. Foto close-up berwarna ukuran 400x600pixel</li>
+	            <li class="list-group-item">2. Pakaian rapih dan wajah terlihat jelas</li>
+	            <li class="list-group-item">3. Foto dalam format JPEG(.jpg)</li>
+	            <li class="list-group-item">4. Ukuran maksimum foto 4Mb</li>
+        	</ol>
+		</div>
+		
+	<div class="form-group" style="position:center">
+	<br />
+		<label for="unggah_foto" class="col-md-4 control-label" style="margin-left: 10%">Unggah berkas:</label>
+		<div >
 			<form method="POST" enctype="multipart/form-data"
 				th:action="@{'/pendaftar/uploadberkas/' + ${username}}">
 				<table>
 					<tr>
-						<td>Unggah Berkas:</td>
 						<td><input type="file" name="file" /></td>
 					</tr>
 					<input type="hidden" th:name="${_csrf.parameterName}"
 						th:value="${_csrf.token}" />
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Upload" /></td>
+						<td><input style="margin-left:-300%" type="submit" value="Upload" /></td>
 					</tr>
 				</table>
 			</form>
 		</div>
+		<!-- <a type="button" th:href="'/pendaftar/suksesdaftarseleksi'">Lanjut</a> -->
 
 <!-- 		<div>
 			<ul>
@@ -198,14 +225,25 @@
 					th:href="${file}" th:text="${file}" /></div>
 			</ul>
 		</div> -->
+		<div class="form-group" style="position: center">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+		<a type="button" class="btn btn-danger1" style="width: 30%; margin-left: 180%; margin-top: 1px" th:href="'/pendaftar/suksesdaftarseleksi'">Lanjut</a>
+			</div>
+			</div>
+			</div>
+		</fieldset>
+		</form>
 	</div>
-	<div class="container bg-light-gray" style="margin-top: 10%">
+	
+	
+	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -214,11 +252,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -260,7 +301,7 @@
 			</div>
 		</div>
 	</footer>
-
+	
 	<!-- jQuery -->
 	<script th:src="@{/js/jquery.min.js}"></script>
 

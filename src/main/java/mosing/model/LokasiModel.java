@@ -9,13 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LokasiModel {
 
-	private String id_lokasi;
+	private int id_lokasi;
+	private int id_jalur;
 	private String alamat;
 	private String no_telp;
 	private String nama_lokasi;
-	private String provinsi;
-	private String kota;
+	private String nama_provinsi;
+	private String nama_kota;
 	private int kuota_peng;
-	private int kuota_pend;
-	
+	private int kuota_pendaftar;
+	private int flag_aktif;
+
 }

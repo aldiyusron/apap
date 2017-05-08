@@ -22,10 +22,15 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	{
 		return JalurMasukMapper.selectJalurMasuk(id_jalur);
 	}
-	
+
 	@Override
 	public List<JalurMasukModel> selectAllJalurMasuk() {
 		return JalurMasukMapper.selectAllJalurMasuk();
+	}
+	
+	@Override
+	public List<ProdiTersediaModel> selectProdiJalurMasuk(int id_jalur) {
+		return JalurMasukMapper.selectProdiJalurMasuk(id_jalur);
 	}
 
 	@Override
@@ -39,6 +44,11 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	}
 	
 	@Override
+	public void deleteJalurMasuk(int id_jalur) {
+		JalurMasukMapper.deleteJalurMasuk(id_jalur);
+	}
+	
+	@Override
 	public List<ProdiTersediaModel> selectAllProdi(int id_jalur)
 	{
 		return JalurMasukMapper.selectAllProdi(id_jalur);
@@ -48,5 +58,11 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	public List<JalurMasukModel> selectAllJalurTulis()
 	{
 		return JalurMasukMapper.selectAllJalurTulis();
+	}
+	
+	@Override
+	public List<JalurMasukModel> selectAllJalurUndangan()
+	{
+		return JalurMasukMapper.selectAllJalurUndangan();
 	}
 }

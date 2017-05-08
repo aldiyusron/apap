@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,11 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	public void updateBerkas(String berkas, int no_daftar)
 	{
 		penyeleksianMapper.updateBerkas(berkas, no_daftar);
+	}
+	
+	@Override
+	public List<PenyeleksianModel> selectAllPenyeleksian()
+	{
+		return penyeleksianMapper.selectAllPenyeleksian();
 	}
 }
