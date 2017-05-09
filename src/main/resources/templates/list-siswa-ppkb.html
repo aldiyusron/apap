@@ -174,11 +174,18 @@
 									th:each="pendaftarVerif,iterationStatus: ${pendaftarVerif}">
 									<tr>
 										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${pendaftarVerif.nama_id}">Nama Siswa</td>
+										<td><a th:text="${pendaftarVerif.nama_id}" th:href="'/detail-siswa/' + ${pendaftarVerif.no_id}" style="color: black">Nama Siswa</a></td>
 										<td th:text="${pendaftarVerif.no_id}">NISN</td>
-										<td th:text="${pendaftarVerif.jurusan}">Jurusan</td>
+										<td th:text="${pendaftarVerif.jurusan}"></td>
 										<td><a
-											th:href="'/data-pendaftar/update/'+ ${pendaftarVerif.no_id}">Ubah</a></td>
+											th:href="'/data-pendaftar/update/'+ ${pendaftarVerif.no_id}">Ubah
+												Data</a></td>
+										<td th:if="${pendaftarVerif.jurusan} eq 'IPA'"><a
+											th:href="'/nilai-ipa/update/' + ${pendaftarVerif.no_daftar}">Ubah
+												Nilai</a></td>
+										<td th:unless="${pendaftarVerif.jurusan} eq 'IPA'"><a
+											th:href="'/nilai-ips/update/' + ${pendaftarVerif.no_daftar}">Ubah
+												Nilai</a></td>
 
 										<!-- <th:block th:each="penyeleksian.iterationStatus: ${penyeleksian}">
 											
@@ -194,41 +201,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="tab-pane fade" id="2b">
-						
 
-
-						<table id="daftarSiswa2" class="table stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Siswa</th>
-									<th>NISN</th>
-									<th>Jurusan</th>
-									<th>Keterangan</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}">
-									<tr>
-										<td th:text="${lokasi.id_lokasi}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Siswa</td>
-										<td th:text="${lokasi.alamat}">NISN</td>
-										<td th:text="${lokasi.nama_kota}">Jurusan</td>
-										<td th:text="${lokasi.nama_provinsi}">Keterangan</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}">Ubah</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}">Hapus
-												Lokasi</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -294,7 +267,7 @@
 			</div>
 		</div>
 	</footer>
-	
+
 	<!-- jQuery -->
 	<script th:src="@{/js/jquery.min.js}"></script>
 
@@ -306,11 +279,15 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
 		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
 		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 		
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 	</script>
-	
-	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+		
 	</script>
 
 	<!-- Contact Form JavaScript -->
@@ -319,10 +296,9 @@
 	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
 	<script>
-			$(document).ready(function() {
-				$("#daftarSiswa").DataTable();
-			});
-			
-		</script>
+		$(document).ready(function() {
+			$("#daftarSiswa").DataTable();
+		});
+	</script>
 </body>
 </html>

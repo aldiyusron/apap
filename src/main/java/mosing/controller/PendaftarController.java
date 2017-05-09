@@ -18,8 +18,10 @@ import mosing.model.JalurMasukModel;
 import mosing.model.LPTerdahuluModel;
 import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
+import mosing.model.NilaiModel;
 import mosing.service.JalurMasukService;
 import mosing.service.LPTerdahuluService;
+import mosing.service.NilaiService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 
@@ -28,15 +30,18 @@ public class PendaftarController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
-	
+
 	@Autowired
 	PenyeleksianService penyeleksianDAO;
-	
+
 	@Autowired
 	JalurMasukService jalurMasukDAO;
-	
+
 	@Autowired
 	LPTerdahuluService lptDAO;
+	
+	@Autowired
+	NilaiService nilaiDAO;
 
 	@RequestMapping("/pendaftar/{no_id}")
 	public String add(Model model, @PathVariable(value = "no_id") String no_id) {
@@ -97,17 +102,17 @@ public class PendaftarController {
 		model.addAttribute("pendaftarVerif", pendaftarVerif);
 		model.addAttribute("pendaftarNonVerif", pendaftarNonVerif);
 		return "list-siswa-ppkb";
-//		List<PendaftarModel> allSiswa = pendaftarDAO.selectAllSiswa();
-//		model.addAttribute("allSiswa", allSiswa);
-//
-//		return "list-siswa-ppkb";
+		// List<PendaftarModel> allSiswa = pendaftarDAO.selectAllSiswa();
+		// model.addAttribute("allSiswa", allSiswa);
+		//
+		// return "list-siswa-ppkb";
 	}
-	
+
 	@RequestMapping("/data-pendaftar/submit")
 	public String dataSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
 			@RequestParam(value = "jalur_undangan", required = false) int jalur_undangan,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
-			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,	
+			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
@@ -119,9 +124,8 @@ public class PendaftarController {
 			jenis_kelamin = "0";
 
 		byte jk = Byte.parseByte(jenis_kelamin);
-		PendaftarModel pendaftar = new PendaftarModel(5, no_id, nama_id, nama_ijazah, null, null, null, null,
-				null, null, jenis_id, null, null, null, null, jk,
-				nama_lembaga, jurusan, 0);
+		PendaftarModel pendaftar = new PendaftarModel(5, no_id, nama_id, nama_ijazah, null, null, null, null, null,
+				null, jenis_id, null, null, null, null, jk, nama_lembaga, jurusan, 0);
 
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
@@ -135,7 +139,7 @@ public class PendaftarController {
 		else
 			return "form-nilai-ips";
 	}
-	
+
 	@RequestMapping("/data-pendaftar/update/{no_id}")
 	public String updateData(Model model, @PathVariable(value = "no_id") String no_id) {
 		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
@@ -143,21 +147,21 @@ public class PendaftarController {
 		model.addAttribute("jalurUndangan", jalurUndangan);
 		model.addAttribute("allLPT", allLPT);
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
-		if(pendaftar != null) {
+		if (pendaftar != null) {
 			model.addAttribute("pendaftar", pendaftar);
 			return "edit-siswa";
-		}
-		else {
+		} else {
 			model.addAttribute("no_id", no_id);
 			return "error-update";
 		}
 	}
-	
-	@RequestMapping(value="/data-pendaftar/update/submit", method = RequestMethod.POST)
-	public String dataUpdateSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
+
+	@RequestMapping(value = "/data-pendaftar/update/submit", method = RequestMethod.POST)
+	public String dataUpdateSubmit(Model model, @RequestParam(value = "no_daftar", required = false) int no_daftar,
+			@RequestParam(value = "no_id", required = false) String no_id,
 			@RequestParam(value = "jalur_undangan", required = false) int jalur_undangan,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
-			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,	
+			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
 			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
 			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
@@ -169,21 +173,29 @@ public class PendaftarController {
 			jenis_kelamin = "0";
 
 		byte jk = Byte.parseByte(jenis_kelamin);
-		PendaftarModel pendaftar = new PendaftarModel(5, no_id, nama_id, nama_ijazah, null, null, null, null,
-				null, null, jenis_id, null, null, null, null, jk,
-				nama_lembaga, jurusan, 0);
+		PendaftarModel pendaftar = new PendaftarModel(5, no_id, nama_id, nama_ijazah, null, null, null, null, null,
+				null, jenis_id, null, null, null, null, jk, nama_lembaga, jurusan, no_daftar);
 
 		pendaftarDAO.updateDataPendaftar(pendaftar);
-//		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
-		// return "success-datadiri";
-//		byte status = 0;
-//		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, null);
-//		penyeleksianDAO.addPenyeleksian(penyeleksian);
-//		model.addAttribute("pendaftar2", pendaftar2);
-//		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
-//			return "form-nilai-ipa";
-//		else
-//			return "form-nilai-ips";
-		return "success-update-data";
+		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
+		// PenyeleksianModel penyeleksian = new
+		// PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan,
+		// null);
+		// penyeleksianDAO.addPenyeleksian(penyeleksian);
+		model.addAttribute("pendaftar2", pendaftar2);
+		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
+			return "edit-nilai-ipa";
+		else
+			return "edit-nilai-ips";
+	}
+	
+	@RequestMapping("/detail-siswa/{no_id}")
+	public String detailSiswa(Model model, @PathVariable(value = "no_id") String no_id) {
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
+		int no_daftar = pendaftarDAO.selectPendaftar(no_id).getNo_daftar();
+		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		model.addAttribute("pendaftar", pendaftar);
+		model.addAttribute("nilai", nilai);
+		return "detailSiswa";
 	}
 }

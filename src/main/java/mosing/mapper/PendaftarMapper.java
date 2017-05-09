@@ -49,7 +49,7 @@ public interface PendaftarMapper {
 	List<PendaftarModel> selectAllPendaftar();
 	
 	@Update("UPDATE pendaftar SET nama_id = #{nama_id}, nama_ijazah=#{nama_ijazah}, jenis_kelamin=#{jenis_kelamin}, no_id=#{no_id}, "
-			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_id=#{no_id}")
+			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
 	
 //	@Select("select nama_id, no_id, jurusan, penyeleksian.status as status from pendaftar"
@@ -69,4 +69,5 @@ public interface PendaftarMapper {
 //			@Result(property = "no_id", column ="no_id"),
 //			@Result(property = "jurusan", column = "jurusan")})
 //	List<PendaftarModel> selectTakTerverifikasi();
+	
 }

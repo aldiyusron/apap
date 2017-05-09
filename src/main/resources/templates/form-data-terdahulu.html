@@ -282,21 +282,24 @@
 						</div>
 					</div>
 				</div>
-				
-				<div class="col-md-4 selectContainer">
+
+				<div class="form-group">
+					<label for="jurusan" class="col-md-4 control-label">Jalur</label>
+					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-list"></i></span> <select
 								required="required" name="jalur_undangan"
 								class="form-control selectpicker">
 								<option value="">Pilih Jalur</option>
-								<div
-									th:each="jalurUndangan,iterationStatus: ${jalurUndangan}">
-									<option th:value="${jalurUndangan.id_jalur}" th:text="${jalurUndangan.nama}"></option>
+								<div th:each="jalurUndangan,iterationStatus: ${jalurUndangan}">
+									<option th:value="${jalurUndangan.id_jalur}"
+										th:text="${jalurUndangan.nama}"></option>
 								</div>
 							</select>
 						</div>
 					</div>
+				</div>
 
 				<!-- Text input-->
 
