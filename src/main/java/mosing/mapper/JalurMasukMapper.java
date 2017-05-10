@@ -36,11 +36,11 @@ public interface JalurMasukMapper {
 	@Insert("INSERT INTO jalur_masuk (nama, tanggal_buka, tanggal_tutup,"
 			+ "status, nama_jenjang, nama_program, jenis_jalur, persyaratan, waktu_ujian, flag_aktif) VALUES"
 			+ "(#{nama}, #{tanggal_buka}, #{tanggal_tutup}, "
-			+ "#{status}, #{nama_jenjang}, #{nama_program}, #{jenis_jalur}, #{persyaratan}, #{waktu_ujian}, #{flag_aktif})")
+			+ "#{status}, #{nama_jenjang}, #{nama_program}, #{jenis_jalur}, #{persyaratan}, #{waktu_ujian}, 1)")
 	void addJalurMasuk(JalurMasukModel jalur_masuk);
 	
 	@Update("UPDATE jalur_masuk SET nama = #{nama}, tanggal_buka=#{tanggal_buka}, tanggal_tutup=#{tanggal_tutup}, status=#{status}, "
-			+ "nama_jenjang=#{nama_jenjang}, nama_program=#{nama_program}, jenis_jalur=#{jenis_jalur}, persyaratan=#{persyaratan}, waktu_ujian=#{waktu_ujian}, flag_aktif=#{flag_aktif} WHERE id_jalur=#{id_jalur}")
+			+ "nama_jenjang=#{nama_jenjang}, nama_program=#{nama_program}, jenis_jalur=#{jenis_jalur}, persyaratan=#{persyaratan}, waktu_ujian=#{waktu_ujian}, flag_aktif=1 WHERE id_jalur=#{id_jalur}")
 	void updateJalurMasuk(JalurMasukModel jalur_masuk);
 	
 	@Select("select * from jalur_masuk where flag_aktif = 1")

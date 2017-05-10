@@ -11,6 +11,6 @@ public class ProdiTersediaModel {
 
 	private String nama_prodi;
 	private int daya_tampung;
-	private String nama_fakultas;
-	private String id_jalur;
+	private int nama_fakultas;
+	private int id_jalur;
 }

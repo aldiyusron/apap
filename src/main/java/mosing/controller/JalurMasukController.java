@@ -91,7 +91,7 @@ public class JalurMasukController {
 				nama_program, jenis, persyaratan, waktu, 1, null);
 
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
-		return "success-addjalur"; // belum bener
+		return "success-registration"; // belum bener
 	}
 
 	@RequestMapping("/jalur-masuk/update/{id_jalur}")
@@ -140,6 +140,6 @@ public class JalurMasukController {
 		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenis, persyaratan, waktu, 1, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
-		return "success-updatejalur"; //belum bener
+		return "success-registration"; //belum bener
 	}
 }
