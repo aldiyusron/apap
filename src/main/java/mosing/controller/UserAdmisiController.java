@@ -3,9 +3,7 @@ package mosing.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.UserAdmisiModel;
@@ -37,9 +35,9 @@ public class UserAdmisiController {
 		{
 			role = "ROLE_PENG_U";
 		}
-		UserAdmisiModel userAdmisi = new UserAdmisiModel(username, password, email, role);
+		UserAdmisiModel userAdmisi = new UserAdmisiModel(null, username, password, email, role);
 		userDAO.addUser(userAdmisi);
-		return "login";
+		return "success-registration";
 	}
 	
 	@RequestMapping(value = "/forgotPassword")

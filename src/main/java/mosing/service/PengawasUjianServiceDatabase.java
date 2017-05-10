@@ -18,4 +18,9 @@ public class PengawasUjianServiceDatabase implements PengawasUjianService {
 	public void addPengawas(PengawasUjianModel pengawas) {
 		pengawasMapper.addPengawas(pengawas);
 	}
+
+	@Override
+	public PengawasUjianModel selectPengawas(String username) {
+		return pengawasMapper.selectPengawas(username);
+	}
 }

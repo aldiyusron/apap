@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdiModel {
-	private int id_prodi;
-	private String nama_prodi;
-	private int daya_tampung;
-	private String nama_fakultas;
-	private int id_jalur;
+public class LPTerdahuluModel {
+	private int id_user;
+	private String nama_lembaga;
+	private String nama_provinsi;
+	private String nama_kota;
 }

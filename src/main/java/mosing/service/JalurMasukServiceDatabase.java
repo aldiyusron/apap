@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.JalurMasukMapper;
 import mosing.model.JalurMasukModel;
-import mosing.model.ProdiModel;
+import mosing.model.ProdiTersediaModel;
 import mosing.service.JalurMasukService;
 
 @Slf4j
@@ -29,8 +29,8 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	}
 	
 	@Override
-	public List<ProdiModel> selectProdiJalurMasuk() {
-		return JalurMasukMapper.selectProdiJalurMasuk();
+	public List<ProdiTersediaModel> selectProdiJalurMasuk(int id_jalur) {
+		return JalurMasukMapper.selectProdiJalurMasuk(id_jalur);
 	}
 
 	@Override
@@ -41,5 +41,28 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 	@Override
 	public void updateJalurMasuk(JalurMasukModel jalur_masuk) {
 		JalurMasukMapper.updateJalurMasuk (jalur_masuk);
+	}
+	
+	@Override
+	public void deleteJalurMasuk(int id_jalur) {
+		JalurMasukMapper.deleteJalurMasuk(id_jalur);
+	}
+	
+	@Override
+	public List<ProdiTersediaModel> selectAllProdi(int id_jalur)
+	{
+		return JalurMasukMapper.selectAllProdi(id_jalur);
+	}
+	
+	@Override
+	public List<JalurMasukModel> selectAllJalurTulis()
+	{
+		return JalurMasukMapper.selectAllJalurTulis();
+	}
+	
+	@Override
+	public List<JalurMasukModel> selectAllJalurUndangan()
+	{
+		return JalurMasukMapper.selectAllJalurUndangan();
 	}
 }

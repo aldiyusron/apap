@@ -22,5 +22,6 @@ public class JalurMasukModel {
 	private String persyaratan;
 	private Date waktu_ujian;
 	private int flag_aktif;
-	private List<ProdiModel> listProdi;
+	List<ProdiTersediaModel> listProdi;
+	List<LokasiModel> listLokasi;
 }

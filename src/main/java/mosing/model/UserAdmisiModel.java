@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserAdmisiModel  {
 
+	private String id_user;
 	private String username;
 	private String password;
 	private String email;
 	private String role;
-
-	public void setPassword(String password) {
-
-	}
 
 }

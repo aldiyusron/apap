@@ -11,15 +11,10 @@
 <title>Penerimaan UI | Daftar Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -36,6 +31,19 @@
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,7 +81,8 @@
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
+									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
 									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
@@ -109,14 +118,18 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#"><span
+					<ul class="nav navbar-nav">
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
 								class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
-						<li><form th:action="@{/logout}" method="post">
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
 								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Log Out</button>
-							</form></li>
+									value="Sign Out">Keluar</button>
+							</form>
+						</li>
 					</ul>
 				</ul>
 			</div>
@@ -124,15 +137,15 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="img/MOSINGlogo.png" alt="logo" /></a>
-				</li>
+				<a id="logo"><img src="/img/MOSINGlogo.png"
+						alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="#">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -150,7 +163,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/pendaftar/submit"
+		<form class="well form-horizontal" action="/pendaftar/rencanastudi"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -162,28 +175,44 @@
 						</h2>
 					</center>
 				</legend>
-				<br />
 
-				<!-- Text input-->
+				<input type="hidden" name="username" readonly="readonly"
+					th:value="${username}" />
 
 				<div class="form-group">
-					<label class="col-md-4 control-label">Username</label>
+					<label for="id_jalur" class="col-md-4 control-label">Jalur Masuk yang Diinginkan</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input type="text"
-								name="username" readonly="readonly" th:value="${username}" />
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="id_jalur"
+								class="form-control selectpicker">
+								<option value="">Pilihan</option>
+								<div th:each="jalurMasuk,iterationStatus: ${jalurMasuk}">
+									<option th:value="${jalurMasuk.id_jalur}"
+										th:text="${jalurMasuk.nama} + ' ' + ${jalurMasuk.nama_jenjang} + ' ' + ${jalurMasuk.nama_program}"></option>
+									
+								</div>
+							</select>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-md-4 control-label">Jenis ID</label>
-					<div class="col-md-4 inputGroupContainer">
+					<label for="jenis_id" class="col-md-4 control-label">Jenis
+						Identitas Pengenal</label>
+					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="jenis_id"
-								placeholder="Jenis ID" class="form-control" type="text" />
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="jenis_id"
+								class="form-control selectpicker">
+								<option value="">Pilihan</option>
+								<option>KTP</option>
+								<option>SIM</option>
+								<option>Paspor</option>
+								<option>Kartu Pelajar</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -191,12 +220,14 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Nomor ID</label>
+					<label for="no_id" class="col-md-4 control-label">Nomor
+						Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="no_id"
-								placeholder="Nomor ID" class="form-control" type="text" />
+								placeholder="Nomor Identitas" class="form-control" type="text"
+								required="true" />
 						</div>
 					</div>
 				</div>
@@ -204,12 +235,14 @@
 				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="nama_id" class="col-md-4 control-label">Nama ID</label>
+					<label for="nama_id" class="col-md-4 control-label">Nama
+						Sesuai Identitas</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
-								placeholder="Nama ID" class="form-control" type="text" />
+								placeholder="Nama Pada Identitas" class="form-control"
+								type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -218,29 +251,57 @@
 
 				<div class="form-group">
 					<label for="nama_ijazah" class="col-md-4 control-label">Nama
-						Ijazah</label>
+						Sesuai Ijazah</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <input
-								name="nama_ijazah" placeholder="Nama Ijazah"
-								class="form-control" type="text" />
+								name="nama_ijazah" placeholder="Nama Sesuai Ijazah"
+								class="form-control" type="text" required="true" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
+						Kelamin</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" />Laki-laki</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jenis_kelamin"
+									required="required" />Perempuan</label>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Text input-->
-
 				<div class="form-group">
+					<label for="tgl_lahir" class="col-md-4 control-label">Tanggal
+						Lahir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tgl_lahir"
+								name="tgl_lahir" placeholder="DD/MM/YYYY" class="form-control"
+								type="text" required="true" />
+						</div>
+					</div>
+				</div>
+
+				<!-- 				<div class="form-group">
 					<label for="foto" class="col-md-4 control-label">Link Foto</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-picture"></i></span> <input name="foto"
-								placeholder="Link Foto" class="form-control" type="text" />
+								placeholder="Link Foto" class="form-control" type="text"
+								required="true" />
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Text input-->
 
@@ -250,7 +311,38 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span> <input name="no_hp"
-								placeholder="+62xxxx" class="form-control" type="text" />
+								placeholder="+62xxxx" class="form-control" type="text"
+								required="true" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="no_hp" class="col-md-4 control-label">Nomor
+						Telepon</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-phone"></i></span> <input name="no_telp"
+								placeholder="+62xxxx" class="form-control" type="text"
+								required="true" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="kewarganegaraan" class="col-md-4 control-label">Kewarganegaraan</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<div class="radio">
+								<label><input type="radio" name="kewarganegaraan"
+									required="required" value="WNI" />WNI</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="kewarganegaraan"
+									required="required" value="WNA" />WNA</label>
+
+							</div>
 						</div>
 					</div>
 				</div>
@@ -263,21 +355,43 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-flag"></i></span> <input name="negara"
-								placeholder="Negara" class="form-control" type="text" />
+								placeholder="Negara" class="form-control" type="text"
+								required="true" />
 						</div>
 					</div>
 				</div>
-
-				<!-- Text input-->
-
+				
 				<div class="form-group">
-					<label for="kewarganegaraan" class="col-md-4 control-label">Kewarganegaraan</label>
-					<div class="col-md-4 inputGroupContainer">
+					<label for="provinsi" class="col-md-4 control-label">Provinsi Asal</label>
+					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-globe"></i></span> <input
-								name="kewarganegaraan" placeholder="Kewarganegaraan"
-								class="form-control" type="text" />
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="provinsi"
+								class="selectpicker form-control" data-live-search="true">
+								<option value="">Pilihan provinsi</option>
+								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
+									<option th:value="${provinsi.id_provinsi}"
+										th:text="${provinsi.nama_provinsi}">Pilihan</option>
+								</div>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="kota" class="col-md-4 control-label">Kota Asal</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <select
+								required="required" name="kota"
+								class="form-control selectpicker" data-live-search="true">
+								<option value="">Pilihan kota</option>
+								<div th:each="kota,iterationStatus: ${allKota}">
+									<option th:value="${kota.id_kota}" th:text="${kota.nama_kota}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -290,8 +404,10 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <input name="alamat_tetap"
-								placeholder="Alamat Tetap" class="form-control" type="text" />
+								class="glyphicon glyphicon-home"></i></span>
+							<textarea name="alamat_tetap"
+								placeholder="Alamat tempat tinggal orang tua/wali. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
+								class="form-control" rows="5" type="text" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -304,68 +420,39 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <input
-								name="alamat_sekarang" placeholder="Alamat Sekarang"
-								class="form-control" type="text" />
+								class="glyphicon glyphicon-home"></i></span>
+							<textarea name="alamat_sekarang"
+								placeholder="Alamat tempat tinggal sekarang. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ, Kota XYZ"
+								class="form-control" type="text" rows="5" required="true"></textarea>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="nama_lembaga" class="col-md-4 control-label">Nama Lembaga Pendidikan Terakhir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <input name="nama_lembaga"
+								placeholder="Nama lembaga pendidikan terakhir" class="form-control" type="text"
+								required="true" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="jurusan" class="col-md-4 control-label">Jurusan Sekolah Terakhir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-pushpin"></i></span> <input name="jurusan"
+								placeholder="Jurusan Sekolah Terakhir" class="form-control" type="text"
+								required="true" />
 						</div>
 					</div>
 				</div>
 
 				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="tgl_lahir" class="col-md-4 control-label">Tanggal
-						Lahir</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input
-								name="tgl_lahir" placeholder="DD/MM/YYYY" class="form-control"
-								type="text" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="provinsi" class="col-md-4 control-label">Provinsi</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="provinsi"
-								placeholder="Provinsi" class="form-control" type="text" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="kota" class="col-md-4 control-label">Kota</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-pushpin"></i></span> <input name="kota"
-								placeholder="Kota" class="form-control" type="text" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
-						Kelamin</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input
-								name="jenis_kelamin" placeholder="Jenis Kelamin"
-								class="form-control" type="text" />
-						</div>
-					</div>
-				</div>
 
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
@@ -374,13 +461,10 @@
 				<div class="form-group" style="position: center">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
-						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" />
-
-						<button value="cancel" name="action" type="cancel"
-							class="btn btn-info">Batal</button>
-						<button value="save" name="action" type="submit"
-							class="btn btn-warning">Simpan</button>
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
+						<button style="width: 30%; margin-left: 1%; margin-top: 0" value="save" name="action"
+							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
@@ -388,133 +472,14 @@
 	</div>
 
 	<!-- /.container -->
-	<script>
-	  $(document).ready(function() {
-		    $('#contact_form').bootstrapValidator({
-		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        fields: {
-		            jenis_id: {
-		                validators: {
-		                        stringLength: {
-		                        min: 2,
-		                    },
-		                        notEmpty: {
-		                        message: 'Please enter your ID Type'
-		                    }
-		                }
-		            },
-		             no_id: {
-		                validators: {
-		                     stringLength: {
-		                        min: 2,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your ID Number'
-		                    }
-		                }
-		            },
-					 nama_id: {
-		                validators: {
-		                     stringLength: {
-		                        min: 2,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your ID Name'
-		                    }
-		                }
-		            },
-					 nama_ijazah: {
-		                validators: {
-		                     stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your Ijazah Name'
-		                    }
-		                }
-		            },
-					foto: {
-		                validators: {
-		                     stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your photo link'
-		                    }
-		                }
-		            },
-		            no_hp: {
-		                validators: {
-		                    stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your Phone Number'
-		                    }
-		                }
-		            },
-		            negara: {
-		                validators: {
-		                  stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your Country Name'
-		                    }
-		            },
-					 kewarganegaraan: {
-		                validators: {
-		                    stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your Nationality'
-		                    }
-		            },
-		            alamat_tetap: {
-		                validators: {
-		                    stringLength: {
-		                        min: 8,
-		                    },
-		                    notEmpty: {
-		                        message: 'Please enter your Address'
-		                    }
-		            },
-		                }
-		            }
-		        })
-		        .on('success.form.bv', function(e) {
-		            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-		                $('#contact_form').data('bootstrapValidator').resetForm();
 
-		            // Prevent form submission
-		            e.preventDefault();
-
-		            // Get the form instance
-		            var $form = $(e.target);
-
-		            // Get the BootstrapValidator instance
-		            var bv = $form.data('bootstrapValidator');
-
-		            // Use Ajax to submit form data
-		            $.post($form.attr('action'), $form.serialize(), function(result) {
-		                console.log(result);
-		            }, 'json');
-		        });
-		});
-	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -523,11 +488,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -561,7 +529,8 @@
 	<footer>
 		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
@@ -570,16 +539,10 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{js/bootstrap.min.js}"></script>
-
-	<!-- Plugin JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-		crossorigin="anonymous"></script>
 
 	<!-- Contact Form JavaScript -->
 	<script th:src="@{js/jqBootstrapValidation.js}"></script>
@@ -587,6 +550,30 @@
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
 
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+
+<script type="text/javascript">
+
+$('.select').selectpicker();</script>
+	<script>
+		
+	
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				})
+	</script>
 </body>
 
 </html>

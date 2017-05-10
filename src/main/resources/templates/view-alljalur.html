@@ -7,14 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Penerimaan UI | Detail Jalur Masuk</title>
+
+<title>Penerimaan UI | Daftar Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -28,12 +33,6 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -112,14 +111,18 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#"><span
-								class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span></a></li>
-						<li><form th:action="@{/logout}" method="post">
+					<ul class="nav navbar-nav">
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
 								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Log Out</button>
-							</form></li>
+									value="Sign Out">Keluar</button>
+							</form>
+						</li>
 					</ul>
 				</ul>
 			</div>
@@ -127,10 +130,9 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="img/MOSINGlogo.png" alt="logo" /></a>
-				</li>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -151,46 +153,67 @@
 		</div>
 
 	</div>
-	<div class="container" style="margin-top: 2.5%;">
+	<div class="container">
 		<h1>Daftar Jalur Masuk</h1>
-		<div class="row">
+
+		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
+
 				<div class="tab-content clearfix">
-						<form th:action="@{/jalur-masuk/add}" method="post">
-							<input type="submit" value="+ Tambah Jalur Masuk" /> <br />
-						</form>
+					<form th:action="@{/jalur-masuk/add}" method="post">
+						<input class="btn btn-danger1"
+							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
+							type="submit" value="+ Tambah Jalur Masuk" /> <br />
+					</form>
+				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%; float: right">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Nama Jalur Masuk</th>
+								<th>Status</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
 
-						<table id="daftarJalur" class="table stripe">
-							<thead>
+						<tbody>
+							<div th:each="jalur,iterationStatus: ${allJalur}">
 								<tr>
-									<th>No.</th>
-									<th>Nama Jalur Masuk</th>
-									<th></th>
-									<th></th>
+									<td scope="row" th:text="${iterationStatus.count}">No.</td>
+									<td scope="row" th:text="${jalur.nama}">Nama Jalur Masuk</td>
+									<div th:if="${jalur.status}==1">
+										<td scope="row">Aktif</td>
+									</div>
+									<div th:if="${jalur.status}==0">
+										<td scope="row">Tidak Aktif</td>
+									</div>
+									<td><a th:href="'/jalur-masuk/view/'+ ${jalur.id_jalur}"
+										style="float: right"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-eye-open"
+														style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
+									<td><a th:href="'/jalur-masuk/delete/'+ ${jalur.id_jalur}">
+											<span class="input-group-btn">
+												<button type="button" class="btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-trash"
+														style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
 								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="jalur,iterationStatus: ${allJalur}">
-									<tr>
-										<td th:text="${jalur.id_jalur}">No.</td>
-										<td th:text="${jalur.nama}">Nama Jalur Masuk</td>
-										<td><a
-											th:href="'/jalur-masuk/view/'+ ${jalur.id_jalur}">Detail</a></td>
-										<td><a
-											th:href="'/jalur-masuk/delete/'+ ${jalur.id_jalur}">Hapus
-												Jalur Masuk</a></td>
-										<td><a
-											th:href="'/jalur-masuk/update/'+ ${jalur.id_jalur}">Update
-												Jalur Masuk</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
+							</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -198,7 +221,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -207,11 +230,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -244,20 +270,21 @@
 
 	<footer>
 		<div class="container bg-darkest-gray">
-			<div class="col-md-4"
-				style="width: 100%; height: 50px; padding-top: 1.5%">
-				<span class="copyright" style="color: #fed136">Penerimaan
-					Mahasiswa Baru - Universitas Indonesia</span>
-
+			<div class="row">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
+					<span class="copyright" style="color: #fed136">Penerimaan
+						Mahasiswa Baru - Universitas Indonesia</span>
+				</div>
 			</div>
 		</div>
 	</footer>
 
 	<!-- jQuery -->
-	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -265,21 +292,52 @@
 		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
 		crossorigin="anonymous"></script>
 
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
-	</script>
-	
-	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
-	</script>
-
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
-	<script>
-			$(document).ready(function() {
-				$("#daftarLokasi").DataTable();
+	<script th:src="@{/js/agency.min.js}"></script>
+	<!-- <script>
+		$("#myModal").on("show", function() { // wire up the OK button to dismiss the modal when shown
+			$("#myModal a.btn").on("click", function(e) {
+				console.log("button pressed"); // just as an example...
+				$("#myModal").modal('hide'); // dismiss the dialog
 			});
-		</script>
+		});
+		$("#myModal").on("hide", function() { // remove the event listeners when the dialog is dismissed
+			$("#myModal a.btn").off("click");
+		});
+
+		$("#myModal").on("hidden", function() { // remove the actual elements from the DOM when fully hidden
+			$("#myModal").remove();
+		});
+
+		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+			"backdrop" : "static",
+			"keyboard" : true,
+			"show" : true
+		// ensure the modal is shown immediately
+		});
+	</script> 
+	<script>
+		$(this).parent().parent().children('td').each(function() {
+			$(this).addClass("selected");
+		});
+	</script>-->
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+		
+	</script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+		
+	</script>
+	<script>
+		$(document).ready(function() {
+			$("#daftarJalurMasuk").DataTable();
+		});
+	</script>
+
 </body>
 </html>
