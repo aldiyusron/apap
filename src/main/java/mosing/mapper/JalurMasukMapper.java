@@ -22,7 +22,7 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_prodi", column = "nama_prodi") })
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);
 
-	@Select("select * from jalur_masuk where jenis_jalur=1 and flag_aktif=1")
+	@Select("select * from jalur_masuk where jenis_jalur=0 and flag_aktif=1")
 	List<JalurMasukModel> selectAllJalurUndangan();
 	
 	@Select("select * from jalur_masuk where id_jalur=#{id_jalur} and flag_aktif=1")

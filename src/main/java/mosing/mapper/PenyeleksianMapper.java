@@ -13,7 +13,7 @@ import mosing.model.PenyeleksianModel;
 @Mapper
 public interface PenyeleksianMapper {
 
-	@Insert("insert into penyeleksian (no_daftar, status, id_jalur, berkas) values (#{no_daftar}, #{status}, #{id_jalur}, #{berkas})")
+	@Insert("insert into penyeleksian (no_daftar, status, id_jalur, status_rekomen, berkas) values (#{no_daftar}, #{status}, #{id_jalur}, 0, #{berkas})")
 	void addPenyeleksian(PenyeleksianModel penyeleksian);
 
 	@Select("select * from penyeleksian where id_jalur = #{id_jalur}")

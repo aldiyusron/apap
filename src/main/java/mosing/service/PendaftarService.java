@@ -12,4 +12,5 @@ public interface PendaftarService {
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 	List<PendaftarModel> selectAllPendaftar();
 	void updateDataPendaftar(PendaftarModel pendaftar);
+	PendaftarModel selectPPKB(String no_id);
 }

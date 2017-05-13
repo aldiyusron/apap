@@ -131,7 +131,8 @@ public class PendaftarController {
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		// return "success-datadiri";
 		byte status = 0;
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, null);
+		byte status_rekomen = 0;
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, status_rekomen, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 		model.addAttribute("pendaftar2", pendaftar2);
 		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
@@ -191,11 +192,24 @@ public class PendaftarController {
 	
 	@RequestMapping("/detail-siswa/{no_id}")
 	public String detailSiswa(Model model, @PathVariable(value = "no_id") String no_id) {
-		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
-		int no_daftar = pendaftarDAO.selectPendaftar(no_id).getNo_daftar();
+		// ganti jadi selectPPKB nih selectPendaftar
+		PendaftarModel pendaftar = pendaftarDAO.selectPPKB(no_id);
+		int no_daftar = pendaftarDAO.selectPPKB(no_id).getNo_daftar();
 		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		int kkm_mtk = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_mtk();
+		int kkm_kimia = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_kimia();
+		int kkm_fisika = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_fisika();
+		int kkm_biologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_biologi();
+		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
+		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
 		model.addAttribute("pendaftar", pendaftar);
 		model.addAttribute("nilai", nilai);
+		model.addAttribute("kkm_mtk", kkm_mtk);
+		model.addAttribute("kkm_kimia", kkm_kimia);
+		model.addAttribute("kkm_fisika", kkm_fisika);
+		model.addAttribute("kkm_biologi", kkm_biologi);
+		model.addAttribute("kkm_bindo", kkm_bindo);
+		model.addAttribute("kkm_bing", kkm_bing);
 		return "detailSiswa";
 	}
 }
