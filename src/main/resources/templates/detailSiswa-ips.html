@@ -7,19 +7,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<title>Penerimaan UI | Formulir Data Siswa</title>
+<title>Penerimaan UI | Detail Siswa</title>
+
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -57,7 +61,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
-
 </head>
 
 <body id="page-top" class="index">
@@ -81,16 +84,16 @@
 									Masyarakat</a></li>
 							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
 									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.bing.ui.ac.id">Teknik</a></li>
 							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pengetahuan Alam</a></li>
+									dan Ilmu Pbingetahuan Alam</a></li>
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">ekonominomi
 									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pengetahuan Budaya</a></li>
+									Pbingetahuan Budaya</a></li>
 							<li><a style="color: black"
 								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
 							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
@@ -145,7 +148,8 @@
 	<div class="container">
 		<div class="logomosing">
 			<ul>
-				<li><a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a></li>
+				<li><a id="logo"><img src="../img/MOSINGlogo.png"
+						alt="logo" /></a></li>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -168,167 +172,144 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal"
-			action="/data-pendaftar/update/submit" method="post"
-			id="contact_form">
+		<form class="well form-horizontal" id="contact_form">
 			<fieldset>
-				<div class="progress">
-					<div class="progress-bar progress-bar-warning" role="progressbar"
-						aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-						style="width: 25%">0% Complete</div>
-				</div>
+
 				<!-- Form Name -->
 				<legend>
 					<center>
 						<h2>
-							<b>FORMULIR DATA SISWA</b>
+							<b>Detail Siswa</b>
 						</h2>
 					</center>
 				</legend>
 
+				<!-- <input type="hidden"
+					name="jurusan" readonly="readonly" th:value="${pendaftar2.jurusan}" /> -->
 
+				<div>
+					<h5 th:text="'Nama : ' + ${pendaftar.nama_id}"></h5>
+					<h5 th:text="'NISN : ' + ${pendaftar.no_id}"></h5>
+					<h5 th:text="'Jurusan : ' + ${pendaftar.jurusan}"></h5>
+					<h5 th:text="'Asal Sekolah : ' + ${pendaftar.nama_lembaga}"></h5>
+					<h5>Nilai</h5>
+
+
+				</div>
 				<input type="hidden" name="no_daftar" readonly="readonly"
-				th:value="${pendaftar.no_daftar}" />
+					th:value="${no_daftar}" />
 				<div class="form-group">
-					<label for="nama_id" class="col-md-4 control-label">Nama
-						Lengkap Siswa</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
-								placeholder="Nama Lengkap Siswa" class="form-control"
-								type="text" required="true" th:value="${pendaftar.nama_id}" />
-						</div>
-					</div>
-				</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Mata Pelajaran</th>
+								<th>KKM</th>
+								<th>Semester 1</th>
+								<th>Semester 2</th>
+								<th>Semester 3</th>
+								<th>Semester 4</th>
+								<th>Semester 5</th>
+							</tr>
+						</thead>
+						<tbody>
 
-				<!-- Text input-->
+							<tr>
 
-				<div class="form-group">
-					<label for="nama_ijazah" class="col-md-4 control-label">Nama
-						Sesuai Ijazah</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="nama_ijazah"
-								placeholder="Nama Sesuai Ijazah" class="form-control"
-								type="text" required="true" th:value="${pendaftar.nama_ijazah}" />
-						</div>
-					</div>
-				</div>
+								<td>Matematika</td>
 
-				<div class="form-group">
-					<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
-						Kelamin</label>
-					<div class="col-md-4 selectContainer"
-						th:switch="${pendaftar.jenis_kelamin}">
-						<div class="input-group" th:case="1">
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" value="Laki-laki" checked="checked" />Laki-laki</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" value="Perempuan" />Perempuan</label>
-							</div>
-						</div>
-						<div class="input-group" th:case="0">
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" value="Laki-laki" />Laki-laki</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jenis_kelamin"
-									required="required" value="Perempuan" checked="checked" />Perempuan</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">NISN</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-education"></i></span> <input name="no_id"
-								class="form-control" type="text" required="true"
-								th:value="${pendaftar.no_id}" />
-						</div>
-					</div>
-				</div>
-				<input type="hidden" name="jenis_id" value="NISN" />
-				<div class="form-group">
-					<label for="nama_lembaga" class="col-md-4 control-label">Sekolah
-						Asal</label>
-
-					<!-- sekolah asal atau jenjang? -->
-
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> <select
-								required="required" name="nama_lembaga"
-								class="form-control selectpicker">
-								<option value="">Pilihan</option>
-								<div
-									th:each="lembaga_pendidikan_terakhir,iterationStatus: ${allLPT}">
-									<option th:text="${lembaga_pendidikan_terakhir.nama_lembaga}">Sekolah</option>
+								<td><input type="text" name="kkm_mtk"
+									class="resizedTextBox" th:value="${kkm_mtk}" /></td>
+								<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'mtk' + ${iterationStatus.count}"
+										th:value="${nilai.mtk}" /></td>
 								</div>
-							</select>
-						</div>
-					</div>
+							</tr>
+							<tr>
+
+								<td>Geografi</td>
+								
+									<td><input type="text" name="kkm_geografi"
+										th:value="${kkm_geografi}" /></td>
+									<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'geografi' + ${iterationStatus.count}"
+										th:value="${nilai.geografi}" /></td>
+							</div>
+							</tr>
+							<tr>
+
+								<td>Ekonomi</td>
+									
+									<td><input type="text" name="kkm_ekonomi"
+										th:value="${kkm_ekonomi}" /></td>
+									<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'ekonomi' + ${iterationStatus.count}"
+										th:value="${nilai.ekonomi}" /></td>
+							</div>
+					
+							</tr>
+
+							<tr>
+							
+								<td>Sejarah</td>
+									
+									<td><input type="text" name="kkm_sejarah"
+										th:value="${kkm_sejarah}" /></td>
+									<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'sejarah' + ${iterationStatus.count}"
+										th:value="${nilai.sejarah}" /></td>
+
+							</div>
+							</tr>
+
+							<tr>
+
+								<td>Bahasa Indonesia</td>
+
+								<td><input type="text" name="kkm_bindo"
+									th:value="${kkm_bindo}" /></td>
+
+								<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'bindo' + ${iterationStatus.count}"
+										th:value="${nilai.bindo}" /></td>
+								</div>
+
+							</tr>
+
+							<tr>
+
+								<td>Bahasa Inggris</td>
+
+								<td><input type="text" name="kkm_bing"
+									th:value="${kkm_bing}" /></td>
+
+								<div th:each="nilai,iterationStatus: ${nilai}">
+									<td><input type="text"
+										th:name="'bing' + ${iterationStatus.count}"
+										th:value="${nilai.bing}" /></td>
+
+								</div>
+							</tr>
+						</tbody>
+					</table>
 				</div>
+
+				<!-- Text input-->
 
 				<div class="form-group">
-					<label for="jurusan" class="col-md-4 control-label">Jurusan</label>
-					<div class="col-md-4 selectContainer"
-						th:switch="${pendaftar.jurusan}">
-						<div class="input-group" th:case="IPA">
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPA" checked="checked" />IPA</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPS" />IPS</label>
-							</div>
+					<label for="no_id" class="col-md-4 control-label">Rata-rata
+						Nilai Rapor</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
+								placeholder="Rata-rata nilai rapor" class="form-control"
+								type="text" required="true" />
 						</div>
-						<div class="input-group" th:case="IPS">
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPA" />IPA</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPS" checked="checked" />IPS</label>
-							</div>
-						</div>
-						<div class="input-group" th:case="NULL">
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPA" />IPA</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jurusan"
-									required="required" value="IPS" />IPS</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4 selectContainer">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-list"></i></span> <select required="required"
-							name="jalur_undangan" class="form-control selectpicker">
-							<option value="">Pilih Jalur</option>
-							<div th:each="jalurUndangan,iterationStatus: ${jalurUndangan}">
-								<option th:value="${jalurUndangan.id_jalur}"
-									th:text="${jalurUndangan.nama}"></option>
-							</div>
-						</select>
 					</div>
 				</div>
 
@@ -343,15 +324,14 @@
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
+						<a class="btn btn-info" href="/data-pendaftar/update/{no_id}">Kembali</a>
 						<button style="width: 30%" value="save" name="action"
-							type="submit" class="btn btn-warning"
-							th:href="'/nilai-ips/update/' + ${pendaftar.no_daftar}">Lanjut</button>
+							type="submit" class="btn btn-warning">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 	</div>
-
 	<!-- /.container -->
 
 	<div class="container bg-light-gray">
@@ -360,7 +340,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/SIMAK_UI">Tweets by SIMAK UI</a>
+						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -420,13 +400,13 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{/js/agency.min.js}"></script>
+	<script th:src="@{js/agency.min.js}"></script>
 
 	<!-- Include jQuery -->
 	<script type="text/javascript"

@@ -184,10 +184,7 @@ public class PendaftarController {
 		// null);
 		// penyeleksianDAO.addPenyeleksian(penyeleksian);
 		model.addAttribute("pendaftar2", pendaftar2);
-		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
-			return "edit-nilai-ipa";
-		else
-			return "edit-nilai-ips";
+		return "success-update-data";
 	}
 	
 	@RequestMapping("/detail-siswa/{no_id}")
@@ -200,6 +197,9 @@ public class PendaftarController {
 		int kkm_kimia = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_kimia();
 		int kkm_fisika = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_fisika();
 		int kkm_biologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_biologi();
+		int kkm_sejarah = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_sejarah();
+		int kkm_geografi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_geografi();
+		int kkm_ekonomi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_ekonomi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
 		model.addAttribute("pendaftar", pendaftar);
@@ -208,8 +208,15 @@ public class PendaftarController {
 		model.addAttribute("kkm_kimia", kkm_kimia);
 		model.addAttribute("kkm_fisika", kkm_fisika);
 		model.addAttribute("kkm_biologi", kkm_biologi);
+		model.addAttribute("kkm_sejarah", kkm_sejarah);
+		model.addAttribute("kkm_geografi", kkm_geografi);
+		model.addAttribute("kkm_ekonomi", kkm_ekonomi);
 		model.addAttribute("kkm_bindo", kkm_bindo);
 		model.addAttribute("kkm_bing", kkm_bing);
-		return "detailSiswa";
+		if (pendaftar.getJurusan().equalsIgnoreCase("IPA"))
+			return "detailSiswa-ipa";
+		else
+			return "detailSiswa-ips";
+		
 	}
 }

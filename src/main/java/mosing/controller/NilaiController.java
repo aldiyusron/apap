@@ -261,7 +261,6 @@ public class NilaiController {
 		int kkm_biologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_biologi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
-		System.out.println(nilai.size());
 		if(nilai != null) {
 			model.addAttribute("kkm_mtk", kkm_mtk);
 			model.addAttribute("kkm_kimia", kkm_kimia);
@@ -320,11 +319,17 @@ public class NilaiController {
 			@RequestParam(value = "biologi5", required = false) int biologi5) throws ParseException {
 
 		List<String> daftar = new ArrayList<String>();
-		daftar.add(mtk1 + "-" + kimia1 + "-" + kimia1 + "-" + biologi1 + "-" + bindo1 + "-" + bing1);
-		daftar.add(mtk2 + "-" + kimia2 + "-" + kimia2 + "-" + biologi2 + "-" + bindo2 + "-" + bing2);
-		daftar.add(mtk3 + "-" + kimia3 + "-" + kimia3 + "-" + biologi3 + "-" + bindo3 + "-" + bing3);
-		daftar.add(mtk4 + "-" + kimia4 + "-" + kimia4 + "-" + biologi4 + "-" + bindo4 + "-" + bing4);
-		daftar.add(mtk5 + "-" + kimia5 + "-" + kimia5 + "-" + biologi5 + "-" + bindo5 + "-" + bing5);
+		daftar.add(mtk1 + "-" + kimia1 + "-" + fisika1 + "-" + biologi1 + "-" + bindo1 + "-" + bing1);
+		daftar.add(mtk2 + "-" + kimia2 + "-" + fisika2 + "-" + biologi2 + "-" + bindo2 + "-" + bing2);
+		daftar.add(mtk3 + "-" + kimia3 + "-" + fisika3 + "-" + biologi3 + "-" + bindo3 + "-" + bing3);
+		daftar.add(mtk4 + "-" + kimia4 + "-" + fisika4 + "-" + biologi4 + "-" + bindo4 + "-" + bing4);
+		daftar.add(mtk5 + "-" + kimia5 + "-" + fisika5 + "-" + biologi5 + "-" + bindo5 + "-" + bing5);
+//		int rapor_satu = ((mtk1+kimia1+fisika1+biologi1+bindo1+bing1)/6);
+//		int rapor_dua = (mtk2+kimia2+fisika2+biologi2+bindo2+bing2)/6;
+//		int rapor_tiga = (mtk3+kimia3+fisika3+biologi3+bindo3+bing3)/6;
+//		int rapor_empat = (mtk4+kimia4+fisika4+biologi4+bindo4+bing4)/6;
+//		int rapor_lima = (mtk5+kimia5+fisika5+biologi5+bindo5+bing5)/6;
+//		System.out.println(rapor_satu);
 		for (int i = 0; i < daftar.size(); i++) {
 			String daftarnilai = daftar.get(i);
 			String[] parts = daftarnilai.split("-");
@@ -333,7 +338,7 @@ public class NilaiController {
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), 0, 0, 0, Integer.parseInt(parts[4]),
 					Integer.parseInt(parts[5]), i + 1);
 
-			nilaiDAO.addNilai(nilai);
+			nilaiDAO.updateNilai(nilai);
 		}
 		return "success-update-nilai";
 	}
