@@ -70,4 +70,10 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	{
 		pendaftarMapper.updateFoto(foto, id_user);
 	}
+
+	@Override
+	public List<PendaftarModel> selectAllPendaftarPPKB() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarPPKB();
+	}
 }

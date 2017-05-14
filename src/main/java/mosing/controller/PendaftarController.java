@@ -123,7 +123,8 @@ public class PendaftarController {
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar2(username);
 		Byte status = Byte.parseByte("0");
 		int no_daftar = pendaftarSeleksi.getNo_daftar();
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, null);
+		byte status_rekomen = Byte.parseByte("0");
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, status_rekomen, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 
 		List<ProdiTersediaModel> prodiTersedia = prodiDAO.selectAllProdi(id_jalur);
@@ -204,7 +205,8 @@ public class PendaftarController {
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		// return "success-datadiri";
 		byte status = 0;
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, null);
+		byte status_rekomen = 0;
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, status_rekomen, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 		model.addAttribute("pendaftar2", pendaftar2);
 		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
