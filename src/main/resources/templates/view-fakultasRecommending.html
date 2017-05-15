@@ -158,11 +158,13 @@
 
 		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
-				<div th:each="fakultas,iterationStatus: ${fakultas}">
-					<button th:text="${fakultas.fakultas}" th:href="'/view/pendaftar/' + ${fakultas.id_fakultas}"></button>
+				<ul th:each="fakultas,iterationStatus: ${fakultas}">
+					<li><button th:text="${fakultas.fakultas}"></button></li>
+					<ul th:each="prodi,iterationStatus: ${fakultas.prodi}">
+						<li><button th:text=${prodi.nama_prodi}></button>
+					</ul>
 					<br/>
-				</div>
-				<button th:text=></button>
+				</ul>
 			</div>
 		</div>
 	</div>
