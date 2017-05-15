@@ -37,12 +37,13 @@ public interface PendaftarMapper {
 	@Update("Update pendaftar set foto=#{foto} where id_user=#{id_user}")
 	void updateFoto(@Param("foto") String foto, @Param("id_user") int id_user);
 
-	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and p.id_user=5")
+	@Select("select * from pendaftar p" 
+			+ " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
+			+ " WHERE penyeleksian.status=0 and id_jalur=4")
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 
-	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and p.id_user=5")
+	@Select("select * from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
+			+ " WHERE penyeleksian.status=0 and id_jalur=4")
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 
 	@Select("select nama_id, no_id, jurusan, penyeleksian.status as status from pendaftar"

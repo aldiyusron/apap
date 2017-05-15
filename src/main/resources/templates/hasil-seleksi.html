@@ -14,16 +14,10 @@
 <title>Penerimaan UI | Detail Siswa</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -190,17 +184,37 @@
 					<h5>Coba lagi taun depan</h5>
 					
 				</div> -->
-				<div>
-					<h5 th:text="'Nama : ' + ${murid.nama_id}"></h5>		
-					<h5 th:text="'Nomor Ujian : ' + ${pendaftar.no_daftar}"></h5>
-					<h5 th:text="'NPM : ' + ${pendaftar.npm}"></h5>
-					<h5 th:text="'Program Studi : ' + ${pendaftar.id_prodi}"></h5>
-					<h5 th:text="'Jalur Masuk : ' + ${pendaftar.id_jalur}"></h5>
-					<h5 th:text="'Jenjang : ' + ${pendaftar.jenjang}"></h5>
+				<div class="isilist">
+				<table class="table table-striped">
+							<thead>
+								<dl class="dl-horizontal" style="margin-left: 400px">
+									<br />
+									<dt>Nama</dt>
+									<dd
+										th:text="${murid.nama_id}"></dd>
+									<br />
+									<dt>Nomor Ujian</dt>
+									<dd
+										th:text="${pendaftar.no_daftar}"></dd>
+									<br />
+									<dt>NPM</dt>
+									<dd th:text="${pendaftar.npm}"></dd>
+									<br />
+									<dt>Program Studi</dt>
+									<dd th:text="${nama_prodi}"></dd>
+									<br />
+									<dt>Fakultas</dt>
+									<dd th:text="${nama_fakultas}"></dd>
+									<br />
+									<dt>Jalur Masuk</dt>
+									<dd th:text="${nama_jalur}"></dd>
+									<br />
+									<dt>Jenjang Pendidikan</dt>
+									<dd th:text="${pendaftar.jenjang}"></dd>
+								</dl>
+							</thead>
+						</table>
 				</div>
-				
-				
-
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
 

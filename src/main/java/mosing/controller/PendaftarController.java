@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.CalonMahasiswaModel;
 import mosing.model.DaftarPilihanModel;
+import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.KotaModel;
 import mosing.model.LPTerdahuluModel;
@@ -29,6 +30,7 @@ import mosing.model.ProvinsiModel;
 import mosing.model.UserAdmisiModel;
 
 import mosing.service.CalonMahasiswaService;
+import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
 import mosing.service.LPTerdahuluService;
@@ -78,6 +80,9 @@ public class PendaftarController {
 
 	@Autowired
 	KotaService kotaDAO;
+	
+	@Autowired
+	FakultasService fakultasDAO;
 
 	@RequestMapping("/pendaftar/{username}")
 	public String add(Model model, @PathVariable(value = "username") String username) {
@@ -191,10 +196,6 @@ public class PendaftarController {
 		model.addAttribute("pendaftarVerif", pendaftarVerif);
 		model.addAttribute("pendaftarNonVerif", pendaftarNonVerif);
 		return "list-siswa-ppkb";
-		// List<PendaftarModel> allSiswa = pendaftarDAO.selectAllSiswa();
-		// model.addAttribute("allSiswa", allSiswa);
-		//
-		// return "list-siswa-ppkb";
 	}
 
 	@RequestMapping("/data-pendaftar/submit")
@@ -219,8 +220,7 @@ public class PendaftarController {
 		int latestID = Integer.parseInt(id);
 		int newID = latestID + 1;
 		
-		String[] parts = nama_id.split("\\s+"); 
-		System.out.println(parts[0]);
+		String[] parts = nama_id.split("\\s+");
 		String username = (parts[0]+parts[1]).toLowerCase();
 		
 		String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -350,13 +350,19 @@ public class PendaftarController {
 		@RequestParam(value = "no_daftar", required = false) int no_daftar,
 		@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
 		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
-		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalur(nama_jalur);
-		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
 		
-		int jalur = jalurMasuk.getId_jalur();
+		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
+		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(pendaftar.getId_prodi());
+		String nama_prodi = prodi.getNama_prodi();
+		int id_fakultas = prodi.getId_fakultas();
+		FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
+		String nama_fakultas = fakultas.getFakultas();
+		
+		model.addAttribute("nama_prodi", nama_prodi);
+		model.addAttribute("nama_fakultas", nama_fakultas);
 		model.addAttribute("pendaftar", pendaftar);
-		model.addAttribute("jalur", jalur);
 		model.addAttribute("murid", murid);
+		model.addAttribute("nama_jalur", nama_jalur);
 		return "hasil-seleksi";
 		
 	}
