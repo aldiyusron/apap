@@ -44,13 +44,15 @@ public class PengawasUjianController {
 	public String addSubmit(@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "jabatan", required = false) String jabatan,
 			@RequestParam(value = "nama", required = false) String nama,
-			@RequestParam(value = "lokasi", required = false) int lokasi) {
+			@RequestParam(value = "no_hp", required = false) String no_hp,
+			@RequestParam(value = "lokasi", required = false) int lokasi,
+			@RequestParam(value = "pindah_bool", required = false) String pindah_bool) {
 		
-		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
 		UserAdmisiModel user = userDAO.selectUser(username);
 		int iduser = Integer.parseInt(user.getId_user());
-		PengawasUjianModel pengawas = new PengawasUjianModel(iduser, false, jabatan, nama,
-				lokasimodel.getId_lokasi());
+		byte pindah = Byte.parseByte(pindah_bool);
+		PengawasUjianModel pengawas = new PengawasUjianModel(iduser, false, jabatan, nama, no_hp,
+				lokasi, pindah);
 		pengawasDAO.addPengawas(pengawas);
 		return "success-daftarpengawas";
 	}

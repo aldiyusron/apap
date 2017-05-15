@@ -10,8 +10,8 @@ import mosing.model.PengawasUjianModel;
 @Mapper
 public interface PengawasUjianMapper {
 
-	@Insert("insert into pengawas_ujian (id_user, status, jabatan, nama, id_lokasi) values "
-			+ "(#{id_user}, #{status}, #{jabatan}, #{nama}, #{id_lokasi})")
+	@Insert("insert into pengawas_ujian (id_user, status, jabatan, nama, no_hp, id_lokasi, pindah_bool, flag_aktif) values "
+			+ "(#{id_user}, #{status}, #{jabatan}, #{nama}, #{no_hp}, #{id_lokasi}, #{pindah_bool}, 1)")
 	void addPengawas(PengawasUjianModel pengawas);
 
 	@Select("select u.id_user, u.username, pu.* from user u, pengawas_ujian pu where u.username = #{username} and u.id_user = pu.id_user")

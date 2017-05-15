@@ -13,5 +13,7 @@ public class PengawasUjianModel {
 	private boolean status;
 	private String jabatan;
 	private String nama;
-	private int lokasi;
+	private String no_hp;
+	private int id_lokasi;
+	private byte pindah_bool;
 }
