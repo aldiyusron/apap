@@ -7,14 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Penerimaan UI | Pendaftar</title>
+
+<title>Penerimaan UI | Daftar Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -28,12 +33,6 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -120,7 +119,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-s navbar-btn" type="submit"
+								<button class="btn btn-danger navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -155,51 +154,55 @@
 
 	</div>
 	<div class="container">
-		<h1>Daftar Pendaftar</h1>
+		<h1>Daftar Jalur Masuk</h1>
+
 		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
 
-				<table id="tableAcceptation" class="table stripe">
-					<thead>
-						<tr>
-							<th>No.</th>
-							<th>Nama Siswa</th>
-							<th>Nomor Daftar</th>
-							<th>Rata-Rata Rapot</th>
-							<th>Asal Sekolah</th>
-							<th></th>
-							<th>Rekomendasi</th>
-							<th>Tolak</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<div th:each="pendaftar,iterationStatus: ${pendaftar}" style="padding-left: 10px">
+				<div class="tab-content clearfix">
+					<form th:action="@{/jalur-masuk/add}" method="post">
+						<input class="btn btn-danger1"
+							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
+							type="submit" value="+ Tambah Jalur Masuk" /> <br />
+					</form>
+				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%; float: right">
+						<thead>
 							<tr>
-								<td th:text="${iterationStatus.count}">No.</td>
-								<td th:text="${pendaftar.nama_ijazah}">Nama Siswa</td>
-								<td th:text="${pendaftar.no_daftar}">Nomor Daftar</td>
-								<td>Rata-Rata Rapot</td>
-								<td>Asal Sekolah</td>
-								<td><a
-									th:href="'/pendaftar/detail/'+ ${pendaftar.no_daftar}"> <span
-										class="input-group-btn">
-											<button type="button" class="btn-sm btn-custom" id="as"
-												name="as" value="Go">
-												<span class="glyphicon glyphicon-edit" style="float: right"></span>
-											</button>
-									</span>
-								</a></td>
-								<td><button th:name="rekomendasi"></button></td>
-								<td><button th:name="tolak"></button></td>
+								<th>No.</th>
+								<th>Nama Jalur Masuk</th>
+								<th>Status</th>
+								<th></th>
 							</tr>
-						</div>
-					</tbody>
-				</table>
+						</thead>
+
+						<tbody>
+							<div th:each="jalur,iterationStatus: ${allJalur}">
+								<tr>
+									<td scope="row" th:text="${iterationStatus.count}">No.</td>
+									<td scope="row" th:text="${jalur.nama}">Nama Jalur Masuk</td>
+									<div th:if="${jalur.status}==1">
+										<td scope="row">Aktif</td>
+									</div>
+									<div th:if="${jalur.status}==0">
+										<td scope="row">Tidak Aktif</td>
+									</div>
+									<td><a th:href="'/view/fakultas/'+ ${jalur.id_jalur}"
+										style="float: right"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-custom" id="as"
+													name="as" value="Go" th:text="Terima">
+												</button>
+										</span>
+									</a></td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-	<br />
+
+
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
@@ -269,7 +272,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -277,6 +280,38 @@
 		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
 		crossorigin="anonymous"></script>
 
+	<!-- Contact Form JavaScript -->
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+
+	<!-- Theme JavaScript -->
+	<script th:src="@{/js/agency.min.js}"></script>
+	<!-- <script>
+		$("#myModal").on("show", function() { // wire up the OK button to dismiss the modal when shown
+			$("#myModal a.btn").on("click", function(e) {
+				console.log("button pressed"); // just as an example...
+				$("#myModal").modal('hide'); // dismiss the dialog
+			});
+		});
+		$("#myModal").on("hide", function() { // remove the event listeners when the dialog is dismissed
+			$("#myModal a.btn").off("click");
+		});
+
+		$("#myModal").on("hidden", function() { // remove the actual elements from the DOM when fully hidden
+			$("#myModal").remove();
+		});
+
+		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+			"backdrop" : "static",
+			"keyboard" : true,
+			"show" : true
+		// ensure the modal is shown immediately
+		});
+	</script> 
+	<script>
+		$(this).parent().parent().children('td').each(function() {
+			$(this).addClass("selected");
+		});
+	</script>-->
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 		
@@ -286,20 +321,11 @@
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
 	</script>
-
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
 	<script>
 		$(document).ready(function() {
-			$("#daftarLokasi").DataTable();
-		});
-
-		$(document).ready(function() {
-			$("#daftarLokasi2").DataTable();
+			$("#daftarJalurMasuk").DataTable();
 		});
 	</script>
+
 </body>
 </html>
