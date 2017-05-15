@@ -158,6 +158,9 @@
               	<div th:if="${user.role} eq 'ROLE_PEND'">
 					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
 				</div>
+				<div th:if="${user.role} eq 'ROLE_PEND' and ${jalurMasuk.id_jalur} eq 4">
+					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
+				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">
 					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
 					<a href="/daftar-siswa" class="page-scroll btn btn-xl">Daftar Siswa</a>

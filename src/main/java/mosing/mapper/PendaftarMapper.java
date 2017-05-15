@@ -75,4 +75,7 @@ public interface PendaftarMapper {
 //			@Result(property = "jurusan", column = "jurusan")})
 //	List<PendaftarModel> selectTakTerverifikasi();
 	
+	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
+	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
+	
 }

@@ -58,4 +58,7 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_program", column = "nama_program"),
 			@Result(property = "persyaratan", column = "persyaratan") })
 	List<JalurMasukModel> selectAllJalurMasuk();
+	
+	@Select("select * from jalur_masuk where nama = #{nama_jalur}")
+	JalurMasukModel selectJalur(@Param("nama_jalur") String nama_jalur);
 }

@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.CalonMahasiswaModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.LPTerdahuluModel;
 import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 import mosing.model.NilaiModel;
+import mosing.service.CalonMahasiswaService;
 import mosing.service.JalurMasukService;
 import mosing.service.LPTerdahuluService;
 import mosing.service.NilaiService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
+import mosing.service.ProdiTersediaService;
 
 @Controller
 public class PendaftarController {
@@ -42,6 +45,12 @@ public class PendaftarController {
 	
 	@Autowired
 	NilaiService nilaiDAO;
+	
+	@Autowired
+	CalonMahasiswaService calonMahasiswaDAO;
+	
+	@Autowired
+	ProdiTersediaService prodiTersediaDAO;
 
 	@RequestMapping("/pendaftar/{no_id}")
 	public String add(Model model, @PathVariable(value = "no_id") String no_id) {
@@ -217,6 +226,36 @@ public class PendaftarController {
 			return "detailSiswa-ipa";
 		else
 			return "detailSiswa-ips";
+		
+	}
+	
+//	@RequestMapping("/data-pendaftar/update/{no_id}")
+//	public String updateData(Model model, @PathVariable(value = "no_id") String no_id) {
+//		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
+//		List<JalurMasukModel> jalurUndangan = jalurMasukDAO.selectAllJalurUndangan();
+//		model.addAttribute("jalurUndangan", jalurUndangan);
+//		model.addAttribute("allLPT", allLPT);
+//		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
+//		if (pendaftar != null) {
+//			model.addAttribute("pendaftar", pendaftar);
+//			return "edit-siswa";
+//		} else {
+//			model.addAttribute("no_id", no_id);
+//			return "error-update";
+//		}
+//	}
+	
+	@RequestMapping("/lihat-hasil")
+	public String lihatHasil(Model model,
+		@RequestParam(value = "no_daftar", required = false) int no_daftar,
+		@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
+		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
+		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalur(nama_jalur);
+		
+		int jalur = jalurMasuk.getId_jalur();
+		model.addAttribute("pendaftar", pendaftar);
+		model.addAttribute("jalur", jalur);
+		return "hasil-seleksi";
 		
 	}
 }

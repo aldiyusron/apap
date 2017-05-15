@@ -49,4 +49,10 @@ public class JalurMasukServiceDatabase implements JalurMasukService {
 		// TODO Auto-generated method stub
 		return JalurMasukMapper.selectJalurMasuk(id_jalur);
 	}
+
+	@Override
+	public JalurMasukModel selectJalur(String nama_jalur) {
+		// TODO Auto-generated method stub
+		return JalurMasukMapper.selectJalur(nama_jalur);
+	}
 }

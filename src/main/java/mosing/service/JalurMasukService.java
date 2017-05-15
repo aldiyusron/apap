@@ -12,4 +12,5 @@ public interface JalurMasukService {
 	void updateJalurMasuk(JalurMasukModel jalur_masuk);
 	List<ProdiTersediaModel> selectAllProdi(int id_jalur);
 	List<JalurMasukModel> selectAllJalurUndangan();
+	JalurMasukModel selectJalur(String nama_jalur);
 }

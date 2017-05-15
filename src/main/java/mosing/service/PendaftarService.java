@@ -13,4 +13,5 @@ public interface PendaftarService {
 	List<PendaftarModel> selectAllPendaftar();
 	void updateDataPendaftar(PendaftarModel pendaftar);
 	PendaftarModel selectPPKB(String no_id);
+	PendaftarModel selectPendaftarLulus(int no_daftar);
 }
