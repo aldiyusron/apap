@@ -20,13 +20,8 @@ public class PageController {
 		if(user!=null){
 		return "home";
 		} else {
-			return "login";
+			return "index";
 		}
-	}
-
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
 	}
 
 	@RequestMapping("/login")
