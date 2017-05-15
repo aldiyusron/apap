@@ -55,5 +55,12 @@ public interface PendaftarMapper {
 	@Update("UPDATE pendaftar SET nama_id = #{nama_id}, nama_ijazah=#{nama_ijazah}, jenis_kelamin=#{jenis_kelamin}, no_id=#{no_id}, "
 			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_id=#{no_id}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
+	
+	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+			+ "pr.id_prodi = d.id_prodi join fakultas f on f.id_fakultas = pr.id_fakultas where pn.status_rekomen=0 and f.id_fakultas = #{id_fakultas}")
+	List<PendaftarModel> selectAllPendaftarNonRec(int id_fakultas);
 
+	@Select("select p.*select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+			+ "pr.id_prodi = d.id_prodi join fakultas f on f.id_fakultas = pr.id_fakultas where pn.status_rekomen=1 and f.id_fakultas = #{id_fakultas}")
+	List<PendaftarModel> selectAllPendaftarRec(int id_fakultas);
 }

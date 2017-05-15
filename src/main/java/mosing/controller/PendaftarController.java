@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.DaftarPilihanModel;
+import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.KotaModel;
 import mosing.model.LPTerdahuluModel;
@@ -122,8 +123,9 @@ public class PendaftarController {
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar2(username);
 		Byte status = Byte.parseByte("0");
+		byte status_rekomen = 0;
 		int no_daftar = pendaftarSeleksi.getNo_daftar();
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, null);
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, status_rekomen, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 
 		List<ProdiTersediaModel> prodiTersedia = prodiDAO.selectAllProdi(id_jalur);
@@ -163,7 +165,7 @@ public class PendaftarController {
 		model.addAttribute("username", username);
 		return "success-rencanastudi";
 	}
-
+	
 	@RequestMapping("/daftar-siswa")
 	public String lihatDaftarSiswa(Model model) {
 		List<PendaftarModel> pendaftarVerif = pendaftarDAO.selectAllPendaftarTerverifikasi();
@@ -204,7 +206,8 @@ public class PendaftarController {
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		// return "success-datadiri";
 		byte status = 0;
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, null);
+		byte status_rekomen = 0;
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, status_rekomen, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 		model.addAttribute("pendaftar2", pendaftar2);
 		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
