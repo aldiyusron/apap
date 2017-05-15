@@ -877,7 +877,7 @@ hr {
 }
 
 .wall{
-	background-image: url('../img/home.jpg');
+	background-image: url(../img/home.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;

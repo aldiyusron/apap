@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Penerimaan UI | Detail Jalur Masuk</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom Fonts -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css' />
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css' />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css' />
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
+
+<!-- Theme CSS -->
+<link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+	<nav id="mainNav"
+		class="navbar navbar-default navbar-custom navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a style="color: black" href="http://beasiswa.ui.ac.id">Informasi
+							Beasiswa</a></li>
+					<li class="dropdown page-scroll"><a style="color: black"
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Link
+							Fakultas <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a style="color: black" href="http://www.fk.ui.ac.id">Kedokteran</a></li>
+							<li><a style="color: black" href="http://www.fkg.ui.ac.id">Kedokteran
+									Gigi</a></li>
+							<li><a style="color: black" href="http://www.fkm.ui.ac.id">Kesehatan
+									Masyarakat</a></li>
+							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
+									Keperawatan</a></li>
+							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
+									dan Ilmu Pengetahuan Alam</a></li>
+							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
+									Komputer</a></li>
+							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
+									dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
+									Pengetahuan Budaya</a></li>
+							<li><a style="color: black"
+								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
+							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
+									Sosial dan Ilmu Politik</a></li>
+							<li><a style="color: black"
+								href="http://www.farmasi.ui.ac.id">Farmasi</a></li>
+							<li><a style="color: black"
+								href="http://www.vokasi.ui.ac.id">Vokasi</a></li>
+							<li><a style="color: black" href="http://www.pps.ui.ac.id">Pascasarjana</a></li>
+							<li><a style="color: black" href="http://www.fia.ui.ac.id">Ilmu
+									Administrasi</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><select class="selectpicker navbar-form form-control"
+						data-width="fit">
+							<option data-content='Bahasa Indonesia'>Bahasa Indonesia</option>
+							<option data-content='English (US)'>English (US)</option>
+					</select></li>
+					<li>
+						<form class="navbar-form" id="af" name="af" role="search"
+							action="#">
+							<div class="input-group">
+								<input type="text" class="form-control" id="aa" name="aa"
+									placeholder="Search" /> <span class="input-group-btn">
+									<button type="submit" class="btn btn-md" id="as" name="as"
+										value="Go">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div>
+						</form>
+					</li>
+					<ul class="nav navbar-nav">
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-s navbar-btn" type="submit"
+									value="Sign Out" style="height: 34px; width: 80px">Keluar</button>
+							</form>
+						</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="logomosing" style="margin-top: 15px">
+			<ul>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+			</ul>
+		</div>
+		<div class="navbar-collapse2">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				</li>
+				<li><a class="page-scroll" style="color: black" href="#">Program</a>
+				</li>
+				<li><a class="page-scroll" style="color: black" href="#">Pendaftaran</a>
+				</li>
+				<li><a class="page-scroll" style="color: black" href="#">Pengumuman</a>
+				</li>
+				<li><a class="page-scroll" style="color: black" href="#">Informasi</a>
+				</li>
+				<li><a class="page-scroll" style="color: black" href="#">Jadwal</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="container">
+		<h1>Detail Jalur Masuk</h1>
+		<br />
+		<div class="row" style="margin-top: -2.5%; margin-bottom: -60px">
+			<div id="exTab3" class="container">
+				<div class="tab-content clearfix">
+					<legend>
+						<center>
+							<h2>
+								<b th:text="${jalur_masuk.nama}"></b>
+							</h2>
+						</center>
+					</legend>
+					<br />
+					<div class="isilist">
+						<div id="edit-delete" class="btn-group btn-group-justified"
+							style="margin-left: 47.75%; margin-top: -1.5%;">
+							<a th:href="'/jalur-masuk/update/'+ ${id_jalur}"> <span
+								class="btn-group">
+									<button type="button" class="btn btn-md btn-custom" id="as"
+										name="as" value="Go">
+										<span class="glyphicon glyphicon-edit"></span>
+									</button>
+							</span>
+							</a> <a th:href="'/jalur-masuk/delete/'+ ${id_jalur}"> <span
+								class="btn-group">
+									<button type="button" class="btn btn-md btn-custom" id="as"
+										name="as" value="Go">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
+							</span>
+							</a>
+						</div>
+						<table class="table table-striped">
+							<thead>
+								<dl class="dl-horizontal" style="margin-left: 400px">
+									<br />
+									<dt>Tanggal Buka</dt>
+									<dd
+										th:text="${#dates.format(jalur_masuk.tanggal_buka, 'dd-MMM-yyyy')}"></dd>
+									<br />
+									<dt>Tanggal Tutup</dt>
+									<dd
+										th:text="${#dates.format(jalur_masuk.tanggal_tutup, 'dd-MMM-yyyy')}"></dd>
+									<br />
+									<dt>Status</dt>
+									<div th:if="${jalur_masuk.status} == 1">
+										<dd>Aktif</dd>
+									</div>
+									<div th:if="${jalur_masuk.status} != 1">
+										<dd>Tidak Aktif</dd>
+									</div>
+									<br />
+									<dt>Jenis Jalur</dt>
+									<div th:if="${jalur_masuk.jenis_jalur} == 1">
+										<dd>Jalur Tulis</dd>
+									</div>
+									<div th:if="${jalur_masuk.jenis_jalur} != 1">
+										<dd>Jalur Undangan</dd>
+									</div>
+									<br />
+									<dt>Nama Jenjang</dt>
+									<dd th:text="${jalur_masuk.nama_jenjang}"></dd>
+									<br />
+									<dt>Nama Program</dt>
+									<div th:if="${jalur_masuk.nama_program} eq NULL">
+										<dd>Tidak ada</dd>
+									</div>
+									<div th:if="${jalur_masuk.nama_program} != NULL">
+										<dd th:text="${jalur_masuk.nama_program}"></dd>
+									</div>
+									<br />
+									<dt>Waktu Ujian</dt>
+									<dd
+										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'dd-MMM-yyyy')}"></dd>
+									<br />
+									<dt>Persyaratan</dt>
+									<dd th:text="${jalur_masuk.persyaratan}"></dd>
+									
+								</dl>
+							</thead>
+						</table>
+						<a href="/jalur-masuk" class="btn btn-danger1"
+							style="width: 10%; margin-left: 46.5%; margin-bottom: 20px">Kembali</a>
+					</div>
+				</div>
+				<div class="tab-content clearfix"
+					style="padding-top: 15px">
+					<h3>Daftar Program Studi yang Dibuka</h3>
+					<table id="tableDetail" class="table stripe"
+						th:if="${jalur_masuk.listProdi} != NULL">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Nama Prodi</th>
+								<th>Daya Tampung</th>
+								<th>Fakultas</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<div th:each="prodi,iterationStatus: ${jalur_masuk.listProdi}">
+								<!-- Belum bener -->
+							<tr>
+								<td th:text="${iterationStatus.count}">No.</td>
+								<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
+								<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
+								<td th:text="${nama_fakultas}">Nama Fakultas</td>
+							</tr>
+							</div>
+							</tbody>
+				</table>
+				</div>
+
+				<p th:if="${jalur_masuk.listProdi} eq 1">Belum punya prodi</p>
+			</div>
+		</div>
+	</div>
+
+	<div th:unless="${jalur_masuk.jenis_jalur} eq 0">
+		<div class="container">
+		
+		<div class="row" style="margin-bottom: -60px">
+		
+			<div id="exTab3" class="container">
+				<div class="tab-content clearfix">
+				<h3>Daftar Lokasi Ujian</h3>
+						<form th:action="@{'/lokasi-ujian/add/' + ${jalur_masuk.id_jalur}}" method="post">
+							<input class="btn btn-danger1"
+								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
+								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
+						</form>
+
+						<table id="daftarLokasi" class="table stripe">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Lokasi</th>
+									<th>Alamat</th>
+									<th>Kota</th>
+									<th>Provinsi</th>
+									<th>Nomor Telepon</th>
+									<th>Kuota Pendaftar</th>
+									<th>Kuota Pengawas</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<div th:each="lokasi,iterationStatus: ${listLokasi}"
+									style="padding-left: 10px">
+									<tr>
+										<td th:text="${iterationStatus.count}">No.</td>
+										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
+										<td th:text="${lokasi.alamat}">Alamat</td>
+										<td th:text="${lokasi.nama_kota}">Kota</td>
+										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
+										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
+										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
+										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
+										<td><a
+											th:href="'/lokasi-ujian/update/'+ ${lokasi.id_lokasi}"> <span
+												class="input-group-btn">
+													<button type="button" class="btn-sm btn-custom" id="as"
+														name="as" value="Go">
+														<span class="glyphicon glyphicon-edit"
+															style="float: right"></span>
+													</button>
+											</span>
+										</a></td>
+										<td><a
+											th:href="'/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
+												class="input-group-btn">
+													<button type="button" class="btn-sm btn-custom" id="as"
+														name="as" value="Go">
+														<span class="glyphicon glyphicon-trash"
+															style="float: right"></span>
+													</button>
+											</span>
+										</a></td>
+									</tr>
+								</div>
+							</tbody>
+						</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+
+	<div class="container bg-light-gray">
+		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
+			<div class="col-sm-4">
+				<div style="margin-left: 12%">
+					<a class="twitter-timeline" data-lang="en" data-width="300"
+						data-height="300" data-theme="dark" data-link-color="#FAD136"
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
+					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="team-member">
+					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
+					<hr />
+					<ul class="social-buttons" style="list-style: none">
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
+								class="fa fa-twitter"></i></a></li>
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
+								class="fa fa-facebook"></i></a></li>
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
+								class="glyphicon glyphicon-envelope"></i></a></li>
+						<li><a href="#"><i class="fa fa-phone"></i></a></li>
+					</ul>
+					<ul class="socialtitle"
+						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
+						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
+						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div>
+					<h3 style="margin-left: 11%">KONTAK</h3>
+					<hr />
+					<ul style="list-style: none">
+						<li style="margin-bottom: 5%"><p style="width: 90%">Kantor
+								Penerimaan Mahasiswa Baru UI Gedung PHB UI (ex. BNI) Samping
+								Balai Sidang UI Kampus UI Depok, 16424</p></li>
+						<li><p>
+								Jam Operasional<br />Senin-Jumat: 08.00-16.00 WIB<br />(Istirahat:
+								12.00-13.00 WIB)
+							</p></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container bg-darkest-gray">
+			<div class="row">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
+					<span class="copyright" style="color: #fed136">Penerimaan
+						Mahasiswa Baru - Universitas Indonesia</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+	<!-- Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+	</script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+	</script>
+
+	<!-- Contact Form JavaScript -->
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+
+	<!-- Theme JavaScript -->
+	<script th:src="@{/js/agency.min.js}"></script>
+	<script>
+			$(document).ready(function() {
+				$("#tableDetail").DataTable();
+			});
+			
+			$(document).ready(function() {
+				$("#daftarLokasi").DataTable();
+			});
+		</script>
+</body>
+</html>

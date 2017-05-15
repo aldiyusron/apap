@@ -11,10 +11,10 @@
 <title>Penerimaan UI | Beranda</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -29,9 +29,21 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,7 +81,7 @@
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
 									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
@@ -106,14 +118,15 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="#" class="btn btn-default" style="margin-right: 15px; height: 35px; margin-top: 8px">
-								<span class="glyphicon glyphicon-user" th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-							</a>
-						</li>
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
+								class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit" value="Sign Out">Keluar</button>
+								<button class="btn btn-s navbar-btn" type="submit"
+									value="Sign Out">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -123,10 +136,10 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="img/MOSINGlogo.png" alt="logo" /></a>
-				</li>
+				<a id="logo"><img src="/img/MOSINGlogo.png"
+						alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -145,6 +158,7 @@
 				</li>
 			</ul>
 		</div>
+
 	</div>
 	
 	<header class="wall">
@@ -152,21 +166,25 @@
             <div class="intro-text">
                 <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
                 <div th:if="${user.role} eq 'ROLE_KPMB'">
-                	<a href="#" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
+                	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
                 	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
                 </div>
               	<div th:if="${user.role} eq 'ROLE_PEND'">
 					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
 				</div>
+				<div th:if="${user.role} eq 'ROLE_PEND' and ${jalurMasuk.id_jalur} eq 4">
+					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
+				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">
-					<a href="#" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
-					<a href="#" class="page-scroll btn btn-xl">Daftar Siswa</a>
+					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
+					<a href="/daftar-siswa" class="page-scroll btn btn-xl">Daftar Siswa</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_PENG_U'">
 					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
 				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
 					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
 				</div>
             </div>
         </div>
@@ -212,8 +230,8 @@
 			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>			  		</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div id="box-new" style = "padding-bottom: 35px; margin-top: 62px; " class="">
+			<div class="col-md-4" style="margin-top: 40px">
+				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px" class="">
 					<h4 style="padding-left:5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
 						<form>
@@ -282,7 +300,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -291,11 +309,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -329,7 +350,8 @@
 	<footer>
 		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4" style="width: 100%; height: 50px; padding-top: 1.5%">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>

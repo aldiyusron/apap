@@ -11,10 +11,13 @@
 <title>Penerimaan UI | Daftar Akun</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom Fonts -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -69,7 +72,8 @@
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
+									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
 									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
@@ -111,10 +115,9 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="img/MOSINGlogo.png" alt="logo" /></a>
-				</li>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -151,73 +154,77 @@
 				</legend>
 				<br />
 
-<div class="isian">
-				<div class="form-group">
-					<label for="username" class="col-md-4 control-label"></label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="username"
-								placeholder="Nama Pengguna" pattern="^[_A-z0-9]{1,}$" class="form-control" type="text" required="true" />
+				<div class="isian">
+					<div class="form-group">
+						<label for="username" class="col-md-4 control-label"></label>
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user"></i></span> <input name="username"
+									placeholder="Nama Pengguna" pattern="^[_A-z0-9]{1,}$"
+									class="form-control" type="text"/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+						<label for="password" class="col-md-4 control-label"></label>
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input name="password"
+									placeholder="Kata Sandi" class="form-control" type="password"
+									required="true" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+						<label class="col-md-4 control-label"></label>
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input
+									name="confirm_password" placeholder="Konfirmasi Kata Sandi"
+									class="form-control" type="password" required="true" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label for="email" class="col-md-4 control-label"></label>
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+									placeholder="contoh@abc.com" class="form-control" type="email"
+									required="true" data-error="Alamat e-mail tidak valid" />
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="role" class="col-md-4 control-label"></label>
+						<div class="col-md-4 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-list"></i></span> <select
+									required="required" name="role"
+									class="form-control selectpicker">
+									<option value="">Daftar Sebagai..</option>
+									<option>Pendaftar Seleksi</option>
+									<option>Pengawas Ujian</option>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="password" class="col-md-4 control-label"></label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input name="password"
-								placeholder="Kata Sandi" class="form-control" type="password" required = "true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label class="col-md-4 control-label"></label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input
-								name="confirm_password" placeholder="Konfirmasi Kata Sandi"
-								class="form-control" type="password" required = "true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label for="email" class="col-md-4 control-label"></label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-								placeholder="contoh@abc.com" class="form-control" type="email" required = "true" data-error="Alamat e-mail tidak valid" />
-							<div class="help-block with-errors"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="role" class="col-md-4 control-label"></label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> <select required="required" name="role"
-								class="form-control selectpicker" >
-								<option value="">Daftar Sebagai..</option>
-								<option>Pendaftar Seleksi</option>
-								<option>Pengawas Ujian</option>
-							</select>
-						</div>
-					</div>
-				</div>
-</div>
 				<div class="form-group" style="position: center">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
@@ -230,16 +237,16 @@
 				</div>
 			</fieldset>
 		</form>
-		
+
 	</div>
-	
+
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -248,11 +255,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -286,36 +296,122 @@
 	<footer>
 		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4" style="width: 100%; height: 50px; padding-top: 1.5%">
+				<div class="col-md-4"
+					style="width: 100%; height: 50px; padding-top: 1.5%">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
 			</div>
 		</div>
 	</footer>
-	
+
 	<script>
-	$('#myForm').validator();
+		$('#myForm').validator();
 	</script>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
-
-	<!-- Plugin JavaScript -->
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-		crossorigin="anonymous"></script>
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js}"></script>
 
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#contact_form').bootstrapValidator({
+				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					nama_lokasi : {
+						validators : {
+							stringLength : {
+								min : 3,
+								max : 50,
+							},
+							notEmpty : {
+								message : 'Masukkan nama lokasi'
+							}
+						}
+					},
+					alamat : {
+						validators : {
+							stringLength : {
+								min : 5,
+								max : 100,
+							},
+							notEmpty : {
+								message : 'Masukkan alamat lokasi'
+							}
+						}
+					},
+
+					no_telp : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan nomor telepon'
+							},
+							phone : {
+								country : 'INA',
+								message : 'Masukkan dengan awalan +62'
+							}
+						}
+					},
+					nama_provinsi : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih provinsi'
+							}
+						}
+					},
+					nama_kota : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih kota'
+							}
+						}
+					},
+					kuota_peng : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pengawas'
+							}
+						}
+					},
+					kuota_pendaftar : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pendaftar'
+							}
+						}
+					},
+
+				}
+			})
+
+			.on('success.form.bv', function(e) {
+				$('#success_message').slideDown({
+					opacity : "show"
+				}, "slow") // Do something ...
+				$('#reg_form').data('bootstrapValidator').resetForm();
+
+				// Prevent form submission
+				e.preventDefault();
+
+				// Get the form instance
+				var $form = $(e.target);
+
+				// Get the BootstrapValidator instance
+				var bv = $form.data('bootstrapValidator');
+
+			});
+		});
+	</script>
 </body>
 
 </html>
