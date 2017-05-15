@@ -1,7 +1,6 @@
 package mosing.service;
 
 import java.util.List;
-
 import mosing.model.PenyeleksianModel;
 
 public interface PenyeleksianService {

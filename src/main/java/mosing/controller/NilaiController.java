@@ -9,13 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mosing.model.JalurMasukModel;
-import mosing.model.LPTerdahuluModel;
 import mosing.model.NilaiModel;
-import mosing.model.PendaftarModel;
+
 import mosing.service.JalurMasukService;
 import mosing.service.LPTerdahuluService;
 import mosing.service.NilaiService;
@@ -175,8 +172,7 @@ public class NilaiController {
 		int kkm_ekonomi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_ekonomi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
-		System.out.println(nilai.size());
-		if(nilai != null) {
+		
 			model.addAttribute("kkm_mtk", kkm_mtk);
 			model.addAttribute("kkm_sejarah", kkm_sejarah);
 			model.addAttribute("kkm_geografi", kkm_geografi);
@@ -186,11 +182,7 @@ public class NilaiController {
 			model.addAttribute("nilai", nilai);
 			model.addAttribute("no_daftar", no_daftar);
 			return "edit-nilai-ips";
-		}
-		else {
-			model.addAttribute("no_daftar", no_daftar);
-			return "error-update";
-		}
+		
 	}
 
 	@RequestMapping(value="/nilai-ips/update/submit")

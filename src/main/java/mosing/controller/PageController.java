@@ -23,17 +23,12 @@ public class PageController {
 		UserAdmisiModel user = userDAO.selectUser();
 		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalurMasuk(4);
 		model.addAttribute("user", user);
-		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("jalurMasuk", jalurMasuk);		
 		if(user!=null){
 		return "home";
 		} else {
-			return "login";
+			return "index";
 		}
-	}
-
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
 	}
 
 	@RequestMapping("/login")

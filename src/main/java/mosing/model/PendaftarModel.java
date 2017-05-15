@@ -27,11 +27,7 @@ public class PendaftarModel {
 	private String nama_provinsi;
 	private String nama_kota;
 	private byte jenis_kelamin;
+	private int no_daftar;
 	private String nama_lembaga;
 	private String jurusan;
-	private int no_daftar;
-	
-	
-
-
 }

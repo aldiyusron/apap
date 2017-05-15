@@ -18,7 +18,10 @@ public class JalurMasukModel {
 	private byte status;
 	private String nama_jenjang;
 	private String nama_program;
+	private byte jenis_jalur;
 	private String persyaratan;
+	private Date waktu_ujian;
 	private int flag_aktif;
-	List<ProdiTersediaModel> prodiTersedia;
+	List<ProdiTersediaModel> listProdi;
+	List<LokasiModel> listLokasi;
 }

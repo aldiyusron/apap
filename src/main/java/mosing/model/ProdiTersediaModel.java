@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProdiTersediaModel {
 
+	private int id_prodi;
 	private String nama_prodi;
 	private int daya_tampung;
 	private String nama_fakultas;
-	private String id_jalur;
+	private int id_jalur;
 }
