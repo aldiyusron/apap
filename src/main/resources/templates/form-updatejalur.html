@@ -8,13 +8,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Ubah Detail Jalur Masuk</title>
+<title>Penerimaan UI | Detail Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -178,14 +178,8 @@
 
 				<!-- Text input-->
 
-<<<<<<< HEAD
-				<input type="hidden" name="id_jalur" readonly="readonly"
-					th:value="${id_jalur}" />
-
-=======
 				<input type="hidden" name="id_jalur" readonly="readonly" th:value="${jalur.id_jalur}" />
 				
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 				<div class="form-group">
 					<label for="nama" class="col-md-4 control-label">Nama Jalur Masuk</label>
 					<div class="col-md-4 inputGroupContainer">
@@ -203,24 +197,22 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input
-								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true"
-								th:value="${jalur.tanggal_buka}" />
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_buka"
+								name="tanggal_buka" placeholder="DD/MM/YYYY" class="form-control"
+								type="text" required="true" th:value="${jalur.tanggal_buka}"/>
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="form-group">
 					<label for="tanggal_tutup" class="col-md-4 control-label">Tanggal
 						Tutup</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input
-								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true"
-								th:value="${jalur.tanggal_tutup}" />
+								class="glyphicon glyphicon-calendar"></i></span> <input id="tanggal_tutup"
+								name="tanggal_tutup" placeholder="DD/MM/YYYY" class="form-control"
+								type="text" required="true" th:value="${jalur.tanggal_tutup}"/>
 						</div>
 					</div>
 				</div>
@@ -229,16 +221,6 @@
 					<label for="status" class="col-md-4 control-label">Status</label>
 					<div class="col-md-4 selectContainer" th:switch="${jalur.status}">
 						<div class="input-group" th:case="1">
-<<<<<<< HEAD
-							<div class="radio">
-								<label><input type="radio" name="status"
-									required="required" value="Aktif" checked="checked" />Aktif</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="status"
-									required="required" value="Tidak aktif" />Tidak aktif</label>
-							</div>
-=======
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span>
 							<select class="custom-select" required="required" name="status" style="height: 35px">
@@ -246,20 +228,8 @@
 							  <option name="status" required="required" value="Aktif" selected="selected">Aktif</option>
 							  <option name="status" required="required" value="Tidak Aktif">Tidak Aktif</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
 						<div class="input-group" th:case="0">
-<<<<<<< HEAD
-							<div class="radio">
-								<label><input type="radio" name="status"
-									required="required" value="Aktif" />Aktif</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="status"
-									required="required" value="Tidak aktif" checked="checked" />Tidak
-									aktif</label>
-							</div>
-=======
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span>
 							<select class="custom-select" required="required" name="status" style="height: 35px">
@@ -291,35 +261,14 @@
 							  <option name="jenis_jalur" required="required" value="Jalur Tulis">Jalur Tulis</option>
 							  <option name="jenis_jalur" required="required" value="Jalur Undangan" selected="selected">Jalur Undangan</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="nama_jenjang" class="col-md-4 control-label">Nama
-						Jenjang</label>
-					<div class="col-md-4 selectContainer"
-						th:switch="${jalur.nama_jenjang}">
+					<label for="nama_jenjang" class="col-md-4 control-label">Nama Jenjang</label>
+					<div class="col-md-4 selectContainer" th:switch="${jalur.nama_jenjang}">
 						<div class="input-group" th:case="S1">
-<<<<<<< HEAD
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1" checked="checked" />S1</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S2" />S2</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S3" />S3</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="Spesialis" />Spesialis</label>
-							</div>
-=======
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select class="custom-select" required="required" name="nama_jenjang" style="height: 35px">
@@ -329,27 +278,7 @@
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
 							  <option name="nama_jenjang" required="required" value="Spesialis">Spesialis</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="S2">
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1" />S1</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S2" checked="checked" />S2</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S3" />S3</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="Spesialis" />Spesialis</label>
-							</div>
-=======
 						
 						<div class="input-group" th:case="S2" style="margin-left: 15px">
 						<span class="input-group-addon"><i
@@ -362,27 +291,7 @@
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
 							  <option name="nama_jenjang" required="required" value="Spesialis">Spesialis</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="S3">
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1" />S1</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S2" />S2</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S3" checked="checked" />S3</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="Spesialis" />Spesialis</label>
-							</div>
-=======
 						<div class="input-group" th:case="S3" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
@@ -393,27 +302,7 @@
 							  <option name="nama_jenjang" required="required" value="S3" selected="selected">S2</option>
 							  <option name="nama_jenjang" required="required" value="Spesialis">Spesialis</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="Spesialis">
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S1" />S1</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S2" />S2</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="S3" checked="checked" />S3</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_jenjang"
-									required="required" value="Spesialis" checked="checked" />Spesialis</label>
-							</div>
-=======
 						<div class="input-group" th:case="Spesialis" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
@@ -424,36 +313,14 @@
 							  <option name="nama_jenjang" required="required" value="S3">S2</option>
 							  <option name="nama_jenjang" required="required" value="Spesialis" selected="selected">Spesialis</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="nama_program" class="col-md-4 control-label">Nama
-						Program</label>
-					<div class="col-md-4 selectContainer"
-						th:switch="${jalur.nama_program}">
+					<label for="nama_program" class="col-md-4 control-label">Nama Program</label>
+					<div class="col-md-4 selectContainer" th:switch="${jalur.nama_program}">
 						<div class="input-group" th:case="Reguler">
-<<<<<<< HEAD
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Reguler" checked="checked" />Reguler</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Paralel" />Paralel</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Kelas Internasional" />Kelas
-									Internasional</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Tidak ada" />Tidak ada</label>
-							</div>
-=======
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
 							<select name="nama_program" required="required" class="custom-select" style="height: 35px">
@@ -463,28 +330,7 @@
 							  <option value="Kelas Internasional">Kelas Internasional</option>
 							  <option value="Tidak ada">Tidak ada</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="Paralel">
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Reguler" />Reguler</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Paralel" checked="checked" />Paralel</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Kelas Internasional" />Kelas
-									Internasional</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Tidak ada" />Tidak ada</label>
-							</div>
-=======
 						<div class="input-group" th:case="Paralel" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
@@ -495,28 +341,7 @@
 							  <option value="Kelas Internasional">Kelas Internasional</option>
 							  <option value="Tidak ada">Tidak ada</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="Kelas Internasional">
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Reguler" />Reguler</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Paralel" />Paralel</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Kelas Internasional"
-									checked="checked" />Kelas Internasional</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Tidak ada" />Tidak ada</label>
-							</div>
-=======
 						<div class="input-group" th:case="Internasional" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
@@ -527,29 +352,7 @@
 							  <option value="Kelas Internasional" selected="selected">Kelas Internasional</option>
 							  <option value="Tidak ada">Tidak ada</option>
 							</select>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
-<<<<<<< HEAD
-						<div class="input-group" th:case="Tidak ada">
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Reguler" />Reguler</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Paralel" />Paralel</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Kelas Internasional" />Kelas
-									Internasional</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="nama_program"
-									required="required" value="Tidak ada" checked="checked" />Tidak
-									ada</label>
-							</div>
-=======
 						<div class="input-group" th:case="NULL" style="margin-left: 15px">
 						<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span>
@@ -574,58 +377,9 @@
 								id="waktu_ujian" name="waktu_ujian"
 								placeholder="BB/HH/TTTT JJ:MM AM/PM" class="form-control"
 								type="text" required="true" th:value="${jalur.waktu_ujian}" />
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label for="nama_program" class="col-md-4 control-label">Jenis
-						Jalur</label>
-					<div class="col-md-4 selectContainer"
-						th:switch="${jalur.jenis_jalur}">
-						<div class="input-group" th:case="1">
-							<div class="radio">
-								<label><input type="radio" name="jenis_jalur"
-									required="required" value="Undangan" checked="checked" />Undangan</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jenis_jalur"
-									required="required" value="Tertulis" />Tertulis</label>
-							</div>
-						</div>
-						<div class="input-group" th:case="0">
-							<div class="radio">
-								<label><input type="radio" name="jenis_jalur"
-									required="required" value="Undangan" />Undangan</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jenis_jalur"
-									required="required" value="Tertulis" checked="checked" />Tertulis</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="waktu_ujian" class="col-md-4 control-label">Waktu
-						Ujian </label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class='input-group date' id='datetimepicker1'>
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-calendar"></i></span> <input
-								id="waktu_ujian" name="waktu_ujian"
-								placeholder="BB/HH/TTTT JJ:MM AM/PM" class="form-control"
-								type="text" required="true" th:value="${jalur.waktu_ujian}" />
-						</div>
-					</div>
-				</div>
-
-				<script type="text/javascript">
-            		$(function () {
-              			  $('#datetimepicker1').datetimepicker();
-         			   });
-        		</script>
 
 				<!-- Text input-->
 
@@ -634,15 +388,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-<<<<<<< HEAD
-								class="glyphicon glyphicon-home"></i></span>
-							<textarea rows="3" style="resize: none" name="persyaratan"
-								placeholder="Persyaratan" class="form-control" type="text"
-								th:value="${jalur.persyaratan}"> </textarea>
-=======
 								class="glyphicon glyphicon-home"></i></span> <textarea name="persyaratan"
 								placeholder="Persyaratan" class="form-control" type="text" rows="5" required="true" th:value="${jalur.persyaratan}" th:text="${jalur.persyaratan}"></textarea>
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 						</div>
 					</div>
 				</div>
@@ -668,64 +415,6 @@
 
 	<!-- /.container -->
 	<script>
-<<<<<<< HEAD
-		$(document).ready(
-				function() {
-					$('#contact_form').bootstrapValidator({
-						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							nama : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Tolong masukan nama jalur'
-									}
-								}
-							},
-							persyaratan : {
-								validators : {
-									stringLength : {
-										min : 8,
-									},
-									notEmpty : {
-										message : 'Tolong masukkan persyaratan'
-									}
-								}
-							}
-						}
-					}).on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#contact_form').data('bootstrapValidator')
-										.resetForm();
-
-								// Prevent form submission
-								e.preventDefault();
-
-								// Get the form instance
-								var $form = $(e.target);
-
-								// Get the BootstrapValidator instance
-								var bv = $form.data('bootstrapValidator');
-
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form.serialize(),
-										function(result) {
-											console.log(result);
-										}, 'json');
-							});
-				});
-=======
 	  $(document).ready(function() {
 		    $('#contact_form').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -772,7 +461,6 @@
 		            }, 'json');
 		        });
 		});
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -843,7 +531,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -852,19 +540,19 @@
 		crossorigin="anonymous"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{/js/agency.min.js}"></script>
-
+	<script th:src="@{js/agency.min.js}"></script>
+	
 	<!-- Include jQuery -->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
+	
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-
+		
 	<script>
 		$(document).ready(
 				function() {
@@ -880,7 +568,7 @@
 				});
 		$('.select').selectpicker();
 	</script>
-
+	
 	<script>
 		$(document).ready(
 				function() {

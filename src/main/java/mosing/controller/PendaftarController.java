@@ -30,7 +30,7 @@ import mosing.service.KotaService;
 import mosing.service.LPTerdahuluService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
-import mosing.service.ProdiService;
+import mosing.service.ProdiTersediaService;
 import mosing.service.ProvinsiService;
 import mosing.service.UserAdmisiService;
 
@@ -53,7 +53,7 @@ public class PendaftarController {
 	UserAdmisiService userDAO;
 
 	@Autowired
-	ProdiService prodiDAO;
+	ProdiTersediaService prodiDAO;
 
 	@Autowired
 	JalurMasukService jalurmasukDAO;

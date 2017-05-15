@@ -20,7 +20,7 @@ import mosing.model.LokasiModel;
 import mosing.service.DetailUjianService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
-import mosing.service.ProdiService;
+import mosing.service.ProdiTersediaService;
 
 @Controller
 public class JalurMasukController {
@@ -28,7 +28,7 @@ public class JalurMasukController {
 	JalurMasukService JalurMasukDAO;
 	
 	@Autowired
-	ProdiService ProdiDAO;
+	ProdiTersediaService ProdiDAO;
 	
 	@Autowired
 	DetailUjianService detailDAO;
@@ -53,8 +53,8 @@ public class JalurMasukController {
 			List<LokasiModel> listLokasi = lokasiDAO.selectLokasiJalur(id_jalur);
 			model.addAttribute("listLokasi", listLokasi);
 			
-			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
-			model.addAttribute("allProdi", allProdi);
+			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
+			model.addAttribute("listProdi", listProdi);
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
@@ -64,7 +64,7 @@ public class JalurMasukController {
 
 	@RequestMapping("/jalur-masuk/add")
 	public String add() {
-		return "form-addjalur"; // masih belum bener pagenya
+		return "form-addjalur";
 	}
 
 	@RequestMapping("/jalur-masuk/add/submit")

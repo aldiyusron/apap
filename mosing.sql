@@ -10,29 +10,6 @@ CREATE TABLE IF NOT EXISTS USER
 
 CREATE TABLE IF NOT EXISTS FAKULTAS
 (
-	id_user INTEGER NOT NULL PRIMARY KEY,
-	no_id VARCHAR(20) NOT NULL,
-	nama_id VARCHAR(50) NOT NULL,
-	nama_ijazah VARCHAR(50) NOT NULL,
-	foto VARCHAR(100) NOT NULL,
-	no_hp VARCHAR(14) NOT NULL,
-	no_telp VARCHAR(14),
-	id_negara INTEGER NOT NULL,
-	kewarganegaraan VARCHAR(3) NOT NULL,
-	alamat_tetap VARCHAR(100) NOT NULL,
-	jenis_id VARCHAR(20) NOT NULL,
-	alamat_sekarang VARCHAR(100) NOT NULL,
-	tgl_lahir DATE NOT NULL,
-	id_provinsi INTEGER NOT NULL,
-	id_kota INTEGER NOT NULL,
-	jenis_kelamin TINYINT(1) NOT NULL,
-	nama_lembaga VARCHAR(50),
-	jurusan CHAR(3),
-	no_daftar INTEGER NOT NULL AUTO_INCREMENT UNIQUE KEY,
-	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_negara) REFERENCES NEGARA (id_negara) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_provinsi) REFERENCES PROVINSI (id_provinsi) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_kota) REFERENCES KOTA (id_kota) ON UPDATE CASCADE ON DELETE CASCADE,
 	id_fakultas INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	fakultas VARCHAR(50) NOT NULL
 );
@@ -102,33 +79,6 @@ CREATE TABLE IF NOT EXISTS PENDAFTAR
 	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-<<<<<<< HEAD
-=======
-CREATE TABLE IF NOT EXISTS LOKASI
-(
-	id_lokasi INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	alamat VARCHAR(100) NOT NULL,
-	no_telp VARCHAR(14) NOT NULL,
-	nama_lokasi VARCHAR(50) NOT NULL,
-	nama_provinsi VARCHAR(50) NOT NULL,
-	nama_kota VARCHAR(50) NOT NULL,
-	kuota_peng INTEGER NOT NULL,
-	kuota_pendaftar INTEGER NOT NULL,
-	flag_aktif TINYINT(1) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS PENGAWAS_UJIAN
-(
-	id_user INTEGER NOT NULL PRIMARY KEY,
-	status TINYINT(1) NOT NULL,
-	jabatan VARCHAR(50) NOT NULL,
-	nama VARCHAR(50) NOT NULL,
-	id_lokasi INTEGER NOT NULL,
-	FOREIGN KEY(id_user) REFERENCES USER (id_user) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_lokasi) REFERENCES LOKASI (id_lokasi) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
->>>>>>> branch 'uso' of https://github.com/propensi2017/a6.git
 CREATE TABLE IF NOT EXISTS JALUR_MASUK
 (
 	id_jalur INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -180,6 +130,7 @@ CREATE TABLE IF NOT EXISTS PRODI_TERSEDIA
 	daya_tampung INTEGER NOT NULL,
 	id_fakultas INTEGER NOT NULL,
 	id_jalur INTEGER NOT NULL,
+	flag_aktif TINYINT(1) NOT NULL,
 	PRIMARY KEY (id_prodi, id_jalur),
 	FOREIGN KEY(id_jalur) REFERENCES JALUR_MASUK (id_jalur) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_fakultas) REFERENCES FAKULTAS (id_fakultas) ON UPDATE CASCADE ON DELETE CASCADE
@@ -192,6 +143,7 @@ CREATE TABLE IF NOT EXISTS DAFTAR_PILIHAN
 	nama_program VARCHAR(20),
 	id_prodi INTEGER NOT NULL,
 	pilihan INTEGER NOT NULL,
+	flag_aktif TINYINT(1) NOT NULL,
 	PRIMARY KEY (no_daftar, jenjang, id_prodi),
 	FOREIGN KEY(no_daftar) REFERENCES PENDAFTAR (no_daftar) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_prodi) REFERENCES PRODI_TERSEDIA (id_prodi) ON UPDATE CASCADE ON DELETE CASCADE
@@ -886,214 +838,214 @@ INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,no_hp,id_lokasi,pindah_b
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,no_hp,id_lokasi,pindah_bool,flag_aktif) VALUES (147,1,'Pegawai','Pengawas147','84323254147',3,1,1);
 INSERT INTO PENGAWAS_UJIAN (id_user,status,jabatan,nama,no_hp,id_lokasi,pindah_bool,flag_aktif) VALUES (148,1,'Pegawai','Pengawas148','84323254148',3,1,1);
 
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran',150,1,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran Gigi',150,2,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Matematika',150,6,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Fisika',150,6,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Biologi',150,6,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kimia',150,6,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Geografi',150,6,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Elektronika',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Mesin',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Sipil',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Kimia',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Industri',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Metalurgi dan Material',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Perkapalan',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Komputer',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur Interior',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Bioteknologi',150,7,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hukum',150,9,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ekonomi',150,10,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Managemen',150,10,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Akuntansi',150,10,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Perpustakaan',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Filsafat',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Indonesia',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Arab',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Inggris',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jepang',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Perancis',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jerman',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Rusia',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Belanda',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Cina',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Korea',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jawa',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sejarah',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arkeologi',150,11,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Psikologi',150,12,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Negara',150,14,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Niaga',150,14,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Fiskal',150,14,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komunikasi',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sosiologi',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kriminologi',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Politik',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hubungan Internasional',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Kesejahteraan Sosial',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Antropologi Sosial',150,13,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kesehatan Masyarakat',150,3,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Gizi',150,3,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Keperawatan',150,4,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komputer',150,8,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sistem Informasi',150,8,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Farmasi',150,5,1);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Biomedikal','50',1,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Resiko Medis','50',1,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Gizi','50',3,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Dasar Profesi Dokter Gigi','50',2,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Kelompok Profesi Dokter Gigi','50',2,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Matematika','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Fisika','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Biologi','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kimia','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Pharmasitologikal','50',5,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Geografi','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Kelautan','50',6,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Elektronika','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Penerapan Laser dan Elektronika Optik','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Mesin','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Sipil','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Kimia','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Industri','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Metalurgi','50',7,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hukum','50',9,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Kenotariatan','50',9,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ekonomi','50',10,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Managemen','50',10,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Akuntansi','50',10,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Perencanaan Kebijakan Publik','50',10,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Perpustakaan','50',11,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Filsafat','50',11,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Literatur','50',11,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Linguistik','50',11,2);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran',150,1,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran Gigi',150,2,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Matematika',150,6,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Fisika',150,6,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Biologi',150,6,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kimia',150,6,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Geografi',150,6,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Elektronika',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Mesin',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Sipil',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Kimia',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Industri',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Metalurgi dan Material',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Perkapalan',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Komputer',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur Interior',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Bioteknologi',150,7,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hukum',150,9,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ekonomi',150,10,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Managemen',150,10,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Akuntansi',150,10,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Perpustakaan',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Filsafat',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Indonesia',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Arab',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Inggris',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jepang',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Perancis',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jerman',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Rusia',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Belanda',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Cina',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Korea',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jawa',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sejarah',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arkeologi',150,11,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Psikologi',150,12,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Negara',150,14,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Niaga',150,14,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Fiskal',150,14,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komunikasi',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sosiologi',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kriminologi',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Politik',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hubungan Internasional',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Kesejahteraan Sosial',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Antropologi Sosial',150,13,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kesehatan Masyarakat',150,3,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Gizi',150,3,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komputer',150,8,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sistem Informasi',150,8,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Farmasi',150,5,3);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran',150,1,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kedokteran Gigi',150,2,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Matematika',150,6,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Fisika',150,6,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Biologi',150,6,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kimia',150,6,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Geografi',150,6,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Elektronika',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Mesin',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Sipil',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Kimia',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Industri',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Metalurgi dan Material',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Perkapalan',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Komputer',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arsitektur Interior',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Bioteknologi',150,7,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hukum',150,9,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ekonomi',150,10,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Managemen',150,10,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Akuntansi',150,10,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Perpustakaan',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Filsafat',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Indonesia',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Arab',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Inggris',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jepang',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Perancis',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jerman',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Rusia',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Belanda',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Cina',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Korea',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Jawa',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sejarah',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Arkeologi',150,11,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Psikologi',150,12,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Negara',150,14,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Niaga',150,14,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Administrasi Fiskal',150,14,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komunikasi',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sosiologi',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kriminologi',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Politik',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hubungan Internasional',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Kesejahteraan Sosial',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Antropologi Sosial',150,13,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kesehatan Masyarakat',150,3,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Gizi',150,3,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Keperawatan',150,4,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Farmasi',150,5,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Komputer',150,8,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Sistem Informasi',150,8,4);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Medis',150,1,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Biomedis',150,1,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Gizi',150,3,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Biologi',150,6,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Kimia',150,6,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Elektronika',150,7,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Penerapan Laser dan Elektronika Optik',150,7,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Mesin',150,7,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Kimia',150,7,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Teknik Metalurgi',150,7,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Hukum',150,9,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ekonomi',150,10,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Ilmu Managemen',150,10,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Akuntansi',150,10,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Filsafat',150,11,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Linguistik',150,11,5);
-INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur) VALUES ('Studi Literatur',150,11,5);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran',150,1,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran Gigi',150,2,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Matematika',150,6,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Fisika',150,6,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Biologi',150,6,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kimia',150,6,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Geografi',150,6,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Elektronika',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Mesin',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Sipil',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Kimia',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Industri',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Metalurgi dan Material',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Perkapalan',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Komputer',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur Interior',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Bioteknologi',150,7,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hukum',150,9,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ekonomi',150,10,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Managemen',150,10,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Akuntansi',150,10,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Perpustakaan',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Filsafat',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Indonesia',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Arab',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Inggris',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jepang',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Perancis',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jerman',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Rusia',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Belanda',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Cina',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Korea',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jawa',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sejarah',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arkeologi',150,11,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Psikologi',150,12,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Negara',150,14,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Niaga',150,14,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Fiskal',150,14,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komunikasi',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sosiologi',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kriminologi',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Politik',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hubungan Internasional',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Kesejahteraan Sosial',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Antropologi Sosial',150,13,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kesehatan Masyarakat',150,3,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Gizi',150,3,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Keperawatan',150,4,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komputer',150,8,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sistem Informasi',150,8,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Farmasi',150,5,1,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Biomedikal','50',1,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Resiko Medis','50',1,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Gizi','50',3,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Dasar Profesi Dokter Gigi','50',2,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Kelompok Profesi Dokter Gigi','50',2,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Matematika','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Fisika','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Biologi','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kimia','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Pharmasitologikal','50',5,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Geografi','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Kelautan','50',6,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Elektronika','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Penerapan Laser dan Elektronika Optik','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Mesin','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Sipil','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Kimia','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Industri','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Metalurgi','50',7,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hukum','50',9,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Kenotariatan','50',9,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ekonomi','50',10,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Managemen','50',10,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Akuntansi','50',10,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Perencanaan Kebijakan Publik','50',10,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Perpustakaan','50',11,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Filsafat','50',11,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Literatur','50',11,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Linguistik','50',11,2,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran',150,1,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran Gigi',150,2,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Matematika',150,6,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Fisika',150,6,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Biologi',150,6,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kimia',150,6,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Geografi',150,6,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Elektronika',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Mesin',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Sipil',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Kimia',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Industri',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Metalurgi dan Material',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Perkapalan',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Komputer',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur Interior',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Bioteknologi',150,7,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hukum',150,9,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ekonomi',150,10,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Managemen',150,10,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Akuntansi',150,10,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Perpustakaan',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Filsafat',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Indonesia',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Arab',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Inggris',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jepang',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Perancis',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jerman',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Rusia',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Belanda',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Cina',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Korea',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jawa',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sejarah',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arkeologi',150,11,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Psikologi',150,12,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Negara',150,14,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Niaga',150,14,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Fiskal',150,14,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komunikasi',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sosiologi',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kriminologi',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Politik',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hubungan Internasional',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Kesejahteraan Sosial',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Antropologi Sosial',150,13,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kesehatan Masyarakat',150,3,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Gizi',150,3,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komputer',150,8,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sistem Informasi',150,8,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Farmasi',150,5,3,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran',150,1,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kedokteran Gigi',150,2,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Matematika',150,6,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Fisika',150,6,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Biologi',150,6,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kimia',150,6,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Geografi',150,6,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Elektronika',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Mesin',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Sipil',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Kimia',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Industri',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Metalurgi dan Material',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Perkapalan',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Komputer',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arsitektur Interior',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Bioteknologi',150,7,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hukum',150,9,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ekonomi',150,10,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Managemen',150,10,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Akuntansi',150,10,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Perpustakaan',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Filsafat',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Indonesia',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Arab',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Inggris',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jepang',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Perancis',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jerman',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Rusia',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Belanda',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Cina',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Korea',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Jawa',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sejarah',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Arkeologi',150,11,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Psikologi',150,12,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Negara',150,14,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Niaga',150,14,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Administrasi Fiskal',150,14,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komunikasi',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sosiologi',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kriminologi',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Politik',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hubungan Internasional',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Kesejahteraan Sosial',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Antropologi Sosial',150,13,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kesehatan Masyarakat',150,3,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Gizi',150,3,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Keperawatan',150,4,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Farmasi',150,5,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Komputer',150,8,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Sistem Informasi',150,8,4,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Medis',150,1,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Biomedis',150,1,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Gizi',150,3,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Biologi',150,6,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Kimia',150,6,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Elektronika',150,7,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Penerapan Laser dan Elektronika Optik',150,7,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Mesin',150,7,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Kimia',150,7,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Teknik Metalurgi',150,7,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Hukum',150,9,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ekonomi',150,10,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Ilmu Managemen',150,10,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Akuntansi',150,10,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Filsafat',150,11,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Linguistik',150,11,5,1);
+INSERT INTO PRODI_TERSEDIA (nama_prodi,daya_tampung,id_fakultas,id_jalur,flag_aktif) VALUES ('Studi Literatur',150,11,5,1);
 
 INSERT INTO DAFTAR_PILIHAN (no_daftar,jenjang,nama_program,id_prodi,pilihan) VALUES (1,'S1','Reguler',34,1);
 INSERT INTO DAFTAR_PILIHAN (no_daftar,jenjang,nama_program,id_prodi,pilihan) VALUES (1,'S1','Reguler',33,2);
