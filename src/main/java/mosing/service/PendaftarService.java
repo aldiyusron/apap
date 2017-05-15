@@ -18,4 +18,5 @@ public interface PendaftarService {
 	void updateDataPendaftar(PendaftarModel pendaftar);
 	PendaftarModel selectPPKB(String no_id);
 	PendaftarModel selectPendaftarLulus(int no_daftar);
+	PendaftarModel selectNama(int no_daftar);
 }

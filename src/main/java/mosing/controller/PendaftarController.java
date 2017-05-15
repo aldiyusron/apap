@@ -351,10 +351,12 @@ public class PendaftarController {
 		@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
 		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
 		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalur(nama_jalur);
+		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
 		
 		int jalur = jalurMasuk.getId_jalur();
 		model.addAttribute("pendaftar", pendaftar);
 		model.addAttribute("jalur", jalur);
+		model.addAttribute("murid", murid);
 		return "hasil-seleksi";
 		
 	}

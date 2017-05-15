@@ -82,4 +82,7 @@ public interface PendaftarMapper {
 	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
 	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
 	
+	@Select("select nama_id from pendaftar where no_daftar=#{no_daftar}")
+	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
+	
 }
