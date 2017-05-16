@@ -438,6 +438,102 @@ file:// [if lt IE 9]>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<script th:src="@{/js/agency.min.js}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#contact_form').bootstrapValidator({
+				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					nama_lokasi : {
+						validators : {
+							stringLength : {
+								min : 3,
+								max : 50,
+							},
+							notEmpty : {
+								message : 'Masukkan nama lokasi'
+							}
+						}
+					},
+					alamat : {
+						validators : {
+							stringLength : {
+								min : 5,
+								max : 100,
+							},
+							notEmpty : {
+								message : 'Masukkan alamat lokasi'
+							}
+						}
+					},
+
+					no_telp : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan nomor telepon'
+							},
+							phone : {
+								country : 'INA',
+								message : 'Masukkan dengan awalan +62'
+							}
+						}
+					},
+					nama_provinsi : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih provinsi'
+							}
+						}
+					},
+					nama_kota : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih kota'
+							}
+						}
+					},
+					kuota_peng : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pengawas'
+							}
+						}
+					},
+					kuota_pendaftar : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pendaftar'
+							}
+						}
+					},
+
+				}
+			})
+
+			.on('success.form.bv', function(e) {
+				$('#success_message').slideDown({
+					opacity : "show"
+				}, "slow") // Do something ...
+				$('#reg_form').data('bootstrapValidator').resetForm();
+
+				// Prevent form submission
+				e.preventDefault();
+
+				// Get the form instance
+				var $form = $(e.target);
+
+				// Get the BootstrapValidator instance
+				var bv = $form.data('bootstrapValidator');
+
+			});
+		});
+	</script>
+	
 
 	<!-- <script>
 	var listKota = [[${allKota}]];
@@ -462,111 +558,7 @@ file:// [if lt IE 9]>
 		document.getElementById("kota").innerHtml = result;
 	}
 	</script> -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#contact_form')
-									.bootstrapValidator(
-											{
-												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													nama_lokasi : {
-														validators : {
-															stringLength : {
-																min : 3,
-																max: 50,
-															},
-															notEmpty : {
-																message : 'Masukkan nama lokasi'
-															}
-														}
-													},
-													alamat : {
-														validators : {
-															stringLength : {
-																min : 5,
-																max: 100,
-															},
-															notEmpty : {
-																message : 'Masukkan alamat lokasi'
-															}
-														}
-													},
-
-													no_telp : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan nomor telepon'
-															},
-															phone : {
-																country : 'INA',
-																message : 'Masukkan dengan awalan +62'
-															}
-														}
-													},
-													nama_provinsi : {
-														validators : {
-															notEmpty : {
-																message : 'Pilih provinsi'
-															}
-														}
-													},
-													nama_kota : {
-														validators : {
-															notEmpty : {
-																message : 'Pilih kota'
-															}
-														}
-													},
-													kuota_peng : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan jumlah kuota pengawas'
-															}
-														}
-													},
-													kuota_pendaftar : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan jumlah kuota pendaftar'
-															}
-														}
-													},
-
-												}
-											})
-
-									.on(
-											'success.form.bv',
-											function(e) {
-												$('#success_message')
-														.slideDown({
-															opacity : "show"
-														}, "slow") // Do something ...
-												$('#reg_form').data(
-														'bootstrapValidator')
-														.resetForm();
-
-												// Prevent form submission
-												e.preventDefault();
-
-												// Get the form instance
-												var $form = $(e.target);
-
-												// Get the BootstrapValidator instance
-												var bv = $form
-														.data('bootstrapValidator');
-
-											});
-						});
-	</script>
-
+	
 	<script type="text/javascript">
 		$('.select').selectpicker();
 	</script>

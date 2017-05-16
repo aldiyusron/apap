@@ -10,10 +10,10 @@
 
 <title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -35,15 +35,6 @@
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 queries WARNING: Respond.js doesn't work if you view the page via
 file:// [if lt IE 9]> -->
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
-	integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY"
-	crossorigin="anonymous"></script>
-<script
-	src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
-	integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo"
-	crossorigin="anonymous"></script>
-<!-- <![endif]
- -->
 
 </head>
 
@@ -371,28 +362,109 @@ file:// [if lt IE 9]> -->
 			</div>
 		</div>
 	</footer>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js}"></script>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
-	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#contact_form').bootstrapValidator({
+				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					nama_lokasi : {
+						validators : {
+							stringLength : {
+								min : 3,
+								max : 50,
+							},
+							notEmpty : {
+								message : 'Masukkan nama lokasi'
+							}
+						}
+					},
+					alamat : {
+						validators : {
+							stringLength : {
+								min : 5,
+								max : 100,
+							},
+							notEmpty : {
+								message : 'Masukkan alamat lokasi'
+							}
+						}
+					},
 
-	<!-- Include Date Range Picker -->
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+					no_telp : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan nomor telepon'
+							},
+							phone : {
+								country : 'INA',
+								message : 'Masukkan dengan awalan +62'
+							}
+						}
+					},
+					nama_provinsi : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih provinsi'
+							}
+						}
+					},
+					nama_kota : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih kota'
+							}
+						}
+					},
+					kuota_peng : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pengawas'
+							}
+						}
+					},
+					kuota_pendaftar : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pendaftar'
+							}
+						}
+					},
+
+				}
+			})
+
+			.on('success.form.bv', function(e) {
+				$('#success_message').slideDown({
+					opacity : "show"
+				}, "slow") // Do something ...
+				$('#reg_form').data('bootstrapValidator').resetForm();
+
+				// Prevent form submission
+				e.preventDefault();
+
+				// Get the form instance
+				var $form = $(e.target);
+
+				// Get the BootstrapValidator instance
+				var bv = $form.data('bootstrapValidator');
+
+			});
+		});
+	</script>
 
 	<script>
 		$(document).ready(

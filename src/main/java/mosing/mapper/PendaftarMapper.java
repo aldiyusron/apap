@@ -37,8 +37,9 @@ public interface PendaftarMapper {
 	@Update("Update pendaftar set foto=#{foto} where id_user=#{id_user}")
 	void updateFoto(@Param("foto") String foto, @Param("id_user") int id_user);
 
-	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and penyeleksian.id_jalur = 4")
+	@Select("select * from pendaftar p" 
+			+ " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
+			+ " WHERE penyeleksian.status=0 and id_jalur=4")
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 
 	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
@@ -82,5 +83,8 @@ public interface PendaftarMapper {
 	
 	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
 	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
+	
+	@Select("select nama_id from pendaftar where no_daftar=#{no_daftar}")
+	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
 	
 }

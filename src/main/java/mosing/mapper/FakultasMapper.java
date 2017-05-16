@@ -3,6 +3,7 @@ package mosing.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
@@ -36,6 +37,7 @@ public interface FakultasMapper {
 	})
 	List<ProdiTersediaModel> selectProdi(int id_fakultas);
 	
-
+	@Select("select * from fakultas where id_fakultas = #{id_fakultas}")
+	FakultasModel selectFakultas(@Param("id_fakultas") int id_fakultas);
 	
 }

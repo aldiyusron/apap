@@ -34,5 +34,11 @@ public class FakultasServiceDatabase implements FakultasService {
 		// TODO Auto-generated method stub
 		return fakultasMapper.selectProdi(id_fakultas);
 	}
+	
+	@Override
+	public FakultasModel selectFakultas(int id_fakultas) {
+		// TODO Auto-generated method stub
+		return fakultasMapper.selectFakultas(id_fakultas);
+	}
 
 }
