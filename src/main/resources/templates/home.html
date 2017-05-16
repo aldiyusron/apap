@@ -169,10 +169,10 @@
                 	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
                 	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
                 </div>
-              	<div th:if="${user.role} eq 'ROLE_PEND'">
+              	<div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
 					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
 				</div>
-				<div th:if="${user.role} eq 'ROLE_PEND' and ${jalurMasuk.id_jalur} eq 4">
+				<div th:unless="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
 					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">

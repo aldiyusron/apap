@@ -184,7 +184,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama"
 								placeholder="Nama Jalur Masuk" th:value="${nama}"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -197,7 +197,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -210,7 +210,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -221,7 +221,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span> <select
-								class="custom-select" required="required" name="status"
+								class="custom-select" name="status"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
 								<option text="Aktif" name="status" value="Aktif">Aktif</option>
@@ -239,7 +239,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span> <select
-								class="custom-select" required="required" name="jenis_jalur"
+								class="custom-select" name="jenis_jalur"
 								style="height: 35px">
 								<option value="">Jenis jalur masuk</option>
 								<option text="Jalur Tulis" name="jenis_jalur"
@@ -259,7 +259,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" required="required" name="nama_jenjang"
+								class="custom-select" name="nama_jenjang"
 								style="height: 35px">
 								<option value="">Jenjang Pendidikan</option>
 								<option text="S1" name="nama_jenjang" required="required"
@@ -282,7 +282,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" required="required" name="nama_program"
+								class="custom-select" name="nama_program"
 								style="height: 35px">
 								<option value="">Program Pendidikan</option>
 								<option text="Reguler" name="nama_program" required="required"
@@ -307,7 +307,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								name="waktu_ujian" placeholder="MM/DD/YYYY HH:MM A"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -322,7 +322,7 @@
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="persyaratan" placeholder="Persyaratan"
 								th:value="${persyaratan}" class="form-control" rows="5"
-								type="text" required="true"></textarea>
+								type="text"></textarea>
 						</div>
 					</div>
 				</div>
@@ -403,60 +403,7 @@
 	</div>
 
 	<!-- /.container -->
-	<script>
-		$(document).ready(
-				function() {
-					$('#contact_form').bootstrapValidator({
-						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							nama : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Tolong masukan nama jalur'
-									}
-								}
-							},
-							persyaratan : {
-								validators : {
-									stringLength : {
-										min : 8,
-									},
-									notEmpty : {
-										message : 'Tolong masukkan persyaratan'
-									}
-								}
-							}
-						}
-					}).on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#contact_form').data('bootstrapValidator')
-										.resetForm();
-								// Prevent form submission
-								e.preventDefault();
-								// Get the form instance
-								var $form = $(e.target);
-								// Get the BootstrapValidator instance
-								var bv = $form.data('bootstrapValidator');
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form.serialize(),
-										function(result) {
-											console.log(result);
-										}, 'json');
-							});
-				});
-	</script>
+
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
@@ -533,6 +480,131 @@
 	<script>
 		$(document).ready(
 				function() {
+					$('#contact_form').bootstrapValidator({
+						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							nama : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan nama jalur masuk'
+									}
+								}
+							},
+							tanggal_buka : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan tanggal buka jalur masuk'
+									}
+								}
+							},
+							tanggal_tutup : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan tanggal tutup jalur masuk'
+									}
+								}
+							},
+							status : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan status jalur masuk'
+									}
+								}
+							},
+							jenis_jalur : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan jenis jalur masuk'
+									}
+								}
+							},
+							nama_jenjang : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan jenjang pendidikan jalur masuk'
+									}
+								}
+							},
+							nama_program : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan program pendidikan jalur masuk'
+									}
+								}
+							},
+							waktu_ujian : {
+								validators : {
+									stringLength : {
+										min : 2,
+									},
+									notEmpty : {
+										message : 'Masukkan waktu ujian jalur masuk'
+									}
+								}
+							},
+							persyaratan : {
+								validators : {
+									stringLength : {
+										min : 8,
+									},
+									notEmpty : {
+										message : 'Tolong masukkan persyaratan'
+									}
+								}
+							}
+						}
+					}).on(
+							'success.form.bv',
+							function(e) {
+								$('#success_message').slideDown({
+									opacity : "show"
+								}, "slow") // Do something ...
+								$('#contact_form').data('bootstrapValidator')
+										.resetForm();
+								// Prevent form submission
+								e.preventDefault();
+								// Get the form instance
+								var $form = $(e.target);
+								// Get the BootstrapValidator instance
+								var bv = $form.data('bootstrapValidator');
+								// Use Ajax to submit form data
+								$.post($form.attr('action'), $form.serialize(),
+										function(result) {
+											console.log(result);
+										}, 'json');
+							});
+				});
+	</script>
+
+	<script>
+		$(document).ready(
+				function() {
 					var date_input = $('input[name="tanggal_buka"]'); //our date input has the name "tgl_buka"
 					var container = $('.bootstrap-iso form').length > 0 ? $(
 							'.bootstrap-iso form').parent() : "body";
@@ -561,7 +633,5 @@
 				});
 		$('.select').selectpicker();
 	</script>
-
 </body>
-
 </html>
