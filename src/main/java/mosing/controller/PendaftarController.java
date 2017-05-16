@@ -348,21 +348,28 @@ public class PendaftarController {
 	@RequestMapping("/lihat-hasil")
 	public String lihatHasil(Model model,
 		@RequestParam(value = "no_daftar", required = false) int no_daftar,
-		@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
-		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
+		@RequestParam(value = "id_jalur", required = false) int id_jalur) {
 		
-		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
-		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(pendaftar.getId_prodi());
-		String nama_prodi = prodi.getNama_prodi();
-		int id_fakultas = prodi.getId_fakultas();
-		FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
-		String nama_fakultas = fakultas.getFakultas();
-		
-		model.addAttribute("nama_prodi", nama_prodi);
-		model.addAttribute("nama_fakultas", nama_fakultas);
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(no_daftar);
+		if(penyeleksian.getStatus() == 1 & penyeleksian.getId_jalur() == jalur.getId_jalur())
+		{
+			CalonMahasiswaModel calon = calonMahasiswaDAO.selectCalon(no_daftar);
+			ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(calon.getId_prodi());
+			String nama_prodi = prodi.getNama_prodi();
+			int id_fakultas = prodi.getId_fakultas();
+			FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
+			String nama_fakultas = fakultas.getFakultas();
+
+			model.addAttribute("calon", calon);
+			model.addAttribute("nama_prodi", nama_prodi);
+			model.addAttribute("nama_fakultas", nama_fakultas);
+		}
+		PendaftarModel pendaftar = pendaftarDAO.selectNama(no_daftar);
+
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("penyeleksian", penyeleksian);
 		model.addAttribute("pendaftar", pendaftar);
-		model.addAttribute("murid", murid);
-		model.addAttribute("nama_jalur", nama_jalur);
 		return "hasil-seleksi";
 		
 	}

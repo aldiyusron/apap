@@ -1,5 +1,7 @@
 package mosing.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class PageController {
 	public String login(Model model){
 		UserAdmisiModel user = userDAO.selectUser();
 		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalurMasuk(4);
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
 		model.addAttribute("user", user);
 		model.addAttribute("jalurMasuk", jalurMasuk);		
 		if(user!=null){
