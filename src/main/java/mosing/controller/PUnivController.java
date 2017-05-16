@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mosing.model.FakultasModel;
+import mosing.model.JalurMasukModel;
 import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 import mosing.service.FakultasService;
+import mosing.service.JalurMasukService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 
@@ -20,6 +22,16 @@ public class PUnivController {
 	
 	@Autowired
 	FakultasService fakultasDAO;
+	
+	@Autowired
+	JalurMasukService jalurMasukDAO;
+	
+	@RequestMapping("/terimaPendaftar")
+	public String acceptPendaftar(Model model) {
+		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		model.addAttribute("allJalur", jalurMasuk);
+		return "pilih-jalur-terima";
+	}
 	
 	//nampilin list fakultas
 	@RequestMapping("/seleksi/ppkb")
@@ -43,6 +55,10 @@ public class PUnivController {
 		return "";
 	}
 	
+	@RequestMapping("/dashboard")
+	public String dashboard(){
+		return "dashboard";
+	}
 	
 //	@RequestMapping("/list")
 //	public String add(Model model){

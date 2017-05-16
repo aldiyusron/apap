@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class LokasiModel {
 
 	private int id_lokasi;
+	private int id_jalur;
 	private String alamat;
 	private String no_telp;
 	private String nama_lokasi;

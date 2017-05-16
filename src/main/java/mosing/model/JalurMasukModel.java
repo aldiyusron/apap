@@ -23,4 +23,5 @@ public class JalurMasukModel {
 	private Date waktu_ujian;
 	private int flag_aktif;
 	List<ProdiTersediaModel> listProdi;
+	List<LokasiModel> listLokasi;
 }

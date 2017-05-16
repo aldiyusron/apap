@@ -14,5 +14,4 @@ public class FakultasModel {
 	private String fakultas;
 	private List<ProdiTersediaModel> listProdi;
 	
-
 }

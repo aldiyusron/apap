@@ -42,4 +42,9 @@ public class LokasiServiceDatabase implements LokasiService {
 	public void deleteLokasiUjian(LokasiModel lokasi) {
 		lokasiMapper.deleteLokasiUjian(lokasi);
 	}
+
+	@Override
+	public List<LokasiModel> selectLokasiJalur(int id_jalur) {
+		return lokasiMapper.selectLokasiJalur(id_jalur);
+	}
 }

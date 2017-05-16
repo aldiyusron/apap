@@ -242,6 +242,7 @@
 				</div>
 				<div class="tab-content clearfix"
 					style="padding-top: 15px">
+					<h3>Daftar Program Studi yang Dibuka</h3>
 					<table id="tableDetail" class="table stripe"
 						th:if="${jalur_masuk.listProdi} != NULL">
 						<thead>
@@ -272,6 +273,79 @@
 		</div>
 	</div>
 
+	<div th:unless="${jalur_masuk.jenis_jalur} eq 0">
+		<div class="container">
+		
+		<div class="row" style="margin-bottom: -60px">
+		
+			<div id="exTab3" class="container">
+				<div class="tab-content clearfix">
+				<h3>Daftar Lokasi Ujian</h3>
+						<form th:action="@{'/lokasi-ujian/add/' + ${jalur_masuk.id_jalur}}" method="post">
+							<input class="btn btn-danger1"
+								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
+								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
+						</form>
+
+						<table id="daftarLokasi" class="table stripe">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Lokasi</th>
+									<th>Alamat</th>
+									<th>Kota</th>
+									<th>Provinsi</th>
+									<th>Nomor Telepon</th>
+									<th>Kuota Pendaftar</th>
+									<th>Kuota Pengawas</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<div th:each="lokasi,iterationStatus: ${listLokasi}"
+									style="padding-left: 10px">
+									<tr>
+										<td th:text="${iterationStatus.count}">No.</td>
+										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
+										<td th:text="${lokasi.alamat}">Alamat</td>
+										<td th:text="${lokasi.nama_kota}">Kota</td>
+										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
+										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
+										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
+										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
+										<td><a
+											th:href="'/lokasi-ujian/update/'+ ${lokasi.id_lokasi}"> <span
+												class="input-group-btn">
+													<button type="button" class="btn-sm btn-custom" id="as"
+														name="as" value="Go">
+														<span class="glyphicon glyphicon-edit"
+															style="float: right"></span>
+													</button>
+											</span>
+										</a></td>
+										<td><a
+											th:href="'/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
+												class="input-group-btn">
+													<button type="button" class="btn-sm btn-custom" id="as"
+														name="as" value="Go">
+														<span class="glyphicon glyphicon-trash"
+															style="float: right"></span>
+													</button>
+											</span>
+										</a></td>
+									</tr>
+								</div>
+							</tbody>
+						</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
 
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -366,6 +440,10 @@
 	<script>
 			$(document).ready(function() {
 				$("#tableDetail").DataTable();
+			});
+			
+			$(document).ready(function() {
+				$("#daftarLokasi").DataTable();
 			});
 		</script>
 </body>

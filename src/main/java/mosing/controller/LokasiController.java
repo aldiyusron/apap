@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.JalurMasukModel;
 import mosing.model.KotaModel;
 import mosing.model.LokasiModel;
 import mosing.model.ProvinsiModel;
 import mosing.service.DetailUjianService;
+import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
 import mosing.service.LokasiService;
 import mosing.service.ProvinsiService;
@@ -32,16 +34,20 @@ public class LokasiController {
 
 	@Autowired
 	DetailUjianService detailUjianDAO;
+	
+	@Autowired
+	JalurMasukService jalurMasukDAO;
 
-	@RequestMapping("/detail-ujian")
-	public String lihatDaftarLokasi(Model model) {
-		List<LokasiModel> allLokasi = lokasiDAO.selectAllLokasi();
-		model.addAttribute("allLokasi", allLokasi);
-		return "view-all-lokasi";
-	}
+//	@RequestMapping("/detail-ujian")
+//	public String lihatDaftarLokasi(Model model) {
+//		List<LokasiModel> allLokasi = lokasiDAO.selectAllLokasi();
+//		model.addAttribute("allLokasi", allLokasi);
+//		return "view-all-lokasi";
+//	}
 
-	@RequestMapping("/detail-ujian/add")
-	public String tambahLokasi(Model model) {
+	@RequestMapping("/lokasi-ujian/add/{id_jalur}")
+	public String tambahLokasi(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
+		
 		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
 		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
 		model.addAttribute("allProvinsi", allProvinsi);
@@ -49,23 +55,25 @@ public class LokasiController {
 		return "add-lokasi";
 	}
 
-	@RequestMapping("/detail-ujian/add/submit")
-	public String tambahLokasiSubmit(@RequestParam(value = "alamat", required = false) String alamat,
+	@RequestMapping("/lokasi-ujian/add/submit/{id_jalur}")
+	public String tambahLokasiSubmit(Model model, @PathVariable(value = "id_jalur") int id_jalur,
+			@RequestParam(value = "alamat", required = false) String alamat,
 			@RequestParam(value = "no_telp", required = false) String no_telp,
 			@RequestParam(value = "nama_lokasi", required = false) String nama_lokasi,
 			@RequestParam(value = "nama_provinsi", required = false) String nama_provinsi,
 			@RequestParam(value = "nama_kota", required = false) String nama_kota,
 			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
 			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
-
-		LokasiModel lokasi = new LokasiModel(0, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
+		//JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		model.addAttribute("id_jalur", id_jalur);
+		LokasiModel lokasi = new LokasiModel(0, id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
 				kuota_pendaftar, 1);
 		lokasiDAO.addLokasiUjian(lokasi);
 
 		return "success-add-lokasi";
 	}
 
-	@RequestMapping(value = "/detail-ujian/delete/{id_lokasi}", method = RequestMethod.GET)
+	@RequestMapping(value = "/lokasi-ujian/delete/{id_lokasi}", method = RequestMethod.GET)
 	public String hapusLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
 		model.addAttribute("lokasi", lokasi);
@@ -73,16 +81,18 @@ public class LokasiController {
 		return "delete-lokasi";
 	}
 
-	@RequestMapping(value = "/detail-ujian/delete/submit/{id_lokasi}")
+	@RequestMapping(value = "/lokasi-ujian/delete/submit/{id_lokasi}")
 	public String hapusLokasiSubmit(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		int id_jalur = lokasiDAO.selectLokasi(id_lokasi).getId_jalur();
+		model.addAttribute("id_jalur", id_jalur);
 		model.addAttribute("lokasi", lokasi);
 		lokasiDAO.deleteLokasiUjian(lokasi);
 
 		return "success-delete-lokasi";
 	}
 
-	@RequestMapping("/detail-ujian/update/{id_lokasi}")
+	@RequestMapping("/lokasi-ujian/update/{id_lokasi}")
 	public String updateLokasi(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
 		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
@@ -93,8 +103,8 @@ public class LokasiController {
 		return "update-lokasi";
 	}
 
-	@RequestMapping(value = "/detail-ujian/update/submit/{id_lokasi}", method = RequestMethod.POST)
-	public String updateLokasiSubmit(@PathVariable(value = "id_lokasi") int id_lokasi,
+	@RequestMapping(value = "/lokasi-ujian/update/submit/{id_lokasi}", method = RequestMethod.POST)
+	public String updateLokasiSubmit(Model model, @PathVariable(value = "id_lokasi") int id_lokasi,
 			@RequestParam(value = "alamat", required = false) String alamat,
 			@RequestParam(value = "no_telp", required = false) String no_telp,
 			@RequestParam(value = "nama_lokasi", required = false) String nama_lokasi,
@@ -102,8 +112,10 @@ public class LokasiController {
 			@RequestParam(value = "nama_kota", required = false) String nama_kota,
 			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
 			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
-
-		LokasiModel lokasi = new LokasiModel(id_lokasi, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota,
+		LokasiModel lokasiJalur = lokasiDAO.selectLokasi(id_lokasi);
+		int id_jalur = lokasiDAO.selectLokasi(id_lokasi).getId_jalur();
+		model.addAttribute("id_jalur", id_jalur);
+		LokasiModel lokasi = new LokasiModel(id_lokasi, lokasiJalur.getId_jalur(), alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota,
 				kuota_peng, kuota_pendaftar, 1);
 		lokasiDAO.updateLokasiUjian(lokasi);
 		return "success-update-lokasi";
