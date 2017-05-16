@@ -193,19 +193,19 @@
 									style="padding-left: 10px">
 									<tr>
 										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
+										<td th:text="${pendaftar.nama_ijazah}">Nama Siswa</td>
+										<td th:text="${pendaftar.no_daftar}">Nomor Pendaftaran</td>
+										<td th:text="${lokasi.nama_kota}">Rata-rata Rapor</td>
+										<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
+										<td th:text="${penyeleksian.status_rekomen}">Keterangan</td>
+										<!-- <td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
+										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td> -->
 										<td><a
 											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
 												class="input-group-btn">
 													<button type="button" class="btn-sm btn-custom" id="as"
 														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
+														<span class="glyphicon glyphicon-ok"
 															style="float: right"></span>
 													</button>
 											</span>
