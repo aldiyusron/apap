@@ -183,12 +183,8 @@
 					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
 				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
-<<<<<<< HEAD
 					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima Pendaftar</a>
-=======
-					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
 					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
->>>>>>> branch 'icha' of https://github.com/propensi2017/a6.git
 				</div>
             </div>
         </div>
