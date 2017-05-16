@@ -103,6 +103,6 @@ public class PFakultasController {
 	public String rekomendasi(Model model, @PathVariable(value = "id_prodi") int id_prodi) {
 		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarRec(id_prodi);
 		model.addAttribute("pendaftar", pendaftar);
-		return "recommended";
+		return "hasil-recommended";
 	}
 }
