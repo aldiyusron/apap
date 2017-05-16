@@ -11,10 +11,10 @@
 <title>Penerimaan UI | Beranda</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -120,7 +120,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/index">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -218,24 +218,23 @@
 				</div>
 			</div>
 			<div class="col-md-4" style="margin-top: 40px">
-				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px;"
-					class="">
+				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px">
 					<h4 style="padding-left: 5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
-						<form>
-							<div class="form-group">
-								<label>No. Ujian:</label> <input type="text"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="sel1">Jalur Masuk:</label> <select
-									class="form-control" id="sel1">
-									<option>SNMPTN</option>
-									<option>SBMPTN</option>
-									<option>PPKB</option>
-									<option>SIMAK UI</option>
-									<option>Talent Scouting</option>
-								</select>
+						<form action="/lihat-hasil" method="post" id="contact_form">
+  							<div class="form-group">
+    							<label for="no_daftar">No. Ujian:</label>
+    							<input type="text" class="form-control" name="no_daftar" id="no_daftar" />
+  							</div>
+  							<div class="form-group">
+  								<label for="nama_jalur">Jalur Masuk:</label>
+  								<select class="form-control selectpicker" id="nama_jalur" name="nama_jalur">
+    								<option>SNMPTN</option>
+    								<option>SBMPTN</option>
+    								<option>PPKB</option>
+    								<option>SIMAK UI</option>
+    								<option>Talent Scouting</option>
+  								</select>
 							</div>
 							<button type="submit" class="btn btn-s">Lihat</button>
 						</form>

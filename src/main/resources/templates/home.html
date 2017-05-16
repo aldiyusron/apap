@@ -168,10 +168,12 @@
                 <div th:if="${user.role} eq 'ROLE_KPMB'">
                 	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
                 	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
-                	<a href="/detail-ujian" class="page-scroll btn btn-xl">Detail Ujian</a>
                 </div>
               	<div th:if="${user.role} eq 'ROLE_PEND'">
 					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
+				</div>
+				<div th:if="${user.role} eq 'ROLE_PEND' and ${jalurMasuk.id_jalur} eq 4">
+					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">
 					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
@@ -181,7 +183,12 @@
 					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
 				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
+<<<<<<< HEAD
 					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+=======
+					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
+>>>>>>> branch 'icha' of https://github.com/propensi2017/a6.git
 				</div>
             </div>
         </div>
@@ -227,8 +234,8 @@
 			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>			  		</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div id="box-new" style = "padding-bottom: 35px; margin-top: 62px; " class="">
+			<div class="col-md-4" style="margin-top: 40px">
+				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px" class="">
 					<h4 style="padding-left:5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
 						<form>

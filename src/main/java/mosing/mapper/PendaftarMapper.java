@@ -53,14 +53,24 @@ public interface PendaftarMapper {
 	List<PendaftarModel> selectAllPendaftar();
 
 	@Update("UPDATE pendaftar SET nama_id = #{nama_id}, nama_ijazah=#{nama_ijazah}, jenis_kelamin=#{jenis_kelamin}, no_id=#{no_id}, "
-			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_id=#{no_id}")
+			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
 	
 	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
 
+
 	@Select("select p.*select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarRec(int id_prodi);
+
+	@Select("select * from pendaftar"
+			+ " join PENYELEKSIAN on pendaftar.no_daftar = penyeleksian.no_daftar"
+			+ " join JALUR_MASUK on penyeleksian.id_jalur = jalur_masuk.id_jalur where jalur_masuk.id_jalur=4 AND no_id=#{no_id}")
+	PendaftarModel selectPPKB(@Param("no_id") String no_id);
+	
+	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
+	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
+	
 }

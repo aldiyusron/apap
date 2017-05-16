@@ -55,10 +55,7 @@ public interface JalurMasukMapper {
 			@Result(property = "persyaratan", column = "persyaratan") })
 	List<JalurMasukModel> selectAllJalurMasuk();
 
-	@Select("select nama_prodi, daya_tampung, nama_fakultas from prodi_tersedia p where p.id_jalur = #{id_jalur}")
-	@Results(value = { @Result(property = "nama_prodi", column = "nama_prodi"),
-			@Result(property = "daya_tampung", column = "daya_tampung"),
-			@Result(property = "nama_fakultas", column = "nama_fakultas") })
+	@Select("select * from prodi_tersedia p where p.id_jalur = #{id_jalur}")
 	List<ProdiTersediaModel> selectProdiJalurMasuk(@Param("id_jalur") int id_jalur);
 	
 	@Select("select * from lokasi where id_jalur = #{id_jalur}")
@@ -86,5 +83,7 @@ public interface JalurMasukMapper {
 
 	@Select("select * from jalur_masuk where jenis_jalur=0 and flag_aktif=1")
 	List<JalurMasukModel> selectAllJalurUndangan();
-
+	
+	@Select("select * from jalur_masuk where nama = #{nama_jalur}")
+	JalurMasukModel selectJalur(@Param("nama_jalur") String nama_jalur);
 }

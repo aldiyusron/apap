@@ -58,6 +58,20 @@ public class PendaftarServiceDatabase implements PendaftarService {
 		// TODO Auto-generated method stub
 		pendaftarMapper.updateDataPendaftar(pendaftar);
 	}
+
+	@Override
+	public PendaftarModel selectPPKB(String no_id) {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectPPKB(no_id);
+	}
+
+	@Override
+	public PendaftarModel selectPendaftarLulus(int no_daftar) {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectPendaftarLulus(no_daftar);
+	}
+	
+	
 	
 	@Override
 	public void addDaftarPilihan (DaftarPilihanModel daftar)

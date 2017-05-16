@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,5 +41,11 @@ public class UserAdmisiServiceDatabase implements UserAdmisiService {
 	public void updateUser(UserAdmisiModel user)
 	{
 		userAdmisiMapper.updateUser(user);
+	}
+	
+	@Override
+	public List<UserAdmisiModel> selectAllUser()
+	{
+		return userAdmisiMapper.selectAllUser();
 	}
 }

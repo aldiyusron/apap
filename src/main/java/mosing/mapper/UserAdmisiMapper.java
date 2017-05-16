@@ -1,5 +1,7 @@
 package mosing.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +26,7 @@ public interface UserAdmisiMapper {
 	
 	@Update("UPDATE user SET password = #{password} WHERE username = #{username}")
 	void updateUser(UserAdmisiModel user);
+	
+	@Select("select * from user")
+	List<UserAdmisiModel> selectAllUser();
 }
