@@ -155,7 +155,7 @@
 
 	</div>
 	<div class="container">
-		<h1>Detail Jalur Masuk</h1>
+		<h1>Detail Lokasi</h1>
 		<br />
 		<div class="row" style="margin-top: -2.5%; margin-bottom: -60px">
 			<div id="exTab3" class="container">
@@ -163,22 +163,22 @@
 					<legend>
 						<center>
 							<h2>
-								<b th:text="${jalur_masuk.nama}"></b>
+								<b th:text="${lokasi.nama_lokasi}"></b>
 							</h2>
 						</center>
 					</legend>
 					<br />
 					<div class="isilist">
-						<div id="edit-delete" class="btn-group btn-group-justified"
+						<!-- <div id="edit-delete" class="btn-group btn-group-justified"
 							style="margin-left: 47.75%; margin-top: -1.5%;">
-							<a th:href="'/jalur-masuk/update/'+ ${id_jalur}"> <span
+							<a th:href="'/lokasi-ujian/update/'+ ${id_lokasi}"> <span
 								class="btn-group">
 									<button type="button" class="btn btn-md btn-custom" id="as"
 										name="as" value="Go">
 										<span class="glyphicon glyphicon-edit"></span>
 									</button>
 							</span>
-							</a> <a th:href="'/jalur-masuk/delete/'+ ${id_jalur}"> <span
+							</a> <a th:href="'/lokasi-ujian/delete/'+ ${id_lokasi}"> <span
 								class="btn-group">
 									<button type="button" class="btn btn-md btn-custom" id="as"
 										name="as" value="Go">
@@ -186,196 +186,93 @@
 									</button>
 							</span>
 							</a>
-						</div>
+						</div> -->
 						<table class="table table-striped">
 							<thead>
 								<dl class="dl-horizontal" style="margin-left: 400px">
 									<br />
-									<dt>Tanggal Buka</dt>
+									<dt>Alamat</dt>
 									<dd
-										th:text="${#dates.format(jalur_masuk.tanggal_buka, 'dd-MMM-yyyy')}"></dd>
+										th:text="${lokasi.alamat}"></dd>
 									<br />
-									<dt>Tanggal Tutup</dt>
+									<dt>Nomor Telepon</dt>
 									<dd
-										th:text="${#dates.format(jalur_masuk.tanggal_tutup, 'dd-MMM-yyyy')}"></dd>
+										th:text="${lokasi.no_telp}"></dd>
 									<br />
-									<dt>Status</dt>
-									<div th:if="${jalur_masuk.status} == 1">
-										<dd>Aktif</dd>
-									</div>
-									<div th:if="${jalur_masuk.status} != 1">
-										<dd>Tidak Aktif</dd>
-									</div>
+									<dt>Nama Provinsi</dt>
+									<dd th:text="${lokasi.nama_provinsi}"></dd>
 									<br />
-									<dt>Jenis Jalur</dt>
-									<div th:if="${jalur_masuk.jenis_jalur} == 1">
-										<dd>Jalur Tulis</dd>
-									</div>
-									<div th:if="${jalur_masuk.jenis_jalur} != 1">
-										<dd>Jalur Undangan</dd>
-									</div>
+									<dt>Nama Kota</dt>
+									<dd th:text="${lokasi.nama_kota}"></dd>
 									<br />
-									<dt>Nama Jenjang</dt>
-									<dd th:text="${jalur_masuk.nama_jenjang}"></dd>
+									<dt>Kuota Pengawas</dt>
+									<dd th:text="${lokasi.kuota_peng}"></dd>
 									<br />
-									<dt>Nama Program</dt>
-									<div th:if="${jalur_masuk.nama_program} eq NULL">
-										<dd>Tidak ada</dd>
-									</div>
-									<div th:if="${jalur_masuk.nama_program} != NULL">
-										<dd th:text="${jalur_masuk.nama_program}"></dd>
-									</div>
+									<dt>Kuota Pendaftar</dt>
+									<dd th:text="${lokasi.kuota_pendaftar}"></dd>
 									<br />
-									<dt>Waktu Ujian</dt>
-									<dd
-										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'dd-MMM-yyyy')}"></dd>
-									<br />
-									<dt>Persyaratan</dt>
-									<dd th:text="${jalur_masuk.persyaratan}"></dd>
 
 								</dl>
 							</thead>
 						</table>
-						<a href="/jalur-masuk" class="btn btn-danger1"
+						<a href="/seleksi-pengawas" class="btn btn-danger1"
 							style="width: 10%; margin-left: 46.5%; margin-bottom: 20px">Kembali</a>
 					</div>
 				</div>
 				<div class="tab-content clearfix" style="padding-top: 15px">
-					<h3>Daftar Program Studi yang Dibuka</h3>
-					<form
-						th:action="@{'/prodi-tersedia/add/' + ${jalur_masuk.id_jalur}}"
+					<h3>Daftar Pengawas</h3>
+					<!-- <form
+						th:action="@{'//add/' + ${jalur_masuk.id_jalur}}"
 						method="post">
 						<input class="btn btn-danger1"
 							style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 							type="submit" value="+ Tambah Prodi" /> <br />
-					</form>
+					</form> -->
 
-					<table id="daftarProdi" class="table stripe"
-						th:if="${jalur_masuk.listProdi} != NULL">
+					<table id="daftarPengawas" class="table stripe"
+						th:if="${listPengawas} != NULL">
 						<thead>
 							<tr>
 								<th>No.</th>
-								<th>Nama Prodi</th>
-								<th>Daya Tampung</th>
-								<th>Nama Fakultas</th>
-								<th></th>
+								<th>Nama</th>
+								<th>Jabatan</th>
+								<th>No. HP</th>
+								<th>Status</th>
+								<th>Sedia Pindah</th>
 								<th></th>
 							</tr>
 						</thead>
 
 						<tbody>
-							<div th:each="prodi,iterationStatus: ${listProdi}" style="padding-left: 10px">
+							<div th:each="pengawas,iterationStatus: ${listPengawas}" style="padding-left: 10px">
 								<!-- Belum bener -->
 								<tr>
 									<td th:text="${iterationStatus.count}">No.</td>
-									<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
-									<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
-									<td th:text="${prodi.id_fakultas}">Nama Fakultas</td>
-									<td><a
-										th:href="'/prodi-tersedia/update/'+ ${prodi.id_prodi}"> <span
-											class="input-group-btn">
-												<button type="button" class="btn-sm btn-custom" id="as"
-													name="as" value="Go">
-													<span class="glyphicon glyphicon-edit" style="float: right"></span>
-												</button>
-										</span>
-									</a></td>
-									<td><a
-										th:href="'/prodi-tersedia/delete/'+ ${prodi.id_prodi}"> <span
-											class="input-group-btn">
-												<button type="button" class="btn-sm btn-custom" id="as"
-													name="as" value="Go">
-													<span class="glyphicon glyphicon-trash"
-														style="float: right"></span>
-												</button>
-										</span>
-									</a></td>
+									<td th:text="${pengawas.nama}">Nama Jalur Masuk</td>
+									<td th:text="${pengawas.jabatan}">Daya Tampung</td>
+									<td th:text="${pengawas.no_hp}">Nama Fakultas</td>
+									<div th:if="${pengawas.status} == 1">
+										<td>Diterima</td>
+									</div>
+									<div th:if="${pengawas.status} != 1">
+										<td>Tidak diterima</td>
+									</div>
+									<div th:if="${pengawas.pindah_bool} == 1">
+										<td>Bersedia</td>
+									</div>
+									<div th:if="${pengawas.pindah_bool} != 1">
+										<td>Tidak bersedia</td>
+									</div>
 								</tr>
 							</div>
 						</tbody>
 					</table>
 				</div>
 
-				<p th:if="${jalur_masuk.listProdi} eq 1">Belum punya prodi</p>
+				<p th:if="${lokasi.listPengawas} eq 1">Belum punya prodi</p>
 			</div>
 		</div>
 	</div>
-
-	<div th:unless="${jalur_masuk.jenis_jalur} eq 0">
-		<div class="container">
-
-			<div class="row" style="margin-bottom: -60px">
-
-				<div id="exTab3" class="container">
-					<div class="tab-content clearfix">
-						<h3>Daftar Lokasi Ujian</h3>
-						<form
-							th:action="@{'/lokasi-ujian/add/' + ${jalur_masuk.id_jalur}}"
-							method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form>
-
-						<table id="daftarLokasi" class="table stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Lokasi</th>
-									<th>Alamat</th>
-									<th>Kota</th>
-									<th>Provinsi</th>
-									<th>Nomor Telepon</th>
-									<th>Kuota Pendaftar</th>
-									<th>Kuota Pengawas</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${listLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
-										<td><a
-											th:href="'/lokasi-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-trash"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
