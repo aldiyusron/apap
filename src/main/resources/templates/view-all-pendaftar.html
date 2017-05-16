@@ -158,11 +158,10 @@
 		<h1>Daftar Seleksi Siswa</h1>
 		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
-				<ul class="nav nav-tabs">
+				<!-- <ul class="nav nav-tabs">
 					<li class="active"><a href="#1b" data-toggle="tab">PPKB
 							</a></li>
-					<li><a href="#2b" data-toggle="tab">SIMAK UI</a></li>
-				</ul>
+				</ul> -->
 				<br />
 				<div class="tab-content clearfix">
 					<div class="tab-pane fade in active" id="1b">
@@ -198,62 +197,7 @@
 										<td th:text="${pendaftar.nilaiRapor}">Rata-rata Rapor</td>
 										<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
 										<td th:if ="${penyeleksian.status_rekomen} eq '1'" th:text="Rekomendasi">Keterangan</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-ok"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-remove"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
-					</div>
-					<div class="tab-pane fade" id="2b">
-						<!-- <form th:action="@{/detail-ujian/add}" method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form> -->
-
-						<table id="daftarSeleksiSiswa2" class="table table-stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Siswa</th>
-									<th>Nomor Pendaftaran</th>
-									<th>Rata-rata Nilai Ujian</th>
-									<th>Keterangan</th>
-									<th>Terima</th>
-									<th>Tidak</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${pendaftar.nama_ijazah}">Nama Siswa</td>
-										<td th:text="${pendaftar.no_daftar}">Nomor Pendaftaran</td>
-										<td th:text="${lokasi.nama_kota}">Rata-rata Nilai Ujian</td>
-										<td th:if ="${penyeleksian.status_rekomen} eq '1'" th:text="Rekomendasi">Keterangan</td>
+										<td th:unless ="${penyeleksian.status_rekomen} eq '1'" th:text="Tidak Direkomendasi">Keterangan</td>
 										<td><a
 											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
 												class="input-group-btn">

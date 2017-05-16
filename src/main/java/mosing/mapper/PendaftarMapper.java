@@ -71,7 +71,7 @@ public interface PendaftarMapper {
 	})
 	List<PendaftarModel> selectAllPendaftarPPKB();
 
-	@Select("select p.*select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarRec(int id_prodi);
 
@@ -82,5 +82,9 @@ public interface PendaftarMapper {
 	
 	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
 	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
+	
+	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+			+ "pr.id_prodi = d.id_prodi where pn.status=0 and d.id_prodi = #{id_prodi}")
+	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi);
 	
 }
