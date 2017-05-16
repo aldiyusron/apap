@@ -8,6 +8,12 @@ import mosing.model.CalonMahasiswaModel;
 
 @Mapper
 public interface CalonMahasiswaMapper {
+
+//	@Select("select * from calon_mahasiswa join pendaftar on"
+//			+ " calon_mahasiswa.no_daftar = pendaftar.no_daftar"
+//			+ " where calon_mahasiswa.no_daftar=#{no_daftar}")
+//	CalonMahasiswaModel selectCalon2(@Param)
+	
 	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
 	CalonMahasiswaModel selectCalon(@Param("no_daftar") int no_daftar);
 }

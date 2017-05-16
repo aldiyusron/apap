@@ -182,7 +182,11 @@
 				<div th:if="${user.role} eq 'ROLE_PENG_U'">
 					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
-				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
+				<div th:if="${user.role} eq 'ROLE_PEM_U'">
+					<a th:href="/terimaPendaftar/" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
+					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
+				</div>
+				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U' or ${user.role} eq 'ROLE_PEM_U'">
 					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima Pendaftar</a>
 					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
 				</div>

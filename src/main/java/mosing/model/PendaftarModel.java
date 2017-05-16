@@ -31,5 +31,5 @@ public class PendaftarModel {
 	private int no_daftar;
 	private String nama_lembaga;
 	private String jurusan;
-	private double nilaiRapor;
+	private double rata2;
 }

@@ -60,6 +60,16 @@ public interface PendaftarMapper {
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
 
+	@Select("select * from pendaftar join penyeleksian on pendaftar.no_daftar = penyeleksian.no_daftar"
+			+ "join nilai_rapor on penyeleksian.no_daftar = nilai_rapor.no_daftar"
+			+ "where penyeleksian.id_jalur = 4")
+	@Results(value = {
+			@Result(property = "nama_id", column = "nama_id"),
+			@Result(property = "no_daftar", column = "no_daftar"),
+			@Result(property = "nama_lembaga", column = "nama_lembaga"),
+			@Result(property = "status_rekomen", column = "status_rekomen")
+	})
+	List<PendaftarModel> selectAllPendaftarPPKB();
 
 	@Select("select p.*select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
