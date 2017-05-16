@@ -161,7 +161,7 @@
 				<ul th:each="fakultas,iterationStatus: ${fakultas}">
 					<li><button th:text="${fakultas.fakultas}"></button></li>
 					<ul th:each="prodi,iterationStatus: ${fakultas.listProdi}">
-						<li><a th:href="'/view/pendaftar/' + ${id_jalur} + '/' + ${prodi.id_prodi}"><button
+						<li><a th:href="'/view/pendaftar/rec/' + ${id_jalur} + '/' + ${prodi.id_prodi}"><button
 									th:text="${prodi.nama_prodi}"></button></a></li>
 					</ul>
 					<br />
