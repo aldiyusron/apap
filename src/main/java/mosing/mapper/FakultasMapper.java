@@ -9,6 +9,6 @@ import mosing.model.FakultasModel;
 @Mapper
 public interface FakultasMapper {
 	
-	@Select("select * from fakultas where id_fakultas = #{id_fakultas}")
+	@Select("SELECT * FROM FAKULTAS WHERE id_fakultas = #{id_fakultas}")
 	FakultasModel selectFakultas(@Param("id_fakultas") int id_fakultas);
 }

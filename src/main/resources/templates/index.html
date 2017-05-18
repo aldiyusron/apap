@@ -223,10 +223,10 @@
 						<form action="/lihat-hasil" method="post" id="contact_form">
 							<div class="form-group">
 								<label for="no_daftar">No. Ujian:</label> <input type="text"
-									class="form-control" name="no_daftar" id="no_daftar" />
+									class="form-control" name="no_daftar" id="no_daftar" required="required"/>
 							</div>
 							<div class="form-group">
-								<label for="nama_jalur">Jalur Masuk:</label> <select
+								<label for="nama_jalur">Jalur Masuk:</label> <select required="required"
 									class="form-control selectpicker" id="id_jalur" name="id_jalur">
 									<option value="">Jalur Masuk</option>
 									<div th:each="pilihJalur,iterationStatus: ${allJalurMasuk}">

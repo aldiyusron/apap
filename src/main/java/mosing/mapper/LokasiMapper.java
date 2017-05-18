@@ -15,7 +15,7 @@ import mosing.model.LokasiModel;
 @Mapper
 public interface LokasiMapper {
 
-	@Select("select * from lokasi where id_lokasi = #{id_lokasi} and flag_aktif = 1")
+	@Select("SELECT * FROM LOKASI WHERE id_lokasi = #{id_lokasi} AND flag_aktif = 1")
 	@Results(value = { 
 	    		@Result(property = "alamat", column = "alamat"), 
 	    		@Result(property = "no_telp", column = "no_telp"),
@@ -26,19 +26,19 @@ public interface LokasiMapper {
 				@Result(property = "kuota_pendaftar", column = "kuota_pendaftar")})
 	LokasiModel selectLokasi(@Param("id_lokasi") int id_lokasi);
 	
-	@Select("select * from lokasi where flag_aktif = 1")
+	@Select("SELECT * FROM LOKASI WHERE flag_aktif = 1")
 	
 	List<LokasiModel> selectAllLokasi();
 
-	@Insert("insert into lokasi (id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) values (#{id_jalur}, #{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")
+	@Insert("INSERT INTO LOKASI (id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) VALUES (#{id_jalur}, #{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")
 	void addLokasiUjian(LokasiModel lokasi);
 
-	@Update("update lokasi set alamat = #{alamat}, no_telp = #{no_telp}, nama_lokasi = #{nama_lokasi}, nama_provinsi = #{nama_provinsi}, nama_kota = #{nama_kota}, kuota_peng = #{kuota_peng}, kuota_pendaftar = #{kuota_pendaftar} where id_lokasi = #{id_lokasi} and flag_aktif = 1")
+	@Update("UPDATE LOKASI SET alamat = #{alamat}, no_telp = #{no_telp}, nama_lokasi = #{nama_lokasi}, nama_provinsi = #{nama_provinsi}, nama_kota = #{nama_kota}, kuota_peng = #{kuota_peng}, kuota_pendaftar = #{kuota_pendaftar} WHERE id_lokasi = #{id_lokasi} AND flag_aktif = 1")
 	void updateLokasiUjian(LokasiModel lokasi);
 
-	@Update("update lokasi set flag_aktif = 0 where id_lokasi = #{id_lokasi}")
+	@Update("UPDATE LOKASI SET flag_aktif = 0 WHERE id_lokasi = #{id_lokasi}")
 	void deleteLokasiUjian(LokasiModel lokasi);
 	
-	@Select("select * from lokasi where id_jalur = #{id_jalur} and flag_aktif = 1")
+	@Select("SELECT * FROM LOKASI WHERE id_jalur = #{id_jalur} AND flag_aktif = 1")
 	List<LokasiModel> selectLokasiJalur(@Param("id_jalur") int id_jalur);
 }

@@ -84,16 +84,15 @@
 									Masyarakat</a></li>
 							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
 									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.bing.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
 							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pbingetahuan Alam</a></li>
+									dan Ilmu Pengetahuan Alam</a></li>
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">ekonominomi
-									dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pbingetahuan Budaya</a></li>
+									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
 								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
 							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
@@ -128,14 +127,14 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
-								class="glyphicon glyphicon-user"
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -146,9 +145,9 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a></li>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -172,7 +171,7 @@
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
 		<form class="well form-horizontal" action="/nilai-ips/update/submit"
-			method="post" id="contact_form">
+			method="post" id="contact_form" >
 			<fieldset>
 
 				<!-- Form Name -->
@@ -189,7 +188,7 @@
 				<!-- <input type="hidden"
 					name="jurusan" readonly="readonly" th:value="${pendaftar2.jurusan}" /> -->
 
-				<div class="form-group">
+				<div class="form-group" style="margin-left: -0px">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -291,33 +290,18 @@
 
 				<!-- Text input-->
 
-				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Rata-rata
-						Nilai Rapor</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
-								placeholder="Rata-rata nilai rapor" class="form-control"
-								type="text" required="true" />
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
 
 				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label"></label>
-					<div class="col-md-4">
+				<div class="form-group" style="position: center">
+				<label class="col-md-4 control-label"></label>
+					<div class="col-md-4"><br />
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
-						<a class="btn btn-info" href="/daftar-siswa">Kembali</a>
-						<button style="width: 30%" value="save" name="action"
-							type="submit" class="btn btn-warning">Simpan</button>
+							th:value="${_csrf.token}" /> <a href="/daftar-siswa" style="width: 30%; margin-left:10px" class="btn btn-default">Batal</a>
+						
+						<button style="width: 90px; margin-left: 0px; margin-top:0px" value="save" name="action"
+							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
@@ -340,11 +324,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>

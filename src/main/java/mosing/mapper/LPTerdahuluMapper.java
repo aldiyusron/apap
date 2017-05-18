@@ -12,7 +12,7 @@ import mosing.model.LPTerdahuluModel;
 @Mapper
 public interface LPTerdahuluMapper {
 
-	@Select("select * from lembaga_pendidikan_terakhir")
+	@Select("SELECT * FROM LEMBAGA_PENDIDIKAN_TERAKHIR")
 	@Results(value = { @Result(property = "nama_lembaga", column = "nama_lembaga"),
 			@Result(property = "nama_provinsi", column = "nama_provinsi"),
 			@Result(property = "nama_kota", column = "nama_kota") })
