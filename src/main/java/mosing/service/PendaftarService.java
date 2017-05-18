@@ -22,4 +22,5 @@ public interface PendaftarService {
 	PendaftarModel selectPPKB(String no_id);
 	PendaftarModel selectPendaftarLulus(int no_daftar);
 	PendaftarModel selectNama(int no_daftar);
+	List<PendaftarModel> selectAllPendaftarSemua(int id_prodi, int id_jalur);
 }

@@ -32,8 +32,8 @@ public class PengawasUjianServiceDatabase implements PengawasUjianService {
 	}
 	
 	@Override
-	public void terimaPengawas(PengawasUjianModel pengawas) {
-		pengawasMapper.terimaPengawas(pengawas);
+	public void terimaPengawas(int id_user) {
+		pengawasMapper.terimaPengawas(id_user);
 	}
 	
 	@Override

@@ -8,15 +8,17 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<title>Penerimaan UI | Daftar Jalur Masuk</title>
+<title>Penerimaan UI | Daftar Fakultas</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+
 
 <!-- Custom Fonts -->
 <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
@@ -154,64 +156,41 @@
 
 	</div>
 	<div class="container">
-		<h1>Daftar Jalur Masuk</h1>
+		<h1>Daftar Fakultas</h1>
+		<div class="panel-group" style="margin-top:20px">
+			<div class="panel panel-default">
+				<div id="newpost" class="panel-heading">
+					<h4 id="button" class="panel-title"
+						th:each="fakultas,iterationStatus: ${fakultas}" style="padding:5px">
+						<a data-toggle="collapse" th:href="'#collapse' + ${iterationStatus.count}"
+							th:text="${fakultas.fakultas}"></a>
 
-		<div class="row" style="margin-bottom: -60px">
-			<div id="exTab3" class="container">
-
-				<div class="tab-content clearfix">
-					<!-- <form th:action="@{/jalur-masuk/add}" method="post">
-						<input class="btn btn-danger1"
-							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
-							type="submit" value="+ Tambah Jalur Masuk" /> <br />
-					</form> -->
-				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%; float: right">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Nama Jalur Masuk</th>
-								<th>Status</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<div th:each="jalur,iterationStatus: ${allJalur}">
-								<tr>
-									<td scope="row" th:text="${iterationStatus.count}">No.</td>
-									<td scope="row" th:text="${jalur.nama}">Nama Jalur Masuk</td>
-									<div th:if="${jalur.status}==1">
-										<td scope="row">Aktif</td>
-									</div>
-									<div th:if="${jalur.status}==0">
-										<td scope="row">Tidak Aktif</td>
-									</div>
-									<td><a th:href="'/jalur-masuk/view/'+ ${jalur.id_jalur}"
-										style="float: right"> <span class="input-group-btn">
-												<button type="button" class="btn btn-sm btn-custom" id="as"
-													name="as" value="Go">
-													<span class="glyphicon glyphicon-eye-open"
-														style="float: right"></span>
-												</button>
-										</span>
-									</a></td>
-									<td><a th:href="'/jalur-masuk/delete/'+ ${jalur.id_jalur}">
-											<span class="input-group-btn">
-												<button type="button" class="btn-sm btn-custom" id="as"
-													name="as" value="Go">
-													<span class="glyphicon glyphicon-trash"
-														style="float: right"></span>
-												</button>
-										</span>
-									</a></td>
-								</tr>
-							</div>
-						</tbody>
-					</table>
+						<div th:id="'collapse' + ${iterationStatus.count}" class="panel-collapse collapse">
+							<ul class="list-group"
+								th:each="prodi,iterationStatus: ${fakultas.listProdi}">
+								<li class="list-group-item"><a
+									th:href="'/lihat/pendaftar/' + ${id_jalur} + '/' +${prodi.id_prodi}"
+									th:text="${prodi.nama_prodi}"></a></li>
+							</ul>
+						</div>
+					</h4>
 				</div>
 			</div>
 		</div>
+
+		<!-- <div class="row" style="margin-bottom: -60px">
+			<div id="exTab3" class="container">
+				<ul th:each="fakultas,iterationStatus: ${fakultas}">
+					<li><button th:text="${fakultas.fakultas}"></button></li>
+					<ul th:each="prodi,iterationStatus: ${fakultas.listProdi}">
+						<li><a
+							th:href="'/lihat/pendaftar/' + ${id_jalur} + '/' +${prodi.id_prodi}"><button
+									th:text="${prodi.nama_prodi}"></button></a></li>
+					</ul>
+					<br />
+				</ul>
+			</div>
+		</div> -->
 	</div>
 
 
@@ -280,9 +259,6 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
@@ -333,6 +309,18 @@
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
 	</script>
+	var button = document.getElementById('button');
+
+button.onclick = function() {
+    var div = document.getElementById('newpost');
+    if (div.style.display !== 'none') {
+        div.style.display = 'none';
+    }
+    else {
+        div.style.display = 'block';
+    }
+};
+	
 	<script>
 		$(document).ready(function() {
 			$("#daftarJalurMasuk").DataTable();

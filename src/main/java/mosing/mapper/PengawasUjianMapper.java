@@ -58,7 +58,7 @@ public interface PengawasUjianMapper {
 	List<PengawasUjianModel> selectPengawasUjianLokasi(@Param("id_lokasi") int id_lokasi);
 
 	@Update("update pengawas_ujian set status = 1 where id_user=#{id_user}")
-	void terimaPengawas(PengawasUjianModel pengawas);
+	void terimaPengawas(@Param("id_user") int id_user);
 	
 	@Update("update pengawas_ujian set id_user = #{id_user}, status = #{status}, jabatan = #{jabatan}, nama = #{nama}, no_hp = #{no_hp}, id_lokasi = #{id_lokasi}, pindah_bool = #{pindah_bool}, flag_aktif = 1 where id_lokasi = #{id_lokasi}")
 	void updatePengawas(PengawasUjianModel pengawas);

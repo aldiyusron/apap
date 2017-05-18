@@ -2,13 +2,18 @@ package mosing.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.ListStrings;
 import mosing.model.LokasiModel;
 import mosing.model.PengawasUjianModel;
 import mosing.model.UserAdmisiModel;
@@ -73,11 +78,27 @@ public class PengawasUjianController {
 			model.addAttribute("lokasi", lokasi);
 			List<PengawasUjianModel> listPengawas = pengawasDAO.selectPengawasUjianLokasi(id_lokasi);
 			model.addAttribute("listPengawas", listPengawas);
-			
+			model.addAttribute("statusSubmit", new ListStrings());
 			return "view-seleksipengawas";
 		} else {
 			model.addAttribute("id_lokasi", id_lokasi);
 			return "viewnotfound-seleksipengawas";
 		}
+	}
+	
+	@RequestMapping(value = "/seleksi-pengawas/sukses")
+	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
+			BindingResult bindingResultStatus, Model model) {
+		System.out.println("size:" + statusSubmit.getStrings().size());
+		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
+		System.out.println(statusSubmit.getStrings().get(0));
+		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
+			if (statusSubmit.getStrings().get(i) != null) {
+				String nomor = statusSubmit.getStrings().get(i);
+				int id_user = Integer.parseInt(nomor);
+				pengawasDAO.terimaPengawas(id_user);
+			}
+		}
+		return "success-seleksipengawas";
 	}
 }

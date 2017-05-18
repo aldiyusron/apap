@@ -59,7 +59,7 @@ public interface PendaftarMapper {
 	
 	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
-	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
+	List<PendaftarModel> selectAllPendaftarNonRec(@Param("id_prodi") int id_prodi);
 
 	@Select("select * from pendaftar join penyeleksian on pendaftar.no_daftar = penyeleksian.no_daftar"
 			+ "join nilai_rapor on penyeleksian.no_daftar = nilai_rapor.no_daftar"
@@ -74,7 +74,7 @@ public interface PendaftarMapper {
 
 	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
-	List<PendaftarModel> selectAllPendaftarRec(int id_prodi);
+	List<PendaftarModel> selectAllPendaftarRec(@Param("id_prodi") int id_prodi);
 
 	@Select("select * from pendaftar"
 			+ " join PENYELEKSIAN on pendaftar.no_daftar = penyeleksian.no_daftar"
@@ -83,8 +83,12 @@ public interface PendaftarMapper {
 	
 	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
 	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
-	
+
 	@Select("select nama_id from pendaftar where no_daftar=#{no_daftar}")
 	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
+
+	@Select("select p.* from pendaftar p, penyeleksian pn, prodi_tersedia pr, daftar_pilihan d where pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
+			+ "pr.id_prodi = d.id_prodi and pn.status=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
+	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi, @Param("id_jalur")int id_jalur);
 	
 }
