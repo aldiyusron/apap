@@ -156,6 +156,7 @@
 	</div>
 	<div class="container">
 		<h1>Daftar Seleksi Siswa</h1>
+		
 		<div class="row">
 			<div id="exTab3" class="container">
 				<!-- <ul class="nav nav-tabs">
@@ -164,16 +165,18 @@
 				</ul> -->
 				<br />
 
-				<div class="tab-content clearfix" style="padding: 2%">
+				<div class="tab-content clearfix">
+				
+			<h2 th:text="${jalur.nama} + ' / ' + ${prodi.nama_prodi}"></h2>
+			<br /> 
 					<div class="tab-pane fade in active" id="1b">
 						<!-- <form th:action="@{/detail-ujian/add}" method="post">
 							<input class="btn btn-danger1"
 								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
 						</form> -->
-						<form th:action="'/sukses-seleksi'"
-							method="post" id="contact_form" data-toggle="validator"
-							role="form">
+						<form th:action="'/sukses-seleksi'" method="post"
+							id="contact_form" data-toggle="validator" role="form"></form>
 							<table id="daftarSeleksiSiswa" class="table stripe">
 								<thead>
 									<tr>
@@ -197,66 +200,43 @@
 											<td th:text="${pendaftar.rata2}">Rata-rata Nilai</td>
 											<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
 											<div th:each="penyeleksian,iterationStatus: ${penyeleksian}">
-											<div
+												<div
 													th:if="${penyeleksian.no_daftar} eq ${pendaftar.no_daftar}">
 													<td th:if="${penyeleksian.status_rekomen} eq '0'">Tidak
 														Rekomendasi</td>
 													<td th:unless="${penyeleksian.status_rekomen} eq '0'">Rekomendasi</td>
 													<td>
-													<!-- <td th:if="${penyeleksian.status} eq '0'"> -->
-														<label th:for="'strings' + ${iterationStatus.index} + '1'"><input id="checkbox" type="checkbox" name="status"
-															th:field="*{statusSubmit.strings[__${iterationStatus.index}__]}" th:value="${pendaftar.no_daftar}"/> Terima </label>
+									
+														<label
+														th:for="'strings' + ${iterationStatus.index} + '1'"
+														class="btn"><input id="checkbox"
+															type="checkbox" name="status"
+															th:field="*{statusSubmit.strings[__${iterationStatus.index}__]}"
+															th:value="${pendaftar.no_daftar}" /> <span>Terima</span>
+													</label>
+													
 													</td>
-													<!-- <td th:unless="${penyeleksian.status} eq '0'">
-														<label><input id="checkbox" type="checkbox" checked="checked" name="status"
-															value="1" /> Terima </label>
-													</td> -->
+
+												</div>
+
 											</div>
-											
-											<!-- <td><select class="selectpicker"
-														th:name="'status' + ${iterationStatus.count}">
-															<option th:value="1">Terima</option>
-															<option th:value="0">Tolak</option>
-													</select></td> -->
+										</tr>
 									</div>
-									</tr>
-									</div>
-									<!-- <td th:unless ="'${penyeleksian' + '${iterationStatus.count}' + '.status_rekomen}' eq '1'" th:text="Tidak Direkomendasi">Keterangan</td> -->
-									<!-- <td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-ok"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-remove"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td> -->
 								</tbody>
 							</table>
 							<div class="form-group" style="position: right; margin-left: 50%">
-							<label class="col-md-4 control-label"></label>
-							<div class="col-md-4">
-								<br /> <input type="hidden" th:name="${_csrf.parameterName}"
-									th:value="${_csrf.token}" />
-								<button value="save" name="action"
-									type="submit" class="btn btn-warning">Submit</button>
-								<a href="/" class="btn btn-default">Batal</a>
+								<label class="col-md-4 control-label"></label>
+								<div class="col-md-4">
+									<br /> <input type="hidden" th:name="${_csrf.parameterName}"
+										th:value="${_csrf.token}" />
+									<button value="save" name="action" type="submit"
+										class="btn btn-warning">Submit</button>
+									<a href="/" class="btn btn-default">Batal</a>
+								</div>
 							</div>
-						</div>
 
-						</form>
 						
+
 					</div>
 				</div>
 			</div>
@@ -364,12 +344,6 @@
 		$(document).ready(function() {
 			$("#daftarSeleksiSiswa").DataTable();
 		});
-
-		$(document).ready(function() {
-			$("#daftarLokasi2").DataTable();
-		});
-		
-		
 	</script>
 </body>
 </html>
