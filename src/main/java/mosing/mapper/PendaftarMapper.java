@@ -57,9 +57,9 @@ public interface PendaftarMapper {
 			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
 	
-	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
-			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
-	List<PendaftarModel> selectAllPendaftarNonRec(@Param("id_prodi") int id_prodi);
+	@Select("select p.* from pendaftar p, penyeleksian pn, prodi_tersedia pr, daftar_pilihan d where pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
+			+ "pr.id_prodi = d.id_prodi and pn.status_rekomen=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
+	List<PendaftarModel> selectAllPendaftarNonRec(@Param("id_prodi") int id_prodi, @Param("id_jalur")int id_jalur);
 
 	@Select("select * from pendaftar join penyeleksian on pendaftar.no_daftar = penyeleksian.no_daftar"
 			+ "join nilai_rapor on penyeleksian.no_daftar = nilai_rapor.no_daftar"

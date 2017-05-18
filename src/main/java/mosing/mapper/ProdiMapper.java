@@ -13,7 +13,7 @@ import mosing.model.ProdiTersediaModel;
 @Mapper
 public interface ProdiMapper {
 
-	@Select("select * from prodi_tersedia where id_prodi = #{id_prodi})")
+	@Select("select * from prodi_tersedia where id_prodi = #{id_prodi}")
 	ProdiTersediaModel selectProdi(@Param("id_prodi") int id_prodi);
 	
 	@Select("select * from prodi_tersedia p where id_jalur=#{id_jalur}")

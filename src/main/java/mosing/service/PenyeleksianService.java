@@ -11,4 +11,5 @@ public interface PenyeleksianService {
 	List<PenyeleksianModel> selectAllPenyeleksian();
 	void updatePenyeleksian(int no_daftar);
 	void updateLulus(int no_daftar);
+	void updateRekomen(int no_daftar);
 }

@@ -55,4 +55,10 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 		// TODO Auto-generated method stub
 		penyeleksianMapper.updateLulus(no_daftar);
 	}
+
+	@Override
+	public void updateRekomen(int no_daftar) {
+		penyeleksianMapper.updateRekomen(no_daftar);
+		
+	}
 }

@@ -93,7 +93,7 @@ public class PUnivController {
 			@PathVariable(value = "id_prodi") int id_prodi) {
 		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarSemua(id_prodi, id_jalur);
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
-		model.addAttribute("jalur", jalur);
+
 		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
 		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
 			for (int i = 0; i < pendaftar.size(); i++) {
@@ -163,6 +163,9 @@ public class PUnivController {
 				// model.addAttribute("nilai", nilai);
 			}
 		}
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
 		model.addAttribute("penyeleksian", penyeleksian);
 		model.addAttribute("statusSubmit", new ListStrings());
 		model.addAttribute("pendaftar", pendaftar);
@@ -173,83 +176,6 @@ public class PUnivController {
 	public String dashboard() {
 		return "dashboard";
 	}
-
-	@RequestMapping(value = "/sukses-seleksi/{id_jalur}/{id_prodi}", method = RequestMethod.POST)
-	public String suksesSeleksi(Model model, @PathVariable(value = "id_jalur") int id_jalur,
-			@PathVariable(value = "id_prodi") int id_prodi,
-			@RequestParam(value = "statuss", required = false) int statuss) {
-		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarSemua(id_prodi, id_jalur);
-		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
-		model.addAttribute("jalur", jalur);
-		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
-		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
-			for (int i = 0; i < pendaftar.size(); i++) {
-				int no_daftar = pendaftar.get(i).getNo_daftar();
-				byte status_rekomen = penyeleksian.get(i).getStatus_rekomen();
-				String statustmp = "";
-				if (statuss == 1) {
-					statustmp = "1";
-				} else {
-					statustmp = "0";
-				}
-				byte status = Byte.parseByte(statustmp);
-				String berkas = penyeleksian.get(i).getBerkas();
-				PenyeleksianModel hasilSeleksi = new PenyeleksianModel(no_daftar, status, id_jalur, status_rekomen,
-						berkas);
-				penyeleksianDAO.updatePenyeleksian(no_daftar);
-				// calonDAO.addCalon(calon);
-			}
-		}
-
-		else if (jalur.getJenis_jalur() == 1 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
-			for (int i = 0; i < pendaftar.size(); i++) {
-				int no_daftar = pendaftar.get(i).getNo_daftar();
-				NilaiUjianModel nilai = nilaiDAO.selectNilaiUjian(no_daftar);
-				double rata2Umum = (nilai.getBindo() + nilai.getBing() + nilai.getMtk_dasar() + nilai.getTpa()) / 4;
-				double rata2IPA = (nilai.getBiologi() + nilai.getFisika() + nilai.getKimia() + nilai.getMtk()) / 4;
-				double rata2IPS = (nilai.getEkonomi() + nilai.getSejarah() + nilai.getGeografi() + nilai.getSosiologi())
-						/ 4;
-				double rata2 = 0;
-				if (rata2IPA == 0) {
-					rata2 = (rata2Umum + rata2IPS) / 2;
-				} else if (rata2IPS == 0) {
-					rata2 = (rata2Umum + rata2IPA) / 2;
-				} else {
-					rata2 = (rata2Umum + rata2IPA + rata2IPS) / 3;
-				}
-				pendaftar.get(i).setRata2(rata2);
-				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
-				penyeleksian.add(seleksi);
-				model.addAttribute("nilai", nilai);
-			}
-		}
-
-		else {
-			for (int i = 0; i < pendaftar.size(); i++) {
-				int no_daftar = pendaftar.get(i).getNo_daftar();
-				NilaiUjianModel nilai = nilaiDAO.selectNilaiUjian(no_daftar);
-				double rata2Umum = (nilai.getBing() + nilai.getTpa()) / 2;
-				double rata2 = rata2Umum;
-				pendaftar.get(i).setRata2(rata2);
-				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
-				penyeleksian.add(seleksi);
-				model.addAttribute("nilai", nilai);
-			}
-		}
-		model.addAttribute("penyeleksian", penyeleksian);
-		model.addAttribute("pendaftar", pendaftar);
-		return "success-menyeleksi";
-	}
-
-	// @RequestMapping("/list")
-	// public String add(Model model){
-	// List<PenyeleksianModel> seleksipendaftar =
-	// penyeleksianDAO.selectAllPenyeleksian();
-	// return "daftarseleksipendaftar";
-	//
-	//
-	//
-	// }
 
 	@RequestMapping(value = "/sukses-seleksi")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
