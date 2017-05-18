@@ -119,8 +119,8 @@ file:// [if lt IE 9]> -->
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
+								<button class="btn btn-s navbar-btn" type="submit"
+									value="Sign Out" style="height: 34px; width: 80px">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -168,9 +168,10 @@ file:// [if lt IE 9]> -->
 			<div class="col-md-4">
 				<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
+				
+				<a th:href="'/jalur-masuk/view/' + ${jalurmasuk.id_jalur}" class="btn btn-default">Batal</a>
 				<button value="save" name="action" type="submit"
-					class="btn btn-warning1">Hapus</button>
-				<a href="/jalur-masuk" class="btn btn-danger1">Batal</a>
+					class="btn btn-danger1" style="margin-left: 70px; margin-top: -56px">Hapus</button>
 			</div>
 		</div>
 	</form>

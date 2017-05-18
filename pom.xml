@@ -16,14 +16,13 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<relativePath /> <!-- lookup parent from repository -->
 		<version>1.4.0.RELEASE</version>
-		
+
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.mkyong.NewSpringBootWebApplicationForWAR</start-class>
 	</properties>
 
 	<dependencies>
@@ -64,14 +63,15 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-tomcat</artifactId>
-		<scope>provided</scope>
-	</dependency>
-		
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<finalName>a6</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

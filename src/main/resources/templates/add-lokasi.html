@@ -180,7 +180,7 @@ file:// [if lt IE 9]>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <input
-								name="nama_lokasi"
+								name="nama_lokasi" required="required"
 								placeholder="Nama Lokasi (contoh: SMAN 1 Depok)"
 								class="form-control" maxlength="50" type="text" />
 						</div>
@@ -193,9 +193,9 @@ file:// [if lt IE 9]>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-home"></i></span>
-							<textarea name="alamat"
+							<textarea name="alamat" required="required"
 								placeholder="Alamat Lokasi. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ"
-								class="form-control" rows="5" maxlength="100" type="text"></textarea>
+								class="form-control" rows="5" maxlength="100"></textarea>
 						</div>
 					</div>
 				</div>
@@ -207,7 +207,7 @@ file:// [if lt IE 9]>
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
 								name="nama_provinsi" class="selectpicker form-control"
-								data-live-search="true">
+								data-live-search="true" required="required">
 								<option value="">Pilihan provinsi</option>
 								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
 									<option th:value="${provinsi.nama_provinsi}"
@@ -225,7 +225,7 @@ file:// [if lt IE 9]>
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
 								name="nama_kota" class="form-control selectpicker"
-								data-live-search="true">
+								data-live-search="true" required="required">
 								<option value="">Pilihan kota</option>
 								<div th:each="kota,iterationStatus: ${allKota}">
 									<option th:value="${kota.nama_kota}"
@@ -282,7 +282,7 @@ file:// [if lt IE 9]>
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span> <input name="no_telp"
 								placeholder="+62xxxx" maxlength="14" class="form-control"
-								type="text" />
+								type="tel" required="required" />
 						</div>
 					</div>
 				</div>
@@ -296,9 +296,9 @@ file:// [if lt IE 9]>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input
-								name="kuota_pendaftar"
-								placeholder="Banyak tempat duduk tersedia untuk peserta ujian"
-								class="form-control" type="text" />
+								name="kuota_pendaftar" pattern="[0-9]" title="Masukkan hanya bisa angka"
+								placeholder="Banyak tempat duduk tersedia"
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -310,8 +310,8 @@ file:// [if lt IE 9]>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="kuota_peng"
-								placeholder="Banyak pengawas yang dibutuhkan untuk mengawas"
-								class="form-control" type="text" />
+								placeholder="Banyak pengawas yang dibutuhkan"
+								class="form-control" type="text" pattern="[0-9]" title="Masukkan hanya bisa angka" required="required" />
 						</div>
 					</div>
 				</div>
@@ -439,7 +439,7 @@ file:// [if lt IE 9]>
 
 	<script th:src="@{/js/agency.min.js}"></script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$('#contact_form').bootstrapValidator({
 				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -532,7 +532,7 @@ file:// [if lt IE 9]>
 
 			});
 		});
-	</script>
+	</script> -->
 	
 
 	<!-- <script>
