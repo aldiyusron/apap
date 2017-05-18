@@ -137,8 +137,7 @@ public class PendaftarController {
 		int id_user = Integer.parseInt(user.getId_user());
 		PendaftarModel pendaftar = new PendaftarModel(id_user, no_id, nama_id, nama_ijazah, null,
 				no_hp, no_telp, nama_negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				nama_provinsi, nama_kota, jk, 0, nama_lembaga, jurusan);
-
+				nama_provinsi, nama_kota, jk, 0, nama_lembaga, jurusan, 0);
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar2(username);
 		Byte status = Byte.parseByte("0");
@@ -184,7 +183,7 @@ public class PendaftarController {
 		model.addAttribute("username", username);
 		return "success-rencanastudi";
 	}
-
+	
 	@RequestMapping("/daftar-siswa")
 	public String lihatDaftarSiswa(Model model) {
 		List<PendaftarModel> pendaftarVerif = pendaftarDAO.selectAllPendaftarTerverifikasi();
@@ -237,7 +236,7 @@ public class PendaftarController {
 		}
 		
 		UserAdmisiModel newUser = new UserAdmisiModel(null, username, passwordFinal, null, "ROLE_PEND");
-		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan);
+		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		userDAO.addUser(newUser);
 		pendaftarDAO.addPendaftar(pendaftar);
@@ -288,7 +287,7 @@ public class PendaftarController {
 		byte jk = Byte.parseByte(jenis_kelamin);
 		
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
-		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan);
+		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		pendaftarDAO.updateDataPendaftar(pendaftar);
 		pendaftar2 = pendaftarDAO.selectPendaftar(no_id);

@@ -7,23 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<title>Penerimaan UI | Detail Siswa</title>
+<title>Penerimaan UI | Pendaftar</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -37,23 +29,15 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
-
-<!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet"
-	href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,6 +45,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
+
 </head>
 
 <body id="page-top" class="index">
@@ -84,16 +69,16 @@
 									Masyarakat</a></li>
 							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
 									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.bing.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
 							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pbingetahuan Alam</a></li>
+									dan Ilmu Pengetahuan Alam</a></li>
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">ekonominomi
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
 									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pbingetahuan Budaya</a></li>
+									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
 								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
 							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
@@ -128,14 +113,14 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
-								class="glyphicon glyphicon-user"
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -146,10 +131,9 @@
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png"
-						alt="logo" /></a></li>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -170,189 +154,55 @@
 		</div>
 
 	</div>
-	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" id="contact_form">
-			<fieldset>
+		<h1>Daftar Pendaftar</h1>
+		<div class="row" style="margin-bottom: -60px">
+			<div id="exTab3" class="container">
 
-				<!-- Form Name -->
-				<legend>
-					<center>
-						<h2>
-							<b>Detail Siswa</b>
-						</h2>
-					</center>
-				</legend>
+				<table id="tableAcceptation" class="table stripe">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Nama Siswa</th>
+							<th>Nomor Daftar</th>
+							<th>Rata-Rata Nilai</th>
+							<th>Asal Sekolah</th>
+							<th></th>
+						</tr>
+					</thead>
 
-				<!-- <input type="hidden"
-					name="jurusan" readonly="readonly" th:value="${pendaftar2.jurusan}" /> -->
-				<div class="isilist">
-					<table class="table table-striped">
-						<thead>
-							<dl class="dl-horizontal" style="margin-left: 400px">
-								<br />
-								<dt>Nama</dt>
-								<dd th:text="${pendaftar.nama_id}"></dd>
-								<br />
-								<dt>NISN</dt>
-								<dd th:text="${pendaftar.no_id}"></dd>
-								<br />
-								<dt>Jurusan</dt>
-								<dd th:text="${pendaftar.jurusan}"></dd>
-								<br />
-								<dt>Asal Sekolah</dt>
-								<dd th:text="${pendaftar.nama_lembaga}"></dd>
-								<br />
-								<dt>
-									<h5>Nilai</h5>
-								</dt>
-							</dl>
-						</thead>
-					</table>
-				</div>
-				<input type="hidden" name="no_daftar" readonly="readonly"
-					th:value="${no_daftar}" />
-				<div class="form-group">
-					<table class="table table-striped">
-						<thead>
+					<tbody>
+						<div th:each="pendaftar,iterationStatus: ${pendaftar}" style="padding-left: 10px">
 							<tr>
-								<th>Mata Pelajaran</th>
-								<th>KKM</th>
-								<th>Semester 1</th>
-								<th>Semester 2</th>
-								<th>Semester 3</th>
-								<th>Semester 4</th>
-								<th>Semester 5</th>
+								<td th:text="${iterationStatus.count}">No.</td>
+								<td th:text="${pendaftar.nama_ijazah}">Nama Siswa</td>
+								<td th:text="${pendaftar.no_daftar}">Nomor Daftar</td>
+								<td th:text="${pendaftar.rata2}">Rata-Rata Nilai</td>
+								<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
+								<td><a
+									th:href="'/pendaftar/detail/'+ ${pendaftar.no_daftar}"> <span
+										class="input-group-btn">
+											<button type="button" class="btn-sm btn-custom" id="as"
+												name="as" value="Go">
+												<span class="glyphicon glyphicon-edit" style="float: right"></span>
+											</button>
+									</span>
+								</a></td>
 							</tr>
-						</thead>
-						<tbody>
-
-							<tr>
-
-								<td>Matematika</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_mtk" th:value="${kkm_mtk}" /></td>
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
-										type="text" th:name="'mtk' + ${iterationStatus.count}"
-										th:value="${nilai.mtk}" /></td>
-								</div>
-							</tr>
-							<tr>
-
-								<td>Geografi</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_geografi" th:value="${kkm_geografi}" /></td>
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
-										type="text" th:name="'geografi' + ${iterationStatus.count}"
-										th:value="${nilai.geografi}" /></td>
-								</div>
-							</tr>
-							<tr>
-
-								<td>Ekonomi</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_ekonomi" th:value="${kkm_ekonomi}" /></td>
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
-										type="text" th:name="'ekonomi' + ${iterationStatus.count}"
-										th:value="${nilai.ekonomi}" /></td>
-								</div>
-
-							</tr>
-
-							<tr>
-
-								<td>Sejarah</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_sejarah" th:value="${kkm_sejarah}" /></td>
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input type="text"
-										th:name="'sejarah' + ${iterationStatus.count}"
-										th:value="${nilai.sejarah}" /></td>
-
-								</div>
-							</tr>
-
-							<tr>
-
-								<td>Bahasa Indonesia</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_bindo" th:value="${kkm_bindo}" /></td>
-
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
-										type="text" th:name="'bindo' + ${iterationStatus.count}"
-										th:value="${nilai.bindo}" /></td>
-								</div>
-
-							</tr>
-
-							<tr>
-
-								<td>Bahasa Inggris</td>
-
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_bing" th:value="${kkm_bing}" /></td>
-
-								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
-										type="text" th:name="'bing' + ${iterationStatus.count}"
-										th:value="${nilai.bing}" /></td>
-
-								</div>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label for="no_id" class="col-md-4 control-label">Rata-rata
-						Nilai Rapor</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
-								placeholder="Rata-rata nilai rapor" class="form-control"
-								type="text" required="true" />
 						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<input type="hidden" th:name="${_csrf.parameterName}"
-					th:value="${_csrf.token}" />
-
-				<!-- Button -->
-				<div class="form-group" style="position: center">
-					<label class="control-label"></label>
-					<div class="col-md-4" style="display: inline">
-						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/daftar-siswa"
-							class="btn btn-default">Kembali</a>
-					</div>
-				</div>
-			</fieldset>
-		</form>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
-	<!-- /.container -->
-
+	<br />
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -361,11 +211,14 @@
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -414,37 +267,35 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{js/bootstrap.min.js}"></script>
 
+	<!-- Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+		
+	</script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+		
+	</script>
+
 	<!-- Contact Form JavaScript -->
 	<script th:src="@{js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
-
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-	<!-- Include Date Range Picker -->
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-
 	<script>
-		$(document).ready(
-				function() {
-					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
-					var container = $('.bootstrap-iso form').length > 0 ? $(
-							'.bootstrap-iso form').parent() : "body";
-					date_input.datepicker({
-						format : 'dd/mm/yyyy',
-						container : container,
-						todayHighlight : true,
-						autoclose : true,
-					})
-				})
+		$(document).ready(function() {
+			$("#daftarLokasi").DataTable();
+		});
+
+		$(document).ready(function() {
+			$("#daftarLokasi2").DataTable();
+		});
 	</script>
 </body>
-
 </html>
-

@@ -169,11 +169,11 @@
                 	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
                 	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
                 </div>
-              	<div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
-					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
-				</div>
-				<div th:unless="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
+                <div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
 					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
+				</div>
+              	<div th:if="${user.role eq 'ROLE_PEND'}">
+					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Mahasiswa Baru</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">
 					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
@@ -182,8 +182,13 @@
 				<div th:if="${user.role} eq 'ROLE_PENG_U'">
 					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
-				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U'">
-					<a href="#" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+				<div th:if="${user.role} eq 'ROLE_PEM_U'">
+					<a th:href="/terimaPendaftar/" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
+					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
+				</div>
+				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U' or ${user.role} eq 'ROLE_PEM_U'">
+					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima Pendaftar</a>
+					<a href="/view/rec/jalur" class="page-scroll btn btn-xl">Lihat Pendaftar Direkomendasi</a>
 					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
 				</div>
             </div>

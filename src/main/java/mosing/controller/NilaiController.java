@@ -26,10 +26,10 @@ public class NilaiController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
-	
+
 	@Autowired
 	LPTerdahuluService lptDAO;
-	
+
 	@Autowired
 	JalurMasukService jalurMasukDAO;
 
@@ -52,6 +52,7 @@ public class NilaiController {
 			@RequestParam(value = "kkm_geografi", required = false) int kkm_geo,
 			@RequestParam(value = "kkm_ekonomi", required = false) int kkm_ekonomi,
 			@RequestParam(value = "kkm_sejarah", required = false) int kkm_sejarah,
+			@RequestParam(value = "kkm_sosiologi", required = false) int kkm_sosiologi,
 			@RequestParam(value = "mtk1", required = false) int mtk1,
 			@RequestParam(value = "mtk2", required = false) int mtk2,
 			@RequestParam(value = "mtk3", required = false) int mtk3,
@@ -81,22 +82,27 @@ public class NilaiController {
 			@RequestParam(value = "sejarah2", required = false) int sejarah2,
 			@RequestParam(value = "sejarah3", required = false) int sejarah3,
 			@RequestParam(value = "sejarah4", required = false) int sejarah4,
-			@RequestParam(value = "sejarah5", required = false) int sejarah5) throws ParseException {
+			@RequestParam(value = "sejarah5", required = false) int sejarah5,
+			@RequestParam(value = "sosiologi1", required = false) int sosiologi1,
+			@RequestParam(value = "sosiologi2", required = false) int sosiologi2,
+			@RequestParam(value = "sosiologi3", required = false) int sosiologi3,
+			@RequestParam(value = "sosiologi4", required = false) int sosiologi4,
+			@RequestParam(value = "sosiologi5", required = false) int sosiologi5) throws ParseException {
 
 		List<String> daftar = new ArrayList<String>();
-		daftar.add(mtk1 + "-" + sejarah1 + "-" + geo1 + "-" + ekonomi1 + "-" + bindo1 + "-" + bing1);
-		daftar.add(mtk2 + "-" + sejarah2 + "-" + geo2 + "-" + ekonomi2 + "-" + bindo2 + "-" + bing2);
-		daftar.add(mtk3 + "-" + sejarah3 + "-" + geo3 + "-" + ekonomi3 + "-" + bindo3 + "-" + bing3);
-		daftar.add(mtk4 + "-" + sejarah4 + "-" + geo4 + "-" + ekonomi4 + "-" + bindo4 + "-" + bing4);
-		daftar.add(mtk5 + "-" + sejarah5 + "-" + geo5 + "-" + ekonomi5 + "-" + bindo5 + "-" + bing5);
+		daftar.add(mtk1 + "-" + sejarah1 + "-" + geo1 + "-" + ekonomi1 + "-" + sosiologi1 + "-" + bindo1 + "-" + bing1);
+		daftar.add(mtk2 + "-" + sejarah2 + "-" + geo2 + "-" + ekonomi2 + "-" + sosiologi2 + "-" + bindo2 + "-" + bing2);
+		daftar.add(mtk3 + "-" + sejarah3 + "-" + geo3 + "-" + ekonomi3 + "-" + sosiologi3 + "-" + bindo3 + "-" + bing3);
+		daftar.add(mtk4 + "-" + sejarah4 + "-" + geo4 + "-" + ekonomi4 + "-" + sosiologi4 + "-" + bindo4 + "-" + bing4);
+		daftar.add(mtk5 + "-" + sejarah5 + "-" + geo5 + "-" + ekonomi5 + "-" + sosiologi5 + "-" + bindo5 + "-" + bing5);
 		System.out.print(jurusan);
 		for (int i = 0; i < daftar.size(); i++) {
 			String daftarnilai = daftar.get(i);
 			String[] parts = daftarnilai.split("-");
-			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, 0, 0, 0, kkm_sejarah, kkm_geo, kkm_ekonomi, kkm_bindo,
-					kkm_bing, Integer.parseInt(parts[0]), 0, 0, 0, Integer.parseInt(parts[1]),
+			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, 0, 0, 0, kkm_sejarah, kkm_geo, kkm_ekonomi,
+					kkm_sosiologi, kkm_bindo, kkm_bing, Integer.parseInt(parts[0]), 0, 0, 0, Integer.parseInt(parts[1]),
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Integer.parseInt(parts[4]),
-					Integer.parseInt(parts[5]), i + 1);
+					Integer.parseInt(parts[5]), Integer.parseInt(parts[6]), i + 1);
 
 			nilaiDAO.addNilai(nilai);
 		}
@@ -153,36 +159,36 @@ public class NilaiController {
 		for (int i = 0; i < daftar.size(); i++) {
 			String daftarnilai = daftar.get(i);
 			String[] parts = daftarnilai.split("-");
-			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, kkm_biologi, 0, 0, 0,
+			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, kkm_biologi, 0, 0, 0, 0,
 					kkm_bindo, kkm_bing, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
-					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), 0, 0, 0, Integer.parseInt(parts[4]),
+					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), 0, 0, 0, 0, Integer.parseInt(parts[4]),
 					Integer.parseInt(parts[5]), i + 1);
 
 			nilaiDAO.addNilai(nilai);
 		}
 		return "success-insert-nilai";
 	}
-	
+
 	@RequestMapping("/nilai-ips/update/{no_daftar}")
 	public String updateNilaiIPS(Model model, @PathVariable(value = "no_daftar") int no_daftar) {
-		List <NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
 		int kkm_mtk = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_mtk();
 		int kkm_sejarah = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_sejarah();
 		int kkm_geografi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_geografi();
 		int kkm_ekonomi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_ekonomi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
-		
-			model.addAttribute("kkm_mtk", kkm_mtk);
-			model.addAttribute("kkm_sejarah", kkm_sejarah);
-			model.addAttribute("kkm_geografi", kkm_geografi);
-			model.addAttribute("kkm_ekonomi", kkm_ekonomi);
-			model.addAttribute("kkm_bindo", kkm_bindo);
-			model.addAttribute("kkm_bing", kkm_bing);
-			model.addAttribute("nilai", nilai);
-			model.addAttribute("no_daftar", no_daftar);
-			return "edit-nilai-ips";
-		
+
+		model.addAttribute("kkm_mtk", kkm_mtk);
+		model.addAttribute("kkm_sejarah", kkm_sejarah);
+		model.addAttribute("kkm_geografi", kkm_geografi);
+		model.addAttribute("kkm_ekonomi", kkm_ekonomi);
+		model.addAttribute("kkm_bindo", kkm_bindo);
+		model.addAttribute("kkm_bing", kkm_bing);
+		model.addAttribute("nilai", nilai);
+		model.addAttribute("no_daftar", no_daftar);
+		return "edit-nilai-ips";
+
 	}
 
 	@RequestMapping(value="/nilai-ips/update/submit")
@@ -193,6 +199,7 @@ public class NilaiController {
 			@RequestParam(value = "kkm_bing", required = false) int kkm_bing,
 			@RequestParam(value = "kkm_geografi", required = false) int kkm_geografi,
 			@RequestParam(value = "kkm_ekonomi", required = false) int kkm_ekonomi,
+			@RequestParam(value = "kkm_sosiologi", required = false) int kkm_sosiologi,
 			@RequestParam(value = "kkm_sejarah", required = false) int kkm_sejarah,
 			@RequestParam(value = "mtk1", required = false) int mtk1,
 			@RequestParam(value = "mtk2", required = false) int mtk2,
@@ -223,37 +230,42 @@ public class NilaiController {
 			@RequestParam(value = "sejarah2", required = false) int sejarah2,
 			@RequestParam(value = "sejarah3", required = false) int sejarah3,
 			@RequestParam(value = "sejarah4", required = false) int sejarah4,
-			@RequestParam(value = "sejarah5", required = false) int sejarah5) throws ParseException {
+			@RequestParam(value = "sejarah5", required = false) int sejarah5, 
+			@RequestParam(value = "sosiologi1", required = false) int sosiologi1,
+			@RequestParam(value = "sosiologi2", required = false) int sosiologi2,
+			@RequestParam(value = "sosiologi3", required = false) int sosiologi3,
+			@RequestParam(value = "sosiologi4", required = false) int sosiologi4,
+			@RequestParam(value = "sosiologi5", required = false) int sosiologi5) throws ParseException {
 
 		List<String> daftar = new ArrayList<String>();
-		daftar.add(mtk1 + "-" + sejarah1 + "-" + geografi1 + "-" + ekonomi1 + "-" + bindo1 + "-" + bing1);
-		daftar.add(mtk2 + "-" + sejarah2 + "-" + geografi2 + "-" + ekonomi2 + "-" + bindo2 + "-" + bing2);
-		daftar.add(mtk3 + "-" + sejarah3 + "-" + geografi3 + "-" + ekonomi3 + "-" + bindo3 + "-" + bing3);
-		daftar.add(mtk4 + "-" + sejarah4 + "-" + geografi4 + "-" + ekonomi4 + "-" + bindo4 + "-" + bing4);
-		daftar.add(mtk5 + "-" + sejarah5 + "-" + geografi5 + "-" + ekonomi5 + "-" + bindo5 + "-" + bing5);
+		daftar.add(mtk1 + "-" + sejarah1 + "-" + geografi1 + "-" + ekonomi1 + "-" + sosiologi1 + "-" + bindo1 + "-" + bing1);
+		daftar.add(mtk2 + "-" + sejarah2 + "-" + geografi2 + "-" + ekonomi2 + "-" + sosiologi2 +"-" + bindo2 + "-" + bing2);
+		daftar.add(mtk3 + "-" + sejarah3 + "-" + geografi3 + "-" + ekonomi3 + "-" + sosiologi3 +"-" + bindo3 + "-" + bing3);
+		daftar.add(mtk4 + "-" + sejarah4 + "-" + geografi4 + "-" + ekonomi4 + "-" + sosiologi4 +"-" + bindo4 + "-" + bing4);
+		daftar.add(mtk5 + "-" + sejarah5 + "-" + geografi5 + "-" + ekonomi5 + "-" + sosiologi5 +"-" + bindo5 + "-" + bing5);
 		for (int i = 0; i < daftar.size(); i++) {
 			String daftarnilai = daftar.get(i);
 			String[] parts = daftarnilai.split("-");
-			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, 0, 0, 0, kkm_sejarah, kkm_geografi, kkm_ekonomi, kkm_bindo,
+			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, 0, 0, 0, kkm_sejarah, kkm_geografi, kkm_ekonomi, kkm_sosiologi, kkm_bindo,
 					kkm_bing, Integer.parseInt(parts[0]), 0, 0, 0, Integer.parseInt(parts[1]),
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Integer.parseInt(parts[4]),
-					Integer.parseInt(parts[5]), i + 1);
-
+					Integer.parseInt(parts[5]), Integer.parseInt(parts[6]), i + 1);
+			
 			nilaiDAO.updateNilai(nilai);
 		}
 		return "success-update-nilai";
 	}
-	
+
 	@RequestMapping("/nilai-ipa/update/{no_daftar}")
 	public String updateNilaiIPA(Model model, @PathVariable(value = "no_daftar") int no_daftar) {
-		List <NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
 		int kkm_mtk = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_mtk();
 		int kkm_kimia = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_kimia();
 		int kkm_fisika = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_fisika();
 		int kkm_biologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_biologi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
-		if(nilai != null) {
+		if (nilai != null) {
 			model.addAttribute("kkm_mtk", kkm_mtk);
 			model.addAttribute("kkm_kimia", kkm_kimia);
 			model.addAttribute("kkm_fisika", kkm_fisika);
@@ -263,16 +275,14 @@ public class NilaiController {
 			model.addAttribute("nilai", nilai);
 			model.addAttribute("no_daftar", no_daftar);
 			return "edit-nilai-ipa";
-		}
-		else {
+		} else {
 			model.addAttribute("no_daftar", no_daftar);
 			return "error-update";
 		}
 	}
-	
-	@RequestMapping(value="/nilai-ipa/update/submit")
-	public String updateNilaiIPASubmit(Model model, 
-			@RequestParam(value = "no_daftar", required = false) int no_daftar,
+
+	@RequestMapping(value = "/nilai-ipa/update/submit")
+	public String updateNilaiIPASubmit(Model model, @RequestParam(value = "no_daftar", required = false) int no_daftar,
 			@RequestParam(value = "kkm_mtk", required = false) int kkm_mtk,
 			@RequestParam(value = "kkm_bindo", required = false) int kkm_bindo,
 			@RequestParam(value = "kkm_bing", required = false) int kkm_bing,
@@ -316,18 +326,18 @@ public class NilaiController {
 		daftar.add(mtk3 + "-" + kimia3 + "-" + fisika3 + "-" + biologi3 + "-" + bindo3 + "-" + bing3);
 		daftar.add(mtk4 + "-" + kimia4 + "-" + fisika4 + "-" + biologi4 + "-" + bindo4 + "-" + bing4);
 		daftar.add(mtk5 + "-" + kimia5 + "-" + fisika5 + "-" + biologi5 + "-" + bindo5 + "-" + bing5);
-//		int rapor_satu = ((mtk1+kimia1+fisika1+biologi1+bindo1+bing1)/6);
-//		int rapor_dua = (mtk2+kimia2+fisika2+biologi2+bindo2+bing2)/6;
-//		int rapor_tiga = (mtk3+kimia3+fisika3+biologi3+bindo3+bing3)/6;
-//		int rapor_empat = (mtk4+kimia4+fisika4+biologi4+bindo4+bing4)/6;
-//		int rapor_lima = (mtk5+kimia5+fisika5+biologi5+bindo5+bing5)/6;
-//		System.out.println(rapor_satu);
+		// int rapor_satu = ((mtk1+kimia1+fisika1+biologi1+bindo1+bing1)/6);
+		// int rapor_dua = (mtk2+kimia2+fisika2+biologi2+bindo2+bing2)/6;
+		// int rapor_tiga = (mtk3+kimia3+fisika3+biologi3+bindo3+bing3)/6;
+		// int rapor_empat = (mtk4+kimia4+fisika4+biologi4+bindo4+bing4)/6;
+		// int rapor_lima = (mtk5+kimia5+fisika5+biologi5+bindo5+bing5)/6;
+		// System.out.println(rapor_satu);
 		for (int i = 0; i < daftar.size(); i++) {
 			String daftarnilai = daftar.get(i);
 			String[] parts = daftarnilai.split("-");
-			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, kkm_biologi, 0, 0, 0,
+			NilaiModel nilai = new NilaiModel(no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, kkm_biologi, 0, 0, 0, 0,
 					kkm_bindo, kkm_bing, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
-					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), 0, 0, 0, Integer.parseInt(parts[4]),
+					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), 0, 0, 0, 0, Integer.parseInt(parts[4]),
 					Integer.parseInt(parts[5]), i + 1);
 
 			nilaiDAO.updateNilai(nilai);

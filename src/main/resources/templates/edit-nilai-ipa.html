@@ -49,12 +49,6 @@
 <link rel="stylesheet"
 	href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,11 +203,11 @@
 								<td>Matematika</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_mtk" th:value="${kkm_mtk}" /></td>
+									name="kkm_mtk" th:value="${kkm_mtk}" required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'mtk' + ${iterationStatus.count}"
-										th:value="${nilai.mtk}" /></td>
+										th:value="${nilai.mtk}" required="required" /></td>
 								</div>
 							</tr>
 							<tr>
@@ -221,11 +215,11 @@
 								<td>Kimia</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_kimia" th:value="${kkm_kimia}" /></td>
+									name="kkm_kimia" th:value="${kkm_kimia}" required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'kimia' + ${iterationStatus.count}"
-										th:value="${nilai.kimia}" /></td>
+										th:value="${nilai.kimia}" required="required" /></td>
 								</div>
 							</tr>
 							<tr>
@@ -233,11 +227,11 @@
 								<td>Fisika</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_fisika" th:value="${kkm_fisika}" /></td>
+									name="kkm_fisika" th:value="${kkm_fisika}" required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'fisika' + ${iterationStatus.count}"
-										th:value="${nilai.fisika}" /></td>
+										th:value="${nilai.fisika}" required="required" /></td>
 								</div>
 
 							</tr>
@@ -247,11 +241,12 @@
 								<td>Biologi</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_biologi" th:value="${kkm_biologi}" /></td>
+									name="kkm_biologi" th:value="${kkm_biologi}"
+									required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'biologi' + ${iterationStatus.count}"
-										th:value="${nilai.biologi}" /></td>
+										th:value="${nilai.biologi}" required="required" /></td>
 
 								</div>
 							</tr>
@@ -261,12 +256,12 @@
 								<td>Bahasa Indonesia</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_bindo" th:value="${kkm_bindo}" /></td>
+									name="kkm_bindo" th:value="${kkm_bindo}" required="required" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'bindo' + ${iterationStatus.count}"
-										th:value="${nilai.bindo}" /></td>
+										th:value="${nilai.bindo}" required="required" /></td>
 								</div>
 
 							</tr>
@@ -276,12 +271,12 @@
 								<td>Bahasa Inggris</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_bing" th:value="${kkm_bing}" /></td>
+									name="kkm_bing" th:value="${kkm_bing}" required="required" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'bing' + ${iterationStatus.count}"
-										th:value="${nilai.bing}" /></td>
+										th:value="${nilai.bing}" required="required" /></td>
 
 								</div>
 							</tr>
@@ -299,7 +294,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
 								placeholder="Rata-rata nilai rapor" class="form-control"
-								type="text" required="true" />
+								type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -317,7 +312,7 @@
 							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
 						<a class="btn btn-info" href="/daftar-siswa">Kembali</a>
 						<button style="width: 30%" value="save" name="action"
-							type="submit" class="btn btn-warning">Simpan</button>
+							disabled="disabled" type="submit" class="btn btn-warning">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
@@ -396,8 +391,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-</body>
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(document)
 				.ready(
 						function() {
@@ -411,95 +405,114 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													nama_lokasi : {
+													kkm_mtk : {
 														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Matematika'
+															},
 															stringLength : {
-																min : 3,
-																max: 50,
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
 															},
-															notEmpty : {
-																message : 'Masukkan nama lokasi'
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-													alamat : {
+													kkm_kimia : {
 														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Kimia'
+															},
 															stringLength : {
-																min : 5,
-																max: 100,
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
 															},
-															notEmpty : {
-																message : 'Masukkan alamat lokasi'
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-
-													no_telp : {
+													kkm_fisika : {
 														validators : {
 															notEmpty : {
-																message : 'Masukkan nomor telepon'
+																message : 'Masukkan nilai KKM Fisika'
 															},
-															phone : {
-																country : 'INA',
-																message : 'Masukkan dengan awalan +62'
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-													nama_provinsi : {
+													kkm_biologi : {
 														validators : {
 															notEmpty : {
-																message : 'Pilih provinsi'
+																message : 'Masukkan nilai KKM Biologi'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-													nama_kota : {
+													kkm_bindo : {
 														validators : {
 															notEmpty : {
-																message : 'Pilih kota'
+																message : 'Masukkan nilai KKM Bahasa Indonesia'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-													kuota_peng : {
+													kkm_bing : {
 														validators : {
 															notEmpty : {
-																message : 'Masukkan jumlah kuota pengawas'
+																message : 'Masukkan nilai KKM Bahasa Inggris'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
 													},
-													kuota_pendaftar : {
+													mean_rapor : {
 														validators : {
 															notEmpty : {
-																message : 'Masukkan jumlah kuota pendaftar'
+																message : 'Masukkan nilai rata-rata rapor'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai rata-rata harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
 															}
 														}
-													},
-
+													}
 												}
 											})
-
-									.on(
-											'success.form.bv',
-											function(e) {
-												$('#success_message')
-														.slideDown({
-															opacity : "show"
-														}, "slow") // Do something ...
-												$('#reg_form').data(
-														'bootstrapValidator')
-														.resetForm();
-
-												// Prevent form submission
-												e.preventDefault();
-
-												// Get the form instance
-												var $form = $(e.target);
-
-												// Get the BootstrapValidator instance
-												var bv = $form
-														.data('bootstrapValidator');
-
-											});
 						});
 	</script>
-
+</body>
 </html>

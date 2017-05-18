@@ -13,7 +13,6 @@
 
 <title>Penerimaan UI | Edit Nilai Siswa</title>
 
-<!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
@@ -204,11 +203,12 @@
 								<td>Matematika</td>
 
 								<td><input type="text" name="kkm_mtk"
-									class="resizedTextBox" th:value="${kkm_mtk}" /></td>
+									class="resizedTextBox" th:value="${kkm_mtk}"
+									required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" type="text"
-										th:name="'mtk' + ${iterationStatus.count}"
-										th:value="${nilai.mtk}" /></td>
+								<td><input class="resizedTextBox" type="text"
+									th:name="'mtk' + ${iterationStatus.count}"
+									th:value="${nilai.mtk}" /></td>
 								</div>
 							</tr>
 							<tr>
@@ -216,7 +216,8 @@
 								<td>Geografi</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_geografi" th:value="${kkm_geografi}" /></td>
+									name="kkm_geografi" th:value="${kkm_geografi}"
+									required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'geografi' + ${iterationStatus.count}"
@@ -228,7 +229,8 @@
 								<td>Ekonomi</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_ekonomi" th:value="${kkm_ekonomi}" /></td>
+									name="kkm_ekonomi" th:value="${kkm_ekonomi}"
+									required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'ekonomi' + ${iterationStatus.count}"
@@ -242,7 +244,8 @@
 								<td>Sejarah</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_sejarah" th:value="${kkm_sejarah}" /></td>
+									name="kkm_sejarah" th:value="${kkm_sejarah}"
+									required="required" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
 										th:name="'sejarah' + ${iterationStatus.count}"
@@ -256,7 +259,7 @@
 								<td>Bahasa Indonesia</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_bindo" th:value="${kkm_bindo}" /></td>
+									name="kkm_bindo" th:value="${kkm_bindo}" required="required" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -271,7 +274,7 @@
 								<td>Bahasa Inggris</td>
 
 								<td><input class="resizedTextBox" type="text"
-									name="kkm_bing" th:value="${kkm_bing}" /></td>
+									name="kkm_bing" th:value="${kkm_bing}" required="required" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -326,7 +329,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
@@ -392,101 +395,128 @@
 	<script th:src="@{/js/agency.min.js}"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#contact_form').bootstrapValidator({
-				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					nama_lokasi : {
-						validators : {
-							stringLength : {
-								min : 3,
-								max : 50,
-							},
-							notEmpty : {
-								message : 'Masukkan nama lokasi'
-							}
-						}
-					},
-					alamat : {
-						validators : {
-							stringLength : {
-								min : 5,
-								max : 100,
-							},
-							notEmpty : {
-								message : 'Masukkan alamat lokasi'
-							}
-						}
-					},
-
-					no_telp : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan nomor telepon'
-							},
-							phone : {
-								country : 'INA',
-								message : 'Masukkan dengan awalan +62'
-							}
-						}
-					},
-					nama_provinsi : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih provinsi'
-							}
-						}
-					},
-					nama_kota : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih kota'
-							}
-						}
-					},
-					kuota_peng : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pengawas'
-							}
-						}
-					},
-					kuota_pendaftar : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pendaftar'
-							}
-						}
-					},
-
-				}
-			})
-
-			.on('success.form.bv', function(e) {
-				$('#success_message').slideDown({
-					opacity : "show"
-				}, "slow") // Do something ...
-				$('#reg_form').data('bootstrapValidator').resetForm();
-
-				// Prevent form submission
-				e.preventDefault();
-
-				// Get the form instance
-				var $form = $(e.target);
-
-				// Get the BootstrapValidator instance
-				var bv = $form.data('bootstrapValidator');
-
-			});
-		});
+		$(document)
+				.ready(
+						function() {
+							$('#contact_form')
+									.bootstrapValidator(
+											{
+												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													kkm_mtk : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Matematika'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													kkm_geografi : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Geografi'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													kkm_ekonomi : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Ekonomi'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													kkm_sejarah : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Sejarah'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													kkm_bindo : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Bahasa Indonesia'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													kkm_bing : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai KKM Bahasa Inggris'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai KKM harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													mean_rapor : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nilai rata-rata rapor'
+															},
+															stringLength : {
+																min : 1,
+																max : 11,
+																message : 'Nilai rata-rata harus lebih dari 1 dan kurang dari 12 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													}
+												}
+											})
+						});
 	</script>
-
 </body>
 
 </html>
-

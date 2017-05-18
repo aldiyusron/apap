@@ -184,7 +184,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama"
 								placeholder="Nama Jalur Masuk" th:value="${nama}"
-								class="form-control" type="text" />
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -197,7 +197,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" />
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -210,7 +210,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" />
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -221,8 +221,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span> <select
-								class="custom-select" name="status"
-								style="height: 35px">
+								class="custom-select" name="status" style="height: 35px">
 								<option value="">Status jalur masuk</option>
 								<option text="Aktif" name="status" value="Aktif">Aktif</option>
 								<option text="Tidak Aktif" name="status" value="Tidak Aktif">Tidak
@@ -239,13 +238,12 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span> <select
-								class="custom-select" name="jenis_jalur"
-								style="height: 35px">
+								class="custom-select" name="jenis_jalur" style="height: 35px"
+								required="required">
 								<option value="">Jenis jalur masuk</option>
-								<option text="Jalur Tulis" name="jenis_jalur"
-									required="required" value="Jalur Tulis">Jalur Tulis</option>
-								<option text="Jalur Undangan" name="jenis_jalur"
-									required="required" value="Jalur Undangan">Jalur
+								<option name="jenis_jalur" value="Jalur Tulis">Jalur
+									Tulis</option>
+								<option name="jenis_jalur" value="Jalur Undangan">Jalur
 									Undangan</option>
 							</select>
 						</div>
@@ -259,8 +257,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" name="nama_jenjang"
-								style="height: 35px">
+								class="custom-select" name="nama_jenjang" style="height: 35px">
 								<option value="">Jenjang Pendidikan</option>
 								<option text="S1" name="nama_jenjang" required="required"
 									value="S1">S1</option>
@@ -282,18 +279,14 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" name="nama_program"
-								style="height: 35px">
+								class="custom-select" name="nama_program" style="height: 35px"
+								required="required">
 								<option value="">Program Pendidikan</option>
-								<option text="Reguler" name="nama_program" required="required"
-									value="Reguler">Reguler</option>
-								<option text="Paralel" name="nama_program" required="required"
-									value="Paralel">Paralel</option>
-								<option text="Kelas Internasional" name="nama_program"
-									required="required" value="Kelas Internasional">Kelas
+								<option name="nama_program" value="Reguler">Reguler</option>
+								<option name="nama_program" value="Paralel">Paralel</option>
+								<option name="nama_program" value="Kelas Internasional">Kelas
 									Internasional</option>
-								<option text="Tidak ada" name="nama_program" required="required"
-									value="Tidak ada">Tidak ada</option>
+								<option name="nama_program" value="Tidak ada">Tidak ada</option>
 							</select>
 						</div>
 					</div>
@@ -307,7 +300,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								name="waktu_ujian" placeholder="MM/DD/YYYY HH:MM A"
-								class="form-control" type="text" />
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -322,7 +315,7 @@
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="persyaratan" placeholder="Persyaratan"
 								th:value="${persyaratan}" class="form-control" rows="5"
-								type="text"></textarea>
+								type="text" required="required"></textarea>
 						</div>
 					</div>
 				</div>
@@ -477,135 +470,124 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script>
-		$(document).ready(
-				function() {
-					$('#contact_form').bootstrapValidator({
-						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							nama : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan nama jalur masuk'
-									}
-								}
-							},
-							tanggal_buka : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan tanggal buka jalur masuk'
-									}
-								}
-							},
-							tanggal_tutup : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan tanggal tutup jalur masuk'
-									}
-								}
-							},
-							status : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan status jalur masuk'
-									}
-								}
-							},
-							jenis_jalur : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan jenis jalur masuk'
-									}
-								}
-							},
-							nama_jenjang : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan jenjang pendidikan jalur masuk'
-									}
-								}
-							},
-							nama_program : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan program pendidikan jalur masuk'
-									}
-								}
-							},
-							waktu_ujian : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Masukkan waktu ujian jalur masuk'
-									}
-								}
-							},
-							persyaratan : {
-								validators : {
-									stringLength : {
-										min : 8,
-									},
-									notEmpty : {
-										message : 'Tolong masukkan persyaratan'
-									}
-								}
-							}
-						}
-					}).on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#contact_form').data('bootstrapValidator')
-										.resetForm();
-								// Prevent form submission
-								e.preventDefault();
-								// Get the form instance
-								var $form = $(e.target);
-								// Get the BootstrapValidator instance
-								var bv = $form.data('bootstrapValidator');
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form.serialize(),
-										function(result) {
-											console.log(result);
-										}, 'json');
-							});
-				});
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#contact_form')
+									.bootstrapValidator(
+											{
+												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													nama : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nama jalur masuk'
+															},
+															stringLength : {
+																min : '4',
+																max : '30',
+																message : 'Nama jalur masuk harus lebih dari 3 dan kurang dari 31 karakter'
+															}
+														}
+													},
+													nama_jenjang : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan jenjang pendidikan'
+															},
+															stringLength : {
+																min : '2',
+																max : '20',
+																message : 'Nama jenjang pendidikan harus lebih dari 1 dan kurang dari 21 karakter'
+															}
+														}
+													},
+													nama_program : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan program pendidikan'
+															},
+															stringLength : {
+																min : '2',
+																max : '20',
+																message : 'Nama program pendidikan harus lebih dari 1 dan kurang dari 21 karakter'
+															}
+														}
+													},
+													persyaratan : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan persyaratan jalur masuk'
+															},
+															stringLength : {
+																min : '10',
+																max : '200',
+																message : 'Persyaratan jalur masuk harus lebih dari 9 dan kurang dari 201 karakter'
+															}
+														}
+													},
+													status : {
+														validators : {
+															notEmpty : {
+																message : 'Pilih status jalur masuk'
+															}
+														}
+													},
+													jenis_jalur : {
+														validators : {
+															notEmpty : {
+																message : 'Pilih jenis jalur masuk'
+															}
+														}
+													},
+													tanggal_buka : {
+														validators : {
+															date : {
+																format : 'DD/MM/YYYY',
+																message : 'Masukkan tanggal buka jalur masuk'
+															}
+														}
+													},
+													tanggal_tutup : {
+														validators : {
+															date : {
+																format : 'DD/MM/YYYY',
+																message : 'Masukkan tanggal tutup jalur masuk'
+															}
+														}
+													},
+													waktu_ujian : {
+														validators : {
+															date : {
+																format : 'DD/MM/YYYY',
+																message : 'Masukkan waktu ujian jalur masuk'
+															}
+														}
+													}
+												}
+											})
+						});
 	</script>
 
+
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+
+	<script type="text/javascript">
+		$('.select').selectpicker();
+	</script>
 	<script>
 		$(document).ready(
 				function() {
-					var date_input = $('input[name="tanggal_buka"]'); //our date input has the name "tgl_buka"
+					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
 					var container = $('.bootstrap-iso form').length > 0 ? $(
 							'.bootstrap-iso form').parent() : "body";
 					date_input.datepicker({
@@ -614,24 +596,7 @@
 						todayHighlight : true,
 						autoclose : true,
 					})
-				});
-		$('.select').selectpicker();
-	</script>
-
-	<script>
-		$(document).ready(
-				function() {
-					var date_input = $('input[name="tanggal_tutup"]'); //our date input has the name "tgl_buka"
-					var container = $('.bootstrap-iso form').length > 0 ? $(
-							'.bootstrap-iso form').parent() : "body";
-					date_input.datepicker({
-						format : 'dd/mm/yyyy',
-						container : container,
-						todayHighlight : true,
-						autoclose : true,
-					})
-				});
-		$('.select').selectpicker();
+				})
 	</script>
 </body>
 </html>

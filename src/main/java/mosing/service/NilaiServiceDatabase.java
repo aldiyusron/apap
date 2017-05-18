@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import mosing.mapper.NilaiMapper;
 import mosing.model.NilaiModel;
+import mosing.model.NilaiUjianModel;
 
 @Slf4j
 @Service
@@ -31,5 +32,11 @@ public class NilaiServiceDatabase implements NilaiService{
 	@Override
 	public List<NilaiModel> selectNilai(int no_daftar) {
 		return nilaiMapper.selectNilai(no_daftar);
+	}
+
+	@Override
+	public NilaiUjianModel selectNilaiUjian(int no_daftar) {
+		// TODO Auto-generated method stub
+		return nilaiMapper.selectNilaiUjian(no_daftar);
 	}
 }

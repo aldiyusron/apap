@@ -22,4 +22,10 @@ public interface ProdiMapper {
 	@Insert("insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
 			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan}")
 	void addRencanaStudi(DaftarPilihanModel daftarPilihan);
+	
+	@Select("select p.* from prodi_tersedia p where id_fakultas=#{id_fakultas}")
+	List<ProdiTersediaModel> selectAllProdiFak(@Param("id_fakultas") int id_fakultas);
+	
+	@Select("select p.* from prodi_tersedia p")
+	List<ProdiTersediaModel> selectAllProdiTersedia();
 }

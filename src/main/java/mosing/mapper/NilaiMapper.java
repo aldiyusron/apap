@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import mosing.model.NilaiModel;
+import mosing.model.NilaiUjianModel;
 import mosing.model.PendaftarModel;
 
 @Mapper
@@ -31,4 +32,6 @@ public interface NilaiMapper {
 			+ " ekonomi=#{ekonomi}, bindo = #{bindo}, bing = #{bing} where semester = #{semester} and no_daftar=#{no_daftar}")
 	void updateNilai(NilaiModel nilai);
 
+	@Select("select * from nilai_ujian where no_daftar = #{no_daftar}")
+	NilaiUjianModel selectNilaiUjian(@Param("no_daftar") int no_daftar);
 }

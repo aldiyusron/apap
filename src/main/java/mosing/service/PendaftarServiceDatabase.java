@@ -76,6 +76,24 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
+	public List<PendaftarModel> selectAllPendaftarPPKB() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarPPKB();
+	}
+	
+	@Override	
+	public List<PendaftarModel> selectAllPendaftarNonRec(int id_fakultas) {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarNonRec(id_fakultas);
+	}
+	
+	@Override
+	public List<PendaftarModel> selectAllPendaftarRec(int id_fakultas) {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarRec(id_fakultas);
+	}
+	
+	@Override
 	public PendaftarModel selectNama(int no_daftar) {
 		return pendaftarMapper.selectNama(no_daftar);
 	}

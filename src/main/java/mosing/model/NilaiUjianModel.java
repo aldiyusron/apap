@@ -1,5 +1,7 @@
 package mosing.model;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,19 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NilaiModel {
+public class NilaiUjianModel {
 
 	private int no_daftar;
-	private int kkm_mtk;
-	private int kkm_kimia;
-	private int kkm_fisika;
-	private int kkm_biologi;
-	private int kkm_sejarah;
-	private int kkm_geografi;
-	private int kkm_sosiologi;
-	private int kkm_ekonomi;
-	private int kkm_bindo;
-	private int kkm_bing;
+	private int tpa;
+	private int mtk_dasar;
 	private int mtk;
 	private int kimia;
 	private int fisika;
@@ -30,5 +24,4 @@ public class NilaiModel {
 	private int sosiologi;
 	private int bindo;
 	private int bing;
-	private int semester;
 }

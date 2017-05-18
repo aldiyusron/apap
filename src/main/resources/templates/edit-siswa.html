@@ -197,7 +197,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_id"
 								placeholder="Nama Lengkap Siswa" class="form-control"
-								type="text" required="true" th:value="${pendaftar.nama_id}" />
+								type="text" required="required" th:value="${pendaftar.nama_id}" />
 						</div>
 					</div>
 				</div>
@@ -212,7 +212,8 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama_ijazah"
 								placeholder="Nama Sesuai Ijazah" class="form-control"
-								type="text" required="true" th:value="${pendaftar.nama_ijazah}" />
+								type="text" required="required"
+								th:value="${pendaftar.nama_ijazah}" />
 						</div>
 					</div>
 				</div>
@@ -253,7 +254,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <input name="no_id"
-								class="form-control" type="text" required="true"
+								class="form-control" type="text" required="required"
 								th:value="${pendaftar.no_id}" />
 						</div>
 					</div>
@@ -425,113 +426,99 @@
 	<script th:src="@{/js/agency.min.js}"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#contact_form').bootstrapValidator({
-				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					nama_lokasi : {
-						validators : {
-							stringLength : {
-								min : 3,
-								max : 50,
-							},
-							notEmpty : {
-								message : 'Masukkan nama lokasi'
-							}
-						}
-					},
-					alamat : {
-						validators : {
-							stringLength : {
-								min : 5,
-								max : 100,
-							},
-							notEmpty : {
-								message : 'Masukkan alamat lokasi'
-							}
-						}
-					},
-
-					no_telp : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan nomor telepon'
-							},
-							phone : {
-								country : 'INA',
-								message : 'Masukkan dengan awalan +62'
-							}
-						}
-					},
-					nama_provinsi : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih provinsi'
-							}
-						}
-					},
-					nama_kota : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih kota'
-							}
-						}
-					},
-					kuota_peng : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pengawas'
-							}
-						}
-					},
-					kuota_pendaftar : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pendaftar'
-							}
-						}
-					},
-
-				}
-			})
-
-			.on('success.form.bv', function(e) {
-				$('#success_message').slideDown({
-					opacity : "show"
-				}, "slow") // Do something ...
-				$('#reg_form').data('bootstrapValidator').resetForm();
-
-				// Prevent form submission
-				e.preventDefault();
-
-				// Get the form instance
-				var $form = $(e.target);
-
-				// Get the BootstrapValidator instance
-				var bv = $form.data('bootstrapValidator');
-
-			});
-		});
-	</script>
-
-	<script>
-		$(document).ready(
-				function() {
-					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
-					var container = $('.bootstrap-iso form').length > 0 ? $(
-							'.bootstrap-iso form').parent() : "body";
-					date_input.datepicker({
-						format : 'dd/mm/yyyy',
-						container : container,
-						todayHighlight : true,
-						autoclose : true,
-					})
-				})
+		$(document)
+				.ready(
+						function() {
+							$('#contact_form')
+									.bootstrapValidator(
+											{
+												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													jalur_undangan : {
+														validators : {
+															notEmpty : {
+																message : 'Pilih jalur masuk'
+															}
+														}
+													},
+													no_id : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nomor sesuai identitas pengenal'
+															},
+															stringLength : {
+																min : 3,
+																max : 20,
+																message : 'Nomor identitas harus lebih dari 3 dan kurang dari 21 karakter'
+															},
+															integer : {
+																message : 'Harus berupa angka'
+															}
+														}
+													},
+													nama_id : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nama sesuai identitas pengenal'
+															},
+															stringLength : {
+																min : 3,
+																max : 50,
+																message : 'Nama identitas harus lebih dari 3 dan kurang dari 51 karakter'
+															}
+														}
+													},
+													nama_ijazah : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nama sesuai ijazah'
+															},
+															stringLength : {
+																min : 3,
+																max : 20,
+																message : 'Nama ijazah harus lebih dari 3 dan kurang dari 51 karakter'
+															}
+														}
+													},
+													jenis_kelamin : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan jenis kelamin'
+															}
+														}
+													},
+													nama_lembaga : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan nama lembaga pendidikan terakhir'
+															},
+															stringLength : {
+																min : 3,
+																max : 50,
+																message : 'Nama lembaga pendidikan terakhir harus lebih dari 2 dan kurang dari 51 karakter'
+															}
+														}
+													},
+													jurusan : {
+														validators : {
+															notEmpty : {
+																message : 'Masukkan jurusan pada lembaga pendidikan terakhir'
+															},
+															stringLength : {
+																min : 3,
+																max : 50,
+																message : 'Jurusan pada lembaga pendidikan terakhir harus lebih dari 2 dan kurang dari 51 karakter'
+															}
+														}
+													}
+												}
+											})
+						});
 	</script>
 </body>
 
