@@ -10,10 +10,10 @@
 
 <title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -35,15 +35,6 @@
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 queries WARNING: Respond.js doesn't work if you view the page via
 file:// [if lt IE 9]> -->
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
-	integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY"
-	crossorigin="anonymous"></script>
-<script
-	src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
-	integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo"
-	crossorigin="anonymous"></script>
-<!-- <![endif]
- -->
 
 </head>
 
@@ -158,7 +149,7 @@ file:// [if lt IE 9]> -->
 		<form class="well form-horizontal" action="/nilai-ipa/submit"
 			method="post" id="contact_form">
 			<fieldset>
-				<div class="progress">
+				<div class="progress progress-bar-background">
 					<div class="progress-bar progress-bar-warning" role="progressbar"
 						aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
 						style="width: 50%">50% Complete</div>
@@ -193,78 +184,61 @@ file:// [if lt IE 9]> -->
 							<tbody>
 								<tr>
 									<td>Matematika</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_math" /></td>
-									<td><input type="text" class ="resizedTextBox" name="math1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="math2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="math3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="math4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="math5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_mtk" /></td>
+									<td><input type="text" class ="resizedTextBox" name="mtk1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="mtk2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="mtk3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="mtk4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="mtk5" /></td>
 								</tr>
 								<tr>
 									<td>Kimia</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_chem" /></td>
-									<td><input type="text" class ="resizedTextBox" name="chem1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="chem2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="chem3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="chem4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="chem5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_kimia" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kimia1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kimia2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kimia3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kimia4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kimia5" /></td>
 								</tr>
 								<tr>
 									<td>Fisika</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_phy" /></td>
-									<td><input type="text" class ="resizedTextBox" name="phy1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="phy2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="phy3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="phy4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="phy5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_fisika" /></td>
+									<td><input type="text" class ="resizedTextBox" name="fisika1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="fisika2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="fisika3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="fisika4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="fisika5" /></td>
 								</tr>
 								<tr>
 									<td>Biologi</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_bio" /></td>
-									<td><input type="text" class ="resizedTextBox" name="bio1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="bio2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="bio3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="bio4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="bio5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_biologi" /></td>
+									<td><input type="text" class ="resizedTextBox" name="biologi1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="biologi2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="biologi3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="biologi4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="biologi5" /></td>
 								</tr>
 								<tr>
 									<td>Bahasa Indonesia</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_indo" /></td>
-									<td><input type="text" class ="resizedTextBox" name="indo1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="indo2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="indo3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="indo4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="indo5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_bindo" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bindo1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bindo2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bindo3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bindo4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bindo5" /></td>
 								</tr>
 								<tr>
 									<td>Bahasa Inggris</td>
-									<td><input type="text" class ="resizedTextBox" name="kkm_eng" /></td>
-									<td><input type="text" class ="resizedTextBox" name="eng1" /></td>
-									<td><input type="text" class ="resizedTextBox" name="eng2" /></td>
-									<td><input type="text" class ="resizedTextBox" name="eng3" /></td>
-									<td><input type="text" class ="resizedTextBox" name="eng4" /></td>
-									<td><input type="text" class ="resizedTextBox" name="eng5" /></td>
+									<td><input type="text" class ="resizedTextBox" name="kkm_bing" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bing1" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bing2" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bing3" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bing4" /></td>
+									<td><input type="text" class ="resizedTextBox" name="bing5" /></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-
-
-					<!-- Text input-->
-
-					<div class="form-group" style="margin-left: -80px">
-						<label class="col-md-4 control-label" for="no_id">Rata-rata
-							Nilai Rapor</label>
-						<div class="col-md-4 inputGroupContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-user"></i></span> <input name="mean_rapor"
-									placeholder="Rata-rata nilai rapor" class="form-control"
-									type="text" required="true" />
-							</div>
-						</div>
-					</div>
-				
 
 				<!-- Text input-->
 

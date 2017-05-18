@@ -1,6 +1,5 @@
 package mosing.model;
 
-import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class FakultasModel {
 	private int id_fakultas;
 	private String fakultas;
+	private List<ProdiTersediaModel> listProdi;
+	
 }

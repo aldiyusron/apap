@@ -86,5 +86,7 @@ public interface JalurMasukMapper {
 
 	@Select("select * from jalur_masuk where jenis_jalur=0 and flag_aktif=1")
 	List<JalurMasukModel> selectAllJalurUndangan();
-
+	
+	@Select("select * from jalur_masuk where nama = #{nama_jalur}")
+	JalurMasukModel selectJalur(@Param("nama_jalur") String nama_jalur);
 }

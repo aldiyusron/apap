@@ -12,5 +12,6 @@ public class PenyeleksianModel {
 	private int no_daftar;
 	private byte status;
 	private int id_jalur;
+	private byte status_rekomen;
 	private String berkas;
 }

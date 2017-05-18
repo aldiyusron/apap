@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.ProdiTersediaModel;
+import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.LokasiModel;
 import mosing.service.DetailUjianService;
+import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
 import mosing.service.ProdiTersediaService;
@@ -35,6 +37,9 @@ public class JalurMasukController {
 	
 	@Autowired
 	LokasiService lokasiDAO;
+	
+	@Autowired
+	FakultasService fakultasDAO;
 
 	@RequestMapping("/jalur-masuk")
 	public String lihatDaftarJalurMasuk(Model model) {
@@ -55,6 +60,7 @@ public class JalurMasukController {
 			
 			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
 			model.addAttribute("listProdi", listProdi);
+
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);

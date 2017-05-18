@@ -30,11 +30,11 @@
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
-<link th:href="@{/css/agency.min.css}" rel="stylesheet" />
+<link th:href="@{/css/agency.min.css}" rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 queries WARNING: Respond.js doesn't work if you view the page via
-file:// [if lt IE 9]> -->
+file:// [if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
 	integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY"
 	crossorigin="anonymous"></script>
@@ -42,7 +42,7 @@ file:// [if lt IE 9]> -->
 	src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
 	integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo"
 	crossorigin="anonymous"></script>
-<!-- <![endif]
+[endif]
  -->
 
 </head>
@@ -113,8 +113,8 @@ file:// [if lt IE 9]> -->
 					</li>
 					<ul class="nav navbar-nav">
 						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
-								class="glyphicon glyphicon-user"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
@@ -132,8 +132,7 @@ file:// [if lt IE 9]> -->
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png"
-						alt="logo" /></a>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -157,7 +156,8 @@ file:// [if lt IE 9]> -->
 
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" th:action="@{'/lokasi-ujian/add/submit/' + ${id_jalur}}"
+		<form class="well form-horizontal"
+			th:action="@{'/lokasi-ujian/add/submit/' + ${id_jalur}}"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -169,7 +169,7 @@ file:// [if lt IE 9]> -->
 						</h2>
 					</center>
 				</legend>
-				
+
 				<input type="hidden" name="id_jalur" readonly="readonly"
 					th:value="${id_jalur}" />
 
@@ -182,7 +182,7 @@ file:// [if lt IE 9]> -->
 								class="glyphicon glyphicon-education"></i></span> <input
 								name="nama_lokasi"
 								placeholder="Nama Lokasi (contoh: SMAN 1 Depok)"
-								class="form-control" type="text" required="true" />
+								class="form-control" maxlength="50" type="text" />
 						</div>
 					</div>
 				</div>
@@ -195,7 +195,7 @@ file:// [if lt IE 9]> -->
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="alamat"
 								placeholder="Alamat Lokasi. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ"
-								class="form-control" rows="5" type="text" required="true"></textarea>
+								class="form-control" rows="5" maxlength="100" type="text"></textarea>
 						</div>
 					</div>
 				</div>
@@ -206,8 +206,8 @@ file:// [if lt IE 9]> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
-								required="required" name="nama_provinsi"
-								class="selectpicker form-control" data-live-search="true">
+								name="nama_provinsi" class="selectpicker form-control"
+								data-live-search="true">
 								<option value="">Pilihan provinsi</option>
 								<div th:each="provinsi,iterationStatus: ${allProvinsi}">
 									<option th:value="${provinsi.nama_provinsi}"
@@ -217,24 +217,25 @@ file:// [if lt IE 9]> -->
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="nama_kota" class="col-md-4 control-label">Kota</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-pushpin"></i></span> <select
-								required="required" name="nama_kota"
-								class="form-control selectpicker" data-live-search="true">
+								name="nama_kota" class="form-control selectpicker"
+								data-live-search="true">
 								<option value="">Pilihan kota</option>
 								<div th:each="kota,iterationStatus: ${allKota}">
-									<option th:value="${kota.nama_kota}" th:text="${kota.nama_kota}"></option>
+									<option th:value="${kota.nama_kota}"
+										th:text="${kota.nama_kota}"></option>
 								</div>
 							</select>
 						</div>
 					</div>
 				</div>
-				
+
 
 				<!--
 				<div class="form-group">
@@ -280,8 +281,8 @@ file:// [if lt IE 9]> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span> <input name="no_telp"
-								placeholder="+62xxxx" class="form-control" type="text"
-								required="true" />
+								placeholder="+62xxxx" maxlength="14" class="form-control"
+								type="text" />
 						</div>
 					</div>
 				</div>
@@ -297,7 +298,7 @@ file:// [if lt IE 9]> -->
 								class="glyphicon glyphicon-user"></i></span> <input
 								name="kuota_pendaftar"
 								placeholder="Banyak tempat duduk tersedia untuk peserta ujian"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -310,7 +311,7 @@ file:// [if lt IE 9]> -->
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="kuota_peng"
 								placeholder="Banyak pengawas yang dibutuhkan untuk mengawas"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" />
 						</div>
 					</div>
 				</div>
@@ -325,9 +326,37 @@ file:// [if lt IE 9]> -->
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a th:href="@{'/jalur-masuk/view/'+ ${id_jalur}}" class="btn btn-default">Batal</a>
-						<button style="width: 30%; margin-left: 5px; margin-top: 0" value="save" name="action"
-							type="submit" class="btn btn-danger1">Simpan</button>
+							th:value="${_csrf.token}" /> <a type="button"
+							data-toggle="modal" data-target="#myModal1"
+							th:href="@{'/jalur-masuk/view/'+ ${id_jalur}}"
+							class="btn btn-default">Batal</a>
+						<button style="width: 30%; margin-left: 5px; margin-top: 0"
+							value="save" name="action" type="submit" data-toggle="modal"
+							data-target="#myModal2" class="btn btn-danger1">Simpan</button>
+					</div>
+				</div>
+
+				<!-- Modal -->
+				<div id="myModal1" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body">
+								<p>Some text in the modal.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+							<button value="cancel" name="action" type="cancel"
+								class="btn btn-info">Batal</button>
+						</div>
+
 					</div>
 				</div>
 			</fieldset>
@@ -401,25 +430,110 @@ file:// [if lt IE 9]> -->
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js}"></script>
 
-	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#contact_form').bootstrapValidator({
+				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					nama_lokasi : {
+						validators : {
+							stringLength : {
+								min : 3,
+								max : 50,
+							},
+							notEmpty : {
+								message : 'Masukkan nama lokasi'
+							}
+						}
+					},
+					alamat : {
+						validators : {
+							stringLength : {
+								min : 5,
+								max : 100,
+							},
+							notEmpty : {
+								message : 'Masukkan alamat lokasi'
+							}
+						}
+					},
 
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+					no_telp : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan nomor telepon'
+							},
+							phone : {
+								country : 'INA',
+								message : 'Masukkan dengan awalan +62'
+							}
+						}
+					},
+					nama_provinsi : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih provinsi'
+							}
+						}
+					},
+					nama_kota : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih kota'
+							}
+						}
+					},
+					kuota_peng : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pengawas'
+							}
+						}
+					},
+					kuota_pendaftar : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pendaftar'
+							}
+						}
+					},
 
-	<!-- Include Date Range Picker -->
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+				}
+			})
+
+			.on('success.form.bv', function(e) {
+				$('#success_message').slideDown({
+					opacity : "show"
+				}, "slow") // Do something ...
+				$('#reg_form').data('bootstrapValidator').resetForm();
+
+				// Prevent form submission
+				e.preventDefault();
+
+				// Get the form instance
+				var $form = $(e.target);
+
+				// Get the BootstrapValidator instance
+				var bv = $form.data('bootstrapValidator');
+
+			});
+		});
+	</script>
+	
 
 	<!-- <script>
 	var listKota = [[${allKota}]];
@@ -445,21 +559,7 @@ file:// [if lt IE 9]> -->
 	}
 	</script> -->
 	
-	
-	<script>
-		$(document).ready(
-				function() {
-					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
-					var container = $('.bootstrap-iso form').length > 0 ? $(
-							'.bootstrap-iso form').parent() : "body";
-					date_input.datepicker({
-						format : 'dd/mm/yyyy',
-						container : container,
-						todayHighlight : true,
-						autoclose : true,
-					})
-				});
-
+	<script type="text/javascript">
 		$('.select').selectpicker();
 	</script>
 </body>

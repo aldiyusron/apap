@@ -5689,6 +5689,10 @@ to {
 	animation: progress-bar-stripes 2s linear infinite
 }
 
+.progress-bar-background {
+	background-color: #ffffff
+}
+
 .progress-bar-success {
 	background-color: #5cb85c
 }
@@ -7465,7 +7469,6 @@ button.close {
 	border-color: #eea236;
 }
 
-<<<<<<< HEAD
 table {
 	border-spacing: 0;
 	border-collapse: collapse

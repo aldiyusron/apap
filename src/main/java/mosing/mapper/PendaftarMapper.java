@@ -37,12 +37,13 @@ public interface PendaftarMapper {
 	@Update("Update pendaftar set foto=#{foto} where id_user=#{id_user}")
 	void updateFoto(@Param("foto") String foto, @Param("id_user") int id_user);
 
-	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and p.id_user=5")
+	@Select("select * from pendaftar p" 
+			+ " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
+			+ " WHERE penyeleksian.status=0 and id_jalur=4")
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 
 	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and p.id_user=5")
+			+ " WHERE penyeleksian.status=0 and penyeleksian.id_jalur = 4")
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 
 	@Select("select nama_id, no_id, jurusan, penyeleksian.status as status from pendaftar"
@@ -53,7 +54,37 @@ public interface PendaftarMapper {
 	List<PendaftarModel> selectAllPendaftar();
 
 	@Update("UPDATE pendaftar SET nama_id = #{nama_id}, nama_ijazah=#{nama_ijazah}, jenis_kelamin=#{jenis_kelamin}, no_id=#{no_id}, "
-			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_id=#{no_id}")
+			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
+	
+	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
+	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
 
+	@Select("select * from pendaftar join penyeleksian on pendaftar.no_daftar = penyeleksian.no_daftar"
+			+ "join nilai_rapor on penyeleksian.no_daftar = nilai_rapor.no_daftar"
+			+ "where penyeleksian.id_jalur = 4")
+	@Results(value = {
+			@Result(property = "nama_id", column = "nama_id"),
+			@Result(property = "no_daftar", column = "no_daftar"),
+			@Result(property = "nama_lembaga", column = "nama_lembaga"),
+			@Result(property = "status_rekomen", column = "status_rekomen")
+	})
+	List<PendaftarModel> selectAllPendaftarPPKB();
+
+	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
+			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
+	List<PendaftarModel> selectAllPendaftarRec(int id_prodi);
+
+	@Select("select * from pendaftar"
+			+ " join PENYELEKSIAN on pendaftar.no_daftar = penyeleksian.no_daftar"
+			+ " join JALUR_MASUK on penyeleksian.id_jalur = jalur_masuk.id_jalur where jalur_masuk.id_jalur=4 AND no_id=#{no_id}")
+	PendaftarModel selectPPKB(@Param("no_id") String no_id);
+	
+	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
+	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
+	
+	@Select("select nama_id from pendaftar where no_daftar=#{no_daftar}")
+	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
+	
 }
