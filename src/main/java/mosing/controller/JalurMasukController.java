@@ -155,7 +155,7 @@ public class JalurMasukController {
 		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);
-		return "success-registration"; //belum bener
+		return "success-updatejalur"; //belum bener
 	}
 	
 	@RequestMapping("/jalur-masuk/delete/{id_jalur}")
