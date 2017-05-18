@@ -1,5 +1,7 @@
 package mosing.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +28,7 @@ public interface CalonMahasiswaMapper {
 	@Insert("insert into calon_mahasiswa (no_daftar, npm, id_prodi, id_jalur, jenjang) values "
 			+ "(#{no_daftar}, #{npm}, #{id_prodi}, #{id_jalur}, #{jenjang}) ")
 	void addCalon(CalonMahasiswaModel calon);
+	
+	@Select("select * from calon_mahasiswa")
+	List<CalonMahasiswaModel> selectAllCalon();
 }

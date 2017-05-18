@@ -87,4 +87,7 @@ public interface PendaftarMapper {
 			+ "pr.id_prodi = d.id_prodi and pn.status=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
 	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi, @Param("id_jalur")int id_jalur);
 	
+	@Select("select * from pendaftar where no_daftar=#{no_daftar}")
+	PendaftarModel selectPendaftar3(@Param("no_daftar") int no_daftar);
+
 }

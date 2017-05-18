@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.CalonMahasiswaModel;
 import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.ListStrings;
@@ -179,17 +180,35 @@ public class PUnivController {
 
 	@RequestMapping(value = "/sukses-seleksi")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model,
+			@RequestParam(value = "id_jalur", required = false) int id_jalur,
+			@RequestParam(value = "jenjang", required = false) String jenjang,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		List<CalonMahasiswaModel> pendaftarLulus = new ArrayList<CalonMahasiswaModel>();
+		List<PendaftarModel> pendaftars = new ArrayList<PendaftarModel>();
+		List<CalonMahasiswaModel> calons = calonDAO.selectAllCalon();
+		String latestNPM = calons.get(calons.size()-1).getNpm();
+		System.out.println(latestNPM);
+		double npm = Double.parseDouble(latestNPM) + 1;
+		System.out.println(npm);
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
 				String nomor = statusSubmit.getStrings().get(i);
 				int no_daftar = Integer.parseInt(nomor);
 				penyeleksianDAO.updateLulus(no_daftar);
+				PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
+				pendaftars.add(pendaftar);
+				String newNPM = "" + npm;
+				CalonMahasiswaModel calon = new CalonMahasiswaModel(no_daftar, newNPM, id_prodi, id_jalur, jenjang);
+				pendaftarLulus.add(calon);
+				npm = npm + 1;
 			}
 		}
-		return "success-daftarpengawas";
+		model.addAttribute("pendaftars", pendaftars);
+		model.addAttribute("pendaftarLulus", pendaftarLulus);
+		return "success-menyeleksi";
 	}
 }

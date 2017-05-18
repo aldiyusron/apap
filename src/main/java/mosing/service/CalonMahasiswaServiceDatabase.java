@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,12 @@ public class CalonMahasiswaServiceDatabase implements CalonMahasiswaService{
 	public void addCalon(CalonMahasiswaModel calon) {
 		CalonMahasiswaMapper.addCalon(calon);
 		
+	}
+
+	@Override
+	public List<CalonMahasiswaModel> selectAllCalon() {
+		// TODO Auto-generated method stub
+		return CalonMahasiswaMapper.selectAllCalon();
 	}
 
 }
