@@ -157,11 +157,11 @@
 	</div>
 	<div class="container">
 		<h1>Daftar Fakultas</h1>
-		<div class="panel-group">
+		<div class="panel-group" style="margin-top:20px">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title"
-						th:each="fakultas,iterationStatus: ${fakultas}">
+				<div id="newpost" class="panel-heading">
+					<h4 id="button" class="panel-title"
+						th:each="fakultas,iterationStatus: ${fakultas}" style="padding:5px">
 						<a data-toggle="collapse" th:href="'#collapse' + ${iterationStatus.count}"
 							th:text="${fakultas.fakultas}"></a>
 
@@ -259,9 +259,6 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
@@ -312,6 +309,18 @@
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
 	</script>
+	var button = document.getElementById('button');
+
+button.onclick = function() {
+    var div = document.getElementById('newpost');
+    if (div.style.display !== 'none') {
+        div.style.display = 'none';
+    }
+    else {
+        div.style.display = 'block';
+    }
+};
+	
 	<script>
 		$(document).ready(function() {
 			$("#daftarJalurMasuk").DataTable();

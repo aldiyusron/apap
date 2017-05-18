@@ -104,9 +104,9 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public List<PendaftarModel> selectAllPendaftarSemua(int id_prodi) {
+	public List<PendaftarModel> selectAllPendaftarSemua(int id_prodi, int id_jalur) {
 		// TODO Auto-generated method stub
-		return pendaftarMapper.selectAllPendaftarSemua(id_prodi);
+		return pendaftarMapper.selectAllPendaftarSemua(id_prodi, id_jalur);
 	}
 	
 }
