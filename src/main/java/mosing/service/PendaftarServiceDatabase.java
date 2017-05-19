@@ -82,9 +82,9 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi, int id_jalur) {
+	public List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi) {
 		// TODO Auto-generated method stub
-		return pendaftarMapper.selectAllPendaftarNonRec(id_prodi, id_jalur);
+		return pendaftarMapper.selectAllPendaftarNonRec(id_prodi);
 	}
 
 	@Override

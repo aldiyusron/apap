@@ -86,7 +86,7 @@ public class PFakultasController {
 	@RequestMapping("/view/pendaftar/{id_jalur}/{id_prodi}")
 	public String rekomendasikan(Model model, @PathVariable(value = "id_jalur") int id_jalur,
 			@PathVariable(value = "id_prodi") int id_prodi) {
-		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarNonRec(id_prodi, id_jalur);
+		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarNonRec(id_prodi);
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
 		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
@@ -160,7 +160,7 @@ public class PFakultasController {
 		return "recommending";
 	}
 	
-	@RequestMapping(value = "/sukses-rekomendasi")
+	@RequestMapping("/sukses-rekomendasi")
 	public String suksesRekomendasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
 			BindingResult bindingResultStatus, Model model) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
@@ -173,7 +173,7 @@ public class PFakultasController {
 				penyeleksianDAO.updateRekomen(no_daftar);
 			}
 		}
-		return "success-rekomendasi"; //belum ganti bouz
+		return "success-daftarpengawas"; //belum ganti bouz
 	}
 	
 	@RequestMapping("/view/fakultas/rec/{id_jalur}")
