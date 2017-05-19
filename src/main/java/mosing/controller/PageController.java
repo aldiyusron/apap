@@ -58,19 +58,16 @@ public class PageController {
 						penyeleksianDAO.deletePenyeleksian(penyeleksian);
 						return "redirect:/";
 					}
-					else if (user.getEmail() != null) {
-						return "home";
-					} else {
-						List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
-						List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
-						List<KotaModel> allKota = kotaDAO.selectKotaIndo();
-						model.addAttribute("username", username);
-						model.addAttribute("jalurMasuk", jalurMasuk);
-						model.addAttribute("allProvinsi", allProvinsi);
-						model.addAttribute("allKota", allKota);
-						return "form-lengkapiData";
-					}
-				} else {
+				} else if (user.getEmail() == null) {
+					List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
+					List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+					List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+					model.addAttribute("username", username);
+					model.addAttribute("jalurMasuk", jalurMasuk);
+					model.addAttribute("allProvinsi", allProvinsi);
+					model.addAttribute("allKota", allKota);
+					return "form-lengkapiData";
+				} else if (user.getEmail() != null) {
 					List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
 					List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
 					List<KotaModel> allKota = kotaDAO.selectKotaIndo();
@@ -79,13 +76,14 @@ public class PageController {
 					model.addAttribute("allProvinsi", allProvinsi);
 					model.addAttribute("allKota", allKota);
 					return "form-registrasi2";
+				} else {
+					return "home";
 				}
 			} else {
 				return "home";
 			}
-		} else {
-			return "index";
 		}
+		return "index";
 	}
 
 	@RequestMapping("/login")

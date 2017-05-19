@@ -24,8 +24,11 @@ public interface UserAdmisiMapper {
 	@Insert("insert into user (username, password, email, role, enabled) values (#{username}, #{password}, #{email}, #{role}, 1)")
 	void addUser(UserAdmisiModel user);
 	
-	@Update("UPDATE user SET password = #{password} WHERE username = #{username}")
+	@Update("UPDATE USER SET password = #{password} WHERE username = #{username}")
 	void updateUser(UserAdmisiModel user);
+	
+	@Update("UPDATE USER SET email = #{email} WHERE username = #{username}")
+	void updateEmail(UserAdmisiModel user);
 	
 	@Select("select * from user")
 	List<UserAdmisiModel> selectAllUser();

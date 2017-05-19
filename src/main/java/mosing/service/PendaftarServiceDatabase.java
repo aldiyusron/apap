@@ -103,4 +103,10 @@ public class PendaftarServiceDatabase implements PendaftarService {
 		// TODO Auto-generated method stub
 		pendaftarMapper.deletePendaftar(no_daftar);
 	}
+
+	@Override
+	public void updateDataDiriLengkap(PendaftarModel pendaftar) {
+		// TODO Auto-generated method stub
+		pendaftarMapper.updateDataDiriLengkap(pendaftar);
+	}
 }

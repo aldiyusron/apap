@@ -23,4 +23,5 @@ public interface PendaftarService {
 	PendaftarModel selectPendaftarLulus(int no_daftar);
 	PendaftarModel selectNama(int no_daftar);
 	void deletePendaftar(int no_daftar);
+	void updateDataDiriLengkap(PendaftarModel pendaftar);
 }

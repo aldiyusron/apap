@@ -162,7 +162,7 @@
 
 	</div>
 	<div class="container">
-		<form class="well form-horizontal" action="/pendaftar/verifikasi/nilai"
+		<form class="well form-horizontal" th:action="@{'/pendaftar/verifikasi/nilai/' + ${#httpServletRequest.remoteUser}}"
 			method="post" id="contact_form">
 			<fieldset>
 

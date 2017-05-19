@@ -30,7 +30,7 @@ import mosing.model.NilaiModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.model.ProvinsiModel;
 import mosing.model.UserAdmisiModel;
-
+import mosing.service.BerkasService;
 import mosing.service.CalonMahasiswaService;
 import mosing.service.FakultasService;
 import mosing.service.FotoService;
@@ -90,6 +90,9 @@ public class PendaftarController {
 	@Autowired
 	FakultasService fakultasDAO;
 
+	@Autowired
+	BerkasService berkasDAO;
+
 	// @RequestMapping("/pendaftar/{username}")
 	// public String add(Model model, @PathVariable(value = "username") String
 	// username) {
@@ -119,11 +122,87 @@ public class PendaftarController {
 		model.addAttribute("pendaftar", pendaftar);
 		return "uploadForm";
 	}
-	
-	@RequestMapping("/pendaftar/verifikasi/nilai")
-	public String verifNilai()
-	{
-		return "";
+
+	@RequestMapping("/pendaftar/uploadRapor/{username}")
+	public String uploadRapor(Model model, @PathVariable(value = "username") String username) {
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
+		model.addAttribute("pendaftar", pendaftar);
+		model.addAttribute("penyeleksian", penyeleksian);
+		return "uploadBerkas";
+	}
+
+	@RequestMapping("/pendaftar/uploadRapor/{username}/submit")
+	public String uploadRaporSubmit(Model model, @RequestParam(value = "rapor", required = false) MultipartFile rapor,
+			@PathVariable(value = "username") String username) throws IOException {
+
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
+		penyeleksian.setFileBerkas(rapor);
+		berkasDAO.insert(penyeleksian);
+
+		model.addAttribute("penyeleksian", penyeleksian);
+		return "redirect:/pendaftar/uploadRapor/" + username;
+	}
+
+	@RequestMapping("/pendaftar/verifikasi/nilai/{username}")
+	public String verifNilai(Model model, @PathVariable(value = "username") String username,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "no_hp", required = false) String no_hp,
+			@RequestParam(value = "no_telp", required = false) String no_telp,
+			@RequestParam(value = "nama_negara", required = false) String nama_negara,
+			@RequestParam(value = "kewarganegaraan", required = false) String kewarganegaraan,
+			@RequestParam(value = "alamat_tetap", required = false) String alamat_tetap,
+			@RequestParam(value = "alamat_sekarang", required = false) String alamat_sekarang,
+			@RequestParam(value = "tgl_lahir", required = false) String tgl_lahir,
+			@RequestParam(value = "nama_provinsi", required = false) String nama_provinsi,
+			@RequestParam(value = "nama_kota", required = false) String nama_kota) throws ParseException {
+
+		UserAdmisiModel user = userDAO.selectUser(username);
+		user.setEmail(email);
+		userDAO.updateEmail(user);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date tanggal_lahir = format.parse(tgl_lahir);
+		// ganti jadi selectPPKB nih selectPendaftar
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+		pendaftar.setNo_hp(no_hp);
+		pendaftar.setNo_telp(no_telp);
+		pendaftar.setAlamat_sekarang(alamat_sekarang);
+		pendaftar.setAlamat_tetap(alamat_tetap);
+		pendaftar.setKewarganegaraan(kewarganegaraan);
+		pendaftar.setNama_kota(nama_kota);
+		pendaftar.setNama_provinsi(nama_provinsi);
+		pendaftar.setNama_negara(nama_negara);
+		pendaftar.setTgl_lahir(tanggal_lahir);
+		pendaftarDAO.updateDataDiriLengkap(pendaftar);
+		
+		// PendaftarModel pendaftar = pendaftarDAO.selectPPKB(no_id);
+		int no_daftar = pendaftar.getNo_daftar();
+		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		int kkm_mtk = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_mtk();
+		int kkm_kimia = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_kimia();
+		int kkm_fisika = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_fisika();
+		int kkm_biologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_biologi();
+		int kkm_sejarah = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_sejarah();
+		int kkm_geografi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_geografi();
+		int kkm_ekonomi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_ekonomi();
+		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
+		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
+		model.addAttribute("pendaftar", pendaftar);
+		model.addAttribute("nilai", nilai);
+		model.addAttribute("kkm_mtk", kkm_mtk);
+		model.addAttribute("kkm_kimia", kkm_kimia);
+		model.addAttribute("kkm_fisika", kkm_fisika);
+		model.addAttribute("kkm_biologi", kkm_biologi);
+		model.addAttribute("kkm_sejarah", kkm_sejarah);
+		model.addAttribute("kkm_geografi", kkm_geografi);
+		model.addAttribute("kkm_ekonomi", kkm_ekonomi);
+		model.addAttribute("kkm_bindo", kkm_bindo);
+		model.addAttribute("kkm_bing", kkm_bing);
+		if (pendaftar.getJurusan().equalsIgnoreCase("IPA"))
+			return "detailSiswa-ipa";
+		else
+			return "detailSiswa-ips";
 	}
 
 	@RequestMapping("/pendaftar/uploadFoto/{username}/submit")
