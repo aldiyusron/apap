@@ -12,4 +12,5 @@ public interface UserAdmisiService {
 	void updateUser(UserAdmisiModel user);
 	List<UserAdmisiModel> selectAllUser();
 	void updateEmail(UserAdmisiModel user);
+	List<UserAdmisiModel> selectAllLPTUser();
 }

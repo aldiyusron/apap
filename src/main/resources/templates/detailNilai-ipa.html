@@ -14,16 +14,10 @@
 <title>Penerimaan UI | Detail Siswa</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -37,23 +31,12 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
-
-<!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet"
-	href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -128,14 +111,14 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
-								class="glyphicon glyphicon-user"
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -148,8 +131,7 @@
 	<div class="container">
 		<div class="logomosing">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png"
-						alt="logo" /></a></li>
+				<li><a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a></li>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -168,9 +150,28 @@
 				</li>
 			</ul>
 		</div>
-
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
+	<div class="container" style="margin: bottom: 5px">
+		<div class="alert alert-warning col-md-10 col-md-offset-1"
+			role="alert" id="success_message"
+			style="width: 102%; margin-left: -1%">Apabila terdapat
+			kesalahan pada detail nilai berikut, mohon untuk memberitahukan
+			kepada kepala sekolah masing-masing.</div>
+
+		<!-- Button -->
+		<div class="container">
+			<div class="form-group" style="margin-left: 30%">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-4 col-md-offset-7" style="margin-top: -3%">
+					<br /> <input style="float: left" type="hidden"
+						th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <a
+						href="/daftar-siswa" class="btn btn-default" style="width: 40%">Kembali</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<form class="well form-horizontal" id="contact_form"
 			th:action="@{'/pendaftar/uploadRapor/' + ${#httpServletRequest.remoteUser} }">
@@ -182,15 +183,13 @@
 						<h2>
 							<b>Detail Nilai</b>
 						</h2>
-						<h5>Apabila terdapat kesalahan pada detail nilai berikut,
-							mohon untuk memberitahukan kepada kepala sekolah masing-masing.</h5>
 					</center>
 				</legend>
 
 				<div class="isilist">
 					<table class="table table-striped">
 						<thead>
-							<dl class="dl-horizontal" style="margin-left: 400px">
+							<dl class="dl-horizontal" style="margin-left: 392.75px">
 								<br />
 								<dt>Nama</dt>
 								<dd th:text="${pendaftar.nama_id}"></dd>
@@ -203,24 +202,22 @@
 								<br />
 								<dt>Asal Sekolah</dt>
 								<dd th:text="${pendaftar.nama_lembaga}"></dd>
-								<br />
-								<dt>
-									<h5>Nilai</h5>
-								</dt>
 
 							</dl>
 						</thead>
 					</table>
 				</div>
+				<h4 align="center" style="margin-left: 25px">Nilai</h4>
+				<hr align="center" style="width: 65px; margin-right: 503.5px" />
 
 				<input type="hidden" name="no_daftar" readonly="readonly"
 					th:value="${no_daftar}" />
 				<div class="form-group">
-					<table class="table table-striped">
+					<table class="table table-striped" style="margin-left: -45px">
 						<thead>
 							<tr>
 								<th>Mata Pelajaran</th>
-								<th>KKM</th>
+								<th style="padding-left: 26px">KKM</th>
 								<th>Semester 1</th>
 								<th>Semester 2</th>
 								<th>Semester 3</th>
@@ -234,37 +231,43 @@
 
 								<td>Matematika</td>
 
-								<td><input type="text" name="kkm_mtk"
+								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5>
+									<!-- <input type="text" name="kkm_mtk"
 									class="resizedTextBox" readonly="readonly"
-									th:value="${kkm_mtk}" /></td>
+									th:value="${kkm_mtk}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'mtk' + ${iterationStatus.count}"
-										th:value="${nilai.mtk}" /></td>
+										th:value="${nilai.mtk}" /> --></td>
 								</div>
 							</tr>
 							<tr>
 
 								<td>Kimia</td>
 
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_kimia" th:value="${kkm_kimia}" /></td>
+								<td><h5 th:text="${kkm_kimia}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
+									type="text" name="kkm_kimia" th:value="${kkm_kimia}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.kimia}"
+											style="padding-left: 25px"></h5> <!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'kimia' + ${iterationStatus.count}"
-										th:value="${nilai.kimia}" /></td>
+										th:value="${nilai.kimia}" /> --></td>
 								</div>
 							</tr>
 							<tr>
 
 								<td>Fisika</td>
 
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_fisika" th:value="${kkm_fisika}" /></td>
+								<td><h5 th:text="${kkm_fisika}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
+									type="text" name="kkm_fisika" th:value="${kkm_fisika}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.fisika}"
+											style="padding-left: 25px"></h5> <!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'fisika' + ${iterationStatus.count}"
-										th:value="${nilai.fisika}" /></td>
+										th:value="${nilai.fisika}" /> --></td>
 								</div>
 
 							</tr>
@@ -273,12 +276,14 @@
 
 								<td>Biologi</td>
 
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_biologi" th:value="${kkm_biologi}" /></td>
+								<td><h5 th:text="${kkm_biologi}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
+									type="text" name="kkm_biologi" th:value="${kkm_biologi}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.biologi}"
+											style="padding-left: 25px"></h5> <!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'biologi' + ${iterationStatus.count}"
-										th:value="${nilai.biologi}" /></td>
+										th:value="${nilai.biologi}" /> --></td>
 
 								</div>
 							</tr>
@@ -287,13 +292,15 @@
 
 								<td>Bahasa Indonesia</td>
 
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_bindo" th:value="${kkm_bindo}" /></td>
+								<td><h5 th:text="${kkm_bindo}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
+									type="text" name="kkm_bindo" th:value="${kkm_bindo}" /> --></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.bindo}"
+											style="padding-left: 25px"></h5> <!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'bindo' + ${iterationStatus.count}"
-										th:value="${nilai.bindo}" /></td>
+										th:value="${nilai.bindo}" /> --></td>
 								</div>
 
 							</tr>
@@ -302,13 +309,15 @@
 
 								<td>Bahasa Inggris</td>
 
-								<td><input class="resizedTextBox" readonly="readonly"
-									type="text" name="kkm_bing" th:value="${kkm_bing}" /></td>
+								<td><h5 th:text="${kkm_bing}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
+									type="text" name="kkm_bing" th:value="${kkm_bing}" /> --></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.bing}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'bing' + ${iterationStatus.count}"
-										th:value="${nilai.bing}" /></td>
+										th:value="${nilai.bing}" /> --></td>
 
 								</div>
 							</tr>
@@ -316,164 +325,13 @@
 					</table>
 				</div>
 
-				<!-- Text input-->
-
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
 
 				<!-- Button -->
-				<div class="form-group" style="position: center">
-					<label class="control-label"></label>
-					<div class="col-md-4" style="display: inline">
-						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/daftar-siswa"
-							class="btn btn-default">Kembali</a>
-
-						<div class="isilist">
-							<table class="table table-striped">
-								<thead>
-									<dl class="dl-horizontal" style="margin-left: 400px">
-										<br />
-										<dt>Nama</dt>
-										<dd th:text="${pendaftar.nama_id}"></dd>
-										<br />
-										<dt>NISN</dt>
-										<dd th:text="${pendaftar.no_id}"></dd>
-										<br />
-										<dt>Jurusan</dt>
-										<dd th:text="${pendaftar.jurusan}"></dd>
-										<br />
-										<dt>Asal Sekolah</dt>
-										<dd th:text="${pendaftar.nama_lembaga}"></dd>
-										<br />
-										<dt>
-											<h5>Nilai</h5>
-										</dt>
-
-									</dl>
-								</thead>
-							</table>
-						</div>
-
-						<input type="hidden" name="no_daftar" readonly="readonly"
-							th:value="${no_daftar}" />
-						<div class="form-group">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Mata Pelajaran</th>
-										<th>KKM</th>
-										<th>Semester 1</th>
-										<th>Semester 2</th>
-										<th>Semester 3</th>
-										<th>Semester 4</th>
-										<th>Semester 5</th>
-									</tr>
-								</thead>
-								<tbody>
-
-									<tr>
-
-										<td>Matematika</td>
-
-										<td><input type="text" name="kkm_mtk"
-											class="resizedTextBox" readonly="readonly"
-											th:value="${kkm_mtk}" /></td>
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'mtk' + ${iterationStatus.count}"
-												th:value="${nilai.mtk}" /></td>
-										</div>
-									</tr>
-									<tr>
-
-										<td>Kimia</td>
-
-										<td><input class="resizedTextBox" readonly="readonly"
-											type="text" name="kkm_kimia" th:value="${kkm_kimia}" /></td>
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'kimia' + ${iterationStatus.count}"
-												th:value="${nilai.kimia}" /></td>
-										</div>
-									</tr>
-									<tr>
-
-										<td>Fisika</td>
-
-										<td><input class="resizedTextBox" readonly="readonly"
-											type="text" name="kkm_fisika" th:value="${kkm_fisika}" /></td>
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'fisika' + ${iterationStatus.count}"
-												th:value="${nilai.fisika}" /></td>
-										</div>
-
-									</tr>
-
-									<tr>
-
-										<td>Biologi</td>
-
-										<td><input class="resizedTextBox" readonly="readonly"
-											type="text" name="kkm_biologi" th:value="${kkm_biologi}" /></td>
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'biologi' + ${iterationStatus.count}"
-												th:value="${nilai.biologi}" /></td>
-
-										</div>
-									</tr>
-
-									<tr>
-
-										<td>Bahasa Indonesia</td>
-
-										<td><input class="resizedTextBox" readonly="readonly"
-											type="text" name="kkm_bindo" th:value="${kkm_bindo}" /></td>
-
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'bindo' + ${iterationStatus.count}"
-												th:value="${nilai.bindo}" /></td>
-										</div>
-
-									</tr>
-
-									<tr>
-
-										<td>Bahasa Inggris</td>
-
-										<td><input class="resizedTextBox" readonly="readonly"
-											type="text" name="kkm_bing" th:value="${kkm_bing}" /></td>
-
-										<div th:each="nilai,iterationStatus: ${nilai}">
-											<td><input class="resizedTextBox" readonly="readonly"
-												type="text" th:name="'bing' + ${iterationStatus.count}"
-												th:value="${nilai.bing}" /></td>
-
-										</div>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" />
-
-						<!-- Button -->
-						<div class="form-group" style="position: center">
-							<label class="control-label"></label>
-							<div class="col-md-4" style="display: inline">
-								<input type="hidden" th:name="${_csrf.parameterName}"
-									th:value="${_csrf.token}" />
-								<button style="width: 30%" value="save" name="action"
-									type="submit" class="btn btn-warning">Verifikasi</button>
-							</div>
-						</div>
-					</div>
-				</div>
 			</fieldset>
+			<button style="width: 10%; margin-left: 46.5%" value="save"
+				name="action" type="submit" class="btn btn-warning">Verifikasi</button>
 		</form>
 	</div>
 	<!-- /.container -->
@@ -546,15 +404,27 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{js/bootstrap.min.js}"></script>
 
+	<!-- Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+		
+	</script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+		
+	</script>
+
 	<!-- Contact Form JavaScript -->
 	<script th:src="@{js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{js/agency.min.js}"></script>
-
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
@@ -575,6 +445,11 @@
 						autoclose : true,
 					})
 				})
+	</script>
+	<script>
+		$(document).ready(function() {
+			$("#isilist").DataTable();
+		});
 	</script>
 </body>
 

@@ -136,13 +136,13 @@
 					</li>
 					<ul class="nav navbar-nav">
 						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
-								class="glyphicon glyphicon-user"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -155,8 +155,7 @@
 	<div class="container">
 		<div class="logomosing">
 			<ul>
-				<li><a id="logo"><img src="/img/MOSINGlogo.png"
-						alt="logo" /></a></li>
+				<li><a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a></li>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -178,26 +177,28 @@
 	</div>
 	<br />
 	<br />
-	
-	<div class="pemberitahuansukses" style="margin-bottom:10px; margin-top:10px">
-	<div class="alert alert-success col-md-10 col-md-offset-1" role="alert"
-		id="success_message">Rencana studi berhasil disimpan!</div>
+	<div class="container" style="margin-bottom: 10px">
+		<div class="pemberitahuansukses">
+			<div class="alert alert-success col-md-10 col-md-offset-1"
+				role="alert" id="success_message" style="width:102%; margin-left:-1%">Pilihan
+				studi berhasil disimpan!</div>
 
-	<!-- Button -->
-	<div class="form-group" style="position: center">
-		<label class="col-md-4 control-label"></label>
-		<div class="col-md-4 col-md-offset-7" style="margin-top: -2%">
-				<br /> <input type="hidden" th:name="${_csrf.parameterName}"
-					th:value="${_csrf.token}" /> <a
-					th:href="'/pendaftar/uploadFoto/' + ${username}"
-					class="btn btn-warning" style="width: 50%; margin-left: 72.25%">Upload
-					Foto</a>
+			<!-- Button -->
+			<div class="form-group" style="position: center">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-4 col-md-offset-7" style="margin-top: -2%">
+					<br /> <input type="hidden" th:name="${_csrf.parameterName}"
+						th:value="${_csrf.token}" /> <a
+						th:href="'/pendaftar/uploadFoto/' + ${username}"
+						class="btn btn-danger1" style="width: 40%; margin-left: 95%">Upload
+						Foto</a>
+				</div>
 			</div>
+		</div>
 	</div>
-	</div>
-			
-			
-<!--</form> -->
+
+
+	<!--</form> -->
 
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">

@@ -233,8 +233,8 @@
 						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" />
 						<button value="save" name="action" type="submit"
-							class="btn btn-warning1">Simpan</button>
-						<a href="/index" class="btn btn-danger1">Batal</a>
+							class="btn btn-danger1" style="margin-left:40%">Simpan</button>
+						<a href="/index" class="btn btn-default" style="width:70%; margin-left:-32%; margin-top:-20%">Batal</a>
 					</div>
 				</div>
 			</fieldset>
@@ -320,7 +320,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$('#contact_form').bootstrapValidator({
 				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -413,7 +413,7 @@
 
 			});
 		});
-	</script>
+	</script> -->
 </body>
 
 </html>

@@ -119,8 +119,8 @@
 					</li>
 					<ul class="nav navbar-nav">
 						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
-								class="glyphicon glyphicon-user"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
@@ -138,8 +138,7 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png"
-						alt="logo" /></a>
+				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
@@ -160,101 +159,143 @@
 		</div>
 
 	</div>
-	
+
 	<header class="wall">
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
-                <div th:if="${user.role} eq 'ROLE_KPMB'">
-                	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
-                	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
-                </div>
-               <!--  <div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
-					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
+		<div class="container">
+			<div class="intro-text">
+				<div class="intro-heading"
+					th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
+				<div th:if="${user.role} eq 'ROLE_KPMB'">
+					<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi
+						Jalur Masuk</a> <a href="#" class="page-scroll btn btn-xl">Seleksi
+						Pendaftar</a>
 				</div>
-              	<div th:if="${user.role eq 'ROLE_PEND'}">
-					<a th:href="'/pendaftar/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl"></a>
+				<!-- <div
+					th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
+					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}"
+						class="page-scroll btn btn-xl">Verifikasi Nilai</a>
 				</div> -->
+				<div th:if="${user.role eq 'ROLE_PEND'}">
+					<a
+						th:href="'/pendaftar/uploadFoto/'+ ${#httpServletRequest.remoteUser}"
+						class="page-scroll btn btn-xl">Ubah Foto</a>
+				</div>
 				<div th:if="${user.role} eq 'ROLE_LPT'">
-					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan Data Pendaftar</a>
-					<a href="/daftar-siswa" class="page-scroll btn btn-xl">Daftar Siswa</a>
+					<a href="/data-pendaftar" class="page-scroll btn btn-xl">Masukkan
+						Data Pendaftar</a> <a href="/daftar-siswa"
+						class="page-scroll btn btn-xl">Daftar Siswa</a> <a href="/LPT/list/user"
+						class="page-scroll btn btn-xl">Daftar Akun Siswa</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_PENG_U'">
-					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
+					<a th:href="'/pengawas/'+ ${#httpServletRequest.remoteUser}"
+						class="page-scroll btn btn-xl">Daftar Seleksi Pengawas Ujian</a>
 				</div>
 				<div th:if="${user.role} eq 'ROLE_PEM_U'">
-					<a href="/seleksi-pendaftar" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
-					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
+					<a href="/seleksi-pendaftar" class="page-scroll btn btn-xl">Seleksi
+						Pendaftar</a> <a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
 				</div>
-				<div th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U' or ${user.role} eq 'ROLE_PEM_U'">
-					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima Pendaftar</a>
-					<a href="/view/rec/jalur" class="page-scroll btn btn-xl">Lihat Pendaftar Direkomendasi</a>
-					<a href="/dashboard" class="page-scroll btn btn-xl">Dashboard</a>
+				<div
+					th:unless="${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PEND' or ${user.role} eq 'ROLE_LPT' or ${user.role} eq 'ROLE_KPMB' or ${user.role} eq 'ROLE_PENG_U' or ${user.role} eq 'ROLE_PEM_U'">
+					<a href="/acceptPendaftar" class="page-scroll btn btn-xl">Terima
+						Pendaftar</a> <a href="/view/rec/jalur" class="page-scroll btn btn-xl">Lihat
+						Pendaftar Direkomendasi</a> <a href="/dashboard"
+						class="page-scroll btn btn-xl">Dashboard</a>
 				</div>
-            </div>
-        </div>
-    </header>
+			</div>
+		</div>
+	</header>
 
-	<div class="container" style="margin-top:2.5%;">
-		<div class="row" style="margin-bottom:2.5%">
+	<div class="container" style="margin-top: 2.5%;">
+		<div class="row" style="margin-bottom: 2.5%">
 			<div id="exTab3" class="container col-md-8">
 				<ul class="nav nav-tabs">
-  					<li class="active"><a href="#1b" data-toggle="tab">Pengumuman</a></li>
-  					<li><a href="#2b" data-toggle="tab">Informasi</a></li>
+					<li class="active"><a href="#1b" data-toggle="tab">Pengumuman</a></li>
+					<li><a href="#2b" data-toggle="tab">Informasi</a></li>
 				</ul>
-				<br/>
+				<br />
 				<div class="tab-content clearfix">
-			  		<div class="tab-pane fade in active" id="1b">
-			  			<article class= "pertama">
-			  				<a href="#">
-			  				<div class= "gambarberita"><img src="img/berita1.jpg"/></div>
-			  				<h4 class="link-new" style="padding-left:30%; color: black">Penerimaan Spesialis FK UI smt. Gasal 2017</h4></a>
-			  				<p class="text-muted" style="padding-left:30%">Program Pendidikan Dokter Spesialis membuka penerimaan mahasiswa baru Semester Gasal tahun akademik 2017 dengan jadwal kegiatan terdiri dari:...</p>
-			  			</article>
-			  			<article class="kedua">
-			  				<a href="#">
-			  				<div class= "gambarberita"><img src="img/berita2.png"/></div>
-			  				<h4 class="link-new" style="padding-left:30%; color: black">UI Buka Penerimaan Mahasiswa S1 Melalui SNMPTN, SBMPTN, dan SIMAK UI</h4></a>
-			  				<p class="text-muted" style="padding-left:30%">Universitas Indonesia (UI) menerima mahasiswa baru jenjang Sarjana Strata Satu (S1) melalui tiga seleksi masuk yaitu SNMPTN (Seleksi Nasional Masuk...</p>
-			  			</article>
-			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>
+					<div class="tab-pane fade in active" id="1b">
+						<article class="pertama">
+							<a href="#">
+								<div class="gambarberita">
+									<img src="img/berita1.jpg" />
+								</div>
+								<h4 class="link-new" style="padding-left: 30%; color: black">Penerimaan
+									Spesialis FK UI smt. Gasal 2017</h4>
+							</a>
+							<p class="text-muted" style="padding-left: 30%">Program
+								Pendidikan Dokter Spesialis membuka penerimaan mahasiswa baru
+								Semester Gasal tahun akademik 2017 dengan jadwal kegiatan
+								terdiri dari:...</p>
+						</article>
+						<article class="kedua">
+							<a href="#">
+								<div class="gambarberita">
+									<img src="img/berita2.png" />
+								</div>
+								<h4 class="link-new" style="padding-left: 30%; color: black">UI
+									Buka Penerimaan Mahasiswa S1 Melalui SNMPTN, SBMPTN, dan SIMAK
+									UI</h4>
+							</a>
+							<p class="text-muted" style="padding-left: 30%">Universitas
+								Indonesia (UI) menerima mahasiswa baru jenjang Sarjana Strata
+								Satu (S1) melalui tiga seleksi masuk yaitu SNMPTN (Seleksi
+								Nasional Masuk...</p>
+						</article>
+						<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>
 					</div>
 					<div class="tab-pane fade" id="2b">
-						<article class= "pertama">
-			  				<a href="#">
-			  				<div class= "gambarberita"><img src="img/daftar.jpg"/></div>
-			  				<h4 class="link-new" style="padding-left:30%; color: black">Jalur Masuk UI 2017</h4></a>
-			  				<p class="text-muted" style="padding-left:30%; color: black">Universitas Indonesia membuka penerimaan Mahasiswa Baru melalui beberapa jalur masuk. Kategori jalur masuk untuk lulusan SMA/Sederajat yang ada di...</p>
-			  			</article>
-			  			<article class="kedua">
-			  				<a href="#">
-			  				<div class= "gambarberita"><img src="img/tanyajawab.jpg"/></div>
-			  				<h4 class="link-new" style="padding-left:30%; color: black">Tanya Jawab Penerimaan Mahasiswa Baru UI</h4></a>
-			  				<p class="text-muted" style="padding-left:30%">1. Ada program pendidikan apa saja di UI? Universitas Indonesia menyelenggarakan program pendidikan jenjang D3, S1, S2, S3, Profesi dan Spesialis....</p>
-			  			</article>
-			  			<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>			  		</div>
+						<article class="pertama">
+							<a href="#">
+								<div class="gambarberita">
+									<img src="img/daftar.jpg" />
+								</div>
+								<h4 class="link-new" style="padding-left: 30%; color: black">Jalur
+									Masuk UI 2017</h4>
+							</a>
+							<p class="text-muted" style="padding-left: 30%; color: black">Universitas
+								Indonesia membuka penerimaan Mahasiswa Baru melalui beberapa
+								jalur masuk. Kategori jalur masuk untuk lulusan SMA/Sederajat
+								yang ada di...</p>
+						</article>
+						<article class="kedua">
+							<a href="#">
+								<div class="gambarberita">
+									<img src="img/tanyajawab.jpg" />
+								</div>
+								<h4 class="link-new" style="padding-left: 30%; color: black">Tanya
+									Jawab Penerimaan Mahasiswa Baru UI</h4>
+							</a>
+							<p class="text-muted" style="padding-left: 30%">1. Ada
+								program pendidikan apa saja di UI? Universitas Indonesia
+								menyelenggarakan program pendidikan jenjang D3, S1, S2, S3,
+								Profesi dan Spesialis....</p>
+						</article>
+						<a href="#" class="page-scroll btn btn-s">Lihat Selengkapnya</a>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-4" style="margin-top: 40px">
-				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px" class="">
-					<h4 style="padding-left:5%">Lihat Hasil Seleksi</h4>
+				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px"
+					class="">
+					<h4 style="padding-left: 5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
 						<form>
-  							<div class="form-group">
-    							<label>No. Ujian:</label>
-    							<input type="text" class="form-control"/>
-  							</div>
-  							<div class="form-group">
-  								<label for="sel1">Jalur Masuk:</label>
-  								<select class="form-control" id="sel1">
-    								<option>SNMPTN</option>
-    								<option>SBMPTN</option>
-    								<option>PPKB</option>
-    								<option>SIMAK UI</option>
-    								<option>Talent Scouting</option>
-  								</select>
+							<div class="form-group">
+								<label>No. Ujian:</label> <input type="text"
+									class="form-control" />
 							</div>
-  							<button type="submit" class="btn btn-s">Lihat</button>
+							<div class="form-group">
+								<label for="sel1">Jalur Masuk:</label> <select
+									class="form-control" id="sel1">
+									<option>SNMPTN</option>
+									<option>SBMPTN</option>
+									<option>PPKB</option>
+									<option>SIMAK UI</option>
+									<option>Talent Scouting</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-s">Lihat</button>
 						</form>
 					</div>
 				</div>
