@@ -7,11 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 <title>Penerimaan UI | Daftar Jalur Masuk</title>
 
@@ -35,6 +30,9 @@
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
 	<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
 	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
@@ -122,8 +120,8 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
+								<button class="btn btn-s navbar-btn" type="submit"
+									value="Sign Out" style="height: 34px; width: 80px">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -163,12 +161,12 @@
 			<div id="exTab3" class="container">
 
 				<div class="tab-content clearfix">
-					<!-- <form th:action="@{/jalur-masuk/add}" method="post">
+					<form th:action="@{/jalur-masuk/add}" method="post">
 						<input class="btn btn-danger1"
 							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
 							type="submit" value="+ Tambah Jalur Masuk" /> <br />
-					</form> -->
-				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%; float: right">
+					</form>
+				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%">
 						<thead>
 							<tr>
 								<th>No.</th>
@@ -283,22 +281,13 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js}"></script>
 
-	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<!-- Plugin JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-		crossorigin="anonymous"></script>
-
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
 	<!-- <script>
 		$("#myModal").on("show", function() { // wire up the OK button to dismiss the modal when shown
@@ -310,11 +299,9 @@
 		$("#myModal").on("hide", function() { // remove the event listeners when the dialog is dismissed
 			$("#myModal a.btn").off("click");
 		});
-
 		$("#myModal").on("hidden", function() { // remove the actual elements from the DOM when fully hidden
 			$("#myModal").remove();
 		});
-
 		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
 			"backdrop" : "static",
 			"keyboard" : true,

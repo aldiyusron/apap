@@ -42,8 +42,8 @@ public interface PendaftarMapper {
 			+ " WHERE penyeleksian.status=0 and id_jalur=4")
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 
-	@Select("select * from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
-			+ " WHERE penyeleksian.status=0 and id_jalur=4")
+	@Select("select p.* from pendaftar p" + " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
+			+ " WHERE penyeleksian.status=0 and penyeleksian.id_jalur = 4")
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 
 	@Select("select nama_id, no_id, jurusan, penyeleksian.status as status from pendaftar"

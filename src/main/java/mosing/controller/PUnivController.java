@@ -31,6 +31,7 @@ import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.NilaiService;
 import mosing.service.PFakultasService;
+import mosing.service.PemimpinUnivService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 import mosing.service.ProdiService;
@@ -60,6 +61,9 @@ public class PUnivController {
 
 	@Autowired
 	CalonMahasiswaService calonDAO;
+	
+	@Autowired
+	PemimpinUnivService pemimpinUnivDAO;
 
 	// nampilin jalur masuk
 	@RequestMapping("/seleksi-pendaftar")
@@ -69,7 +73,6 @@ public class PUnivController {
 
 		return "pilih-jalur-seleksi";
 	}
-
 	// nampilin list fakultas
 	@RequestMapping("/lihat/fakultas/{id_jalur}")
 	public String lihatFakultas(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
@@ -176,11 +179,15 @@ public class PUnivController {
 	}
 
 	@RequestMapping("/dashboard")
-	public String dashboard() {
+	public String dashboard(Model model){
+		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("fakultas", fakultas);
 		return "dashboard";
 	}
 
-	@RequestMapping(value = "/sukses-seleksi")
+	@RequestMapping("/sukses-seleksi")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
 			BindingResult bindingResultStatus, Model model,
 			@RequestParam(value = "id_jalur", required = false) int id_jalur,

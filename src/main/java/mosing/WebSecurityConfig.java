@@ -20,13 +20,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/**").permitAll()
+		http.authorizeRequests().antMatchers("/").permitAll()
+				.antMatchers("/lihat-hasil").permitAll()
+				.antMatchers("/register").permitAll()
+				.antMatchers("/register/**").permitAll()
+				.antMatchers("/forgot-password").permitAll()
+				.antMatchers("/reset-password").permitAll()
+				.antMatchers("/reset-password/**").permitAll()
 				.antMatchers("/static/**").permitAll()
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/img/**").permitAll()
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/font-awesome/**").permitAll()
+				.antMatchers("/pendaftar/**").hasRole("PEND").anyRequest().authenticated()
+				.antMatchers("/daftar-siswa").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/data-pendaftar").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/data-pendaftar/**").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/detail-siswa/**").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/nilai-ips/**").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/nilai-ipa/**").hasRole("LPT").anyRequest().authenticated()
+				.antMatchers("/jalur-masuk/**").hasRole("KPMB").anyRequest().authenticated()
+				.antMatchers("/lokasi-ujian/**").hasRole("KPMB").anyRequest().authenticated()
+				.antMatchers("/dashboard").hasRole("PEM_U").anyRequest().authenticated()
+				.antMatchers("/dashboard/**").hasRole("PEM_U").anyRequest().authenticated()
+				.antMatchers("/pengawas/**").hasRole("PENG_U").anyRequest().authenticated()
 				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").defaultSuccessUrl("/").permitAll().and().logout().permitAll();

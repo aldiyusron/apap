@@ -16,6 +16,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<relativePath /> <!-- lookup parent from repository -->
 		<version>1.4.0.RELEASE</version>
+
 	</parent>
 
 	<properties>
@@ -61,10 +62,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<finalName>a6</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -15,44 +15,18 @@
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
+<!-- MetisMenu CSS -->
+<link href="/css/metisMenu.min.css" rel="stylesheet" />
+
 <!-- Custom CSS -->
-<link href="/css/sb-admin.css" rel="stylesheet" />
+<link href="/css/sb-admin-2.css" rel="stylesheet" />
 
 <!-- Morris Charts CSS -->
-<link href="/css/plugins/morris.css" rel="stylesheet" />
+<link href="/css/morris.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
 <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
-	rel='stylesheet' type='text/css' />
-<link
-	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css' />
-<link
-	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
-	rel='stylesheet' type='text/css' />
-<link
-	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
-
-<!-- Theme CSS -->
-<link th:href="@{/css/agency.min.css}" rel="stylesheet" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,295 +37,302 @@
 
 </head>
 
-<body id="page-top" class="index">
-	<nav id="mainNav"
-		class="navbar navbar-default navbar-custom navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a style="color: black" href="http://beasiswa.ui.ac.id">Informasi
-							Beasiswa</a></li>
-					<li class="dropdown page-scroll"><a style="color: black"
-						href="#" class="dropdown-toggle" data-toggle="dropdown">Link
-							Fakultas <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a style="color: black" href="http://www.fk.ui.ac.id">Kedokteran</a></li>
-							<li><a style="color: black" href="http://www.fkg.ui.ac.id">Kedokteran
-									Gigi</a></li>
-							<li><a style="color: black" href="http://www.fkm.ui.ac.id">Kesehatan
-									Masyarakat</a></li>
-							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
-									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
-							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pengetahuan Alam</a></li>
-							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
-									Komputer</a></li>
-							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi</a></li>
-							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pengetahuan Budaya</a></li>
-							<li><a style="color: black"
-								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
-							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
-									Sosial dan Ilmu Politik</a></li>
-							<li><a style="color: black"
-								href="http://www.farmasi.ui.ac.id">Farmasi</a></li>
-							<li><a style="color: black"
-								href="http://www.vokasi.ui.ac.id">Vokasi</a></li>
-							<li><a style="color: black" href="http://www.pps.ui.ac.id">Pascasarjana</a></li>
-							<li><a style="color: black" href="http://www.fia.ui.ac.id">Ilmu
-									Administrasi</a></li>
-						</ul></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><select class="selectpicker navbar-form form-control"
-						data-width="fit">
-							<option data-content='Bahasa Indonesia'>Bahasa Indonesia</option>
-							<option data-content='English (US)'>English (US)</option>
-					</select></li>
-					<li>
-						<form class="navbar-form" id="af" name="af" role="search"
-							action="#">
-							<div class="input-group">
-								<input type="text" class="form-control" id="aa" name="aa"
-									placeholder="Search" /> <span class="input-group-btn">
-									<button type="submit" class="btn btn-md" id="as" name="as"
-										value="Go">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</span>
-							</div>
-						</form>
-					</li>
-					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
-								<span class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+<body>
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a id="logo" href="/" style="margin-left: 55px"><img
+					src="/img/MOSINGlogo.png" alt="logo" width="140" /></a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i
+						class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-messages">
+						<li><a href="#">
+								<div>
+									<strong>Modul Admisi</strong> <span
+										class="pull-right text-muted"> <em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
 						</a></li>
-						<li>
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-s navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
-							</form>
-						</li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>Modul Admisi</strong> <span
+										class="pull-right text-muted"> <em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>Modul Admisi</strong> <span
+										class="pull-right text-muted"> <em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>Read
+									All Messages</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-messages --></li>
+				<!-- /.dropdown -->
+
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+
+						<li><form th:action="@{/logout}" method="post">
+								<button class="btn btn-default navbar-btn" type="submit"
+									value="Sign Out" style="margin-left: 36px">
+									<i class="fa fa-sign-out fa-fw"></i>Keluar
+								</button>
+							</form></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li><a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i>
+								Dashboard</a></li>
+						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
+								Kategori<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#"><i class="fa fa-list-ol fa-fw"></i>
+										Jenjang Pendidikan <span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li><a href="#">S1</a></li>
+										<li><a href="#">S2</a></li>
+										<li><a href="#">S3</a></li>
+									</ul> <!-- /.nav-third-level --></li>
+								<li><a href="#"><span
+										class="glyphicon glyphicon-education"></span> Program
+										Pendidikan <span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li><a href="#">Reguler</a></li>
+										<li><a href="#">Paralel</a></li>
+										<li><a href="#">Internasional</a></li>
+										<li><a href="#">Vokasi</a></li>
+									</ul> <!-- /.nav-third-level --></li>
+								<li><a href="#"><i class="fa fa-building fa-fw"></i>Fakultas
+										<span class="fa arrow"></span></a>
+									<ul th:each="fakultas,iterationStatus: ${fakultas}"
+										class="nav nav-third-level">
+										<li th:value="${fakultas.id_fakultas}"><a
+											th:text="${fakultas.fakultas}" href="#">Fakultas</a></li>
+									</ul>
+								<!-- /.nav-third-level --></li>
+						<li><a href="#"><span class="glyphicon glyphicon-road"></span>
+								Jalur Masuk <span class="fa arrow"></span></a>
+							<ul th:each="jalurMasuk,iterationStatus: ${jalurMasuk}"
+								class="nav nav-third-level">
+								<li th:value="${jalurMasuk.id_jalur}"><a
+									th:text="${jalurMasuk.nama}" href="#">Jalur Masuk</a></li>
+							</ul> <!-- /.nav-third-level --></li>
 					</ul>
-				</ul>
+					<!-- /.nav-second-level -->
+					</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
 			</div>
-		</div>
-	</nav>
+			<!-- /.navbar-static-side -->
+		</nav>
 
-	<div class="container">
-		<div class="logomosing" style="margin-top: 15px">
-			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
-			</ul>
-		</div>
-		<div class="navbar-collapse2">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
-				</li>
-				<li><a class="page-scroll" style="color: black" href="#">Program</a>
-				</li>
-				<li><a class="page-scroll" style="color: black" href="#">Pendaftaran</a>
-				</li>
-				<li><a class="page-scroll" style="color: black" href="#">Pengumuman</a>
-				</li>
-				<li><a class="page-scroll" style="color: black" href="#">Informasi</a>
-				</li>
-				<li><a class="page-scroll" style="color: black" href="#">Jadwal</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3" style="margin-top: 25px; color: black">
-				<ul class="nav side-nav">
-					<li class="active"><a href="index.html" style="color: black"><i
-							class="fa fa-fw fa-dashboard" style="color: black"></i> Dashboard</a></li>
-					<li><a href="charts.html" style="color: black"><i
-							class="fa fa-fw fa-bar-chart-o" style="color: black"></i> S1</a></li>
-					<li><a href="tables.html" style="color: black"><i class="fa fa-fw fa-table" style="color: black"></i>
-							S2</a></li>
-					<li><a href="forms.html" style="color: black"><i class="fa fa-fw fa-edit" style="color: black"></i>
-							S3</a></li>
-					<li><a href="bootstrap-elements.html" style="color: black"><i
-							class="fa fa-fw fa-desktop" style="color: black"></i> Vokasi</a></li>
-				</ul>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Informasi Pendaftar Universitas Indonesia</h1>
+				</div>
+				<!-- /.col-lg-12 -->
 			</div>
+			<!-- /.row -->
 
-			<div class="col-md-9">
-				<div id="">
-					<div class="container-fluid">
-						<!-- Page Heading -->
-						<div class="row">
-							<div class="col-lg-12">
-								<h1>Dashboard <small>Statistics Overview</small>
-								</h1>
-								<ol class="breadcrumb">
-									<li class="active"><i class="fa fa-dashboard"></i>
-										Dashboard</li>
-								</ol>
-							</div>
-						</div>
-						<!-- /.row -->
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-bar-chart-o fa-fw"></i> Total Pendaftar Seleksi Masuk Universitas Indonesia Selama tahun 2016
 
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<i class="fa fa-bar-chart-o fa-fw"></i> Area Chart
-										</h3>
-									</div>
-									<div class="panel-body">
-										<div id="morris-area-chart"></div>
-									</div>
-								</div>
-							</div>
 						</div>
-						<!-- /.row -->
-
-						<div class="row">
-							<div class="col-lg-4">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart
-										</h3>
-									</div>
-									<div class="panel-body">
-										<div id="morris-donut-chart"></div>
-										<div class="text-right">
-											<a href="#" style="color: black">View Details <i
-												class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart
-										</h3>
-									</div>
-									<div class="panel-body">
-										<div id="morris-donut-chart"></div>
-										<div class="text-right">
-											<a href="#" style="color: black">View Details <i
-												class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart
-										</h3>
-									</div>
-									<div class="panel-body">
-										<div id="morris-donut-chart"></div>
-										<div class="text-right">
-											<a href="#" style="color: black">View Details <i
-												class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div id="morris-area-chart"></div>
 						</div>
+						<!-- /.panel-body -->
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<div class="container bg-light-gray">
-		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
-			<div class="col-sm-4">
-				<div style="margin-left: 12%">
-					<a class="twitter-timeline" data-lang="en" data-width="300"
-						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
-					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="team-member">
-					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
-					<hr />
-					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a
-							href="http://www.twitter.com/simak_ui"><i
-								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a
-							href="http://www.facebook.com/simak.ui/"><i
-								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a
-							href="mailto:penerimaan@ui.ac.id"><i
-								class="glyphicon glyphicon-envelope"></i></a></li>
-						<li><a href="#"><i class="fa fa-phone"></i></a></li>
-					</ul>
-					<ul class="socialtitle"
-						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
-						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
-						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
-						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
-						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div>
-					<h3 style="margin-left: 11%">KONTAK</h3>
-					<hr />
-					<ul style="list-style: none">
-						<li style="margin-bottom: 5%"><p style="width: 90%">Kantor
-								Penerimaan Mahasiswa Baru UI Gedung PHB UI (ex. BNI) Samping
-								Balai Sidang UI Kampus UI Depok, 16424</p></li>
-						<li><p>
-								Jam Operasional<br />Senin-Jumat: 08.00-16.00 WIB<br />(Istirahat:
-								12.00-13.00 WIB)
-							</p></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<footer>
-		<div class="container bg-darkest-gray">
 			<div class="row">
-				<div class="col-md-4"
-					style="width: 100%; height: 50px; padding-top: 1.5%">
-					<span class="copyright" style="color: #fed136">Penerimaan
-						Mahasiswa Baru - Universitas Indonesia</span>
+				<div class="col-lg-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-bar-chart-o fa-fw"></i> Pendaftar Setiap Program Pendidikan
+						</div>
+						<div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Nama Jenjang</th>
+                                                    <th>Jumlah Pendaftar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>3326</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>3:29 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3325</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>3:20 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3324</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>3:03 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3323</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>3:00 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3322</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>2:49 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3321</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>2:23 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3320</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>2:15 PM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3319</td>
+                                                    <td>10/21/2013</td>
+                                                    <td>2:13 PM</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+						<!-- /.panel-body -->
+					</div>
 				</div>
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-bar-chart-o fa-fw"></i> Pendaftar Setiap Fakultas
+						</div>
+						<div class="panel-body">
+							<div id="morris-donut-chart"></div>
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel-footer -->
+				</div>
+				<!-- /.panel .chat-panel -->
 			</div>
+			<!-- /.col-lg-4 -->
 		</div>
-	</footer>
+		<!-- /#page-wrapper -->
 
-	<script th:src="@{/js/jquery.min.js}"></script>
-
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-		crossorigin="anonymous"></script>
-
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-
-	<script th:src="@{/js/agency.min.js}"></script>
-
-	<script th:src="@{/js/plugins/morris/raphael.min.js}"></script>
-	<script th:src="@{/js/plugins/morris/morris.min.js}"></script>
-	<script th:src="@{/js/plugins/morris/morris-data.js}"></script>
-
+	</div>
+	<!-- /#wrapper -->
+	
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/metisMenu.min.js"></script>
+	<script src="/js/morris.min.js"></script>
+	<script src="/js/raphael.min.js"></script>
+	<script src="/js/sb-admin-2.js"></script>
+	<script src="/js/morris-data.js"></script>
 </body>
+
 </html>
