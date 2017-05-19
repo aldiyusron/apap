@@ -3,6 +3,7 @@ package mosing.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import mosing.service.JalurMasukService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 
+@Controller
 public class PUnivController {
 	@Autowired
 	PenyeleksianService penyeleksianDAO;
@@ -56,7 +58,11 @@ public class PUnivController {
 	}
 	
 	@RequestMapping("/dashboard")
-	public String dashboard(){
+	public String dashboard(Model model){
+		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("fakultas", fakultas);
 		return "dashboard";
 	}
 	
