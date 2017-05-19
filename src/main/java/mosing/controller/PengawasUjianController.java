@@ -52,7 +52,7 @@ public class PengawasUjianController {
 			@RequestParam(value = "no_hp", required = false) String no_hp,
 			@RequestParam(value = "pindah_bool", required = false) int pindah_bool,
 			@RequestParam(value = "lokasi", required = false) int lokasi) {
-		
+
 		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
 		UserAdmisiModel user = userDAO.selectUser(username);
 		int iduser = Integer.parseInt(user.getId_user());
@@ -61,7 +61,7 @@ public class PengawasUjianController {
 		pengawasDAO.addPengawas(pengawas);
 		return "success-daftarpengawas";
 	}
-	
+
 	@RequestMapping("/seleksi-pengawas")
 	public String lihatDaftarLokasiPengawas(Model model) {
 		List<LokasiModel> allLokasi = lokasiDAO.selectAllLokasi();
@@ -69,11 +69,11 @@ public class PengawasUjianController {
 
 		return "view-alllokasiseleksi";
 	}
-	
+
 	@RequestMapping("/seleksi-pengawas/view/{id_lokasi}")
 	public String lihatDaftarPengawas(Model model, @PathVariable(value = "id_lokasi") int id_lokasi) {
 		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
-		
+
 		if (lokasi != null) {
 			model.addAttribute("lokasi", lokasi);
 			List<PengawasUjianModel> listPengawas = pengawasDAO.selectPengawasUjianLokasi(id_lokasi);
@@ -85,10 +85,11 @@ public class PengawasUjianController {
 			return "viewnotfound-seleksipengawas";
 		}
 	}
-	
+
 	@RequestMapping(value = "/seleksi-pengawas/sukses")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model,
+			@RequestParam(value = "id_lokasi", required = false) int id_lokasi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
@@ -99,6 +100,10 @@ public class PengawasUjianController {
 				pengawasDAO.terimaPengawas(id_user);
 			}
 		}
+		List<PengawasUjianModel> listPengawas = pengawasDAO.selectPengawasUjianLokasi(id_lokasi);
+		model.addAttribute("listPengawas", listPengawas);
+		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		model.addAttribute("lokasi", lokasi);
 		return "success-seleksipengawas";
 	}
 }

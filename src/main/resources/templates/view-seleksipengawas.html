@@ -270,6 +270,7 @@
 											id="checkbox" type="checkbox" name="status"
 											th:field="*{statusSubmit.strings[__${iterationStatus.index}__]}"
 											th:value="${pengawas.id_user}" /> Terima </label>
+											<input type="hidden" name="id_lokasi" th:value="${lokasi.id_lokasi}" />
 									</td>
 								</tr>
 							</div>

@@ -167,7 +167,7 @@
                 <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
                 <div th:if="${user.role} eq 'ROLE_KPMB'">
                 	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
-                	<a href="#" class="page-scroll btn btn-xl">Seleksi Pendaftar</a>
+                	<a href="/seleksi-pengawas" class="page-scroll btn btn-xl">Seleksi Pengawas</a>
                 </div>
                <!--  <div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
 					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>

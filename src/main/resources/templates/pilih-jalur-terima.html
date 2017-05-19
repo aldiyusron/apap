@@ -34,6 +34,9 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+	<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -160,11 +163,6 @@
 			<div id="exTab3" class="container">
 
 				<div class="tab-content clearfix">
-					<form th:action="@{/jalur-masuk/add}" method="post">
-						<input class="btn btn-danger1"
-							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
-							type="submit" value="+ Tambah Jalur Masuk" /> <br />
-					
 				<table id="daftarJalurMasuk" class="table stripe" style="margin-top:20p%; float: right">
 						<thead>
 							<tr>
@@ -187,8 +185,8 @@
 										<td scope="row">Tidak Aktif</td>
 									</div>
 									<td><a th:href="'/view/fakultas/'+ ${jalur.id_jalur}"
-										style="float: right"> <span class="input-group-btn">
-												<button type="button" class="btn btn-sm btn-custom" id="as"
+										style="float: left; width: 80%; margin-top: 10%"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-warning1" id="as"
 													name="as" value="Go" th:text="Terima">
 												</button>
 										</span>
@@ -197,7 +195,6 @@
 							</div>
 						</tbody>
 					</table>
-					</form>
 				</div>
 			</div>
 		</div>

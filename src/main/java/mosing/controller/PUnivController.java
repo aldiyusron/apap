@@ -151,6 +151,7 @@ public class PUnivController {
 					rata2 = (rata2Umum + rata2IPA + rata2IPS) / 3;
 				}
 				pendaftar.get(i).setRata2(rata2);
+				
 				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
 				penyeleksian.add(seleksi);
 				model.addAttribute("nilai", nilai);

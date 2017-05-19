@@ -167,7 +167,6 @@
 							<th>Nomor Daftar</th>
 							<th>Rata-Rata Nilai</th>
 							<th>Asal Sekolah</th>
-							<th></th>
 						</tr>
 					</thead>
 
@@ -179,15 +178,6 @@
 								<td th:text="${pendaftar.no_daftar}">Nomor Daftar</td>
 								<td th:text="${pendaftar.rata2}">Rata-Rata Nilai</td>
 								<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
-								<td><a
-									th:href="'/pendaftar/detail/'+ ${pendaftar.no_daftar}"> <span
-										class="input-group-btn">
-											<button type="button" class="btn-sm btn-custom" id="as"
-												name="as" value="Go">
-												<span class="glyphicon glyphicon-edit" style="float: right"></span>
-											</button>
-									</span>
-								</a></td>
 							</tr>
 						</div>
 					</tbody>

@@ -56,7 +56,7 @@ public class PFakultasController {
 		model.addAttribute("allJalur", jalurMasuk);
 		return "pilih-jalur-terima";
 	}
-	
+
 	@RequestMapping("/view/rec/jalur")
 	public String recPendaftar(Model model) {
 		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
@@ -159,23 +159,35 @@ public class PFakultasController {
 		model.addAttribute("pendaftar", pendaftar);
 		return "recommending";
 	}
-	
+
 	@RequestMapping("/sukses-rekomendasi")
 	public String suksesRekomendasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model,
+			@RequestParam(value = "id_jalur", required = false) int id_jalur,
+			@RequestParam(value = "jenjang", required = false) String jenjang,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		List<PendaftarModel> pendaftarRec = new ArrayList<PendaftarModel>();
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
 				String nomor = statusSubmit.getStrings().get(i);
 				int no_daftar = Integer.parseInt(nomor);
+				PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
+				pendaftarRec.add(pendaftar);
 				penyeleksianDAO.updateRekomen(no_daftar);
 			}
 		}
-		return "success-daftarpengawas"; //belum ganti bouz
+
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("pendaftarRec", pendaftarRec);
+		return "success-recommendation";
 	}
-	
+
 	@RequestMapping("/view/fakultas/rec/{id_jalur}")
 	public String lihatFakultasRec(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
 		List<FakultasModel> fakultas = pfakultasDAO.selectAllFakultas();

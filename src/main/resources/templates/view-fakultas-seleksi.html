@@ -18,8 +18,6 @@
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-
-
 <!-- Custom Fonts -->
 <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
@@ -121,7 +119,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -157,18 +155,8 @@
 	</div>
 	<div class="container">
 
-		<!-- <button class="btn btn-md" id="as" name="as" value="Go"> -->
-
-
-
-
-		<!-- </button> -->
-
-		<div class ="team-member" style="margin-bottom: 8%">
-		<div style="float: left; width: 5%">
-		<a th:href="'/seleksi-pendaftar'" class="btn btn-warning"><i
-			class="fa fa-chevron-left" style="width:5%"></i></a></div>
-		<h1 style="float: left; margin-left: 3%; margin-top: -2px">Daftar Fakultas</h1></div>
+		<div class ="team-member" style="margin-bottom: 5%">
+		<h1 style="float: left; margin-top: -2px">Daftar Fakultas</h1></div>
 		<div class="panel-group" style="margin-top: 20px">
 			<div class="panel panel-default">
 				<div id="newpost" class="panel-heading">
@@ -181,11 +169,10 @@
 
 						<div th:id="'collapse' + ${iterationStatus.count}"
 							class="panel-collapse collapse">
-							<ul class="list-group"
-								th:each="prodi,iterationStatus: ${fakultas.listProdi}">
-								<li class="list-group-item"><a
+							<ul class="list-group" style="margin-bottom:1%;margin-top:1%; margin-left:2%">
+								<li th:each="prodi,iterationStatus: ${fakultas.listProdi}" class="list-group-item"><a
 									th:href="'/lihat/pendaftar/' + ${id_jalur} + '/' +${prodi.id_prodi}"
-									th:text="${prodi.nama_prodi}"></a></li>
+									th:text="${prodi.nama_prodi}" th:value="prodi.id_prodi"></a></li>
 							</ul>
 						</div>
 					</h4>
@@ -193,19 +180,10 @@
 			</div>
 		</div>
 
-		<!-- <div class="row" style="margin-bottom: -60px">
-			<div id="exTab3" class="container">
-				<ul th:each="fakultas,iterationStatus: ${fakultas}">
-					<li><button th:text="${fakultas.fakultas}"></button></li>
-					<ul th:each="prodi,iterationStatus: ${fakultas.listProdi}">
-						<li><a
-							th:href="'/lihat/pendaftar/' + ${id_jalur} + '/' +${prodi.id_prodi}"><button
-									th:text="${prodi.nama_prodi}"></button></a></li>
-					</ul>
-					<br />
-				</ul>
-			</div>
-		</div> -->
+		
+		<div style="float: left; width: 10%">
+		<a th:href="'/seleksi-pendaftar'" class="btn btn-warning"><i
+			class="fa fa-chevron-left">Kembali</i></a></div>
 	</div>
 
 
