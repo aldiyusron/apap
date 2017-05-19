@@ -88,10 +88,30 @@ public class PengawasUjianController {
 	
 	@RequestMapping(value = "/seleksi-pengawas/sukses")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model, @RequestParam(value = "id_lokasi", required = false) int id_lokasi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
+		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		int count = 0;
+		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
+			if (statusSubmit.getStrings().get(i) != null) {
+				count++;
+			}
+		}
+		
+		if(count > lokasi.getKuota_peng())
+		{
+			return "redirect:/seleksi-pengawas/view/" + id_lokasi;
+		}
+		else
+		{
+			int kuota = lokasi.getKuota_peng() - count;
+			lokasi.setKuota_peng(kuota);
+			lokasiDAO.updateLokasiUjian(lokasi);
+		}
+		
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
 				String nomor = statusSubmit.getStrings().get(i);
@@ -99,6 +119,6 @@ public class PengawasUjianController {
 				pengawasDAO.terimaPengawas(id_user);
 			}
 		}
-		return "success-seleksipengawas";
+		return "success-daftarpengawas";
 	}
 }

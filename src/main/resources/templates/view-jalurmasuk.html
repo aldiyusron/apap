@@ -264,12 +264,16 @@
 						</thead>
 
 						<tbody>
-							<div th:each="prodi,iterationStatus: ${listProdi}" style="padding-left: 10px">
+							<div th:each="prodi,iterationStatus: ${listProdi}"
+								style="padding-left: 10px">
 								<tr>
 									<td th:text="${iterationStatus.count}">No.</td>
 									<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
 									<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
-									<td th:text="${prodi.id_fakultas}">Nama Fakultas</td>
+									<div th:each="fakultas, iterationStatus: ${allFakultas}">
+										<div th:if="${fakultas.id_fakultas eq prodi.id_fakultas}">
+											<td th:text="${fakultas.fakultas}">Nama Fakultas</td>
+										</div></div>
 									<td><a
 										th:href="'/prodi-tersedia/update/'+ ${prodi.id_prodi}"> <span
 											class="input-group-btn">
@@ -455,10 +459,12 @@
 
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+		
 	</script>
 
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
+		
 	</script>
 
 	<!-- Contact Form JavaScript -->
@@ -466,14 +472,13 @@
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
-	<script>			
-			$(document).ready(function() {
-				$("#daftarLokasi").DataTable();
-				$("#daftarProdi").DataTable();
-			});
-			
+	<script>
+		$(document).ready(function() {
+			$("#daftarLokasi").DataTable();
+			$("#daftarProdi").DataTable();
+		});
 	</script>
-	
-	
+
+
 </body>
 </html>
