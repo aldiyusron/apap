@@ -121,4 +121,29 @@ public class PengawasUjianController {
 		}
 		return "success-daftarpengawas";
 	}
+	
+	@RequestMapping("/seleksi-pengawas/pindah-jalur/{id_user}")
+	public String pindahLokasiPengawas(Model model, @PathVariable(value = "id_user") int id_user) {
+		PengawasUjianModel pengawas = pengawasDAO.selectPengawasPindah(id_user);
+		List<LokasiModel> listLokasi = lokasiDAO.selectAllLokasi();
+		model.addAttribute("listLokasi", listLokasi);
+		model.addAttribute("pengawas", pengawas);
+		return "form-pindahpengawas";
+	}
+
+	@RequestMapping("/seleksi-pengawas/pindah-jalur/submit")
+	public String pindahLokasi(@RequestParam(value = "id_user", required = false) int id_user,
+			@RequestParam(value = "jabatan", required = false) String jabatan,
+			@RequestParam(value = "nama", required = false) String nama,
+			@RequestParam(value = "no_hp", required = false) String no_hp,
+			@RequestParam(value = "pindah_bool", required = false) int pindah_bool,
+			@RequestParam(value = "lokasi", required = false) int lokasi) {
+		
+		System.out.println(pindah_bool);
+		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
+		PengawasUjianModel pengawas = new PengawasUjianModel(id_user, 0, jabatan, nama, no_hp,
+				lokasimodel.getId_lokasi(), pindah_bool, 1);
+		pengawasDAO.updatePengawas(pengawas);
+		return "success-pindahpengawas";
+	}
 }

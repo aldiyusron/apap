@@ -173,7 +173,11 @@ public class PUnivController {
 	}
 
 	@RequestMapping("/dashboard")
-	public String dashboard() {
+	public String dashboard(Model model){
+		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("fakultas", fakultas);
 		return "dashboard";
 	}
 

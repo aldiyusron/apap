@@ -8,6 +8,7 @@ public interface PengawasUjianService {
 
 	void addPengawas(PengawasUjianModel pengawas);
 	PengawasUjianModel selectPengawas(String username);
+	PengawasUjianModel selectPengawasPindah(int id_user);
 	List<PengawasUjianModel> selectAllPengawas();
 	void terimaPengawas(int id_user);
 	void tolakPengawas(PengawasUjianModel pengawas);

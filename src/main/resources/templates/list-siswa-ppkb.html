@@ -29,6 +29,10 @@
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
 
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
+
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
@@ -146,11 +150,6 @@ file:// [if lt IE 9]> -->
 		<h1>Daftar Siswa Pendaftar Seleksi</h1>
 		<div class="row" style="margin-top: 2.5%;">
 			<div id="exTab3" class="container">
-				<form th:action="@{/data-pendaftar}" method="post">
-					<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left:82%" type="submit" value="+ Tambah Siswa" /> <br />
-				</form>
-				<br />
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1b" data-toggle="tab">Verifikasi</a></li>
 					<li><a href="#2b" data-toggle="tab">Belum Verifikasi</a></li>
@@ -270,18 +269,11 @@ file:// [if lt IE 9]> -->
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-		crossorigin="anonymous"></script>
-
+	
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 		

@@ -14,19 +14,20 @@ import mosing.service.StorageService;
 @EnableConfigurationProperties(StorageProperties.class)
 public class MosingApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MosingApplication.class, args);
 	}
-	   @Override
-	   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	      return application.sources(MosingApplication.class);
-	   }
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(MosingApplication.class);
+	}
 
 	@Bean
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {
-            storageService.deleteAll();
-            storageService.init();
+			storageService.deleteAll();
+			storageService.init();
 		};
 	}
 }

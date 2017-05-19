@@ -65,4 +65,7 @@ public interface PengawasUjianMapper {
 
 	@Update("update pengawas_ujian set status = 0 where id_user=#{id_user}")
 	void tolakPengawas(PengawasUjianModel pengawas);
+	
+	@Select("select * from pengawas_ujian where id_user = #{id_user}")
+	PengawasUjianModel selectPengawasPindah(int id_user);
 }

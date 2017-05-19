@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Detail Jalur Masuk</title>
+<title>Penerimaan UI | Seleksi Pengawas</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -169,24 +169,6 @@
 					</legend>
 					<br />
 					<div class="isilist">
-						<div id="edit-delete" class="btn-group btn-group-justified"
-							style="margin-left: 47.75%; margin-top: -1.5%;">
-							<a th:href="'/lokasi-ujian/update/'+ ${id_lokasi}"> <span
-								class="btn-group">
-									<button type="button" class="btn btn-md btn-custom" id="as"
-										name="as" value="Go">
-										<span class="glyphicon glyphicon-edit"></span>
-									</button>
-							</span>
-							</a> <a th:href="'/lokasi-ujian/delete/'+ ${id_lokasi}"> <span
-								class="btn-group">
-									<button type="button" class="btn btn-md btn-custom" id="as"
-										name="as" value="Go">
-										<span class="glyphicon glyphicon-trash"></span>
-									</button>
-							</span>
-							</a>
-						</div>
 						<table class="table table-striped">
 							<thead>
 								<dl class="dl-horizontal" style="margin-left: 400px">
@@ -270,6 +252,15 @@
 												th:field="*{statusSubmit.strings[__${iterationStatus.index}__]}"
 												th:value="${pengawas.id_user}" /><span> Terima </span></label>
 										</td>
+										<td><a
+										th:href="'/seleksi-pengawas/pindah-jalur/'+ ${pengawas.id_user}"> <span
+											class="input-group-btn">
+												<button type="button" class="btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-edit" style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
 									</tr>
 								</div>
 							</tbody>
@@ -283,7 +274,7 @@
 									th:value="${_csrf.token}" />
 								<button value="save" name="action" type="submit"
 									class="btn btn-warning">Submit</button>
-								<a href="/" class="btn btn-default">Batal</a>
+								<a href="/seleksi-pengawas" class="btn btn-default">Batal</a>
 							</div>
 						</div>
 					</form>
