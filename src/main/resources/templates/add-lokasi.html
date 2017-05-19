@@ -327,20 +327,18 @@ file:// [if lt IE 9]>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" /> <a type="button"
-							data-toggle="modal" data-target="#myModal1"
 							th:href="@{'/jalur-masuk/view/'+ ${id_jalur}}"
 							class="btn btn-default">Batal</a>
 						<button style="width: 30%; margin-left: 5px; margin-top: 0"
-							value="save" name="action" type="submit" data-toggle="modal"
-							data-target="#myModal2" class="btn btn-danger1">Simpan</button>
+							value="save" name="action" type="submit" class="btn btn-danger1">Simpan</button>
 					</div>
 				</div>
 
 				<!-- Modal -->
-				<div id="myModal1" class="modal fade" role="dialog">
+				<!-- <div id="myModal1" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 
-						<!-- Modal content-->
+						Modal content
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -358,7 +356,7 @@ file:// [if lt IE 9]>
 						</div>
 
 					</div>
-				</div>
+				</div> -->
 			</fieldset>
 		</form>
 	</div>
