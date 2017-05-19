@@ -14,6 +14,7 @@ import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
+import mosing.service.PemimpinUnivService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 
@@ -27,6 +28,9 @@ public class PUnivController {
 	
 	@Autowired
 	JalurMasukService jalurMasukDAO;
+	
+	@Autowired
+	PemimpinUnivService pemimpinUnivDAO;
 	
 	@RequestMapping("/terimaPendaftar")
 	public String acceptPendaftar(Model model) {
@@ -61,6 +65,7 @@ public class PUnivController {
 	public String dashboard(Model model){
 		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
 		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
+		List<PendaftarModel> pendaftarReguler = pemimpinUnivDAO.selectAllPendaftarReguler(jalurMasuk.get(1).getId_jalur());
 		model.addAttribute("jalurMasuk", jalurMasuk);
 		model.addAttribute("fakultas", fakultas);
 		return "dashboard";

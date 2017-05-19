@@ -12,12 +12,12 @@ import mosing.service.StorageService;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
-public class MosingApplication extends SpringBootServletInitializer {
+public class MosingApplication {
 	
-	@Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MosingApplication.class);
-    }
+//	@Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//        return application.sources(MosingApplication.class);
+//    }
 
 	public static void main(String[] args) throws Exception{
 		SpringApplication.run(MosingApplication.class, args);
