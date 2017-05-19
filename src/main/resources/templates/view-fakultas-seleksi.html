@@ -156,16 +156,31 @@
 
 	</div>
 	<div class="container">
-		<h1>Daftar Fakultas</h1>
-		<div class="panel-group" style="margin-top:20px">
+
+		<!-- <button class="btn btn-md" id="as" name="as" value="Go"> -->
+
+
+
+
+		<!-- </button> -->
+
+		<div class ="team-member" style="margin-bottom: 8%">
+		<div style="float: left; width: 5%">
+		<a th:href="'/seleksi-pendaftar'" class="btn btn-warning"><i
+			class="fa fa-chevron-left" style="width:5%"></i></a></div>
+		<h1 style="float: left; margin-left: 3%; margin-top: -2px">Daftar Fakultas</h1></div>
+		<div class="panel-group" style="margin-top: 20px">
 			<div class="panel panel-default">
 				<div id="newpost" class="panel-heading">
 					<h4 id="button" class="panel-title"
-						th:each="fakultas,iterationStatus: ${fakultas}" style="padding:5px">
-						<a data-toggle="collapse" th:href="'#collapse' + ${iterationStatus.count}"
+						th:each="fakultas,iterationStatus: ${fakultas}"
+						style="padding: 5px">
+						<a data-toggle="collapse"
+							th:href="'#collapse' + ${iterationStatus.count}"
 							th:text="${fakultas.fakultas}"></a>
 
-						<div th:id="'collapse' + ${iterationStatus.count}" class="panel-collapse collapse">
+						<div th:id="'collapse' + ${iterationStatus.count}"
+							class="panel-collapse collapse">
 							<ul class="list-group"
 								th:each="prodi,iterationStatus: ${fakultas.listProdi}">
 								<li class="list-group-item"><a
@@ -309,18 +324,11 @@
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
 	</script>
-	var button = document.getElementById('button');
+	var button = document.getElementById('button'); button.onclick =
+	function() { var div = document.getElementById('newpost'); if
+	(div.style.display !== 'none') { div.style.display = 'none'; } else {
+	div.style.display = 'block'; } };
 
-button.onclick = function() {
-    var div = document.getElementById('newpost');
-    if (div.style.display !== 'none') {
-        div.style.display = 'none';
-    }
-    else {
-        div.style.display = 'block';
-    }
-};
-	
 	<script>
 		$(document).ready(function() {
 			$("#daftarJalurMasuk").DataTable();

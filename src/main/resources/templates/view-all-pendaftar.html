@@ -203,7 +203,7 @@
 														Rekomendasi</td>
 													<td th:unless="${penyeleksian.status_rekomen} eq '0'">Rekomendasi</td>
 													<td>
-														<div class="checkbox">
+														<div class="checkbox" style="margin-top: -8.25px">
 															<label
 																th:for="'strings' + ${iterationStatus.index} + '1'"
 																class="btn"><input id="checkbox" type="checkbox"
@@ -231,7 +231,7 @@
 									<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 										th:value="${_csrf.token}" />
 									<button value="save" name="action" type="submit"
-										class="btn btn-warning1" style="width: 70px">Submit</button>
+										class="btn btn-warning1" style="width: 70px">Simpan</button>
 									<a th:href="'/lihat/fakultas/' + ${jalur.id_jalur}"
 										class="btn btn-default"
 										style="width: 70px; margin-left: 65%; margin-top: -5%">Batal</a>
@@ -311,6 +311,8 @@
 		</div>
 	</footer>
 
+<!-- jQuery -->
+	<script th:src="@{/js/jquery.min.js}"></script>
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
@@ -339,7 +341,7 @@
 	</script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>

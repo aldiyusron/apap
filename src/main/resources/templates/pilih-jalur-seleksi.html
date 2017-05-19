@@ -34,6 +34,9 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+	<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -185,8 +188,8 @@
 											<td scope="row">Tidak Aktif</td>
 										</div>
 										<td><a th:href="'/lihat/fakultas/'+ ${jalur.id_jalur}"
-											style="float: right"> <span class="input-group-btn">
-													<button type="button" class="btn btn-sm btn-custom" id="as"
+											style="float: left; width: 80%; margin-top: 10%"> <span class="input-group-btn">
+													<button type="button" class="btn btn-sm btn-warning1" id="as"
 														name="as" value="Go" th:text="Terima"></button>
 											</span>
 										</a></td>

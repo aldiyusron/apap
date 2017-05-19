@@ -1,7 +1,9 @@
 package mosing.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -187,26 +189,42 @@ public class PUnivController {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		List<CalonMahasiswaModel> pendaftarLulus = new ArrayList<CalonMahasiswaModel>();
 		List<PendaftarModel> pendaftars = new ArrayList<PendaftarModel>();
 		List<CalonMahasiswaModel> calons = calonDAO.selectAllCalon();
 		String latestNPM = calons.get(calons.size()-1).getNpm();
 		System.out.println(latestNPM);
-		double npm = Double.parseDouble(latestNPM) + 1;
-		System.out.println(npm);
+//		double npm = Double.parseDouble(latestNPM) + 1;
+		
+//		System.out.println(npm);
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
+				LocalDateTime now = LocalDateTime.now();
+				int year = now.getYear();
+				String yearNow = Integer.toString(year);
+				String newNPM = yearNow.substring(yearNow.length()-2, yearNow.length()) + "0";
+				String angka = "0123456789";
+				int n = angka.length();
+				Random random = new Random();
+				char angkaChar;
+				for(int j = 0; j < 7; j++)
+				{
+					angkaChar = angka.charAt(random.nextInt(n));
+					newNPM = newNPM + Character.toString(angkaChar);
+				}
 				String nomor = statusSubmit.getStrings().get(i);
 				int no_daftar = Integer.parseInt(nomor);
 				penyeleksianDAO.updateLulus(no_daftar);
 				PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
 				pendaftars.add(pendaftar);
-				String newNPM = "" + npm;
 				CalonMahasiswaModel calon = new CalonMahasiswaModel(no_daftar, newNPM, id_prodi, id_jalur, jenjang);
 				pendaftarLulus.add(calon);
-				npm = npm + 1;
 			}
 		}
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
 		model.addAttribute("pendaftars", pendaftars);
 		model.addAttribute("pendaftarLulus", pendaftarLulus);
 		return "success-menyeleksi";
