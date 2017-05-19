@@ -11,10 +11,10 @@
 <title>Penerimaan UI | Update Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -29,12 +29,6 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -44,6 +38,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	<link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -143,7 +139,7 @@
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="#">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -161,7 +157,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/jalur-masuk/update/submit"
+		<form class="well form-horizontal" th:action="@{/jalur-masuk/update/submit}"
 			method="post" id="contact_form" th:object="${jalur}">
 			<fieldset>
 
@@ -188,7 +184,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
 								class="form-control" placeholder="Nama Jalur Masuk"
-								required="true" name="nama" th:value="${jalur.nama}" />
+								required="required" name="nama" th:value="${jalur.nama}" />
 						</div>
 					</div>
 				</div>
@@ -201,7 +197,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true"
+								class="form-control" type="text" required="required"
 								th:value="${jalur.tanggal_buka}" />
 						</div>
 					</div>
@@ -215,7 +211,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="true"
+								class="form-control" type="text" required="required"
 								th:value="${jalur.tanggal_tutup}" />
 						</div>
 					</div>
@@ -230,9 +226,9 @@
 								class="custom-select" required="required" name="status"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="status" required="required" value="Aktif"
+								<option name="status" value="Aktif"
 									selected="selected">Aktif</option>
-								<option name="status" required="required" value="Tidak Aktif">Tidak
+								<option name="status" value="Tidak Aktif">Tidak
 									Aktif</option>
 							</select>
 						</div>
@@ -242,8 +238,8 @@
 								class="custom-select" required="required" name="status"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="status" required="required" value="Aktif">Aktif</option>
-								<option name="status" required="required" value="Tidak Aktif"
+								<option name="status" value="Aktif">Aktif</option>
+								<option name="status" value="Tidak Aktif"
 									selected="selected">Tidak Aktif</option>
 							</select>
 						</div>
@@ -261,9 +257,9 @@
 								class="custom-select" required="required" name="jenis_jalur"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="jenis_jalur" required="required"
+								<option name="jenis_jalur"
 									value="Jalur Tulis" selected="selected">Jalur Tulis</option>
-								<option name="jenis_jalur" required="required"
+								<option name="jenis_jalur"
 									value="Jalur Undangan">Jalur Undangan</option>
 							</select>
 						</div>
@@ -273,9 +269,9 @@
 								class="custom-select" required="required" name="jenis_jalur"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="jenis_jalur" required="required"
+								<option name="jenis_jalur"
 									value="Jalur Tulis">Jalur Tulis</option>
-								<option name="jenis_jalur" required="required"
+								<option name="jenis_jalur"
 									value="Jalur Undangan" selected="selected">Jalur
 									Undangan</option>
 							</select>
@@ -294,11 +290,11 @@
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="nama_jenjang" required="required" value="S1"
+								<option name="nama_jenjang" value="S1"
 									selected="selected">S1</option>
-								<option name="nama_jenjang" required="required" value="S2">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
-								<option name="nama_jenjang" required="required"
+								<option name="nama_jenjang" value="S2">S2</option>
+								<option name="nama_jenjang" value="S3">S2</option>
+								<option name="nama_jenjang"
 									value="Spesialis">Spesialis</option>
 							</select>
 						</div>
@@ -310,11 +306,11 @@
 								style="height: 35px">
 
 								<option value="">Status jalur masuk</option>
-								<option name="nama_jenjang" required="required" value="S1">S1</option>
-								<option name="nama_jenjang" required="required" value="S2"
+								<option name="nama_jenjang" value="S1">S1</option>
+								<option name="nama_jenjang" value="S2"
 									selected="selected">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
-								<option name="nama_jenjang" required="required"
+								<option name="nama_jenjang" value="S3">S2</option>
+								<option name="nama_jenjang" 
 									value="Spesialis">Spesialis</option>
 							</select>
 						</div>
@@ -324,11 +320,11 @@
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="nama_jenjang" required="required" value="S1">S1</option>
-								<option name="nama_jenjang" required="required" value="S2">S2</option>
-								<option name="nama_jenjang" required="required" value="S3"
+								<option name="nama_jenjang" value="S1">S1</option>
+								<option name="nama_jenjang" value="S2">S2</option>
+								<option name="nama_jenjang" value="S3"
 									selected="selected">S2</option>
-								<option name="nama_jenjang" required="required"
+								<option name="nama_jenjang" 
 									value="Spesialis">Spesialis</option>
 							</select>
 						</div>
@@ -339,10 +335,10 @@
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
 								<option value="">Status jalur masuk</option>
-								<option name="nama_jenjang" required="required" value="S1">S1</option>
-								<option name="nama_jenjang" required="required" value="S2">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
-								<option name="nama_jenjang" required="required"
+								<option name="nama_jenjang" value="S1">S1</option>
+								<option name="nama_jenjang" value="S2">S2</option>
+								<option name="nama_jenjang" value="S3">S2</option>
+								<option name="nama_jenjang"
 									value="Spesialis" selected="selected">Spesialis</option>
 							</select>
 						</div>
@@ -407,17 +403,17 @@
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="form-group">
 					<label for="waktu_ujian" class="col-md-4 control-label">Waktu
 						Ujian </label>
 					<div class="col-md-4 inputGroupContainer">
-						<div class='input-group date' id='datetimepicker1'>
+						<div class="input-group date">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
-								id="waktu_ujian" name="waktu_ujian"
-								placeholder="BB/HH/TTTT JJ:MM AM/PM" class="form-control"
-								type="text" required="true" th:value="${jalur.waktu_ujian}" />
+								id="datetimepicker4" name="waktu_ujian"
+								placeholder="DD/MM/YYYY JJ:MM AM/PM" class="form-control"
+								type="text" required="required" th:value="${jalur.waktu_ujian}" />
 						</div>
 					</div>
 				</div>
@@ -431,7 +427,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="persyaratan" placeholder="Persyaratan"
-								class="form-control" type="text" rows="5" required="true"
+								class="form-control" type="text" rows="5" required="required"
 								th:value="${jalur.persyaratan}" th:text="${jalur.persyaratan}"></textarea>
 						</div>
 					</div>
@@ -451,68 +447,13 @@
 							th:href="'/jalur-masuk/view/' + ${id_jalur}"
 							class="btn btn-default">Batal</a>
 						<button value="save" name="action" type="submit" class="btn btn-s"
-							style="margin-right: 57%; height: 32.5px">Simpan</button>
+							style="margin-right: 55%; height: 32.5px; margin-top: -0px">Simpan</button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 	</div>
 
-	<!-- /.container -->
-	<script>
-		$(document).ready(
-				function() {
-					$('#contact_form').bootstrapValidator({
-						// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-						feedbackIcons : {
-							valid : 'glyphicon glyphicon-ok',
-							invalid : 'glyphicon glyphicon-remove',
-							validating : 'glyphicon glyphicon-refresh'
-						},
-						fields : {
-							nama : {
-								validators : {
-									stringLength : {
-										min : 2,
-									},
-									notEmpty : {
-										message : 'Tolong masukan nama jalur'
-									}
-								}
-							},
-							persyaratan : {
-								validators : {
-									stringLength : {
-										min : 8,
-									},
-									notEmpty : {
-										message : 'Tolong masukkan persyaratan'
-									}
-								}
-							}
-						}
-					}).on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#contact_form').data('bootstrapValidator')
-										.resetForm();
-								// Prevent form submission
-								e.preventDefault();
-								// Get the form instance
-								var $form = $(e.target);
-								// Get the BootstrapValidator instance
-								var bv = $form.data('bootstrapValidator');
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form.serialize(),
-										function(result) {
-											console.log(result);
-										}, 'json');
-							});
-				});
-	</script>
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
@@ -591,6 +532,9 @@
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
 
 	<script>
 		$(document).ready(
@@ -623,7 +567,12 @@
 				});
 		$('.select').selectpicker();
 	</script>
-
+	
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker();
+            });
+        </script>
 </body>
 
 </html>

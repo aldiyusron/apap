@@ -63,7 +63,7 @@ public class ProdiTersediaController {
 			@RequestParam(value = "id_fakultas", required = false) int id_fakultas) {
 		//JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		model.addAttribute("id_jalur", id_jalur);
-		ProdiTersediaModel prodi = new ProdiTersediaModel(0, nama_prodi, daya_tampung, id_fakultas, id_jalur, 1);
+		ProdiTersediaModel prodi = new ProdiTersediaModel(0, nama_prodi, daya_tampung, id_fakultas, id_jalur);
 		prodiTersediaDAO.addProdi(prodi);
 
 		return "success-addprodi";
@@ -83,7 +83,7 @@ public class ProdiTersediaController {
 		int id_jalur = prodiTersediaDAO.selectProdi(id_prodi).getId_jalur();
 		model.addAttribute("id_jalur", id_jalur);
 		model.addAttribute("prodi", prodi);
-		prodiTersediaDAO.deleteProdi(prodi);
+//		prodiTersediaDAO.deleteProdi(prodi);
 
 		return "success-deleteprodi";
 	}
@@ -105,7 +105,7 @@ public class ProdiTersediaController {
 		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(id_prodi);
 		int id_jalur = prodiTersediaDAO.selectProdi(id_prodi).getId_jalur();
 		model.addAttribute("id_jalur", id_jalur);
-		ProdiTersediaModel prodiNew = new ProdiTersediaModel(id_prodi, nama_prodi, daya_tampung, id_fakultas, prodi.getId_jalur(), 1);
+		ProdiTersediaModel prodiNew = new ProdiTersediaModel(id_prodi, nama_prodi, daya_tampung, id_fakultas, prodi.getId_jalur());
 		prodiTersediaDAO.updateProdi(prodiNew);
 		return "success-updateprodi";
 	}

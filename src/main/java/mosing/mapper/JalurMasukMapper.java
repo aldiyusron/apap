@@ -55,7 +55,7 @@ public interface JalurMasukMapper {
 			@Result(property = "persyaratan", column = "persyaratan")})
 	List<JalurMasukModel> selectAllJalurMasuk();
 
-	@Select("SELECT * FROM PRODI_TERSEDIA p WHERE p.id_jalur = #{id_jalur} and flag_aktif=1")
+	@Select("SELECT * FROM PRODI_TERSEDIA p WHERE p.id_jalur = #{id_jalur}")
 	List<ProdiTersediaModel> selectProdiJalurMasuk(@Param("id_jalur") int id_jalur);
 	
 	@Select("SELECT * FROM LOKASI WHERE id_jalur = #{id_jalur}")
@@ -73,15 +73,15 @@ public interface JalurMasukMapper {
 	@Update("UPDATE JALUR_MASUK SET flag_aktif = 0 WHERE id_jalur=#{id_jalur}")
 	void deleteJalurMasuk(int id_jalur);
 
-	@Select("SELECT p.id_prodi, p.nama_prodi FROM prodi_tersedia p WHERE id_jalur=#{id_jalur} AND flag_aktif=1")
+	@Select("SELECT p.id_prodi, p.nama_prodi FROM prodi_tersedia p WHERE id_jalur=#{id_jalur}")
 	@Results(value = { @Result(property = "id_prodi", column = "id_prodi"),
 			@Result(property = "nama_prodi", column = "nama_prodi") })
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);
 
-	@Select("SELECT * FROM JALUR_MASUK WHERE jenis_jalur = 1 AND flag_aktif=1")
+	@Select("SELECT * FROM JALUR_MASUK WHERE jenis_jalur = 1")
 	List<JalurMasukModel> selectAllJalurTulis();
 
-	@Select("SELECT * FROM JALUR_MASUK WHERE jenis_jalur=0 AND flag_aktif=1")
+	@Select("SELECT * FROM JALUR_MASUK WHERE jenis_jalur=0")
 	List<JalurMasukModel> selectAllJalurUndangan();
 	
 	@Select("SELECT * FROM JALUR_MASUK WHERE nama = #{nama_jalur}")
