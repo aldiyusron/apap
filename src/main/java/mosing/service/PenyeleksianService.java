@@ -10,4 +10,7 @@ public interface PenyeleksianService {
 	void updateBerkas(String berkas, int no_daftar);
 	List<PenyeleksianModel> selectAllPenyeleksian();
 	void deletePenyeleksian(PenyeleksianModel penyeleksian);
+	void updatePenyeleksian(int no_daftar);
+	void updateLulus(int no_daftar);
+	void updateRekomen(int no_daftar);
 }

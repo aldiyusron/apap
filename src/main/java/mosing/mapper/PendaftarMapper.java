@@ -60,6 +60,10 @@ public interface PendaftarMapper {
 	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
+	
+	@Select("select p.* from pendaftar p, penyeleksian pn, prodi_tersedia pr, daftar_pilihan d where pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
+			+ "pr.id_prodi = d.id_prodi and pn.status_rekomen=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
+	List<PendaftarModel> selectAllPendaftarNonRec(@Param("id_prodi") int id_prodi, @Param("id_jalur")int id_jalur);
 
 	@Select("select * from pendaftar join penyeleksian on pendaftar.no_daftar = penyeleksian.no_daftar"
 			+ "join nilai_rapor on penyeleksian.no_daftar = nilai_rapor.no_daftar" + "where penyeleksian.id_jalur = 4")
@@ -71,7 +75,7 @@ public interface PendaftarMapper {
 
 	@Select("select p.* from pendaftar p join penyeleksian pn on pn.no_daftar=p.no_daftar join daftar_pilihan d on pn.no_daftar=d.no_daftar join prodi_tersedia pr on "
 			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
-	List<PendaftarModel> selectAllPendaftarRec(int id_prodi);
+	List<PendaftarModel> selectAllPendaftarRec(@Param("id_prodi") int id_prodi);
 
 	@Select("select * from pendaftar" + " join PENYELEKSIAN on pendaftar.no_daftar = penyeleksian.no_daftar"
 			+ " join JALUR_MASUK on penyeleksian.id_jalur = jalur_masuk.id_jalur where jalur_masuk.id_jalur=4 AND no_id=#{no_id}")
@@ -90,4 +94,9 @@ public interface PendaftarMapper {
 			+ "kewarganegaraan=#{kewarganegaraan}, alamat_tetap=#{alamat_tetap}, alamat_sekarang=#{alamat_sekarang}, "
 			+ "tgl_lahir=#{tgl_lahir}, nama_provinsi=#{nama_provinsi}, nama_kota=#{nama_kota} where no_daftar=#{no_daftar}")
 	void updateDataDiriLengkap(PendaftarModel pendaftar);
+
+	@Select("select p.* from pendaftar p, penyeleksian pn, prodi_tersedia pr, daftar_pilihan d where pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
+			+ "pr.id_prodi = d.id_prodi and pn.status=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
+	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi, @Param("id_jalur")int id_jalur);
+	
 }

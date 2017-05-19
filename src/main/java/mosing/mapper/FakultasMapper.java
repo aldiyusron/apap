@@ -38,6 +38,5 @@ public interface FakultasMapper {
 	List<ProdiTersediaModel> selectProdi(int id_fakultas);
 	
 	@Select("select * from fakultas where id_fakultas = #{id_fakultas}")
-	FakultasModel selectFakultas(@Param("id_fakultas") int id_fakultas);
-	
+	FakultasModel selectFakultas(@Param("id_fakultas") int id_fakultas);	
 }

@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Detail Jalur Masuk</title>
+<title>Penerimaan UI | Tambah Jalur Masuk</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -45,6 +45,10 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
+<script type="text/javascript" src="/scripts/moment.min.js"></script>
+<script type="text/javascript"
+	src="/scripts/bootstrap-datetimepicker.*js"></script>
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -221,8 +225,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span> <select
-								class="custom-select" required="required" name="status"
-								style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="status" style="height: 35px">
 								<option value="">Status jalur masuk</option>
 								<option text="Aktif" name="status" value="Aktif">Aktif</option>
 								<option text="Tidak Aktif" name="status" value="Tidak Aktif">Tidak
@@ -239,8 +243,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span> <select
-								class="custom-select" required="required" name="jenis_jalur"
-								style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="jenis_jalur" style="height: 35px">
 								<option value="">Jenis jalur masuk</option>
 								<option text="Jalur Tulis" name="jenis_jalur"
 									required="required" value="Jalur Tulis">Jalur Tulis</option>
@@ -259,8 +263,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" required="required" name="nama_jenjang"
-								style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="nama_jenjang" style="height: 35px">
 								<option value="">Jenjang Pendidikan</option>
 								<option text="S1" name="nama_jenjang" required="required"
 									value="S1">S1</option>
@@ -282,8 +286,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" required="required" name="nama_program"
-								style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="nama_program" style="height: 35px">
 								<option value="">Program Pendidikan</option>
 								<option text="Reguler" name="nama_program" required="required"
 									value="Reguler">Reguler</option>
@@ -327,6 +331,19 @@
 					</div>
 				</div>
 
+				<div class="form-group" style="position: center">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<br />
+						<button value="save" name="action" type="submit"
+							class="btn btn-danger1"
+							style="width: 30%; height: 8%; margin-left: 3px">Simpan</button>
+						<a href="/index" class="btn btn-default"
+							style="width: 30%; height: 8%; margin-left: 3px; margin-top: -18px">Batal</a>
+					</div>
+				</div>
+
+
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}" />
 
@@ -335,13 +352,67 @@
 				<div class="form-group" style="position: center">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
-						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/jalur-masuk"
-							class="btn btn-default">Batal</a>
-						<button style="width: 30%; margin-left: 10px; margin-top: 1px"
-							value="save" name="action" type="submit" class="btn btn-danger1">Simpan</button>
+						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" />
+
+
 					</div>
+
 				</div>
+
+				<!-- Trigger the modal with a button -->
+				<!-- <button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#myModal1">Batal</button>
+				<button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#myModal2">Simpan</button>
+ -->
+				<!-- Modal -->
+				<!-- <div id="myModal1" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+ -->
+				<!-- Modal content-->
+				<!-- 	<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title"></h4>
+							</div>
+							<div class="modal-body">
+								<p>Apakah anda yakin ingin membatalkan?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Tidak</button>
+							</div>
+							<button value="cancel" name="action" type="cancel"
+								class="btn btn-info">Iya</button>
+						</div> -->
+
+				<!-- </div>
+				</div> -->
+				<!-- Modal -->
+				<!-- <div id="myModal2" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						Modal content
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title"></h4>
+							</div>
+							<div class="modal-body">
+								<p>Anda yakin untuk menyimpan?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Tidak</button>
+							</div>
+							<div class="modal-footer">
+								<button value="save" name="action" type="submit"
+									class="btn btn-warning">Iya</button>
+							</div>
+						</div>
+					</div>
+				</div> -->
 
 				<!-- Trigger the modal with a button -->
 				<!-- <div class="form-group" style="position: center">
@@ -521,6 +592,15 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+	<!-- Plugin JavaScript -->
+
 	<script
 		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
 	<script
@@ -530,6 +610,9 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<script>
 		$(document).ready(
 				function() {
@@ -561,7 +644,6 @@
 				});
 		$('.select').selectpicker();
 	</script>
-
 </body>
 
 </html>

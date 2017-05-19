@@ -23,5 +23,11 @@ public class CalonMahasiswaServiceDatabase implements CalonMahasiswaService{
 		// TODO Auto-generated method stub
 		return CalonMahasiswaMapper.selectCalon(no_daftar);
 	}
+	
+	@Override
+	public void addCalon(CalonMahasiswaModel calon) {
+		CalonMahasiswaMapper.addCalon(calon);
+		
+	}
 
 }

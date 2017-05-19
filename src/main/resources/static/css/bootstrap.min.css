@@ -7485,4 +7485,10 @@ edit-delete {
 	height:20px
 }
 
+.paginate_button .active {
+	background-color: red
+}
+
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */

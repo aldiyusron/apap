@@ -73,7 +73,7 @@ public class PendaftarController {
 	UserAdmisiService userDAO;
 
 	@Autowired
-	ProdiService prodiDAO;
+	ProdiTersediaService prodiDAO;
 
 	@Autowired
 	JalurMasukService jalurmasukDAO;

@@ -7,14 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <title>Penerimaan UI | Daftar Lokasi Ujian</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -28,12 +33,6 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -120,7 +119,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-s navbar-btn" type="submit"
+								<button class="btn btn-danger navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -155,140 +154,59 @@
 
 	</div>
 	<div class="container">
-		<h1>Daftar Lokasi Ujian</h1>
+		<h1>Daftar Lokasi</h1>
+
 		<div class="row" style="margin-bottom: -60px">
 			<div id="exTab3" class="container">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#1b" data-toggle="tab">SIMAK
-							S1</a></li>
-					<li><a href="#2b" data-toggle="tab">SIMAK Pascasarjana</a></li>
-				</ul>
-				<br />
+
 				<div class="tab-content clearfix">
-					<div class="tab-pane fade in active" id="1b">
-						<form th:action="@{/detail-ujian/add}" method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form>
+					<!-- <form th:action="@{/lokasi-ujian/add}" method="post">
+						<input class="btn btn-danger1"
+							style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left: 82%"
+							type="submit" value="+ Tambah Jalur Masuk" /> <br />
+					</form> -->
+				<table id="daftarlokasi" class="table stripe" style="margin-top:20p%; float: right">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Nama Lokasi</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
 
-						<table id="daftarLokasi" class="table stripe">
-							<thead>
+						<tbody>
+							<div th:each="lokasi,iterationStatus: ${allLokasi}">
 								<tr>
-									<th>No.</th>
-									<th>Nama Lokasi</th>
-									<th>Alamat</th>
-									<th>Kota</th>
-									<th>Provinsi</th>
-									<th>Nomor Telepon</th>
-									<th>Kuota Pendaftar</th>
-									<th>Kuota Pengawas</th>
-									<th></th>
-									<th></th>
+									<td scope="row" th:text="${iterationStatus.count}">No.</td>
+									<td scope="row" th:text="${lokasi.nama_lokasi}">Nama Jalur Masuk</td>
+									<td><a th:href="'/lokasi-ujian/view/'+ ${lokasi.id_lokasi}"
+										style="float: right"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-eye-open"
+														style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
+									<td><a th:href="'/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}">
+											<span class="input-group-btn">
+												<button type="button" class="btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-trash"
+														style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
 								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-trash"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
-					</div>
-					<div class="tab-pane fade" id="2b">
-						<form th:action="@{/detail-ujian/add}" method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form>
-
-						<table id="daftarLokasi2" class="table table-stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Lokasi</th>
-									<th>Alamat</th>
-									<th>Kota</th>
-									<th>Provinsi</th>
-									<th>Nomor Telepon</th>
-									<th>Kuota Pendaftar</th>
-									<th>Kuota Pengawas</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${lokasi.id_lokasi}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-trash"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
-					</div>
+							</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
@@ -359,7 +277,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -367,6 +285,38 @@
 		integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
 		crossorigin="anonymous"></script>
 
+	<!-- Contact Form JavaScript -->
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+
+	<!-- Theme JavaScript -->
+	<script th:src="@{/js/agency.min.js}"></script>
+	<!-- <script>
+		$("#myModal").on("show", function() { // wire up the OK button to dismiss the modal when shown
+			$("#myModal a.btn").on("click", function(e) {
+				console.log("button pressed"); // just as an example...
+				$("#myModal").modal('hide'); // dismiss the dialog
+			});
+		});
+		$("#myModal").on("hide", function() { // remove the event listeners when the dialog is dismissed
+			$("#myModal a.btn").off("click");
+		});
+
+		$("#myModal").on("hidden", function() { // remove the actual elements from the DOM when fully hidden
+			$("#myModal").remove();
+		});
+
+		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+			"backdrop" : "static",
+			"keyboard" : true,
+			"show" : true
+		// ensure the modal is shown immediately
+		});
+	</script> 
+	<script>
+		$(this).parent().parent().children('td').each(function() {
+			$(this).addClass("selected");
+		});
+	</script>-->
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 		
@@ -376,20 +326,11 @@
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
 	</script>
-
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
 	<script>
 		$(document).ready(function() {
-			$("#daftarLokasi").DataTable();
-		});
-
-		$(document).ready(function() {
-			$("#daftarLokasi2").DataTable();
+			$("#daftarlokasi").DataTable();
 		});
 	</script>
+
 </body>
 </html>

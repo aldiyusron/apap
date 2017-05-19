@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 public class PengawasUjianModel {
 	
 	private int id_user;
-	private boolean status;
+	private int status;
 	private String jabatan;
 	private String nama;
 	private String no_hp;
 	private int id_lokasi;
-	private byte pindah_bool;
+	private int pindah_bool;
+	private int flag_aktif;
 }

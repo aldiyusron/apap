@@ -11,10 +11,10 @@
 <title>Penerimaan UI | Daftar Lokasi Ujian</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -121,7 +121,7 @@
 						<li>
 							<form th:action="@{/logout}" method="post">
 								<button class="btn btn-s navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
+									value="Sign Out" style="height: 34px; width: 80px">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -155,137 +155,106 @@
 
 	</div>
 	<div class="container">
-		<h1>Daftar Lokasi Ujian</h1>
-		<div class="row" style="margin-bottom: -60px">
+		<h1>Detail Lokasi</h1>
+		<br />
+		<div class="row" style="margin-top: -2.5%; margin-bottom: -60px">
 			<div id="exTab3" class="container">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#1b" data-toggle="tab">SIMAK
-							S1</a></li>
-					<li><a href="#2b" data-toggle="tab">SIMAK Pascasarjana</a></li>
-				</ul>
-				<br />
 				<div class="tab-content clearfix">
-					<div class="tab-pane fade in active" id="1b">
-						<form th:action="@{/detail-ujian/add}" method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form>
-
-						<table id="daftarLokasi" class="table stripe">
+					<legend>
+						<center>
+							<h2>
+								<b th:text="${lokasi.nama_lokasi}"></b>
+							</h2>
+						</center>
+					</legend>
+					<br />
+					<div class="isilist">
+						<!-- <div id="edit-delete" class="btn-group btn-group-justified"
+							style="margin-left: 47.75%; margin-top: -1.5%;">
+							<a th:href="'/lokasi/update/'+ ${id_lokasi}"> <span
+								class="btn-group">
+									<button type="button" class="btn btn-md btn-custom" id="as"
+										name="as" value="Go">
+										<span class="glyphicon glyphicon-edit"></span>
+									</button>
+							</span>
+							</a> <a th:href="'/lokasi/delete/'+ ${id_lokasi}"> <span
+								class="btn-group">
+									<button type="button" class="btn btn-md btn-custom" id="as"
+										name="as" value="Go">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
+							</span>
+							</a>
+						</div> -->
+						<table class="table table-striped">
 							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Lokasi</th>
-									<th>Alamat</th>
-									<th>Kota</th>
-									<th>Provinsi</th>
-									<th>Nomor Telepon</th>
-									<th>Kuota Pendaftar</th>
-									<th>Kuota Pengawas</th>
-									<th></th>
-									<th></th>
-								</tr>
+								<dl class="dl-horizontal" style="margin-left: 400px">
+									<br />
+									<dt>Alamat</dt>
+									<dd
+										th:text="${lokasi.alamat}"></dd>
+									<br />
+									<dt>Nomor Telepon</dt>
+									<dd
+										th:text="${lokasi.no_telp}"></dd>
+									<br />
+									<dt>Nama Provinsi</dt>
+									<dd th:text="${lokasi.nama_provinsi}"></dd>
+									<br />
+									<dt>Nama Kota</dt>
+									<dd th:text="${lokasi.nama_kota}"></dd>
+									<br />
+									<dt>Kuota Pengawas</dt>
+									<dd th:text="${lokasi.kuota_peng}"></dd>
+									<br />
+									<dt>Kuota Pendaftar</dt>
+									<dd th:text="${lokasi.kuota_pendaftar}"></dd>
+									<br />
+
+								</dl>
 							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${iterationStatus.count}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-trash"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
 						</table>
-					</div>
-					<div class="tab-pane fade" id="2b">
-						<form th:action="@{/detail-ujian/add}" method="post">
-							<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
-								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
-						</form>
-
-						<table id="daftarLokasi2" class="table table-stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Lokasi</th>
-									<th>Alamat</th>
-									<th>Kota</th>
-									<th>Provinsi</th>
-									<th>Nomor Telepon</th>
-									<th>Kuota Pendaftar</th>
-									<th>Kuota Pengawas</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<div th:each="lokasi,iterationStatus: ${allLokasi}"
-									style="padding-left: 10px">
-									<tr>
-										<td th:text="${lokasi.id_lokasi}">No.</td>
-										<td th:text="${lokasi.nama_lokasi}">Nama Lokasi</td>
-										<td th:text="${lokasi.alamat}">Alamat</td>
-										<td th:text="${lokasi.nama_kota}">Kota</td>
-										<td th:text="${lokasi.nama_provinsi}">Provinsi</td>
-										<td th:text="${lokasi.no_telp}">Nomor Telepon</td>
-										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
-										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
-										<td><a
-											th:href="'/detail-ujian/update/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-edit"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-										<td><a
-											th:href="'/detail-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
-												class="input-group-btn">
-													<button type="button" class="btn-sm btn-custom" id="as"
-														name="as" value="Go">
-														<span class="glyphicon glyphicon-trash"
-															style="float: right"></span>
-													</button>
-											</span>
-										</a></td>
-									</tr>
-								</div>
-							</tbody>
-						</table>
+						<a href="/lokasi-ujian" class="btn btn-danger1"
+							style="width: 10%; margin-left: 46.5%; margin-bottom: 20px">Kembali</a>
 					</div>
 				</div>
+				<div class="tab-content clearfix" style="padding-top: 15px">
+					<h3>Daftar Pengawas</h3>
+					<!-- <form
+						th:action="@{'//add/' + ${jalur_masuk.id_jalur}}"
+						method="post">
+						<input class="btn btn-danger1"
+							style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
+							type="submit" value="+ Tambah Prodi" /> <br />
+					</form> -->
+
+					<table id="daftarPengawas" class="table stripe"
+						th:if="${listPengawas} != NULL">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Nama</th>
+								<th>Jabatan</th>
+								<th>No. HP</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<div th:each="pengawas,iterationStatus: ${listPengawas}" style="padding-left: 10px">
+								<!-- Belum bener -->
+								<tr>
+									<td th:text="${iterationStatus.count}">No.</td>
+									<td th:text="${pengawas.nama}">Nama Jalur Masuk</td>
+									<td th:text="${pengawas.jabatan}">Daya Tampung</td>
+									<td th:text="${pengawas.no_hp}">Nama Fakultas</td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+				</div>
+
+				<p th:if="${lokasi.listPengawas} eq 1">Belum punya prodi</p>
 			</div>
 		</div>
 	</div>
@@ -359,7 +328,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -369,27 +338,24 @@
 
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
-		
 	</script>
 
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
-		
 	</script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
-	<script>
-		$(document).ready(function() {
-			$("#daftarLokasi").DataTable();
-		});
-
-		$(document).ready(function() {
-			$("#daftarLokasi2").DataTable();
-		});
+	<script th:src="@{/js/agency.min.js}"></script>
+	<script>			
+			$(document).ready(function() {
+				$("#daftarPengawas").DataTable();
+			});
+			
 	</script>
+	
+	
 </body>
 </html>

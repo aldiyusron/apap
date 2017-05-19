@@ -22,6 +22,9 @@ public interface PenyeleksianMapper {
 
 	@Select("select p.* from penyeleksian p where p.no_daftar = #{no_daftar}")
 	PenyeleksianModel selectPenyeleksian2(@Param("no_daftar") int no_daftar);
+	
+	@Update("update penyeleksian set status=1 where no_daftar=#{no_daftar}")
+	PenyeleksianModel updatePenyeleksian(@Param("no_daftar") int no_daftar);
 
 	@Update("update penyeleksian set berkas=#{berkas} where no_daftar=#{no_daftar}")
 	void updateBerkas(@Param("berkas") String berkas, @Param("no_daftar") int no_daftar);
@@ -31,4 +34,10 @@ public interface PenyeleksianMapper {
 	
 	@Delete("DELETE FROM PENYELEKSIAN WHERE no_daftar=#{no_daftar}")
 	void deletePenyeleksian(PenyeleksianModel penyeleksian);
+
+	@Update("UPDATE PENYELEKSIAN SET status = 1, status_rekomen = 1 where no_daftar = #{no_daftar}")
+	void updateLulus(@Param("no_daftar") int no_daftar);
+	
+	@Update("UPDATE PENYELEKSIAN SET status_rekomen = 1 where no_daftar = #{no_daftar}")
+	void updateRekomen(@Param("no_daftar") int no_daftar);
 }
