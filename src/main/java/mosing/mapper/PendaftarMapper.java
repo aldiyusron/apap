@@ -2,6 +2,7 @@ package mosing.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,12 +31,12 @@ public interface PendaftarMapper {
 			+ "#{nama_kota}, #{jenis_kelamin}, #{nama_lembaga}, #{jurusan})")
 	void addPendaftar(PendaftarModel pendaftar);
 
-	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
-			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan})")
+	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan, flag_aktif) values "
+			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan}, 1)")
 	void addDaftarPilihan(DaftarPilihanModel daftar);
 
-	@Update("Update pendaftar set foto=#{foto} where id_user=#{id_user}")
-	void updateFoto(@Param("foto") String foto, @Param("id_user") int id_user);
+	@Update("Update pendaftar set foto=#{foto} where no_daftar=#{no_daftar}")
+	void updateFoto(@Param("foto") String foto, @Param("no_daftar") int no_daftar);
 
 	@Select("select * from pendaftar p" 
 			+ " join PENYELEKSIAN on p.no_daftar = penyeleksian.no_daftar"
@@ -86,5 +87,8 @@ public interface PendaftarMapper {
 	
 	@Select("select nama_id from pendaftar where no_daftar=#{no_daftar}")
 	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
-	
+
+	@Delete("DELETE FROM PENDAFTAR WHERE no_daftar=#{no_daftar}")
+	void deletePendaftar(@Param("no_daftar") int no_daftar);
 }
+

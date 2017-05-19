@@ -1,5 +1,6 @@
 package mosing.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import mosing.model.CalonMahasiswaModel;
 import mosing.model.DaftarPilihanModel;
@@ -31,6 +33,7 @@ import mosing.model.UserAdmisiModel;
 
 import mosing.service.CalonMahasiswaService;
 import mosing.service.FakultasService;
+import mosing.service.FotoService;
 import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
 import mosing.service.LPTerdahuluService;
@@ -56,13 +59,13 @@ public class PendaftarController {
 
 	@Autowired
 	LPTerdahuluService lptDAO;
-	
+
 	@Autowired
 	NilaiService nilaiDAO;
-	
+
 	@Autowired
 	CalonMahasiswaService calonMahasiswaDAO;
-	
+
 	@Autowired
 	ProdiTersediaService prodiTersediaDAO;
 
@@ -80,29 +83,64 @@ public class PendaftarController {
 
 	@Autowired
 	KotaService kotaDAO;
-	
+
+	@Autowired
+	FotoService fotoDAO;
+
 	@Autowired
 	FakultasService fakultasDAO;
 
-	@RequestMapping("/pendaftar/{username}")
-	public String add(Model model, @PathVariable(value = "username") String username) {
+	// @RequestMapping("/pendaftar/{username}")
+	// public String add(Model model, @PathVariable(value = "username") String
+	// username) {
+	// PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+	//
+	// if (pendaftar != null) {
+	// PenyeleksianModel penyeleksian =
+	// penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
+	// if (penyeleksian != null) {
+	// return "sudahdaftarseleksi";
+	// }
+	// }
+	//
+	// List<JalurMasukModel> jalurMasuk = jalurmasukDAO.selectAllJalurTulis();
+	// List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+	// List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+	// model.addAttribute("username", username);
+	// model.addAttribute("jalurMasuk", jalurMasuk);
+	// model.addAttribute("allProvinsi", allProvinsi);
+	// model.addAttribute("allKota", allKota);
+	// return "form-registrasi2";
+	// }
+
+	@RequestMapping("/pendaftar/uploadFoto/{username}")
+	public String uploadFoto(Model model, @PathVariable(value = "username") String username) {
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+		model.addAttribute("pendaftar", pendaftar);
+		return "uploadForm";
+	}
+	
+	@RequestMapping("/pendaftar/verifikasi/nilai")
+	public String verifNilai()
+	{
+		return "";
+	}
 
-		if (pendaftar != null) {
-			PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
-			if (penyeleksian != null) {
-				return "sudahdaftarseleksi";
-			}
-		}
+	@RequestMapping("/pendaftar/uploadFoto/{username}/submit")
+	public String uploadFotoSubmit(Model model, @RequestParam(value = "foto", required = false) MultipartFile foto,
+			@PathVariable(value = "username") String username) throws IOException {
 
-		List<JalurMasukModel> jalurMasuk = jalurmasukDAO.selectAllJalurTulis();
-		List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
-		List<KotaModel> allKota = kotaDAO.selectKotaIndo();
-		model.addAttribute("username", username);
-		model.addAttribute("jalurMasuk", jalurMasuk);
-		model.addAttribute("allProvinsi", allProvinsi);
-		model.addAttribute("allKota", allKota);
-		return "form-registrasi2";
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
+		pendaftar.setPhoto(foto);
+		fotoDAO.insert(pendaftar);
+
+		model.addAttribute("pendaftar", pendaftar);
+		return "redirect:/pendaftar/uploadFoto/" + username;
+	}
+
+	@RequestMapping("/pendaftar/registration/done")
+	public String uploadFotoSuccess() {
+		return "success-daftarseleksi";
 	}
 
 	@RequestMapping("/pendaftar/rencanastudi")
@@ -135,15 +173,15 @@ public class PendaftarController {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date tanggal_lahir = format.parse(tgl_lahir);
 		int id_user = Integer.parseInt(user.getId_user());
-		PendaftarModel pendaftar = new PendaftarModel(id_user, no_id, nama_id, nama_ijazah, null,
-				no_hp, no_telp, nama_negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir,
-				nama_provinsi, nama_kota, jk, 0, nama_lembaga, jurusan, 0);
+		PendaftarModel pendaftar = new PendaftarModel(id_user, no_id, nama_id, nama_ijazah, null, null, no_hp, no_telp,
+				nama_negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, nama_provinsi,
+				nama_kota, jk, 0, nama_lembaga, jurusan, 0);
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar2(username);
 		Byte status = Byte.parseByte("0");
 		byte status_rekomen = 0;
 		int no_daftar = pendaftarSeleksi.getNo_daftar();
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, status_rekomen, null);
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(no_daftar, status, id_jalur, status_rekomen, null, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 
 		List<ProdiTersediaModel> prodiTersedia = prodiDAO.selectAllProdi(id_jalur);
@@ -183,7 +221,7 @@ public class PendaftarController {
 		model.addAttribute("username", username);
 		return "success-rencanastudi";
 	}
-	
+
 	@RequestMapping("/daftar-siswa")
 	public String lihatDaftarSiswa(Model model) {
 		List<PendaftarModel> pendaftarVerif = pendaftarDAO.selectAllPendaftarTerverifikasi();
@@ -213,30 +251,36 @@ public class PendaftarController {
 			jenis_kelamin = "0";
 
 		byte jk = Byte.parseByte(jenis_kelamin);
-		
+
 		List<UserAdmisiModel> allUser = userDAO.selectAllUser();
-		String id = allUser.get(allUser.size()-1).getId_user();
+		String id = allUser.get(allUser.size() - 1).getId_user();
 		int latestID = Integer.parseInt(id);
 		int newID = latestID + 1;
-		
-		String[] parts = nama_id.split("\\s+");
-		String username = (parts[0]+parts[1]).toLowerCase();
-		
+
+		boolean whiteSpace = nama_id.matches("^\\s*$");
+		String username = "";
+		if (!whiteSpace) {
+			username = nama_id.toLowerCase();
+		} else {
+			String[] parts = nama_id.split("\\s+");
+			username = (parts[0] + parts[1]).toLowerCase();
+
+		}
 		String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		int n = alphabet.length();
-		
+
 		Random random = new Random();
-		
+
 		String passwordFinal = "";
 		char password;
-		for (int i = 0; i < 20; i++)
-		{
+		for (int i = 0; i < 20; i++) {
 			password = alphabet.charAt(random.nextInt(n));
 			passwordFinal = passwordFinal + Character.toString(password);
 		}
-		
+
 		UserAdmisiModel newUser = new UserAdmisiModel(null, username, passwordFinal, null, "ROLE_PEND");
-		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
+		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null,
+				null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		userDAO.addUser(newUser);
 		pendaftarDAO.addPendaftar(pendaftar);
@@ -244,7 +288,8 @@ public class PendaftarController {
 		// return "success-datadiri";
 		byte status = 0;
 		byte status_rekomen = 0;
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan, status_rekomen, null);
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan,
+				status_rekomen, null, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
 		model.addAttribute("pendaftar2", pendaftar2);
 		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
@@ -285,16 +330,17 @@ public class PendaftarController {
 			jenis_kelamin = "0";
 
 		byte jk = Byte.parseByte(jenis_kelamin);
-		
+
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
-		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
+		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null,
+				null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		pendaftarDAO.updateDataPendaftar(pendaftar);
 		pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		model.addAttribute("pendaftar2", pendaftar2);
 		return "success-update-data";
 	}
-	
+
 	@RequestMapping("/detail-siswa/{no_id}")
 	public String detailSiswa(Model model, @PathVariable(value = "no_id") String no_id) {
 		// ganti jadi selectPPKB nih selectPendaftar
@@ -325,44 +371,45 @@ public class PendaftarController {
 			return "detailSiswa-ipa";
 		else
 			return "detailSiswa-ips";
-		
+
 	}
-	
-//	@RequestMapping("/data-pendaftar/update/{no_id}")
-//	public String updateData(Model model, @PathVariable(value = "no_id") String no_id) {
-//		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
-//		List<JalurMasukModel> jalurUndangan = jalurMasukDAO.selectAllJalurUndangan();
-//		model.addAttribute("jalurUndangan", jalurUndangan);
-//		model.addAttribute("allLPT", allLPT);
-//		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
-//		if (pendaftar != null) {
-//			model.addAttribute("pendaftar", pendaftar);
-//			return "edit-siswa";
-//		} else {
-//			model.addAttribute("no_id", no_id);
-//			return "error-update";
-//		}
-//	}
-	
+
+	// @RequestMapping("/data-pendaftar/update/{no_id}")
+	// public String updateData(Model model, @PathVariable(value = "no_id")
+	// String no_id) {
+	// List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
+	// List<JalurMasukModel> jalurUndangan =
+	// jalurMasukDAO.selectAllJalurUndangan();
+	// model.addAttribute("jalurUndangan", jalurUndangan);
+	// model.addAttribute("allLPT", allLPT);
+	// PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
+	// if (pendaftar != null) {
+	// model.addAttribute("pendaftar", pendaftar);
+	// return "edit-siswa";
+	// } else {
+	// model.addAttribute("no_id", no_id);
+	// return "error-update";
+	// }
+	// }
+
 	@RequestMapping("/lihat-hasil")
-	public String lihatHasil(Model model,
-		@RequestParam(value = "no_daftar", required = false) int no_daftar,
-		@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
+	public String lihatHasil(Model model, @RequestParam(value = "no_daftar", required = false) int no_daftar,
+			@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
 		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
-		
+
 		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
 		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(pendaftar.getId_prodi());
 		String nama_prodi = prodi.getNama_prodi();
 		int id_fakultas = prodi.getId_fakultas();
 		FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
 		String nama_fakultas = fakultas.getFakultas();
-		
+
 		model.addAttribute("nama_prodi", nama_prodi);
 		model.addAttribute("nama_fakultas", nama_fakultas);
 		model.addAttribute("pendaftar", pendaftar);
 		model.addAttribute("murid", murid);
 		model.addAttribute("nama_jalur", nama_jalur);
 		return "hasil-seleksi";
-		
+
 	}
 }

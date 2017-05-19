@@ -2,6 +2,7 @@ package mosing.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,6 @@ public interface PenyeleksianMapper {
 	@Select("select * from penyeleksian")
 	List<PenyeleksianModel> selectAllPenyeleksian();
 	
+	@Delete("DELETE FROM PENYELEKSIAN WHERE no_daftar=#{no_daftar}")
+	void deletePenyeleksian(PenyeleksianModel penyeleksian);
 }

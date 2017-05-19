@@ -43,4 +43,10 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	{
 		return penyeleksianMapper.selectAllPenyeleksian();
 	}
+
+	@Override
+	public void deletePenyeleksian(PenyeleksianModel penyeleksian) {
+		// TODO Auto-generated method stub
+		penyeleksianMapper.deletePenyeleksian(penyeleksian);
+	}
 }
