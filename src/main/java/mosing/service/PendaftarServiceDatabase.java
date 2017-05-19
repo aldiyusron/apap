@@ -71,8 +71,8 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public void updateFoto(String foto, int id_user) {
-		pendaftarMapper.updateFoto(foto, id_user);
+	public void updateFoto(String foto, int no_daftar) {
+		pendaftarMapper.updateFoto(foto, no_daftar);
 	}
 
 	@Override
@@ -80,19 +80,36 @@ public class PendaftarServiceDatabase implements PendaftarService {
 		// TODO Auto-generated method stub
 		return pendaftarMapper.selectAllPendaftarPPKB();
 	}
-	
-	@Override	
-	public List<PendaftarModel> selectAllPendaftarNonRec(int id_fakultas) {
+
+	@Override
+	public List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi) {
 		// TODO Auto-generated method stub
-		return pendaftarMapper.selectAllPendaftarNonRec(id_fakultas);
+		return pendaftarMapper.selectAllPendaftarNonRec(id_prodi);
 	}
-	
+
 	@Override
 	public List<PendaftarModel> selectAllPendaftarRec(int id_fakultas) {
 		// TODO Auto-generated method stub
 		return pendaftarMapper.selectAllPendaftarRec(id_fakultas);
 	}
 
+	@Override
+	public PendaftarModel selectNama(int no_daftar) {
+		return pendaftarMapper.selectNama(no_daftar);
+	}
+
+	@Override
+	public void deletePendaftar(int no_daftar) {
+		// TODO Auto-generated method stub
+		pendaftarMapper.deletePendaftar(no_daftar);
+	}
+
+	@Override
+	public void updateDataDiriLengkap(PendaftarModel pendaftar) {
+		// TODO Auto-generated method stub
+		pendaftarMapper.updateDataDiriLengkap(pendaftar);
+	}
+	
 	@Override
 	public List<PendaftarModel> selectAllPendaftarSemua(int id_prodi, int id_jalur) {
 		// TODO Auto-generated method stub
@@ -103,10 +120,5 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	public PendaftarModel selectPendaftar3(int no_daftar) {
 		// TODO Auto-generated method stub
 		return pendaftarMapper.selectPendaftar3(no_daftar);
-	}
-	
-	@Override
-	public PendaftarModel selectNama(int no_daftar) {
-		return pendaftarMapper.selectNama(no_daftar);
 	}
 }

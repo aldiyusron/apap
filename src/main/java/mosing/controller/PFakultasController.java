@@ -4,27 +4,36 @@ package mosing.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
+import mosing.model.ListStrings;
 import mosing.model.NilaiModel;
 import mosing.model.NilaiUjianModel;
 import mosing.model.PendaftarModel;
+import mosing.model.PenyeleksianModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.service.JalurMasukService;
 import mosing.service.NilaiService;
 import mosing.service.PFakultasService;
 import mosing.service.PendaftarService;
+import mosing.service.PenyeleksianService;
 import mosing.service.ProdiService;
 
 @Controller
 public class PFakultasController {
+	@Autowired
+	PenyeleksianService penyeleksianDAO;
 
 	@Autowired
 	PFakultasService pfakultasDAO;
@@ -79,6 +88,7 @@ public class PFakultasController {
 			@PathVariable(value = "id_prodi") int id_prodi) {
 		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarNonRec(id_prodi);
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
 		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
 			for (int i = 0; i < pendaftar.size(); i++) {
 				int no_daftar = pendaftar.get(i).getNo_daftar();
@@ -141,8 +151,29 @@ public class PFakultasController {
 				model.addAttribute("nilai", nilai);
 			}
 		}
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("penyeleksian", penyeleksian);
+		model.addAttribute("statusSubmit", new ListStrings());
 		model.addAttribute("pendaftar", pendaftar);
 		return "recommending";
+	}
+	
+	@RequestMapping("/sukses-rekomendasi")
+	public String suksesRekomendasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
+			BindingResult bindingResultStatus, Model model) {
+		System.out.println("size:" + statusSubmit.getStrings().size());
+		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
+		System.out.println(statusSubmit.getStrings().get(0));
+		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
+			if (statusSubmit.getStrings().get(i) != null) {
+				String nomor = statusSubmit.getStrings().get(i);
+				int no_daftar = Integer.parseInt(nomor);
+				penyeleksianDAO.updateRekomen(no_daftar);
+			}
+		}
+		return "success-daftarpengawas"; //belum ganti bouz
 	}
 	
 	@RequestMapping("/view/fakultas/rec/{id_jalur}")

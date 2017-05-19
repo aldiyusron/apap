@@ -52,10 +52,10 @@ public interface JalurMasukMapper {
 			@Result(property = "nama_jenjang", column = "nama_jenjang"),
 			@Result(property = "nama_program", column = "nama_program"),
 			@Result(property = "jenis_jalur", column = "jenis_jalur"),
-			@Result(property = "persyaratan", column = "persyaratan") })
+			@Result(property = "persyaratan", column = "persyaratan")})
 	List<JalurMasukModel> selectAllJalurMasuk();
 
-	@Select("SELECT * FROM PRODI_TERSEDIA p WHERE p.id_jalur = #{id_jalur}")
+	@Select("SELECT * FROM PRODI_TERSEDIA p WHERE p.id_jalur = #{id_jalur} and flag_aktif=1")
 	List<ProdiTersediaModel> selectProdiJalurMasuk(@Param("id_jalur") int id_jalur);
 	
 	@Select("SELECT * FROM LOKASI WHERE id_jalur = #{id_jalur}")

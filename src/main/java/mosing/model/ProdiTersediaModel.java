@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProdiTersediaModel {
-
-	private int no_daftar;
 	private int id_prodi;
 	private String nama_prodi;
 	private int daya_tampung;

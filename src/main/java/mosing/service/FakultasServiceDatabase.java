@@ -25,7 +25,6 @@ public class FakultasServiceDatabase implements FakultasService {
 
 	@Override
 	public FakultasModel selectFakultasDanProdi(int id_fakultas) {
-		// TODO Auto-generated method stub
 		return fakultasMapper.selectFakultasDanProdi(id_fakultas);
 	}
 
@@ -37,7 +36,6 @@ public class FakultasServiceDatabase implements FakultasService {
 	
 	@Override
 	public FakultasModel selectFakultas(int id_fakultas) {
-		// TODO Auto-generated method stub
 		return fakultasMapper.selectFakultas(id_fakultas);
 	}
 	

@@ -6,11 +6,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import mosing.model.CalonMahasiswaModel;
 import mosing.model.DaftarPilihanModel;
-import mosing.model.PendaftarModel;
 
 @Mapper
 public interface CalonMahasiswaMapper {
