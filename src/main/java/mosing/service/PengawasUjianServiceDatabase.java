@@ -55,4 +55,9 @@ public class PengawasUjianServiceDatabase implements PengawasUjianService {
 	public void tolakPengawas(PengawasUjianModel pengawas) {
 		pengawasMapper.tolakPengawas(pengawas);
 	}
+
+	@Override
+	public PengawasUjianModel selectPengawasPindah(int id_user) {
+		return pengawasMapper.selectPengawasPindah(id_user);
+	}
 }

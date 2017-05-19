@@ -46,7 +46,7 @@ public interface PengawasUjianMapper {
 	})
 	List<PengawasUjianModel> selectPengawasUjianTerseleksi(@Param("id_lokasi") int id_lokasi);
 	
-	@Select("select * from pengawas_ujian where id_lokasi = #{id_lokasi} and flag_aktif = 1")
+	@Select("select * from pengawas_ujian where status=0 and id_lokasi = #{id_lokasi} and flag_aktif = 1")
 	@Results(value = { @Result(property = "id_user", column = "id_user"), 
 			@Result(property = "nama", column = "nama"),
 			@Result(property = "jabatan", column = "jabatan"),
@@ -65,4 +65,7 @@ public interface PengawasUjianMapper {
 
 	@Update("update pengawas_ujian set status = 0 where id_user=#{id_user}")
 	void tolakPengawas(PengawasUjianModel pengawas);
+	
+	@Select("select * from pengawas_ujian where id_user = #{id_user}")
+	PengawasUjianModel selectPengawasPindah(int id_user);
 }

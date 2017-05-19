@@ -22,6 +22,7 @@ import mosing.service.DetailUjianService;
 import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
+import mosing.service.PFakultasService;
 import mosing.service.ProdiTersediaService;
 
 @Controller
@@ -39,7 +40,7 @@ public class JalurMasukController {
 	LokasiService lokasiDAO;
 	
 	@Autowired
-	FakultasService fakultasDAO;
+	PFakultasService pfakultasDAO;
 
 	@RequestMapping("/jalur-masuk")
 	public String lihatDaftarJalurMasuk(Model model) {
@@ -57,17 +58,12 @@ public class JalurMasukController {
 			model.addAttribute("jalur_masuk", jalur_masuk);
 			List<LokasiModel> listLokasi = lokasiDAO.selectLokasiJalur(id_jalur);
 			model.addAttribute("listLokasi", listLokasi);
+	
+			List<FakultasModel> allFakultas = pfakultasDAO.selectAllFakultas();
+			model.addAttribute("allFakultas", allFakultas);
 			
-			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
-			int id_fakultas = 0;
-			for(int i = 0; i < allProdi.size(); i++){
-				id_fakultas = allProdi.get(i).getId_fakultas();
-				
-			}
-			FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
-			String nama_fakultas = fakultas.getFakultas();
-			model.addAttribute("nama_fakultas", nama_fakultas);
-			model.addAttribute("allProdi", allProdi);
+			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
+			model.addAttribute("listProdi", listProdi);
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);

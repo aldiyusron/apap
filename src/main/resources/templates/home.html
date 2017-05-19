@@ -161,6 +161,7 @@
 	</div>
 
 	<header class="wall">
+<<<<<<< HEAD
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading"
@@ -169,6 +170,18 @@
 					<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi
 						Jalur Masuk</a> <a href="#" class="page-scroll btn btn-xl">Seleksi
 						Pendaftar</a>
+=======
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
+                <div th:if="${user.role} eq 'ROLE_KPMB'">
+                	<a href="/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
+                	<a href="/seleksi-pengawas" class="page-scroll btn btn-xl">Seleksi Pengawas</a>
+                	<a href="/lokasi-ujian" class="page-scroll btn btn-xl">Lihat Lokasi Ujian</a>
+                </div>
+                <div th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">
+					<a th:href="'/verif-nilai/'+ ${#httpServletRequest.remoteUser}" class="page-scroll btn btn-xl">Verifikasi Nilai</a>
+>>>>>>> branch 'raveno' of https://github.com/propensi2017/a6.git
 				</div>
 				<!-- <div
 					th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">

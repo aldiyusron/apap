@@ -45,6 +45,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="/scripts/moment.min.js"></script>
+<script type="text/javascript"
+	src="/scripts/bootstrap-datetimepicker.*js"></script>
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css" />
+>>>>>>> branch 'raveno' of https://github.com/propensi2017/a6.git
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -184,7 +191,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama"
 								placeholder="Nama Jalur Masuk" th:value="${nama}"
-								class="form-control" type="text" required="required" />
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -197,7 +204,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_buka" name="tanggal_buka" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="required" />
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -210,7 +217,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="tanggal_tutup" name="tanggal_tutup" placeholder="DD/MM/YYYY"
-								class="form-control" type="text" required="required" />
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
 				</div>
@@ -221,7 +228,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-info-sign"></i></span> <select
-								class="custom-select" name="status" style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="status" style="height: 35px">
 								<option value="">Status jalur masuk</option>
 								<option text="Aktif" name="status" value="Aktif">Aktif</option>
 								<option text="Tidak Aktif" name="status" value="Tidak Aktif">Tidak
@@ -238,12 +246,13 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-tag"></i></span> <select
-								class="custom-select" name="jenis_jalur" style="height: 35px"
-								required="required">
+								class="form-control selectpicker" required="required"
+								name="jenis_jalur" style="height: 35px">
 								<option value="">Jenis jalur masuk</option>
-								<option name="jenis_jalur" value="Jalur Tulis">Jalur
-									Tulis</option>
-								<option name="jenis_jalur" value="Jalur Undangan">Jalur
+								<option text="Jalur Tulis" name="jenis_jalur"
+									required="required" value="Jalur Tulis">Jalur Tulis</option>
+								<option text="Jalur Undangan" name="jenis_jalur"
+									required="required" value="Jalur Undangan">Jalur
 									Undangan</option>
 							</select>
 						</div>
@@ -257,7 +266,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" name="nama_jenjang" style="height: 35px">
+								class="form-control selectpicker" required="required"
+								name="nama_jenjang" style="height: 35px">
 								<option value="">Jenjang Pendidikan</option>
 								<option text="S1" name="nama_jenjang" required="required"
 									value="S1">S1</option>
@@ -279,14 +289,18 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-education"></i></span> <select
-								class="custom-select" name="nama_program" style="height: 35px"
-								required="required">
+								class="form-control selectpicker" required="required"
+								name="nama_program" style="height: 35px">
 								<option value="">Program Pendidikan</option>
-								<option name="nama_program" value="Reguler">Reguler</option>
-								<option name="nama_program" value="Paralel">Paralel</option>
-								<option name="nama_program" value="Kelas Internasional">Kelas
+								<option text="Reguler" name="nama_program" required="required"
+									value="Reguler">Reguler</option>
+								<option text="Paralel" name="nama_program" required="required"
+									value="Paralel">Paralel</option>
+								<option text="Kelas Internasional" name="nama_program"
+									required="required" value="Kelas Internasional">Kelas
 									Internasional</option>
-								<option name="nama_program" value="Tidak ada">Tidak ada</option>
+								<option text="Tidak ada" name="nama_program" required="required"
+									value="Tidak ada">Tidak ada</option>
 							</select>
 						</div>
 					</div>
@@ -296,13 +310,18 @@
 					<label for="waktu_ujian" class="col-md-4 control-label">Waktu
 						Ujian </label>
 					<div class="col-md-4 selectContainer">
-						<div class='input-group'>
+						<div class='input-group date' id='datetimepicker'>
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								name="waktu_ujian" placeholder="MM/DD/YYYY HH:MM A"
-								class="form-control" type="text" required="required" />
+								class="form-control" type="text" required="true" />
 						</div>
 					</div>
+					<script type="text/javascript">
+            			$(document).ready(function () {
+              				$('#datetimepicker').datetimepicker();
+           			 });
+   					 </script>
 				</div>
 
 				<!-- Text input-->
@@ -315,7 +334,7 @@
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="persyaratan" placeholder="Persyaratan"
 								th:value="${persyaratan}" class="form-control" rows="5"
-								type="text" required="required"></textarea>
+								type="text" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -396,7 +415,7 @@
 	</div>
 
 	<!-- /.container -->
-
+	
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
@@ -461,6 +480,19 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.js}"></script>
+	<script th:src="@{/js/moment.js}"></script>
+	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+	<script th:src="@{/js/transition.js}"></script>
+	<script th:src="@{/js/collapse.js}"></script>
+	
+	<!-- Plugin JavaScript -->
+
 	<script
 		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
 	<script
@@ -470,112 +502,6 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#contact_form')
-									.bootstrapValidator(
-											{
-												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													nama : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan nama jalur masuk'
-															},
-															stringLength : {
-																min : '4',
-																max : '30',
-																message : 'Nama jalur masuk harus lebih dari 3 dan kurang dari 31 karakter'
-															}
-														}
-													},
-													nama_jenjang : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan jenjang pendidikan'
-															},
-															stringLength : {
-																min : '2',
-																max : '20',
-																message : 'Nama jenjang pendidikan harus lebih dari 1 dan kurang dari 21 karakter'
-															}
-														}
-													},
-													nama_program : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan program pendidikan'
-															},
-															stringLength : {
-																min : '2',
-																max : '20',
-																message : 'Nama program pendidikan harus lebih dari 1 dan kurang dari 21 karakter'
-															}
-														}
-													},
-													persyaratan : {
-														validators : {
-															notEmpty : {
-																message : 'Masukkan persyaratan jalur masuk'
-															},
-															stringLength : {
-																min : '10',
-																max : '200',
-																message : 'Persyaratan jalur masuk harus lebih dari 9 dan kurang dari 201 karakter'
-															}
-														}
-													},
-													status : {
-														validators : {
-															notEmpty : {
-																message : 'Pilih status jalur masuk'
-															}
-														}
-													},
-													jenis_jalur : {
-														validators : {
-															notEmpty : {
-																message : 'Pilih jenis jalur masuk'
-															}
-														}
-													},
-													tanggal_buka : {
-														validators : {
-															date : {
-																format : 'DD/MM/YYYY',
-																message : 'Masukkan tanggal buka jalur masuk'
-															}
-														}
-													},
-													tanggal_tutup : {
-														validators : {
-															date : {
-																format : 'DD/MM/YYYY',
-																message : 'Masukkan tanggal tutup jalur masuk'
-															}
-														}
-													},
-													waktu_ujian : {
-														validators : {
-															date : {
-																format : 'DD/MM/YYYY',
-																message : 'Masukkan waktu ujian jalur masuk'
-															}
-														}
-													}
-												}
-											})
-						});
-	</script>
-
-
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -584,10 +510,11 @@
 	<script type="text/javascript">
 		$('.select').selectpicker();
 	</script>
+
 	<script>
 		$(document).ready(
 				function() {
-					var date_input = $('input[name="tgl_lahir"]'); //our date input has the name "tgl_lahir"
+					var date_input = $('input[name="tanggal_buka"]'); //our date input has the name "tgl_buka"
 					var container = $('.bootstrap-iso form').length > 0 ? $(
 							'.bootstrap-iso form').parent() : "body";
 					date_input.datepicker({
@@ -596,7 +523,25 @@
 						todayHighlight : true,
 						autoclose : true,
 					})
-				})
+				});
+		$('.select').selectpicker();
+	</script>
+
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="tanggal_tutup"]'); //our date input has the name "tgl_buka"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				});
+		$('.select').selectpicker();
 	</script>
 </body>
+
 </html>

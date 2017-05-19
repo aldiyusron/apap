@@ -88,10 +88,30 @@ public class PengawasUjianController {
 	
 	@RequestMapping(value = "/seleksi-pengawas/sukses")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model, @RequestParam(value = "id_lokasi", required = false) int id_lokasi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
+		LokasiModel lokasi = lokasiDAO.selectLokasi(id_lokasi);
+		
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		int count = 0;
+		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
+			if (statusSubmit.getStrings().get(i) != null) {
+				count++;
+			}
+		}
+		
+		if(count > lokasi.getKuota_peng())
+		{
+			return "redirect:/seleksi-pengawas/view/" + id_lokasi;
+		}
+		else
+		{
+			int kuota = lokasi.getKuota_peng() - count;
+			lokasi.setKuota_peng(kuota);
+			lokasiDAO.updateLokasiUjian(lokasi);
+		}
+		
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
 				String nomor = statusSubmit.getStrings().get(i);
@@ -99,6 +119,31 @@ public class PengawasUjianController {
 				pengawasDAO.terimaPengawas(id_user);
 			}
 		}
-		return "success-seleksipengawas";
+		return "success-daftarpengawas";
+	}
+	
+	@RequestMapping("/seleksi-pengawas/pindah-jalur/{id_user}")
+	public String pindahLokasiPengawas(Model model, @PathVariable(value = "id_user") int id_user) {
+		PengawasUjianModel pengawas = pengawasDAO.selectPengawasPindah(id_user);
+		List<LokasiModel> listLokasi = lokasiDAO.selectAllLokasi();
+		model.addAttribute("listLokasi", listLokasi);
+		model.addAttribute("pengawas", pengawas);
+		return "form-pindahpengawas";
+	}
+
+	@RequestMapping("/seleksi-pengawas/pindah-jalur/submit")
+	public String pindahLokasi(@RequestParam(value = "id_user", required = false) int id_user,
+			@RequestParam(value = "jabatan", required = false) String jabatan,
+			@RequestParam(value = "nama", required = false) String nama,
+			@RequestParam(value = "no_hp", required = false) String no_hp,
+			@RequestParam(value = "pindah_bool", required = false) int pindah_bool,
+			@RequestParam(value = "lokasi", required = false) int lokasi) {
+		
+		System.out.println(pindah_bool);
+		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
+		PengawasUjianModel pengawas = new PengawasUjianModel(id_user, 0, jabatan, nama, no_hp,
+				lokasimodel.getId_lokasi(), pindah_bool, 1);
+		pengawasDAO.updatePengawas(pengawas);
+		return "success-pindahpengawas";
 	}
 }

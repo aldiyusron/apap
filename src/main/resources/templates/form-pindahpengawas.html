@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Daftar Pengawas Ujian</title>
+<title>Penerimaan UI | Pindah Pengawas Ujian</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -149,8 +149,8 @@
 	</div>
 
 	<div class="container">
-		<form class="well form-horizontal" action="/pengawas/submit"
-			method="post" id="contact_form">
+		<form class="well form-horizontal" action="/seleksi-pengawas/pindah-jalur/submit"
+			method="post" id="contact_form" th:object="${pengawas}">
 			<fieldset>
 
 				<legend>
@@ -161,8 +161,8 @@
 					</center>
 				</legend>
 
-				<input type="hidden" name="username" readonly="readonly"
-					th:value="${username}" />
+				<input type="hidden" name="id_user" readonly="readonly"
+					th:value="${pengawas.id_user}" />
 
 				<div class="form-group">
 					<label for="nama" class="col-md-4 control-label">Nama
@@ -172,7 +172,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama"
 								placeholder="Nama Lengkap" class="form-control" type="text"
-								required="true" />
+								required="true" th:value="${pengawas.nama}" readonly="readonly" />
 						</div>
 					</div>
 				</div>
@@ -184,23 +184,61 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="no_hp"
 								placeholder="Nomor Handphone" class="form-control" type="text"
-								required="true" />
+								required="true" th:value="${pengawas.no_hp}" readonly="readonly" />
 						</div>
 					</div>
 				</div>
 
+				<!-- <div class="form-group">
+					<label for="jabatan" class="col-md-4 control-label">Jabatan</label>
+					<div class="col-md-4 selectContainer" th:switch="${pengawas.jabatan}">
+						<div class="input-group" th:case="Mahasiswa">
+							<div class="radio">
+								<label><input type="radio" name="jabatan"
+									required="required" th:value="Mahasiswa" checked="checked" disabled="disabled" />Mahasiswa</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jabatan"
+									required="required" th:value="Pegawai" disabled="disabled" />Pegawai UI</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="Pegawai">
+							<div class="radio">
+								<label><input type="radio" name="jabatan"
+									required="required" th:value="Mahasiswa" disabled="disabled" />Mahasiswa</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="jabatan"
+									required="required" th:value="Pegawai" checked="checked" disabled="disabled" />Pegawai UI</label>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				
 				<div class="form-group">
 					<label for="jabatan" class="col-md-4 control-label">Jabatan</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<div class="radio">
-								<label><input type="radio" name="jabatan"
-									required="required" th:value="Mahasiswa" />Mahasiswa</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="jabatan"
-									required="required" th:value="Pegawai UI" />Pegawai UI</label>
-							</div>
+					<div class="col-md-4 selectContainer"
+						th:switch="${pengawas.jabatan}">
+						<div class="input-group" th:case="Mahasiswa">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								name="jabatan" required="required" class="custom-select"
+								style="height: 35px">
+								<option value="">Pilih jabatan...</option>
+								<option value="Mahasiswa" selected="selected">Mahasiswa</option>
+								<option value="Pegawai" disabled="disabled">Pegawai</option>
+							</select>
+						</div>
+						<div class="input-group" th:case="Pegawai"
+							style="margin-left: 15px">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								name="jabatan" required="required" class="custom-select"
+								style="height: 35px">
+								<option value="">Pilih jabatan...</option>
+								<option value="Mahasiswa" disabled="disabled">Mahasiswa</option>
+								<option value="Pegawai" selected="selected">Pegawai</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -224,18 +262,56 @@
 					</div>
 				</div>
 
+				<!-- <div class="form-group">
+					<label for="pindah_bool" class="col-md-4 control-label">Mau Dipindahkan Lokasi</label>
+					<div class="col-md-4 selectContainer" th:switch="${pengawas.pindah_bool}">
+						<div class="input-group" th:case="1">
+							<div class="radio">
+								<label><input type="radio" name="pindah_bool"
+									required="required" th:value="1" checked="checked" disabled="disabled" />Ya</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="pindah_bool"
+									required="required" th:value="0" disabled="disabled" />Tidak</label>
+							</div>
+						</div>
+						<div class="input-group" th:case="0">
+							<div class="radio">
+								<label><input type="radio" name="pindah_bool"
+									required="required" th:value="1" disabled="disabled" />Ya</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" name="pindah_bool"
+									required="required" th:value="0" checked="checked" disabled="disabled" />Tidak</label>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				
 				<div class="form-group">
-					<label for="pindahlokasi" class="col-md-4 control-label">Mau Dipindahkan Lokasi</label>
-					<div class="col-md-4 selectContainer">
-						<div class="input-group">
-							<div class="radio">
-								<label><input type="radio" name="pindah_bool"
-									required="required" th:value="1" />Ya</label>
-							</div>
-							<div class="radio">
-								<label><input type="radio" name="pindah_bool"
-									required="required" th:value="0" />Tidak</label>
-							</div>
+					<label for="pindah_bool" class="col-md-4 control-label">Bersedia pindah?</label>
+					<div class="col-md-4 selectContainer"
+						th:switch="${pengawas.pindah_bool}">
+						<div class="input-group" th:case="1">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								name="pindah_bool" required="required" class="custom-select"
+								style="height: 35px">
+								<option value="">Bersedia?</option>
+								<option value="1" selected="selected">Iya</option>
+								<option value="0" disabled="disabled">Tidak</option>
+							</select>
+						</div>
+						<div class="input-group" th:case="Pegawai"
+							style="margin-left: 15px">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								name="pindah_bool" required="required" class="custom-select"
+								style="height: 35px">
+								<option value="">Bersedia?</option>
+								<option value="1" disabled="disabled">Iya</option>
+								<option value="0" selected="selected">Tidak</option>
+							</select>
 						</div>
 					</div>
 				</div>
