@@ -178,13 +178,14 @@ public class NilaiController {
 		int kkm_ekonomi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_ekonomi();
 		int kkm_bindo = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bindo();
 		int kkm_bing = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_bing();
-
+		int kkm_sosiologi = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_sosiologi();
 		model.addAttribute("kkm_mtk", kkm_mtk);
 		model.addAttribute("kkm_sejarah", kkm_sejarah);
 		model.addAttribute("kkm_geografi", kkm_geografi);
 		model.addAttribute("kkm_ekonomi", kkm_ekonomi);
 		model.addAttribute("kkm_bindo", kkm_bindo);
 		model.addAttribute("kkm_bing", kkm_bing);
+		model.addAttribute("kkm_sosiologi", kkm_sosiologi);
 		model.addAttribute("nilai", nilai);
 		model.addAttribute("no_daftar", no_daftar);
 		return "edit-nilai-ips";

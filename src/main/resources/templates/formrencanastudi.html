@@ -116,7 +116,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -167,8 +167,19 @@
 				</legend>
 				<br /> <input type="hidden" name="username" readonly="readonly"
 					th:value="${username}" />
-				<p style="align: center">Isilah pilihan program studi
-					berdasarkan prioritas anda</p>
+				<div class="atas">
+					<h5 style="margin-left: 30%; margin-top:-2.5%; margin-bottom: 3%	">Isilah pilihan program studi
+						berdasarkan prioritas anda</h5>
+					<div class="keterangan" style="margin-left:23%; margin-bottom:3%">
+						<h5>Keterangan:</h5>
+						<p>Urutan pilihan mempengaruhi prioritas</p>
+						<p>Pilihan 1 adalah prioritas utama</p>
+						<p style="font-size:12px; margin-left: 30px">* Jika hanya ingin memilih 1 program studi, harap memilih
+							program studi yang sama dengan pilihan 1</p>
+						<p style="font-size:12px; margin-left: 30px">** Setiap tambahan diatas 2 pilihan studi, akan dikenakan
+							biaya pendaftaran tambahan Rp 50.000</p>
+					</div>
+				</div>
 				<br /> <input type="hidden" name="no_daftar"
 					th:value="${no_daftar}" /> <input type="hidden" name="id_jalur"
 					th:value="${id_jalur}" />
@@ -302,15 +313,7 @@
 					</div>
 				</div>
 				<br /> <br />
-				<div class="keterangan">
-					<h5>Keterangan:</h5>
-					<p>Urutan pilihan mempengaruhi prioritas</p>
-					<p>Pilihan 1 adalah prioritas utama</p>
-					<p>* Jika hanya ingin memilih 1 program studi, harap memilih
-						program studi yang sama dengan pilihan 1</p>
-					<p>** Setiap tambahan diatas 2 pilihan studi, akan dikenakan
-						biaya pendaftaran tambahan Rp 50.000</p>
-				</div>
+
 
 			</fieldset>
 		</form>
@@ -390,7 +393,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$('#contact_form').bootstrapValidator({
 				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -483,7 +486,7 @@
 
 			});
 		});
-	</script>
+	</script> -->
 
 
 	<!-- Include Date Range Picker -->

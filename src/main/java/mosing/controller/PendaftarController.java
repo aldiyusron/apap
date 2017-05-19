@@ -98,13 +98,13 @@ public class PendaftarController {
 
 	@Autowired
 	BerkasService berkasDAO;
-	
+
 	@Autowired
 	DetailUjianService detailDAO;
-	
+
 	@Autowired
 	LokasiService lokasiDAO;
-	
+
 	@Autowired
 	RiwayatPendaftaranService riwayatDAO;
 
@@ -167,7 +167,7 @@ public class PendaftarController {
 		pendaftar.setNama_negara(nama_negara);
 		pendaftar.setTgl_lahir(tanggal_lahir);
 		pendaftarDAO.updateDataDiriLengkap(pendaftar);
-		
+
 		// PendaftarModel pendaftar = pendaftarDAO.selectPPKB(no_id);
 		int no_daftar = pendaftar.getNo_daftar();
 		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
@@ -194,7 +194,7 @@ public class PendaftarController {
 		if (pendaftar.getJurusan().equalsIgnoreCase("IPA"))
 			return "detailNilai-ipa";
 		else
-			return "detailSiswa-ips";
+			return "detailNilai-ips";
 	}
 
 	@RequestMapping("/pendaftar/uploadFoto/{username}/submit")
@@ -290,49 +290,38 @@ public class PendaftarController {
 				pendaftarDAO.addDaftarPilihan(daftarPilihan);
 			}
 		}
-		String no_ujian ="";
-		if(no_daftar < 10)
-		{
+		String no_ujian = "";
+		if (no_daftar < 10) {
 			no_ujian = "00000" + no_daftar;
-		}
-		else if(no_daftar < 100)
-		{
+		} else if (no_daftar < 100) {
 			no_ujian = "0000" + no_daftar;
-		}
-		else if(no_daftar < 1000)
-		{
+		} else if (no_daftar < 1000) {
 			no_ujian = "000" + no_daftar;
-		}
-		else if(no_daftar < 10000)
-		{
+		} else if (no_daftar < 10000) {
 			no_ujian = "00" + no_daftar;
-		}
-		else if(no_daftar < 100000)
-		{
+		} else if (no_daftar < 100000) {
 			no_ujian = "0" + no_daftar;
-		}
-		else
-		{
+		} else {
 			no_ujian = "" + no_daftar;
 		}
-		
+
 		int id_lokasi = 0;
-		for(int i = 0; i < jalurmasuk.getListLokasi().size(); i++)
-		{
+		for (int i = 0; i < jalurmasuk.getListLokasi().size(); i++) {
 			int kuota_pend = jalurmasuk.getListLokasi().get(i).getKuota_pendaftar();
-			if(kuota_pend > 0)
-			{
+			if (kuota_pend > 0) {
 				id_lokasi = jalurmasuk.getListLokasi().get(i).getId_lokasi();
-				kuota_pend = kuota_pend-1;
+				kuota_pend = kuota_pend - 1;
 				jalurmasuk.getListLokasi().get(i).setKuota_pendaftar(kuota_pend);
 				lokasiDAO.updateLokasiUjian(jalurmasuk.getListLokasi().get(i));
 			}
 		}
-		DetailUjianModel detail = new DetailUjianModel(no_daftar, no_ujian, id_jalur, id_lokasi, jalurmasuk.getWaktu_ujian());
+		DetailUjianModel detail = new DetailUjianModel(no_daftar, no_ujian, id_jalur, id_lokasi,
+				jalurmasuk.getWaktu_ujian());
 		detailDAO.addDetail(detail);
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		String tahun = String.valueOf(year);
-		RiwayatPendaftaranModel riwayat = new RiwayatPendaftaranModel(no_daftar, tahun, id_jalur, jalurmasuk.getNama_jenjang(), jalurmasuk.getNama_program());
+		RiwayatPendaftaranModel riwayat = new RiwayatPendaftaranModel(no_daftar, tahun, id_jalur,
+				jalurmasuk.getNama_jenjang(), jalurmasuk.getNama_program());
 		riwayatDAO.addRiwayat(riwayat);
 		model.addAttribute("username", username);
 		return "success-rencanastudi";
@@ -357,7 +346,7 @@ public class PendaftarController {
 
 	@RequestMapping("/data-pendaftar/submit")
 	public String dataSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
-			@RequestParam(value = "jalur_undangan", required = false) int jalur_undangan,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
 			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
@@ -371,7 +360,7 @@ public class PendaftarController {
 			jenis_kelamin = "0";
 
 		byte jk = Byte.parseByte(jenis_kelamin);
-
+		JalurMasukModel jalurPPKB = jalurMasukDAO.selectJalurMasuk(4);
 		List<UserAdmisiModel> allUser = userDAO.selectAllUser();
 		String id = allUser.get(allUser.size() - 1).getId_user();
 		int latestID = Integer.parseInt(id);
@@ -400,7 +389,6 @@ public class PendaftarController {
 
 		UserAdmisiModel newUser = new UserAdmisiModel(null, username, passwordFinal, null, "ROLE_PEND");
 		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null,
-
 				null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		userDAO.addUser(newUser);
@@ -409,9 +397,17 @@ public class PendaftarController {
 		// return "success-datadiri";
 		byte status = 0;
 		byte status_rekomen = 0;
-		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, jalur_undangan,
-				status_rekomen, null, null);
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, 4, status_rekomen,
+				null, null);
 		penyeleksianDAO.addPenyeleksian(penyeleksian);
+		DaftarPilihanModel pilihan = new DaftarPilihanModel(pendaftar2.getNo_daftar(), jalurPPKB.getNama_jenjang(),
+				jalurPPKB.getNama_program(), id_prodi, 1);
+		pendaftarDAO.addDaftarPilihan(pilihan);
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		String tahun = String.valueOf(year);
+		RiwayatPendaftaranModel riwayat = new RiwayatPendaftaranModel(pendaftar2.getNo_daftar(), tahun, 4,
+				jalurPPKB.getNama_jenjang(), jalurPPKB.getNama_program());
+		riwayatDAO.addRiwayat(riwayat);
 		model.addAttribute("pendaftar2", pendaftar2);
 		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
 			return "form-nilai-ipa";
@@ -423,8 +419,11 @@ public class PendaftarController {
 	public String updateData(Model model, @PathVariable(value = "no_id") String no_id) {
 		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
 		List<JalurMasukModel> jalurUndangan = jalurMasukDAO.selectAllJalurUndangan();
+		JalurMasukModel jalurPPKB = jalurMasukDAO.selectJalurMasuk(4);
+		List<ProdiTersediaModel> prodi = jalurPPKB.getListProdi();
 		model.addAttribute("jalurUndangan", jalurUndangan);
 		model.addAttribute("allLPT", allLPT);
+		model.addAttribute("prodi", prodi);
 		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
 		if (pendaftar != null) {
 			model.addAttribute("pendaftar", pendaftar);
@@ -437,7 +436,7 @@ public class PendaftarController {
 
 	@RequestMapping(value = "/data-pendaftar/update/submit", method = RequestMethod.POST)
 	public String dataUpdateSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
-			@RequestParam(value = "jalur_undangan", required = false) int jalur_undangan,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
 			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
 			@RequestParam(value = "jenis_id", required = false) String jenis_id,
@@ -518,26 +517,25 @@ public class PendaftarController {
 		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(no_daftar);
 		PendaftarModel pendaftar = pendaftarDAO.selectNama(no_daftar);
 
-		if (pendaftar != null){
-		if (penyeleksian.getStatus() == 1 & penyeleksian.getId_jalur() == jalur.getId_jalur()) {
-			CalonMahasiswaModel calon = calonMahasiswaDAO.selectCalon(no_daftar);
-			ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(calon.getId_prodi());
-			String nama_prodi = prodi.getNama_prodi();
-			int id_fakultas = prodi.getId_fakultas();
-			FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
-			String nama_fakultas = fakultas.getFakultas();
+		if (pendaftar != null) {
+			if (penyeleksian.getStatus() == 1 & penyeleksian.getId_jalur() == jalur.getId_jalur()) {
+				CalonMahasiswaModel calon = calonMahasiswaDAO.selectCalon(no_daftar);
+				ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(calon.getId_prodi());
+				String nama_prodi = prodi.getNama_prodi();
+				int id_fakultas = prodi.getId_fakultas();
+				FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
+				String nama_fakultas = fakultas.getFakultas();
 
-			model.addAttribute("calon", calon);
-			model.addAttribute("nama_prodi", nama_prodi);
-			model.addAttribute("nama_fakultas", nama_fakultas);
-		}	
+				model.addAttribute("calon", calon);
+				model.addAttribute("nama_prodi", nama_prodi);
+				model.addAttribute("nama_fakultas", nama_fakultas);
+			}
 
-		model.addAttribute("jalur", jalur);
-		model.addAttribute("penyeleksian", penyeleksian);
-		model.addAttribute("pendaftar", pendaftar);
-		return "hasil-seleksi";
-		}
-		else {
+			model.addAttribute("jalur", jalur);
+			model.addAttribute("penyeleksian", penyeleksian);
+			model.addAttribute("pendaftar", pendaftar);
+			return "hasil-seleksi";
+		} else {
 			return "hasil-seleksi-not-found";
 		}
 	}

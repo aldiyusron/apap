@@ -259,18 +259,17 @@ file:// [if lt IE 9]> -->
 				</div>
 
 				<div class="form-group">
-					<label for="jurusan" class="col-md-4 control-label">Jalur
-						Masuk</label>
+					<label for="jurusan" class="col-md-4 control-label">Program Studi</label>
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-list"></i></span> <select
-								required="required" name="jalur_undangan"
+								required="required" name="id_prodi"
 								class="form-control selectpicker">
-								<option value="">Pilih Jalur</option>
-								<div th:each="jalurUndangan,iterationStatus: ${jalurUndangan}">
-									<option th:value="${jalurUndangan.id_jalur}"
-										th:text="${jalurUndangan.nama}"></option>
+								<option value="">Pilih Prodi</option>
+								<div th:each="prodi,iterationStatus: ${prodi}">
+									<option th:value="${prodi.id_prodi}"
+										th:text="${prodi.nama_prodi}"></option>
 								</div>
 							</select>
 						</div>
