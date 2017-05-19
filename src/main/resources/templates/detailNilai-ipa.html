@@ -172,7 +172,8 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" id="contact_form" th:action="@{'/pendaftar/uploadRapor/' + ${#httpServletRequest.remoteUser} }">
+		<form class="well form-horizontal" id="contact_form"
+			th:action="@{'/pendaftar/uploadRapor/' + ${#httpServletRequest.remoteUser} }">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -470,6 +471,8 @@
 									type="submit" class="btn btn-warning">Verifikasi</button>
 							</div>
 						</div>
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>

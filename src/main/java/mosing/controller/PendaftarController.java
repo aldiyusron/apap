@@ -200,7 +200,7 @@ public class PendaftarController {
 		model.addAttribute("kkm_bindo", kkm_bindo);
 		model.addAttribute("kkm_bing", kkm_bing);
 		if (pendaftar.getJurusan().equalsIgnoreCase("IPA"))
-			return "detailSiswa-ipa";
+			return "detailNilai-ipa";
 		else
 			return "detailSiswa-ips";
 	}
@@ -336,9 +336,9 @@ public class PendaftarController {
 		int latestID = Integer.parseInt(id);
 		int newID = latestID + 1;
 
-		boolean whiteSpace = nama_id.matches("^\\s*$");
+		boolean whiteSpace = nama_id.contains(" ");
 		String username = "";
-		if (!whiteSpace) {
+		if (whiteSpace == false) {
 			username = nama_id.toLowerCase();
 		} else {
 			String[] parts = nama_id.split("\\s+");

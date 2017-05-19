@@ -50,15 +50,28 @@ public class PageController {
 				String username = user.getUsername();
 				PendaftarModel pendaftar = new PendaftarModel();
 				PenyeleksianModel penyeleksian = new PenyeleksianModel();
-				if (pendaftarDAO.selectPendaftar2(username) != null) {
-					pendaftar = pendaftarDAO.selectPendaftar2(username);
-					if (penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar()) != null) {
-						penyeleksian = penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
-						pendaftarDAO.deletePendaftar(pendaftar.getNo_daftar());
-						penyeleksianDAO.deletePenyeleksian(penyeleksian);
-						return "redirect:/";
+				if (pendaftarDAO.selectPendaftar2(username) == null) {
+					if (user.getEmail() != null) {
+						List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
+						List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
+						List<KotaModel> allKota = kotaDAO.selectKotaIndo();
+						model.addAttribute("username", username);
+						model.addAttribute("jalurMasuk", jalurMasuk);
+						model.addAttribute("allProvinsi", allProvinsi);
+						model.addAttribute("allKota", allKota);
+						return "form-registrasi2";
+						// pendaftar = pendaftarDAO.selectPendaftar2(username);
+						// if
+						// (penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar())
+						// != null) {
+						// penyeleksian =
+						// penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
+						// pendaftarDAO.deletePendaftar(pendaftar.getNo_daftar());
+						// penyeleksianDAO.deletePenyeleksian(penyeleksian);
+						// return "redirect:/";
 					}
-				} else if (user.getEmail() == null) {
+				}
+				if (user.getEmail() == null) {
 					List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
 					List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
 					List<KotaModel> allKota = kotaDAO.selectKotaIndo();
@@ -67,15 +80,6 @@ public class PageController {
 					model.addAttribute("allProvinsi", allProvinsi);
 					model.addAttribute("allKota", allKota);
 					return "form-lengkapiData";
-				} else if (user.getEmail() != null) {
-					List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurTulis();
-					List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
-					List<KotaModel> allKota = kotaDAO.selectKotaIndo();
-					model.addAttribute("username", username);
-					model.addAttribute("jalurMasuk", jalurMasuk);
-					model.addAttribute("allProvinsi", allProvinsi);
-					model.addAttribute("allKota", allKota);
-					return "form-registrasi2";
 				} else {
 					return "home";
 				}
