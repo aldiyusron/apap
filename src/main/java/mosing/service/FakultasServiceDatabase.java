@@ -34,5 +34,5 @@ public class FakultasServiceDatabase implements FakultasService {
 		// TODO Auto-generated method stub
 		return fakultasMapper.selectProdi(id_fakultas);
 	}
-
+	
 }

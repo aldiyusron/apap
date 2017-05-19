@@ -35,7 +35,4 @@ public interface FakultasMapper {
 			@Result(property="nama_prodi", column="nama_prodi")
 	})
 	List<ProdiTersediaModel> selectProdi(int id_fakultas);
-	
-
-	
 }

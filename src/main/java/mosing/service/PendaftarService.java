@@ -23,4 +23,5 @@ public interface PendaftarService {
 	PendaftarModel selectPendaftarLulus(int no_daftar);
 	List<PendaftarModel> selectAllPendaftarSemua(int id_prodi, int id_jalur);
 	PendaftarModel selectPendaftar3(int no_daftar);
+	PendaftarModel selectNama(int no_daftar);
 }

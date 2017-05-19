@@ -15,13 +15,11 @@ import mosing.model.PendaftarModel;
 @Mapper
 public interface CalonMahasiswaMapper {
 
-//	@Select("select * from calon_mahasiswa join pendaftar on"
-//			+ " calon_mahasiswa.no_daftar = pendaftar.no_daftar"
-//			+ " where calon_mahasiswa.no_daftar=#{no_daftar}")
-//	CalonMahasiswaModel selectCalon2(@Param)
-	
-	@Select("select * from calon_mahasiswa where no_daftar=#{no_daftar}")
+	@Select("select * from calon_mahasiswa join pendaftar on"
+			+ " calon_mahasiswa.no_daftar = pendaftar.no_daftar"
+			+ " where calon_mahasiswa.no_daftar=#{no_daftar}")
 	CalonMahasiswaModel selectCalon(@Param("no_daftar") int no_daftar);
+	
 	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
 			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan})")
 	void addDaftarPilihan(DaftarPilihanModel daftar);

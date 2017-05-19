@@ -107,11 +107,11 @@
 							</div>
 						</form>
 					</li>
-					
+
 					<ul class="nav navbar-nav">
 						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px"> <span
-								class="glyphicon glyphicon-user"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
@@ -153,11 +153,11 @@
 	</div>
 	<div class="container">
 		<!-- <div class="row" style="margin-bottom: 2.5%"> -->
-				<form class="well form-horizontal"
-					action="/pendaftar/rencanastudi/submit" method="post"
-					id="contact_form">
-					<fieldset>
-					<!-- Form Name -->
+		<form class="well form-horizontal"
+			action="/pendaftar/rencanastudi/submit" method="post"
+			id="contact_form">
+			<fieldset>
+				<!-- Form Name -->
 				<legend>
 					<center>
 						<h2>
@@ -165,156 +165,156 @@
 						</h2>
 					</center>
 				</legend>
-				<br />
+				<br /> <input type="hidden" name="username" readonly="readonly"
+					th:value="${username}" />
+				<p style="align: center">Isilah pilihan rencana studi
+					berdasarkan prioritas anda</p>
+				<br /> <input type="hidden" name="no_daftar"
+					th:value="${no_daftar}" /> <input type="hidden" name="id_jalur"
+					th:value="${id_jalur}" />
+				<div class="form-group">
+					<label for="pilihan1" class="col-md-4 control-label">Pilihan
+						1<label style="color: red">*</label>
+					</label>
+					<div class="col-md-4 selectContainer">
 
-					<input type="hidden" name="username" readonly="readonly"
-						th:value="${username}" />
-					<p style="align: center">Isilah pilihan rencana studi berdasarkan prioritas anda</p>
-					<br />
-					<input type="hidden" name="no_daftar" th:value="${no_daftar}" /> <input
-						type="hidden" name="id_jalur" th:value="${id_jalur}" />
-					<div class="form-group">
-						<label for="pilihan1" class="col-md-4 control-label">Pilihan
-							1<label style="color: red">*</label></label>
-						<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan1"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 1</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="pilihan2" class="col-md-4 control-label">Pilihan
+						2<label style="color: red">*</label>
+					</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan2"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 2</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
+						</div>
+					</div>
+				</div>
 
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan1"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 1</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
+				<div class="form-group">
+					<label for="pilihan3" class="col-md-4 control-label">Pilihan
+						3<label style="color: red">**</label>
+					</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan3"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 3</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="pilihan2" class="col-md-4 control-label">Pilihan
-							2<label style="color: red">*</label></label>
-						<div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan2"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 2</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
+				</div>
+				<div class="form-group">
+					<label for="pilihan4" class="col-md-4 control-label">Pilihan
+						4<label style="color: red">**</label>
+					</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan4"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 4</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
-					
-					<div class="form-group">
-						<label for="pilihan3" class="col-md-4 control-label">Pilihan
-							3<label style="color: red">**</label></label>
-						<div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan3"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 3</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
+				</div>
+				<div class="form-group">
+					<label for="pilihan5" class="col-md-4 control-label">Pilihan
+						5<label style="color: red">**</label>
+					</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan5"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 5</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="pilihan4" class="col-md-4 control-label">Pilihan
-							4<label style="color: red">**</label></label>
-						<div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan4"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 4</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
+				</div>
+				<div class="form-group">
+					<label for="pilihan6" class="col-md-4 control-label">Pilihan
+						6<label style="color: red">**</label>
+					</label>
+					<div class="col-md-4 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list"></i></span> <select
+								required="required" name="pilihan6"
+								class="form-control selectpicker">
+								<option value="0">Pilih jurusan studi 6</option>
+								<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
+									<option th:value="${prodiTersedia.id_prodi}"
+										th:text="${prodiTersedia.nama_prodi}"></option>
+								</div>
+							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="pilihan5" class="col-md-4 control-label">Pilihan
-							5<label style="color: red">**</label></label>
-						<div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan5"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 5</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="pilihan6" class="col-md-4 control-label">Pilihan
-							6<label style="color: red">**</label></label>
-						<div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									required="required" name="pilihan6"
-									class="form-control selectpicker">
-									<option value="0">Pilih jurusan studi 6</option>
-									<div th:each="prodiTersedia,iterationStatus: ${prodiTersedia}">
-										<option th:value="${prodiTersedia.id_prodi}"
-											th:text="${prodiTersedia.nama_prodi}"></option>
-									</div>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br />
-					
-					
-					<input type="hidden" th:name="${_csrf.parameterName}"
-						th:value="${_csrf.token}" />
+				</div>
+				<br /> <input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
 
-					<!-- Button -->
-					<div class="form-group" style="position: center">
-						<label class="col-md-4 control-label"></label>
-						<div class="col-md-4">
-							<input type="hidden" th:name="${_csrf.parameterName}"
-								th:value="${_csrf.token}" /> <a href="/"
-								class="btn btn-default">Batal</a>
-							<button style="width: 30%; margin-left: 10px; margin-top: 1px" value="save" name="action"
-								type="submit" class="btn btn-danger1">Simpan</button>
-						</div>
+				<!-- Button -->
+				<div class="form-group" style="position: center">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
+						<button style="width: 30%; margin-left: 10px; margin-top: 1px"
+							value="save" name="action" type="submit" class="btn btn-danger1">Simpan</button>
 					</div>
-					<br/>
-					<br/>
-					<div class="keterangan">
+				</div>
+				<br /> <br />
+				<div class="keterangan">
 					<h5>Keterangan:</h5>
 					<p>Urutan pilihan mempengaruhi prioritas</p>
 					<p>Pilihan 1 adalah prioritas utama</p>
 					<p>* Jika hanya ingin memilih 1 program studi, harap memilih
 						program studi yang sama dengan pilihan 1</p>
-					<p>** Setiap tambahan diatas 2 pilihan studi, akan dikenakan biaya
-						pendaftaran tambahan Rp 50.000</p>
-					</div>
-					
-					</fieldset>
-				</form>
-			
+					<p>** Setiap tambahan diatas 2 pilihan studi, akan dikenakan
+						biaya pendaftaran tambahan Rp 50.000</p>
+				</div>
+
+			</fieldset>
+		</form>
+
 		<!-- </div> -->
 	</div>
 	<div class="container bg-light-gray">
@@ -381,22 +381,110 @@
 			</div>
 		</div>
 	</footer>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+	<script
+		th:src="@{http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js}"></script>
 
-	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-
-	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<!-- Contact Form JavaScript -->
-	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-
-	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#contact_form').bootstrapValidator({
+				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					nama_lokasi : {
+						validators : {
+							stringLength : {
+								min : 3,
+								max : 50,
+							},
+							notEmpty : {
+								message : 'Masukkan nama lokasi'
+							}
+						}
+					},
+					alamat : {
+						validators : {
+							stringLength : {
+								min : 5,
+								max : 100,
+							},
+							notEmpty : {
+								message : 'Masukkan alamat lokasi'
+							}
+						}
+					},
+
+					no_telp : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan nomor telepon'
+							},
+							phone : {
+								country : 'INA',
+								message : 'Masukkan dengan awalan +62'
+							}
+						}
+					},
+					nama_provinsi : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih provinsi'
+							}
+						}
+					},
+					nama_kota : {
+						validators : {
+							notEmpty : {
+								message : 'Pilih kota'
+							}
+						}
+					},
+					kuota_peng : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pengawas'
+							}
+						}
+					},
+					kuota_pendaftar : {
+						validators : {
+							notEmpty : {
+								message : 'Masukkan jumlah kuota pendaftar'
+							}
+						}
+					},
+
+				}
+			})
+
+			.on('success.form.bv', function(e) {
+				$('#success_message').slideDown({
+					opacity : "show"
+				}, "slow") // Do something ...
+				$('#reg_form').data('bootstrapValidator').resetForm();
+
+				// Prevent form submission
+				e.preventDefault();
+
+				// Get the form instance
+				var $form = $(e.target);
+
+				// Get the BootstrapValidator instance
+				var bv = $form.data('bootstrapValidator');
+
+			});
+		});
+	</script>
+
 
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
