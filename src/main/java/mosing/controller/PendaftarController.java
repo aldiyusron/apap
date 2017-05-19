@@ -5,11 +5,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import mosing.model.CalonMahasiswaModel;
 import mosing.model.DaftarPilihanModel;
+import mosing.model.DetailUjianModel;
 import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.KotaModel;
@@ -29,20 +33,24 @@ import mosing.model.PenyeleksianModel;
 import mosing.model.NilaiModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.model.ProvinsiModel;
+import mosing.model.RiwayatPendaftaranModel;
 import mosing.model.UserAdmisiModel;
 import mosing.service.BerkasService;
 import mosing.service.CalonMahasiswaService;
+import mosing.service.DetailUjianService;
 import mosing.service.FakultasService;
 import mosing.service.FotoService;
 import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
 import mosing.service.LPTerdahuluService;
+import mosing.service.LokasiService;
 import mosing.service.NilaiService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 import mosing.service.ProdiTersediaService;
 import mosing.service.ProdiService;
 import mosing.service.ProvinsiService;
+import mosing.service.RiwayatPendaftaranService;
 import mosing.service.UserAdmisiService;
 
 @Controller
@@ -92,29 +100,15 @@ public class PendaftarController {
 
 	@Autowired
 	BerkasService berkasDAO;
-
-	// @RequestMapping("/pendaftar/{username}")
-	// public String add(Model model, @PathVariable(value = "username") String
-	// username) {
-	// PendaftarModel pendaftar = pendaftarDAO.selectPendaftar2(username);
-	//
-	// if (pendaftar != null) {
-	// PenyeleksianModel penyeleksian =
-	// penyeleksianDAO.selectPenyeleksian2(pendaftar.getNo_daftar());
-	// if (penyeleksian != null) {
-	// return "sudahdaftarseleksi";
-	// }
-	// }
-	//
-	// List<JalurMasukModel> jalurMasuk = jalurmasukDAO.selectAllJalurTulis();
-	// List<ProvinsiModel> allProvinsi = provinsiDAO.selectAllProvinsi();
-	// List<KotaModel> allKota = kotaDAO.selectKotaIndo();
-	// model.addAttribute("username", username);
-	// model.addAttribute("jalurMasuk", jalurMasuk);
-	// model.addAttribute("allProvinsi", allProvinsi);
-	// model.addAttribute("allKota", allKota);
-	// return "form-registrasi2";
-	// }
+	
+	@Autowired
+	DetailUjianService detailDAO;
+	
+	@Autowired
+	LokasiService lokasiDAO;
+	
+	@Autowired
+	RiwayatPendaftaranService riwayatDAO;
 
 	@RequestMapping("/pendaftar/uploadFoto/{username}")
 	public String uploadFoto(Model model, @PathVariable(value = "username") String username) {
@@ -255,6 +249,7 @@ public class PendaftarController {
 		PendaftarModel pendaftar = new PendaftarModel(id_user, no_id, nama_id, nama_ijazah, null, null, no_hp, no_telp,
 				nama_negara, kewarganegaraan, alamat_tetap, jenis_id, alamat_sekarang, tanggal_lahir, nama_provinsi,
 				nama_kota, jk, 0, nama_lembaga, jurusan, 0);
+
 		pendaftarDAO.addPendaftar(pendaftar);
 		PendaftarModel pendaftarSeleksi = pendaftarDAO.selectPendaftar2(username);
 		Byte status = Byte.parseByte("0");
@@ -297,6 +292,50 @@ public class PendaftarController {
 				pendaftarDAO.addDaftarPilihan(daftarPilihan);
 			}
 		}
+		String no_ujian ="";
+		if(no_daftar < 10)
+		{
+			no_ujian = "00000" + no_daftar;
+		}
+		else if(no_daftar < 100)
+		{
+			no_ujian = "0000" + no_daftar;
+		}
+		else if(no_daftar < 1000)
+		{
+			no_ujian = "000" + no_daftar;
+		}
+		else if(no_daftar < 10000)
+		{
+			no_ujian = "00" + no_daftar;
+		}
+		else if(no_daftar < 100000)
+		{
+			no_ujian = "0" + no_daftar;
+		}
+		else
+		{
+			no_ujian = "" + no_daftar;
+		}
+		
+		int id_lokasi = 0;
+		for(int i = 0; i < jalurmasuk.getListLokasi().size(); i++)
+		{
+			int kuota_pend = jalurmasuk.getListLokasi().get(i).getKuota_pendaftar();
+			if(kuota_pend > 0)
+			{
+				id_lokasi = jalurmasuk.getListLokasi().get(i).getId_lokasi();
+				kuota_pend = kuota_pend-1;
+				jalurmasuk.getListLokasi().get(i).setKuota_pendaftar(kuota_pend);
+				lokasiDAO.updateLokasiUjian(jalurmasuk.getListLokasi().get(i));
+			}
+		}
+		DetailUjianModel detail = new DetailUjianModel(no_daftar, no_ujian, id_jalur, id_lokasi, jalurmasuk.getWaktu_ujian());
+		detailDAO.addDetail(detail);
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		String tahun = String.valueOf(year);
+		RiwayatPendaftaranModel riwayat = new RiwayatPendaftaranModel(no_daftar, tahun, id_jalur, jalurmasuk.getNama_jenjang(), jalurmasuk.getNama_program());
+		riwayatDAO.addRiwayat(riwayat);
 		model.addAttribute("username", username);
 		return "success-rencanastudi";
 	}
@@ -359,6 +398,7 @@ public class PendaftarController {
 
 		UserAdmisiModel newUser = new UserAdmisiModel(null, username, passwordFinal, null, "ROLE_PEND");
 		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null,
+
 				null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
 
 		userDAO.addUser(newUser);
@@ -413,7 +453,6 @@ public class PendaftarController {
 		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null,
 				null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
-
 		pendaftarDAO.updateDataPendaftar(pendaftar);
 		pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
 		model.addAttribute("pendaftar2", pendaftar2);
@@ -473,22 +512,33 @@ public class PendaftarController {
 
 	@RequestMapping("/lihat-hasil")
 	public String lihatHasil(Model model, @RequestParam(value = "no_daftar", required = false) int no_daftar,
-			@RequestParam(value = "nama_jalur", required = false) String nama_jalur) {
-		CalonMahasiswaModel pendaftar = calonMahasiswaDAO.selectCalon(no_daftar);
+			@RequestParam(value = "id_jalur", required = false) int id_jalur) {
 
-		PendaftarModel murid = pendaftarDAO.selectNama(no_daftar);
-		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(pendaftar.getId_prodi());
-		String nama_prodi = prodi.getNama_prodi();
-		int id_fakultas = prodi.getId_fakultas();
-		FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
-		String nama_fakultas = fakultas.getFakultas();
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		PenyeleksianModel penyeleksian = penyeleksianDAO.selectPenyeleksian2(no_daftar);
+		PendaftarModel pendaftar = pendaftarDAO.selectNama(no_daftar);
 
-		model.addAttribute("nama_prodi", nama_prodi);
-		model.addAttribute("nama_fakultas", nama_fakultas);
+		if (pendaftar != null){
+		if (penyeleksian.getStatus() == 1 & penyeleksian.getId_jalur() == jalur.getId_jalur()) {
+			CalonMahasiswaModel calon = calonMahasiswaDAO.selectCalon(no_daftar);
+			ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(calon.getId_prodi());
+			String nama_prodi = prodi.getNama_prodi();
+			int id_fakultas = prodi.getId_fakultas();
+			FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
+			String nama_fakultas = fakultas.getFakultas();
+
+			model.addAttribute("calon", calon);
+			model.addAttribute("nama_prodi", nama_prodi);
+			model.addAttribute("nama_fakultas", nama_fakultas);
+		}	
+
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("penyeleksian", penyeleksian);
 		model.addAttribute("pendaftar", pendaftar);
-		model.addAttribute("murid", murid);
-		model.addAttribute("nama_jalur", nama_jalur);
 		return "hasil-seleksi";
-
+		}
+		else {
+			return "hasil-seleksi-not-found";
+		}
 	}
 }

@@ -44,6 +44,8 @@ public class PageController {
 	@RequestMapping("/")
 	public String login(Model model) {
 		UserAdmisiModel user = userDAO.selectUser();
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
 		model.addAttribute("user", user);
 		if (user != null) {
 			if (user.getRole().equalsIgnoreCase("ROLE_PEND")) {

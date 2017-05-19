@@ -10,7 +10,7 @@ public interface PendaftarService {
 	void addPendaftar(PendaftarModel pendaftar);
 	PendaftarModel selectPendaftar2(String username);
 	void addDaftarPilihan(DaftarPilihanModel daftar);
-	void updateFoto(String foto, int id_user);
+	void updateFoto(String foto, int no_daftar);
 	PendaftarModel selectPendaftar(String no_id);
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();

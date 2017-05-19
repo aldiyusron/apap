@@ -28,6 +28,9 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -142,15 +145,11 @@ file:// [if lt IE 9]> -->
 			</ul>
 		</div>
 	</div>
-	<div class="container">
-		<h1>Daftar Siswa Pendaftar Seleksi</h1>
-		<div class="row" style="margin-top: 2.5%;">
+	<div class="container" style="margin-bottom: -50px">
+		<h1>Daftar Siswa Pendaftar PPKB</h1>
+		<div class="row">
 			<div id="exTab3" class="container">
-				<form th:action="@{/data-pendaftar}" method="post">
-					<input class="btn btn-danger1"
-								style="width: 18%; margin-bottom: 2%; margin-top: 1.5%; margin-left:82%" type="submit" value="+ Tambah Siswa" /> <br />
-				</form>
-				<br />
+
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1b" data-toggle="tab">Verifikasi</a></li>
 					<li><a href="#2b" data-toggle="tab">Belum Verifikasi</a></li>
@@ -165,7 +164,7 @@ file:// [if lt IE 9]> -->
 									<th>Nama Siswa</th>
 									<th>NISN</th>
 									<th>Jurusan</th>
-									<th>Jalur</th>
+									<th></th>
 									<th></th>
 								</tr>
 							</thead>
@@ -175,18 +174,68 @@ file:// [if lt IE 9]> -->
 									th:each="pendaftarVerif,iterationStatus: ${pendaftarVerif}">
 									<tr>
 										<td th:text="${iterationStatus.count}">No.</td>
-										<td><a th:text="${pendaftarVerif.nama_id}" th:href="'/detail-siswa/' + ${pendaftarVerif.no_id}" style="color: black">Nama Siswa</a></td>
+										<td><a th:text="${pendaftarVerif.nama_id}"
+											th:href="'/detail-siswa/' + ${pendaftarVerif.no_id}"
+											style="color: black">Nama Siswa</a></td>
 										<td th:text="${pendaftarVerif.no_id}">NISN</td>
 										<td th:text="${pendaftarVerif.jurusan}">Jurusan</td>
 										<td><a
 											th:href="'/data-pendaftar/update/'+ ${pendaftarVerif.no_id}">Ubah
 												Data</a></td>
-										
+
 										<td th:if="${pendaftarVerif.jurusan} eq 'IPA'"><a
 											th:href="'/nilai-ipa/update/' + ${pendaftarVerif.no_daftar}">Ubah
 												Nilai</a></td>
 										<td th:unless="${pendaftarVerif.jurusan} eq 'IPA'"><a
 											th:href="'/nilai-ips/update/' + ${pendaftarVerif.no_daftar}">Ubah
+												Nilai</a></td>
+
+										<!-- <th:block th:each="penyeleksian.iterationStatus: ${penyeleksian}">
+											
+											<th:block th:each="jalurUndangan.iterationStatus: ${jalurUndangan}">
+												<th:block th:if="(${penyelek.id_jalur} == ${jalurUndang.id_jalur}) and (${penyelek.no_daftar} == ${pendVerif.no_daftar})"></th:block>
+													<td th:text="${jalurUndangan.nama}">Jalur</td>
+												
+											</th:block>
+										</th:block> -->
+										<!-- <td><a th:href="'/detail-ujian/update/'+ ${siswa.no_id}">Ubah</a></td> -->
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="2b">
+						<table id="daftarSiswa2" class="table stripe">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Siswa</th>
+									<th>NISN</th>
+									<th>Jurusan</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<th:block
+									th:each="pendaftarNonVerif,iterationStatus: ${pendaftarNonVerif}">
+									<tr>
+										<td th:text="${iterationStatus.count}">No.</td>
+										<td><a th:text="${pendaftarNonVerif.nama_id}"
+											th:href="'/detail-siswa/' + ${pendaftarNonVerif.no_id}"
+											style="color: black">Nama Siswa</a></td>
+										<td th:text="${pendaftarNonVerif.no_id}">NISN</td>
+										<td th:text="${pendaftarNonVerif.jurusan}">Jurusan</td>
+										<td><a
+											th:href="'/data-pendaftar/update/'+ ${pendaftarNonVerif.no_id}">Ubah
+												Data</a></td>
+
+										<td th:if="${pendaftarNonVerif.jurusan} eq 'IPA'"><a
+											th:href="'/nilai-ipa/update/' + ${pendaftarNonVerif.no_daftar}">Ubah
+												Nilai</a></td>
+										<td th:unless="${pendaftarNonVerif.jurusan} eq 'IPA'"><a
+											th:href="'/nilai-ips/update/' + ${pendaftarNonVerif.no_daftar}">Ubah
 												Nilai</a></td>
 
 										<!-- <th:block th:each="penyeleksian.iterationStatus: ${penyeleksian}">
@@ -224,11 +273,14 @@ file:// [if lt IE 9]> -->
 					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="http://www.facebook.com/simak-ui"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a href="#"><i
+						<li style="margin-bottom: 5%"><a
+							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
@@ -300,6 +352,9 @@ file:// [if lt IE 9]> -->
 	<script>
 		$(document).ready(function() {
 			$("#daftarSiswa").DataTable();
+		});
+		$(document).ready(function() {
+			$("#daftarSiswa2").DataTable();
 		});
 	</script>
 </body>

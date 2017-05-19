@@ -7485,9 +7485,16 @@ edit-delete {
 	height:20px
 }
 
+<<<<<<< HEAD
 .paginate_button .active {
 	background-color: red
 }
+=======
+.progress-bar-background {
+	background-color:#ffffff;
+}
+
+>>>>>>> branch 'icha' of https://github.com/propensi2017/a6.git
 
 
 

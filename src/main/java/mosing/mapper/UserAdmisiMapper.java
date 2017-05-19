@@ -15,13 +15,13 @@ import mosing.model.UserAdmisiModel;
 @Mapper
 public interface UserAdmisiMapper {
 
-	@Select("select * from user where username = #{username}")
+	@Select("SELECT * FROM USER WHERE username = #{username}")
 	@Results(value = { @Result(property = "username", column = "username"),
 			@Result(property = "password", column = "password"), @Result(property = "email", column = "email"),
 			@Result(property = "role", column = "role") })
 	UserAdmisiModel selectUser(@Param("username") String username);
 
-	@Insert("insert into user (username, password, email, role, enabled) values (#{username}, #{password}, #{email}, #{role}, 1)")
+	@Insert("INSERT INTO USER (username, password, email, role, enabled) VALUES (#{username}, #{password}, #{email}, #{role}, 1)")
 	void addUser(UserAdmisiModel user);
 	
 	@Update("UPDATE USER SET password = #{password} WHERE username = #{username}")
@@ -30,6 +30,6 @@ public interface UserAdmisiMapper {
 	@Update("UPDATE USER SET email = #{email} WHERE username = #{username}")
 	void updateEmail(UserAdmisiModel user);
 	
-	@Select("select * from user")
+	@Select("SELECT * FROM USER")
 	List<UserAdmisiModel> selectAllUser();
 }

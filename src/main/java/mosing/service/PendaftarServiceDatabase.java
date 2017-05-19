@@ -71,8 +71,8 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public void updateFoto(String foto, int id_user) {
-		pendaftarMapper.updateFoto(foto, id_user);
+	public void updateFoto(String foto, int no_daftar) {
+		pendaftarMapper.updateFoto(foto, no_daftar);
 	}
 
 	@Override
