@@ -226,14 +226,13 @@
 									class="form-control" name="no_daftar" id="no_daftar" required="required" />
 							</div>
 							<div class="form-group">
-								<label for="nama_jalur">Jalur Masuk:</label> <select
-									class="form-control selectpicker" id="nama_jalur"
-									name="nama_jalur">
-									<option>SNMPTN</option>
-									<option>SBMPTN</option>
-									<option>PPKB</option>
-									<option>SIMAK UI</option>
-									<option>Talent Scouting</option>
+								<label for="nama_jalur">Jalur Masuk:</label> <select required="required"
+									class="form-control selectpicker" id="id_jalur" name="id_jalur">
+									<option value="">Jalur Masuk</option>
+									<div th:each="pilihJalur,iterationStatus: ${allJalurMasuk}">
+										<option th:value="${pilihJalur.id_jalur}"
+											th:text="${pilihJalur.nama}"></option>
+									</div>
 								</select>
 							</div>
 							<input type="hidden" th:name="${_csrf.parameterName}"

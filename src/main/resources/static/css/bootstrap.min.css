@@ -7807,4 +7807,11 @@ input[type="checkbox"]:after {
   content: @fa-var-square-o;
 }
 
+.progress-bar-background {
+	background-color:#ffffff;
+}
+
+
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */

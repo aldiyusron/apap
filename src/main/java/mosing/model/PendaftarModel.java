@@ -1,7 +1,6 @@
 package mosing.model;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +30,4 @@ public class PendaftarModel {
 	private int no_daftar;
 	private String nama_lembaga;
 	private String jurusan;
-	private double rata2;
 }

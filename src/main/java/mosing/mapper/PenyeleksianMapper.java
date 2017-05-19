@@ -13,22 +13,20 @@ import mosing.model.PenyeleksianModel;
 @Mapper
 public interface PenyeleksianMapper {
 
-	@Insert("insert into penyeleksian (no_daftar, status, id_jalur, status_rekomen, berkas) values (#{no_daftar}, #{status}, #{id_jalur}, 0, #{berkas})")
+	@Insert("INSERT INTO PENYELEKSIAN (no_daftar, status, id_jalur, status_rekomen, berkas) VALUES (#{no_daftar}, #{status}, #{id_jalur}, 0, #{berkas})")
 	void addPenyeleksian(PenyeleksianModel penyeleksian);
 
-	@Select("select * from penyeleksian where id_jalur = #{id_jalur}")
+	@Select("SELECT * FROM PENYELEKSIAN WHERE id_jalur = #{id_jalur}")
 	PenyeleksianModel selectPenyeleksian(@Param("id_jalur") int id_jalur);
 
-	@Select("select p.* from penyeleksian p where p.no_daftar = #{no_daftar}")
+	@Select("SELECT p.* FROM PENYELEKSIAN p WHERE p.no_daftar = #{no_daftar}")
 	PenyeleksianModel selectPenyeleksian2(@Param("no_daftar") int no_daftar);
 	
-	@Update("update penyeleksian set status=1 where no_daftar=#{no_daftar}")
-	PenyeleksianModel updatePenyeleksian(@Param("no_daftar") int no_daftar);
 
-	@Update("update penyeleksian set berkas=#{berkas} where no_daftar=#{no_daftar}")
+	@Update("UPDATE PENYELEKSIAN SET berkas=#{berkas} WHERE no_daftar=#{no_daftar}")
 	void updateBerkas(@Param("berkas") String berkas, @Param("no_daftar") int no_daftar);
 
-	@Select("select * from penyeleksian")
+	@Select("SELECT * from PENYELEKSIAN")
 	List<PenyeleksianModel> selectAllPenyeleksian();
 	
 	@Update("UPDATE PENYELEKSIAN SET status = 1, status_rekomen = 1 where no_daftar = #{no_daftar}")

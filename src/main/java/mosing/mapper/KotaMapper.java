@@ -11,12 +11,12 @@ import mosing.model.KotaModel;
 @Mapper
 public interface KotaMapper {
 		
-	@Select("select id_kota, nama_kota from kota where id_provinsi = #{id_provinsi}")
+	@Select("SELECT id_kota, nama_kota FROM KOTA WHERE id_provinsi = #{id_provinsi}")
 	List<KotaModel> selectAllKota(@Param("id_provinsi") int id_provinsi);
 	
-	@Select("select * from kota where id_kota = #{id_kota}")
+	@Select("SELECT * FROM KOTA WHERE id_kota = #{id_kota}")
 	KotaModel selectKota(int id_kota);
 
-	@Select("select * from kota")
+	@Select("SELECT * FROM KOTA")
 	List<KotaModel> selectKotaIndo();
 }
