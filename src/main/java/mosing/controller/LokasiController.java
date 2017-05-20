@@ -16,12 +16,14 @@ import mosing.model.LokasiModel;
 import mosing.model.PengawasUjianModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.model.ProvinsiModel;
+import mosing.model.UserAdmisiModel;
 import mosing.service.DetailUjianService;
 import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
 import mosing.service.LokasiService;
 import mosing.service.PengawasUjianService;
 import mosing.service.ProvinsiService;
+import mosing.service.UserAdmisiService;
 
 @Controller
 public class LokasiController {
@@ -43,6 +45,9 @@ public class LokasiController {
 	
 	@Autowired
 	PengawasUjianService pengawasDAO;
+	
+	@Autowired
+	UserAdmisiService userDAO;
 
 //	@RequestMapping("/detail-ujian")
 //	public String lihatDaftarLokasi(Model model) {
@@ -95,6 +100,8 @@ public class LokasiController {
 			@RequestParam(value = "kuota_peng", required = false) int kuota_peng,
 			@RequestParam(value = "kuota_pendaftar", required = false) int kuota_pendaftar) {
 		//JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		UserAdmisiModel user = userDAO.selectUser();
+		model.addAttribute("user", user);
 		model.addAttribute("id_jalur", id_jalur);
 		LokasiModel lokasi = new LokasiModel(0, id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng,
 				kuota_pendaftar, 1, null);

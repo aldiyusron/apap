@@ -149,7 +149,7 @@
 	</div>
 
 	<div class="container">
-		<form class="well form-horizontal" action="/seleksi-pengawas/pindah-jalur/submit"
+		<form class="well form-horizontal" th:action="@{'/seleksi-pengawas/pindah-jalur/submit/' + ${pengawas.id_lokasi}}"
 			method="post" id="contact_form" th:object="${pengawas}">
 			<fieldset>
 
