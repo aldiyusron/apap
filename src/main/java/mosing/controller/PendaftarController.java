@@ -525,16 +525,18 @@ public class PendaftarController {
 				int id_fakultas = prodi.getId_fakultas();
 				FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
 				String nama_fakultas = fakultas.getFakultas();
-
 				model.addAttribute("calon", calon);
 				model.addAttribute("nama_prodi", nama_prodi);
 				model.addAttribute("nama_fakultas", nama_fakultas);
+					
 			}
-
+			
 			model.addAttribute("jalur", jalur);
 			model.addAttribute("penyeleksian", penyeleksian);
 			model.addAttribute("pendaftar", pendaftar);
+			
 			return "hasil-seleksi";
+			
 		} else {
 			return "hasil-seleksi-not-found";
 		}

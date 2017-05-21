@@ -107,6 +107,19 @@
 							</div>
 						</form>
 					</li>
+					<ul class="nav navbar-nav">
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-s navbar-btn" type="submit"
+									value="Sign Out">Keluar</button>
+							</form>
+						</li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -420,7 +433,7 @@
 				<!-- Button -->
 
 
-				<div class="form-group" style="position: center">
+				<div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
@@ -428,7 +441,7 @@
 							th:href="'/a6/jalur-masuk/view/' + ${id_jalur}"
 							class="btn btn-default">Batal</a>
 						<button value="save" name="action" type="submit" class="btn btn-s"
-							style="margin-right: 57%; height: 32.5px">Simpan</button>
+							style="margin-right: 160px; height: 32.5px">Simpan</button>
 					</div>
 				</div>
 			</fieldset>

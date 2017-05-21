@@ -119,7 +119,7 @@ public class PengawasUjianController {
 				pengawasDAO.terimaPengawas(id_user);
 			}
 		}
-		return "success-daftarpengawas";
+		return "success-seleksipengawas";
 	}
 	
 	@RequestMapping("/seleksi-pengawas/pindah-jalur/{id_user}")

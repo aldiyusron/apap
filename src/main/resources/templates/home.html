@@ -155,8 +155,8 @@
                 <div class="intro-heading" th:text="'Selamat datang, ' + ${#httpServletRequest.remoteUser} + '!'"></div>
                 <div th:if="${user.role} eq 'ROLE_KPMB'">
                 	<a href="/a6/jalur-masuk" class="page-scroll btn btn-xl">Konfigurasi Jalur Masuk</a>
-                	<a href="/a6/seleksi-pengawas" class="page-scroll btn btn-xl">Seleksi Pengawas</a>
-                	<a href="/a6/lokasi-ujian" class="page-scroll btn btn-xl">Lihat Lokasi Ujian</a>
+                	<a href="/a6/seleksi-pengawas" class="page-scroll btn btn-xl">Seleksi Pengawas Ujian</a>
+                	<a href="/a6/lokasi-ujian" class="page-scroll btn btn-xl">Lihat Pengawas Ujian</a>
                 </div>
 				<!-- <div
 					th:if="${user.role eq 'ROLE_PEND' and jalurMasuk.id_jalur eq 4}">

@@ -120,8 +120,8 @@
 					</li>
 					<ul class="nav navbar-nav">
 						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
-								class="glyphicon glyphicon-user"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
 								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
 						</a></li>
 						<li>
@@ -205,7 +205,7 @@
 								foto:</label>
 							<div class="col-md-9" style="width: 70%">
 								<input type="file" class="form-control" name="foto"
-									accept=".jpg, .jpeg" /> <input type="hidden"
+									accept=".jpg, .jpeg" /> <input type="hidden" required="required"
 									th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 								
 							</div>
@@ -304,7 +304,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -313,10 +313,10 @@
 		crossorigin="anonymous"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
 </body>
 
