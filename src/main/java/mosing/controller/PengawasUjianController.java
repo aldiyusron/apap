@@ -144,7 +144,7 @@ public class PengawasUjianController {
 		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
 		PengawasUjianModel pengawas = new PengawasUjianModel(id_user, 0, jabatan, nama, no_hp,
 				lokasi, pindah_bool, 1);
-		model.addAttribute("id_lokasi", lokasi);
+		model.addAttribute("id_lokasi", id_lokasi);
 		pengawasDAO.updatePengawas(pengawas);
 		return "success-pindahpengawas";
 	}
