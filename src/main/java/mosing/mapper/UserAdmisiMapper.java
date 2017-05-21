@@ -33,6 +33,6 @@ public interface UserAdmisiMapper {
 	@Select("SELECT * FROM USER")
 	List<UserAdmisiModel> selectAllUser();
 	
-	@Select("SELECT * FROM USER WHERE email is null")
+	@Select("SELECT * FROM USER WHERE email IS NULL")
 	List<UserAdmisiModel> selectAllLPTUser();
 }

@@ -41,13 +41,13 @@ public interface PendaftarMapper {
 	@Select("SELECT * FROM PENDAFTAR p" 
 			+ " JOIN PENYELEKSIAN ON p.no_daftar = PENYELEKSIAN.no_daftar"
 			+ " JOIN USER ON p.id_user = USER.id_user"
-			+ " WHERE penyeleksian.status=0 AND id_jalur=4 AND USER.email IS NOT NULL")
+			+ " WHERE PENYELEKSIAN.status=0 AND id_jalur=4 AND USER.email IS NOT NULL")
 	List<PendaftarModel> selectAllPendaftarTerverifikasi();
 
 	@Select("SELECT * FROM PENDAFTAR p"
 			+ " JOIN PENYELEKSIAN ON p.no_daftar = PENYELEKSIAN.no_daftar"
 			+ " JOIN USER ON p.id_user = USER.id_user"
-			+ " WHERE penyeleksian.status=0 AND id_jalur=4 AND USER.email IS NULL")
+			+ " WHERE PENYELEKSIAN.status=0 AND id_jalur=4 AND USER.email IS NULL")
 	List<PendaftarModel> selectAllPendaftarTakTerverifikasi();
 
 	@Select("SELECT nama_id, no_id, jurusan, penyeleksian.status AS status FROM PENDAFTAR"
@@ -61,8 +61,8 @@ public interface PendaftarMapper {
 			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
 
-	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn on pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN  d on pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr on "
-			+ "pr.id_prodi = d.id_prodi where pn.status_rekomen=0 and d.id_prodi = #{id_prodi}")
+	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn ON pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN  d ON pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr ON "
+			+ "pr.id_prodi = d.id_prodi WHERE pn.status_rekomen=0 AND d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
 	
 //	@Select("select p.* from pendaftar p, penyeleksian pn, prodi_tersedia pr, daftar_pilihan d where pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
@@ -77,8 +77,8 @@ public interface PendaftarMapper {
 			@Result(property = "status_rekomen", column = "status_rekomen") })
 	List<PendaftarModel> selectAllPendaftarPPKB();
 
-	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn on pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN d on pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr ON "
-			+ "pr.id_prodi = d.id_prodi WHERE pn.status_rekomen=1 and d.id_prodi = #{id_prodi}")
+	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn ON pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN d ON pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr ON "
+			+ "pr.id_prodi = d.id_prodi WHERE pn.status_rekomen=1 AND d.id_prodi = #{id_prodi}")
 	List<PendaftarModel> selectAllPendaftarRec(@Param("id_prodi") int id_prodi);
 
 	@Select("SELECT * FROM PENDAFTAR"
@@ -98,8 +98,8 @@ public interface PendaftarMapper {
 			+ "tgl_lahir=#{tgl_lahir}, nama_provinsi=#{nama_provinsi}, nama_kota=#{nama_kota} where no_daftar=#{no_daftar}")
 	void updateDataDiriLengkap(PendaftarModel pendaftar);
 	
-	@Select("SELECT p.* FROM PENDAFTAR p, PENYELEKSIAN pn, PRODI_TERSEDIA pr, DAFTAR_PILIHAN d WHERE pn.no_daftar=p.no_daftar and pn.no_daftar=d.no_daftar and "
-			+ "pr.id_prodi = d.id_prodi and pn.status=0 and d.id_prodi = #{id_prodi} and pn.id_jalur=#{id_jalur}")
+	@Select("SELECT p.* FROM PENDAFTAR p, PENYELEKSIAN pn, PRODI_TERSEDIA pr, DAFTAR_PILIHAN d WHERE pn.no_daftar=p.no_daftar AND pn.no_daftar=d.no_daftar AND "
+			+ "pr.id_prodi = d.id_prodi AND pn.status=0 AND d.id_prodi = #{id_prodi} AND pn.id_jalur=#{id_jalur}")
 	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi, @Param("id_jalur")int id_jalur);
 	
 	@Select("SELECT * FROM PENDAFTAR WHERE no_daftar=#{no_daftar}")
