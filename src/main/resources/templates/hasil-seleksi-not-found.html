@@ -8,13 +8,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Detail Lokasi Ujian</title>
+<title>Penerimaan UI | Hasil Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -28,12 +28,6 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -112,19 +106,6 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
-								<span class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-						</a></li>
-						<li>
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-s navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
-							</form>
-						</li>
-					</ul>
 				</ul>
 			</div>
 		</div>
@@ -133,12 +114,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -186,7 +167,7 @@
 						<label class="col-md-4 control-label"></label>
 						<div class="col-md-4">
 							<input type="hidden" th:name="${_csrf.parameterName}"
-								th:value="${_csrf.token}" /> <a href="/"
+								th:value="${_csrf.token}" /> <a href="/a6"
 								class="btn btn-default">Kembali</a>
 						</div>
 					</div>
@@ -267,13 +248,13 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
 	<!-- Include jQuery -->
 	<script type="text/javascript"

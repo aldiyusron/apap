@@ -17,13 +17,13 @@ public interface CalonMahasiswaMapper {
 			+ " WHERE CALON_MAHASISWA.no_daftar=#{no_daftar}")
 	CalonMahasiswaModel selectCalon(@Param("no_daftar") int no_daftar);
 	
-	@Insert("Insert into daftar_pilihan (no_daftar, jenjang, nama_program, id_prodi, pilihan) values "
+	@Insert("INSERT INTO DAFTAR_PILIHAN (no_daftar, jenjang, nama_program, id_prodi, pilihan) VALUES "
 			+ "(#{no_daftar}, #{jenjang}, #{nama_program}, #{id_prodi}, #{pilihan})")
 	void addDaftarPilihan(DaftarPilihanModel daftar);
-	@Insert("insert into calon_mahasiswa (no_daftar, npm, id_prodi, id_jalur, jenjang) values "
+	@Insert("INSERT INTO CALON_MAHASISWA (no_daftar, npm, id_prodi, id_jalur, jenjang) VALUES "
 			+ "(#{no_daftar}, #{npm}, #{id_prodi}, #{id_jalur}, #{jenjang}) ")
 	void addCalon(CalonMahasiswaModel calon);
 	
-	@Select("select * from calon_mahasiswa")
+	@Select("SELECT * FROM CALON_MAHASISWA")
 	List<CalonMahasiswaModel> selectAllCalon();
 }

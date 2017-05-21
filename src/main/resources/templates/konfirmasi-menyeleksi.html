@@ -10,10 +10,11 @@
 
 <title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap Core CSS -->
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -32,18 +33,12 @@
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
-queries WARNING: Respond.js doesn't work if you view the page via
-file:// [if lt IE 9]> -->
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
-	integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY"
-	crossorigin="anonymous"></script>
-<script
-	src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
-	integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo"
-	crossorigin="anonymous"></script>
-<!-- <![endif]
- -->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
 
 </head>
 
@@ -119,7 +114,7 @@ file:// [if lt IE 9]> -->
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -132,12 +127,12 @@ file:// [if lt IE 9]> -->
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -151,6 +146,7 @@ file:// [if lt IE 9]> -->
 				</li>
 			</ul>
 		</div>
+
 	</div>
 	<br />
 	<br />
@@ -179,7 +175,7 @@ file:// [if lt IE 9]> -->
 			<div id="exTab3" class="container" style="padding: 10px">
 				<div class="tab-content clearfix">
 					<h2 th:text="${jalur.nama} + ' / ' + ${prodi.nama_prodi}"></h2>
-					<form th:action="'/lihat/pendaftar/' + ${jalur.id_jalur} + '/' +${prodi.id_prodi}" method="post" 
+					<form th:action="'/a6/lihat/pendaftar/' + ${jalur.id_jalur} + '/' +${prodi.id_prodi}" method="post" 
 					role="form">
 					<table id="daftarSiswaLolos" class="table stripe">
 						<thead>
@@ -216,7 +212,7 @@ file:// [if lt IE 9]> -->
 						th:value="${_csrf.token}" />
 					<button value="save" name="action" type="submit"
 						class="btn btn-warning1" style="width: 80px">Batal</button>
-					<a th:href="'/lihat/pendaftar/' + ${jalur.id_jalur} + '/' +${prodi.id_prodi}"
+					<a th:href="'/a6/lihat/pendaftar/' + ${jalur.id_jalur} + '/' +${prodi.id_prodi}"
 						class="btn btn-default"
 						style="width: 70px; margin-left: 68%; margin-top: -5%">Simpan</a>
 				</div>
@@ -321,7 +317,7 @@ file:// [if lt IE 9]> -->
 	</script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>

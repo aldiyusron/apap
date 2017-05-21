@@ -8,22 +8,20 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Daftar Akun</title>
+
+<title>Penerimaan UI | Success</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
 	rel='stylesheet' type='text/css' />
-<linkF
+<link
 	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
 	rel='stylesheet' type='text/css' />
 <link
@@ -117,12 +115,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -137,10 +135,9 @@
 			</ul>
 		</div>
 
-	</div>
-	<!-- TINGGAL HEADER SAMA FOOTER -->
+	</div>	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/register/submit"
+		<form class="well form-horizontal" action="/a6/register/submit"
 			method="post" id="contact_form" data-toggle="validator" role="form">
 			<fieldset>
 
@@ -233,7 +230,7 @@
 							th:value="${_csrf.token}" />
 						<button value="save" name="action" type="submit"
 							class="btn btn-danger1" style="margin-left: 40%">Simpan</button>
-						<a href="/" class="btn btn-default"
+						<a href="/a6" class="btn btn-default"
 							style="width: 70%; margin-left: -32%; margin-top: -20%">Batal</a>
 					</div>
 				</div>
@@ -333,80 +330,6 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#contact_form')
-									.bootstrapValidator(
-											{
-												// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													username : {
-														validators : {
-															notEmpty : {
-																message : 'Mohon masukkan nama pengguna'
-															},
-															stringLength : {
-																min : 3,
-																max : 30,
-																message : 'Nama pengguna harus lebih dari 3 dan kurang dari 31 karakter'
-															},
-															regexp : {
-																regexp : /^[a-zA-Z0-9_\.]+$/,
-																message : 'Nama pengguna hanya bisa terdiri dari huruf, angka, titik, dan underscore'
-															}
-														}
-													},
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'Mohon masukkan alamat email'
-															},
-															emailAddress : {
-																message : 'Alamat email tidak valid'
-															},
-															stringLength : {
-																max : 30,
-																message : 'Nama pengguna harus kurang dari 31 karakter'
-															}
-														}
-													},
-													password : {
-														validators : {
-															notEmpty : {
-																message : 'Mohon masukkan kata sandi'
-															},
-															stringLength : {
-																min : 6,
-																max : 20,
-																message : 'Kata sandi lebih dari 5 dan kurang dari 21 karakter'
-															}
-														}
-													},
-													confirm_password : {
-														validators : {
-															identical : {
-																field : 'password',
-																message : 'Kata sandi tidak cocok'
-															}
-														}
-													},
-													role : {
-														validators : {
-															notEmpty : {
-																message : 'Tidak boleh kosong'
-															}
-														}
-													}
-
-		});
-	</script>
 </body>
 
 </html>

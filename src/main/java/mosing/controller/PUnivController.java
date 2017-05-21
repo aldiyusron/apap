@@ -180,11 +180,94 @@ public class PUnivController {
 
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model){
-		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
-		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
-		model.addAttribute("jalurMasuk", jalurMasuk);
-		model.addAttribute("fakultas", fakultas);
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
 		return "dashboard";
+	}
+	
+	@RequestMapping("/dashboard/s1")
+	public String dashboardS1(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s1";
+	}
+	
+	@RequestMapping("/dashboard/s2")
+	public String dashboardS2(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s2";
+	}
+	
+	@RequestMapping("/dashboard/s3")
+	public String dashboardS3(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s3";
+	}
+	
+	@RequestMapping("/dashboard/reg")
+	public String dashboardReg(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-reg";
+	}
+	
+	@RequestMapping("/dashboard/par")
+	public String dashboardPar(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-par";
+	}
+	
+	@RequestMapping("/dashboard/inter")
+	public String dashboardInter(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-inter";
+	}
+	
+	@RequestMapping("/dashboard/vok")
+	public String dashboardVok(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-vok";
+	}
+	
+	@RequestMapping("/dashboard/fakultas/{id_fakultas}")
+	public String dashboardFakultas(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-fakultas";
+	}
+	
+	@RequestMapping("/dashboard/jalur/{id_jalur}")
+	public String dashboardJalur(Model model, @PathVariable("id_jalur") int id_jalur){
+		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-jalurMasuk";
 	}
 
 	@RequestMapping("/sukses-seleksi")

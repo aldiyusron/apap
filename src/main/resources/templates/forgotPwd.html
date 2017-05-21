@@ -8,15 +8,15 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Perbarui Kata Sandi</title>
+
+<title>Penerimaan UI | Success</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -70,7 +70,8 @@
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi dan Bisnis</a></li>
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
+									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
 									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
@@ -114,13 +115,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png"
-						alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/index">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -137,7 +137,7 @@
 
 	</div>
 
-	<form class="well form-horizontal container" action="/resetPassword"
+	<form class="well form-horizontal container" action="/a6/resetPassword"
 		method="post" id="contact_form">
 		<fieldset>
 
@@ -157,7 +157,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input name="username"
-							placeholder="Nama Pengguna" class="form-control" type="text" required="true" />
+							placeholder="Nama Pengguna" class="form-control" type="text" required="required" />
 					</div>
 				</div>
 			</div>
@@ -246,7 +246,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -255,10 +255,10 @@
 		crossorigin="anonymous"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
 </body>
 

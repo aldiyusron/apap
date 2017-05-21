@@ -7,14 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Penerimaan UI | Daftar Seleksi Siswa</title>
 
+<title>Penerimaan UI | Seleksi Pendaftar</title>
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -28,9 +33,6 @@
 	rel='stylesheet' type='text/css' />
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
@@ -130,12 +132,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -172,7 +174,7 @@
 								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
 						</form> -->
-						<form th:action="'/sukses-seleksi'" method="post"
+						<form th:action="'/a6/sukses-seleksi'" method="post"
 							id="contact_form" data-toggle="validator" role="form">
 							<table id="daftarSeleksiSiswa" class="table stripe">
 								<thead>
@@ -227,12 +229,12 @@
 							</table>
 							<div class="form-group" style="position: right">
 								<label class="col-md-4 control-label"></label>
-								<div class="col-md-4" style="float: right; margin-right: 40px">
+								<div class="col-md-4" style="margin-left: -127.750px">
 									<br /> <input type="hidden" th:name="${_csrf.parameterName}"
 										th:value="${_csrf.token}" />
 									<button value="save" name="action" type="submit"
 										class="btn btn-warning1" style="width: 70px">Simpan</button>
-									<a th:href="'/lihat/fakultas/' + ${jalur.id_jalur}"
+									<a th:href="'/a6/lihat/fakultas/' + ${jalur.id_jalur}"
 										class="btn btn-default"
 										style="width: 70px; margin-left: 65%; margin-top: -5%">Batal</a>
 								</div>
@@ -247,9 +249,9 @@
 	</div>
 
 	<div class="container bg-light-gray">
-		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
+		<div class="row" style="padding-top: 35px; padding-bottom: 10px">
 			<div class="col-sm-4">
-				<div style="margin-left: 12%">
+				<div style="margin-left: 45px">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
 						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
@@ -258,25 +260,25 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="team-member">
-					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
+					<h3 style="margin-left: -67.5px">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
 					<ul class="socialtitle"
-						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
-						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
-						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
-						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
+						style="list-style: none; margin-top: -217.75px; text-align: left; margin-left: 60px">
+						<li style="margin-bottom: 30px"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 37px"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 35px"><h4>penerimaan@ui.ac.id</h4></li>
 						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
 					</ul>
 				</div>
@@ -303,7 +305,7 @@
 		<div class="container bg-darkest-gray">
 			<div class="row">
 				<div class="col-md-4"
-					style="width: 100%; height: 50px; padding-top: 1.5%">
+					style="width: 500px; height: 50px; padding-top: 10px; margin-left: 350px">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>

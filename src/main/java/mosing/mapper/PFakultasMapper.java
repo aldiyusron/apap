@@ -10,6 +10,6 @@ import mosing.model.FakultasModel;
 @Mapper
 public interface PFakultasMapper {
 
-	@Select("select * from fakultas")
+	@Select("SELECT * FROM FAKULTAS")
 	List<FakultasModel> selectAllFakultas();
 }

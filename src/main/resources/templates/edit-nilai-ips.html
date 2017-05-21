@@ -7,16 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<title>Penerimaan UI | Edit Nilai Siswa</title>
+
+<title>Penerimaan UI | Success</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
+
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -34,26 +34,13 @@
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
-<!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet"
-	href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
+
 </head>
 
 <body id="page-top" class="index">
@@ -77,16 +64,16 @@
 									Masyarakat</a></li>
 							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
 									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.bing.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
 							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pbingetahuan Alam</a></li>
+									dan Ilmu Pengetahuan Alam</a></li>
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">ekonominomi
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
 									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pbingetahuan Budaya</a></li>
+									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
 								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
 							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
@@ -120,34 +107,20 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px"> <span
-								class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-						</a></li>
-						<li>
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
-							</form>
-						</li>
-					</ul>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="../img/MOSINGlogo.png"
-						alt="logo" /></a></li>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -165,7 +138,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/nilai-ips/update/submit"
+		<form class="well form-horizontal" action="/a6/nilai-ips/update/submit"
 			method="post" id="contact_form">
 			<fieldset>
 
@@ -202,7 +175,7 @@
 
 								<td>Matematika</td>
 
-								<td><input type="text" name="kkm_mtk"
+								<td><input type="text" name="kkm_mtk" required="required" pattern="[0-9]{1,11}"
 									class="resizedTextBox" th:value="${kkm_mtk}" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -214,7 +187,7 @@
 
 								<td>Geografi</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_geografi" th:value="${kkm_geografi}" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -226,7 +199,7 @@
 
 								<td>Ekonomi</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_ekonomi" th:value="${kkm_ekonomi}" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -239,7 +212,7 @@
 
 								<td>Sosiologi</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_sejarah" th:value="${kkm_sosiologi}" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -252,7 +225,7 @@
 
 								<td>Sejarah</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_sejarah" th:value="${kkm_sejarah}" /></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
 									<td><input class="resizedTextBox" type="text"
@@ -266,7 +239,7 @@
 
 								<td>Bahasa Indonesia</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_bindo" th:value="${kkm_bindo}" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
@@ -281,7 +254,7 @@
 
 								<td>Bahasa Inggris</td>
 
-								<td><input class="resizedTextBox" type="text"
+								<td><input class="resizedTextBox" type="text" required="required" pattern="[0-9]{1,11}"
 									name="kkm_bing" th:value="${kkm_bing}" /></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
@@ -305,8 +278,8 @@
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
-						<a class="btn btn-info" href="/daftar-siswa">Kembali</a>
+							th:value="${_csrf.token}" /> <a href="/a6" class="btn btn-default">Batal</a>
+						<a class="btn btn-info" href="/a6/daftar-siswa">Kembali</a>
 						<button style="width: 30%" value="save" name="action"
 							type="submit" class="btn btn-warning">Simpan</button>
 					</div>
@@ -387,93 +360,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#contact_form').bootstrapValidator({
-				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					nama_lokasi : {
-						validators : {
-							stringLength : {
-								min : 3,
-								max : 50,
-							},
-							notEmpty : {
-								message : 'Masukkan nama lokasi'
-							}
-						}
-					},
-					alamat : {
-						validators : {
-							stringLength : {
-								min : 5,
-								max : 100,
-							},
-							notEmpty : {
-								message : 'Masukkan alamat lokasi'
-							}
-						}
-					},
-					no_telp : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan nomor telepon'
-							},
-							phone : {
-								country : 'INA',
-								message : 'Masukkan dengan awalan +62'
-							}
-						}
-					},
-					nama_provinsi : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih provinsi'
-							}
-						}
-					},
-					nama_kota : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih kota'
-							}
-						}
-					},
-					kuota_peng : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pengawas'
-							}
-						}
-					},
-					kuota_pendaftar : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pendaftar'
-							}
-						}
-					},
-				}
-			})
-			.on('success.form.bv', function(e) {
-				$('#success_message').slideDown({
-					opacity : "show"
-				}, "slow") // Do something ...
-				$('#reg_form').data('bootstrapValidator').resetForm();
-				// Prevent form submission
-				e.preventDefault();
-				// Get the form instance
-				var $form = $(e.target);
-				// Get the BootstrapValidator instance
-				var bv = $form.data('bootstrapValidator');
-			});
-		});
-	</script>
+	
 </body>
 
 </html>

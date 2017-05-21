@@ -17,11 +17,4 @@ public class MosingApplication extends SpringBootServletInitializer {
 		SpringApplication.run(MosingApplication.class, args);
 	}
 	
-//	@Bean
-//	CommandLineRunner init(StorageService storageService) {
-//		return (args) -> {
-//            storageService.deleteAll();
-//            storageService.init();
-//		};
-//	}
 }

@@ -6,7 +6,6 @@
 	<groupId>A6</groupId>
 	<artifactId>A6</artifactId>
 	<version>1</version>
-	<packaging>jar</packaging>
 	
 	<name>A6</name>
 	<description>MOSING (ADMISI)</description>

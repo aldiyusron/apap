@@ -32,6 +32,6 @@ public interface NilaiMapper {
 			+ " ekonomi=#{ekonomi}, sosiologi=#{sosiologi}, bindo = #{bindo}, bing = #{bing} WHERE semester = #{semester} AND no_daftar=#{no_daftar}")
 	void updateNilai(NilaiModel nilai);
 
-	@Select("select * from nilai_ujian where no_daftar = #{no_daftar}")
+	@Select("SELECT * FROM NILAI_UJIAN WHERE no_daftar = #{no_daftar}")
 	NilaiUjianModel selectNilaiUjian(@Param("no_daftar") int no_daftar);
 }

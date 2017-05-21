@@ -17,11 +17,11 @@ import mosing.model.PengawasUjianModel;
 @Mapper
 public interface PengawasUjianMapper {
 
-	@Insert("INSERT INTO PENGAWAS_UJIAN (id_user, status, jabatan, nama, id_lokasi) VALUES "
-			+ "(#{id_user}, #{status}, #{jabatan}, #{nama}, #{id_lokasi})")
+	@Insert("insert into pengawas_ujian (id_user, status, jabatan, nama, no_hp, id_lokasi, pindah_bool, flag_aktif) values "
+			+ "(#{id_user}, #{status}, #{jabatan}, #{nama}, #{no_hp}, #{id_lokasi}, #{pindah_bool}, 1)")
 	void addPengawas(PengawasUjianModel pengawas);
 
-	@Select("SELECT u.id_user, u.username, pu.* FROM USER u, pengawas_ujian pu WHERE u.username = #{username} AND u.id_user = pu.id_user")
+	@Select("select u.id_user, u.username, pu.* from user u, pengawas_ujian pu where u.username = #{username} and u.id_user = pu.id_user")
 	PengawasUjianModel selectPengawas(@Param("username") String username);
 
 	@Select("select * from pengawas_ujian where flag_aktif = 1")

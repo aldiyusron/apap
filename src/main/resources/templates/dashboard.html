@@ -13,19 +13,19 @@
 <title>Penerimaan UI | Dashboard</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- MetisMenu CSS -->
-<link href="/css/metisMenu.min.css" rel="stylesheet" />
+<link href="/a6/css/metisMenu.min.css" rel="stylesheet" />
 
 <!-- Custom CSS -->
-<link href="/css/sb-admin-2.css" rel="stylesheet" />
+<link href="/a6/css/sb-admin-2.css" rel="stylesheet" />
 
 <!-- Morris Charts CSS -->
-<link href="/css/morris.css" rel="stylesheet" />
+<link href="/a6/css/morris.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -51,8 +51,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a id="logo" href="/" style="margin-left: 55px"><img
-					src="/img/MOSINGlogo.png" alt="logo" width="140" /></a>
+				<a id="logo" href="/a6" style="margin-left: 55px"><img
+					src="/a6/img/MOSINGlogo.png" alt="logo" width="140" /></a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -164,7 +164,7 @@
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<li><a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i>
+						<li><a href="/a6/dashboard"><i class="fa fa-dashboard fa-fw"></i>
 								Dashboard</a></li>
 						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
 								Kategori<span class="fa arrow"></span></a>
@@ -172,33 +172,33 @@
 								<li><a href="#"><i class="fa fa-list-ol fa-fw"></i>
 										Jenjang Pendidikan <span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
-										<li><a href="#">S1</a></li>
-										<li><a href="#">S2</a></li>
-										<li><a href="#">S3</a></li>
+										<li><a href="/a6/dashboard/s1">S1</a></li>
+										<li><a href="/a6/dashboard/s2">S2</a></li>
+										<li><a href="/a6/dashboard/s3">S3</a></li>
 									</ul> <!-- /.nav-third-level --></li>
 								<li><a href="#"><span
 										class="glyphicon glyphicon-education"></span> Program
 										Pendidikan <span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
-										<li><a href="#">Reguler</a></li>
-										<li><a href="#">Paralel</a></li>
-										<li><a href="#">Internasional</a></li>
-										<li><a href="#">Vokasi</a></li>
+										<li><a href="/a6/dashboard/reg">Reguler</a></li>
+										<li><a href="/a6/dashboard/par">Paralel</a></li>
+										<li><a href="/a6/dashboard/inter">Internasional</a></li>
+										<li><a href="/a6/dashboard/vok">Vokasi</a></li>
 									</ul> <!-- /.nav-third-level --></li>
 								<li><a href="#"><i class="fa fa-building fa-fw"></i>Fakultas
 										<span class="fa arrow"></span></a>
-									<ul th:each="fakultas,iterationStatus: ${fakultas}"
+									<ul th:each="fak,iterationStatus: ${allFakultas}"
 										class="nav nav-third-level">
-										<li th:value="${fakultas.id_fakultas}"><a
-											th:text="${fakultas.fakultas}" href="#">Fakultas</a></li>
+										<li th:value="${fak.id_fakultas}"><a
+											th:text="${fak.fakultas}" th:href="'/a6/dashboard/fakultas/' + ${fak.id_fakultas}">Fakultas</a></li>
 									</ul>
 								<!-- /.nav-third-level --></li>
 						<li><a href="#"><span class="glyphicon glyphicon-road"></span>
 								Jalur Masuk <span class="fa arrow"></span></a>
-							<ul th:each="jalurMasuk,iterationStatus: ${jalurMasuk}"
+							<ul th:each="jalurMasukk,iterationStatus: ${allJalurMasuk}"
 								class="nav nav-third-level">
-								<li th:value="${jalurMasuk.id_jalur}"><a
-									th:text="${jalurMasuk.nama}" href="#">Jalur Masuk</a></li>
+								<li th:value="${jalurMasukk.id_jalur}"><a
+									th:text="${jalurMasukk.nama}" th:href="'/a6/dashboard/jalur/' + ${jalurMasukk.id_jalur}">Jalur Masuk</a></li>
 							</ul> <!-- /.nav-third-level --></li>
 					</ul>
 					<!-- /.nav-second-level -->
@@ -249,50 +249,30 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Nama Jenjang</th>
+                                                    <th>Program Pendidikan</th>
                                                     <th>Jumlah Pendaftar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
+                                                    <td>1</td>
+                                                    <td>Reguler</td>
+                                                    <td>3000</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:20 PM</td>
+                                                    <td>2</td>
+                                                    <td>Paralel</td>
+                                                    <td>2000</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:03 PM</td>
+                                                    <td>3</td>
+                                                    <td>Internasional</td>
+                                                    <td>1000</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:49 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:23 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:15 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:13 PM</td>
+                                                    <td>4</td>
+                                                    <td>Vokasi</td>
+                                                    <td>2000</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -326,13 +306,18 @@
 	</div>
 	<!-- /#wrapper -->
 	
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/metisMenu.min.js"></script>
-	<script src="/js/morris.min.js"></script>
-	<script src="/js/raphael.min.js"></script>
-	<script src="/js/sb-admin-2.js"></script>
-	<script src="/js/morris-data.js"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	
+	<script th:src="@{/js/metisMenu.min.js}"></script>
+	
+	<script th:src="@{/js/morris.min.js}"></script>
+	
+	<script th:src="@{/js/raphael.min.js}"></script>
+	
+	<script th:src="@{/js/sb-admin-2.js}"></script>
+	<script th:src="@{/js/morris-data.js}"></script>
 </body>
 
 </html>

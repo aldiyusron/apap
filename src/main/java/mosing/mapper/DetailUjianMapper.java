@@ -24,9 +24,4 @@ public interface DetailUjianMapper {
 			+ "#{id_lokasi}, #{waktu_ujian})")
 	void addDetail(DetailUjianModel detail);
 	
-//	@Select("select waktu_ujian, tanggal_ujian from detail_ujian where id_jalur = #{id_jalur}")
-//	DetailUjianModel selectDetailS1(int id_jalur);
-//	
-//	@Select("select waktu_ujian, tanggal_ujian from detail_ujian where id_jalur= #{id_jalur}")
-//	DetailUjianModel selectDetailPascasarjana(int id_jalur);
 }

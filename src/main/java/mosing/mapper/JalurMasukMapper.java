@@ -73,7 +73,7 @@ public interface JalurMasukMapper {
 	@Update("UPDATE JALUR_MASUK SET flag_aktif = 0 WHERE id_jalur=#{id_jalur}")
 	void deleteJalurMasuk(int id_jalur);
 
-	@Select("SELECT p.id_prodi, p.nama_prodi FROM prodi_tersedia p WHERE id_jalur=#{id_jalur}")
+	@Select("SELECT p.id_prodi, p.nama_prodi FROM PRODI_TERSEDIA p WHERE id_jalur=#{id_jalur}")
 	@Results(value = { @Result(property = "id_prodi", column = "id_prodi"),
 			@Result(property = "nama_prodi", column = "nama_prodi") })
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);

@@ -15,10 +15,10 @@ import mosing.model.ProdiTersediaModel;
 @Mapper
 public interface FakultasMapper {
 
-	@Select("select * from fakultas")
+	@Select("SELECT * FROM FAKULTAS")
 	List<FakultasModel> selectAllFakultas();
 	
-	@Select("select * from fakultas where id_fakultas = #{id_fakultas}")
+	@Select("SELECT * FROM FAKULTAS WHERE id_fakultas = #{id_fakultas}")
 		@Results(value = {
 				@Result(property="id_fakultas", column="id_fakultas"),
 				@Result(property="fakultas", column="fakultas"),
@@ -28,9 +28,9 @@ public interface FakultasMapper {
 		})
 	FakultasModel selectFakultasDanProdi(int id_fakultas);
 	
-	@Select("select * from prodi_tersedia join fakultas "
-			+ "on fakultas.id_fakultas = prodi_tersedia.id_fakultas "
-			+ "where prodi_tersedia.id_fakultas = #{id_fakultas}")
+	@Select("SELECT * FROM PRODI_TERSEDIA JOIN FAKULTAS "
+			+ "ON FAKULTAS.id_fakultas = PRODI_TERSEDIA.id_fakultas "
+			+ "where PRODI_TERSEDIA.id_fakultas = #{id_fakultas}")
 	@Results(value = {
 			@Result(property="id_prodi", column="id_prodi"),
 			@Result(property="nama_prodi", column="nama_prodi")

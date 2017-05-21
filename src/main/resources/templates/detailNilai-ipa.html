@@ -7,17 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<title>Penerimaan UI | Detail Siswa</title>
+
+<title>Penerimaan UI | Success</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -31,9 +30,6 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
 
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
@@ -44,6 +40,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
+
 </head>
 
 <body id="page-top" class="index">
@@ -67,16 +64,16 @@
 									Masyarakat</a></li>
 							<li><a style="color: black" href="http://www.fik.ui.ac.id">Ilmu
 									Keperawatan</a></li>
-							<li><a style="color: black" href="http://www.bing.ui.ac.id">Teknik</a></li>
+							<li><a style="color: black" href="http://www.eng.ui.ac.id">Teknik</a></li>
 							<li><a style="color: black" href="http://www.sci.ui.ac.id">Matematika
-									dan Ilmu Pbingetahuan Alam</a></li>
+									dan Ilmu Pengetahuan Alam</a></li>
 							<li><a style="color: black" href="http://www.cs.ui.ac.id">Ilmu
 									Komputer</a></li>
 							<li><a style="color: black" href="http://www.law.ui.ac.id">Hukum</a></li>
-							<li><a style="color: black" href="http://www.fe.ui.ac.id">ekonominomi
+							<li><a style="color: black" href="http://www.fe.ui.ac.id">Ekonomi
 									dan Bisnis</a></li>
 							<li><a style="color: black" href="http://www.fib.ui.ac.id">Ilmu
-									Pbingetahuan Budaya</a></li>
+									Pengetahuan Budaya</a></li>
 							<li><a style="color: black"
 								href="http://www.psikologi.ui.ac.id">Psikologi</a></li>
 							<li><a style="color: black" href="http://www.fisip.ui.ac.id">Ilmu
@@ -110,33 +107,20 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
-								<span class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-						</a></li>
-						<li>
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-s navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
-							</form>
-						</li>
-					</ul>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<div class="container">
-		<div class="logomosing">
+		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<li><a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a></li>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -150,6 +134,7 @@
 				</li>
 			</ul>
 		</div>
+
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container" style="margin: bottom: 5px">
@@ -166,7 +151,7 @@
 				<div class="col-md-4 col-md-offset-7" style="margin-top: -3%">
 					<br /> <input style="float: left" type="hidden"
 						th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <a
-						href="/daftar-siswa" class="btn btn-default" style="width: 40%">Kembali</a>
+						href="/a6/daftar-siswa" class="btn btn-default" style="width: 40%">Kembali</a>
 
 				</div>
 			</div>
@@ -402,7 +387,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<script
@@ -421,10 +406,10 @@
 	</script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript"
