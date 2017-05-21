@@ -40,8 +40,8 @@ public class ProdiTersediaServiceDatabase implements ProdiTersediaService {
 		
 	}
 
-	@Override
-	public void deleteProdi(ProdiTersediaModel prodi) {
-		prodiMapper.deleteProdi(prodi);
-	}
+//	@Override
+//	public void deleteProdi(ProdiTersediaModel prodi) {
+//		prodiMapper.deleteProdi(prodi);
+//	}
 }

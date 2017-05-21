@@ -58,13 +58,12 @@ public class JalurMasukController {
 			model.addAttribute("jalur_masuk", jalur_masuk);
 			List<LokasiModel> listLokasi = lokasiDAO.selectLokasiJalur(id_jalur);
 			model.addAttribute("listLokasi", listLokasi);
-			
+	
 			List<FakultasModel> allFakultas = pfakultasDAO.selectAllFakultas();
 			model.addAttribute("allFakultas", allFakultas);
 			
 			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
 			model.addAttribute("listProdi", listProdi);
-
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
