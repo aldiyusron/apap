@@ -64,6 +64,7 @@ public class JalurMasukController {
 			
 			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
 			model.addAttribute("listProdi", listProdi);
+			
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
@@ -109,7 +110,7 @@ public class JalurMasukController {
 		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
 				nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
-		return "success-registration"; // belum bener
+		return "success-addjalur"; // belum bener
 	}
 
 	@RequestMapping("/jalur-masuk/update/{id_jalur}")

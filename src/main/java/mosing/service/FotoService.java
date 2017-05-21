@@ -23,7 +23,7 @@ public class FotoService {
 	
 	public void insert(PendaftarModel pendaftar) throws IOException {
 		
-		String pathname = "src/main/webapp/foto/" + pendaftar.getNo_daftar() + pendaftar.getPhoto().getOriginalFilename();
+		String pathname = "foto/" + pendaftar.getNo_daftar() + pendaftar.getPhoto().getOriginalFilename();
 		
 		byte[] bytes = pendaftar.getPhoto().getBytes();
 		Path path = Paths.get(pathname);

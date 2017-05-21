@@ -108,18 +108,18 @@
 						</form>
 					</li>
 					<ul class="nav navbar-nav">
--						<li><a href="#" class="btn-default"
--							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
--								<span class="glyphicon glyphicon-user"
--								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
--						</a></li>
--						<li>
--							<form th:action="@{/logout}" method="post">
--								<button class="btn btn-danger navbar-btn" type="submit"
--									value="Sign Out">Keluar</button>
--							</form>
--						</li>
--					</ul>
+						<li><a href="#" class="btn-default"
+							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
+								<span class="glyphicon glyphicon-user"
+								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
+						</a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-danger navbar-btn" type="submit"
+									value="Sign Out">Keluar</button>
+							</form>
+						</li>
+					</ul>
 				</ul>
 			</div>
 		</div>

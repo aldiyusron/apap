@@ -224,7 +224,7 @@
 									<br />
 									<dt>Waktu Ujian</dt>
 									<dd
-										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'dd-MMM-yyyy')}"></dd>
+										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'DD-MMM-YYYY')}"></dd>
 									<br />
 									<dt>Persyaratan</dt>
 									<dd th:text="${jalur_masuk.persyaratan}"></dd>
@@ -265,7 +265,10 @@
 									<td th:text="${iterationStatus.count}">No.</td>
 									<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
 									<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
-									<td th:text="${prodi.id_fakultas}">Nama Fakultas</td>
+									<div th:each="fakultas, iterationStatus: ${allFakultas}">
+										<div th:if="${fakultas.id_fakultas eq prodi.id_fakultas}">
+											<td th:text="${fakultas.fakultas}">Nama Fakultas</td>
+										</div></div>
 									<td><a
 										th:href="'/a6/prodi-tersedia/update/'+ ${prodi.id_prodi}"> <span
 											class="input-group-btn">

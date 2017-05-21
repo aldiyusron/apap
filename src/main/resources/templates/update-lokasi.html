@@ -178,7 +178,7 @@
 								class="glyphicon glyphicon-education"></i></span> <input
 								name="nama_lokasi" th:value="${lokasi.nama_lokasi}"
 								placeholder="Nama Lokasi (contoh: SMAN 1 Depok)"
-								class="form-control" type="text" required="true" />
+								class="form-control" type="text" required="required" />
 						</div>
 					</div>
 				</div>
@@ -191,7 +191,7 @@
 								class="glyphicon glyphicon-home"></i></span>
 							<textarea name="alamat" th:text="${lokasi.alamat}"
 								placeholder="Alamat Lokasi. Contoh: Jalan ABC No. 1, Kelurahan DEF, Kecamatan HIJ"
-								class="form-control" rows="5" type="text" required="true"></textarea>
+								class="form-control" rows="5" type="text" required="required"></textarea>
 						</div>
 					</div>
 				</div>
@@ -277,8 +277,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span> <input name="no_telp"
-								placeholder="+62xxxx" class="form-control" type="text"
-								required="true" th:value="${lokasi.no_telp}" />
+								placeholder="02xxxx" class="form-control" type="text"
+								required="required" th:value="${lokasi.no_telp}" />
 						</div>
 					</div>
 				</div>
@@ -294,7 +294,7 @@
 								class="glyphicon glyphicon-user"></i></span> <input
 								name="kuota_pendaftar"
 								placeholder="Banyak tempat duduk tersedia untuk peserta ujian"
-								class="form-control" type="text" required="true"
+								class="form-control" type="text" required="required"
 								th:value="${lokasi.kuota_pendaftar}" />
 						</div>
 					</div>
@@ -308,7 +308,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="kuota_peng"
 								placeholder="Banyak pengawas yang dibutuhkan untuk mengawas"
-								class="form-control" type="text" required="true"
+								class="form-control" type="text" required="required"
 								th:value="${lokasi.kuota_peng}" />
 						</div>
 					</div>
@@ -410,7 +410,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$('#contact_form').bootstrapValidator({
 				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -503,7 +503,7 @@
 
 			});
 		});
-	</script>
+	</script> -->
 
 
 	<!-- Include Date Range Picker -->

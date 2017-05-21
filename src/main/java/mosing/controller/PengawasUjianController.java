@@ -131,8 +131,9 @@ public class PengawasUjianController {
 		return "form-pindahpengawas";
 	}
 
-	@RequestMapping("/seleksi-pengawas/pindah-jalur/submit")
-	public String pindahLokasi(@RequestParam(value = "id_user", required = false) int id_user,
+	@RequestMapping("/seleksi-pengawas/pindah-jalur/submit/{id_lokasi}")
+	public String pindahLokasi(Model model, @RequestParam(value = "id_lokasi", required = false) int id_lokasi,
+			@RequestParam(value = "id_user", required = false) int id_user,
 			@RequestParam(value = "jabatan", required = false) String jabatan,
 			@RequestParam(value = "nama", required = false) String nama,
 			@RequestParam(value = "no_hp", required = false) String no_hp,
@@ -142,8 +143,10 @@ public class PengawasUjianController {
 		System.out.println(pindah_bool);
 		LokasiModel lokasimodel = lokasiDAO.selectLokasi(lokasi);
 		PengawasUjianModel pengawas = new PengawasUjianModel(id_user, 0, jabatan, nama, no_hp,
-				lokasimodel.getId_lokasi(), pindah_bool, 1);
+				lokasi, pindah_bool, 1);
+		model.addAttribute("id_lokasi", lokasi);
 		pengawasDAO.updatePengawas(pengawas);
+		
 		return "success-pindahpengawas";
 	}
 }

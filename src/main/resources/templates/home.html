@@ -261,25 +261,28 @@
 				</div>
 			</div>
 			<div class="col-md-4" style="margin-top: 40px">
-				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px"
-					class="">
+				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px">
 					<h4 style="padding-left: 5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
-						<form>
+						<form action="/a6/lihat-hasil" method="post" id="contact_form">
 							<div class="form-group">
-								<label>No. Ujian:</label> <input type="text"
-									class="form-control" />
+								<label for="no_daftar">No. Ujian:</label> <input type="text"
+									class="form-control" name="no_daftar" id="no_daftar"
+									required="required" />
 							</div>
 							<div class="form-group">
-								<label for="sel1">Jalur Masuk:</label> <select
-									class="form-control" id="sel1">
-									<option>SNMPTN</option>
-									<option>SBMPTN</option>
-									<option>PPKB</option>
-									<option>SIMAK UI</option>
-									<option>Talent Scouting</option>
+								<label for="nama_jalur">Jalur Masuk:</label> <select
+									required="required" class="form-control selectpicker"
+									id="id_jalur" name="id_jalur">
+									<option value="">Jalur Masuk</option>
+									<div th:each="pilihJalur,iterationStatus: ${allJalurMasuk}">
+										<option th:value="${pilihJalur.id_jalur}"
+											th:text="${pilihJalur.nama}"></option>
+									</div>
 								</select>
 							</div>
+							<input type="hidden" th:name="${_csrf.parameterName}"
+								th:value="${_csrf.token}" />
 							<button type="submit" class="btn btn-s">Lihat</button>
 						</form>
 					</div>

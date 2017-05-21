@@ -25,7 +25,7 @@ public class BerkasService {
 	
 	public void insert(PenyeleksianModel penyeleksian) throws IOException {
 		
-		String pathname = "src/main/webapp/berkas/" + penyeleksian.getNo_daftar() + penyeleksian.getFileBerkas().getOriginalFilename();
+		String pathname = "foto/" + penyeleksian.getNo_daftar() + penyeleksian.getFileBerkas().getOriginalFilename();
 		
 		byte[] bytes = penyeleksian.getFileBerkas().getBytes();
 		Path path = Paths.get(pathname);

@@ -13,4 +13,5 @@ public class ProdiTersediaModel {
 	private int daya_tampung;
 	private int id_fakultas;
 	private int id_jalur;
+	private int flag_aktif;
 }

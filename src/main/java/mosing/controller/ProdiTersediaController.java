@@ -11,18 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.FakultasModel;
-import mosing.model.JalurMasukModel;
-import mosing.model.KotaModel;
-import mosing.model.LokasiModel;
 import mosing.model.ProdiTersediaModel;
-import mosing.model.ProvinsiModel;
 import mosing.service.DetailUjianService;
 import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.KotaService;
-import mosing.service.LokasiService;
 import mosing.service.ProdiTersediaService;
-import mosing.service.ProvinsiService;
 
 @Controller
 public class ProdiTersediaController {
@@ -63,7 +57,7 @@ public class ProdiTersediaController {
 			@RequestParam(value = "id_fakultas", required = false) int id_fakultas) {
 		//JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		model.addAttribute("id_jalur", id_jalur);
-		ProdiTersediaModel prodi = new ProdiTersediaModel(0, nama_prodi, daya_tampung, id_fakultas, id_jalur);
+		ProdiTersediaModel prodi = new ProdiTersediaModel(0, nama_prodi, daya_tampung, id_fakultas, id_jalur, 1);
 		prodiTersediaDAO.addProdi(prodi);
 
 		return "success-addprodi";
@@ -83,7 +77,7 @@ public class ProdiTersediaController {
 		int id_jalur = prodiTersediaDAO.selectProdi(id_prodi).getId_jalur();
 		model.addAttribute("id_jalur", id_jalur);
 		model.addAttribute("prodi", prodi);
-//		prodiTersediaDAO.deleteProdi(prodi);
+		prodiTersediaDAO.deleteProdi(prodi);
 
 		return "success-deleteprodi";
 	}
@@ -105,7 +99,7 @@ public class ProdiTersediaController {
 		ProdiTersediaModel prodi = prodiTersediaDAO.selectProdi(id_prodi);
 		int id_jalur = prodiTersediaDAO.selectProdi(id_prodi).getId_jalur();
 		model.addAttribute("id_jalur", id_jalur);
-		ProdiTersediaModel prodiNew = new ProdiTersediaModel(id_prodi, nama_prodi, daya_tampung, id_fakultas, prodi.getId_jalur());
+		ProdiTersediaModel prodiNew = new ProdiTersediaModel(id_prodi, nama_prodi, daya_tampung, id_fakultas, prodi.getId_jalur(), 1);
 		prodiTersediaDAO.updateProdi(prodiNew);
 		return "success-updateprodi";
 	}

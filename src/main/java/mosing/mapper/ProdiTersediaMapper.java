@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import mosing.model.DaftarPilihanModel;
 import mosing.model.ProdiTersediaModel;
 
 @Mapper
@@ -26,12 +25,12 @@ public interface ProdiTersediaMapper {
 	@Select("SELECT id_prodi, nama_prodi, daya_tampung, id_fakultas, id_jalur FROM PRODI_TERSEDIA p WHERE id_jalur=#{id_jalur}")
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);
 	
-	@Insert("INSERT INTO PRODI_TERSEDIA (nama_prodi, daya_tampung, id_fakultas, id_jalur) VALUES (#{nama_prodi}, #{daya_tampung}, #{id_fakultas}, #{id_jalur})")
+	@Insert("INSERT INTO PRODI_TERSEDIA (nama_prodi, daya_tampung, id_fakultas, id_jalur, flag_aktif) VALUES (#{nama_prodi}, #{daya_tampung}, #{id_fakultas}, #{id_jalur}, 1)")
 	void addProdi(ProdiTersediaModel prodi);
 	
 	@Update("UPDATE PRODI_TERSEDIA SET nama_prodi = #{nama_prodi}, daya_tampung = #{daya_tampung}, id_fakultas = #{id_fakultas}, id_jalur = #{id_jalur} WHERE id_prodi=#{id_prodi}")
 	void updateProdi(ProdiTersediaModel prodi);
 	
-//	@Update("update prodi_tersedia set flag_aktif = 0 where id_prodi = #{id_prodi}")
-//	void deleteProdi(ProdiTersediaModel prodi);
+	@Update("UPDATE PRODI_TERSEDIA SET flag_aktif = 0 WHERE id_prodi = #{id_prodi}")
+	void deleteProdi(ProdiTersediaModel prodi);
 }
