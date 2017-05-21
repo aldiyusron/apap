@@ -8,13 +8,15 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Pindah Pengawas Ujian</title>
+
+<title>Penerimaan UI | Success</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
@@ -105,19 +107,6 @@
 							</div>
 						</form>
 					</li>
-					<ul class="nav navbar-nav">
-						<li><a href="#" class="btn-default"
-							style="margin-right: 15px; height: 35px; margin-top: 8px; padding-top: 6px">
-								<span class="glyphicon glyphicon-user"
-								th:text=" ' ' + ${#httpServletRequest.remoteUser}"></span>
-						</a></li>
-						<li>
-							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
-									value="Sign Out">Keluar</button>
-							</form>
-						</li>
-					</ul>
 				</ul>
 			</div>
 		</div>
@@ -126,12 +115,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -172,7 +161,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="nama"
 								placeholder="Nama Lengkap" class="form-control" type="text"
-								required="true" th:value="${pengawas.nama}" readonly="readonly" />
+								required="required" th:value="${pengawas.nama}" readonly="readonly" />
 						</div>
 					</div>
 				</div>
@@ -184,7 +173,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="no_hp"
 								placeholder="Nomor Handphone" class="form-control" type="text"
-								required="true" th:value="${pengawas.no_hp}" readonly="readonly" />
+								required="required" th:value="${pengawas.no_hp}" readonly="readonly" />
 						</div>
 					</div>
 				</div>
@@ -323,7 +312,7 @@
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
 						<br /> <input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/" class="btn btn-default">Batal</a>
+							th:value="${_csrf.token}" /> <a href="/a6" class="btn btn-default">Batal</a>
 						<button style="width: 30%" value="save" name="action"
 							type="submit" class="btn btn-warning">Simpan</button>
 					</div>
@@ -405,100 +394,7 @@
 
 	<script th:src="@{/js/agency.min.js}"></script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#contact_form').bootstrapValidator({
-				// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					nama_lokasi : {
-						validators : {
-							stringLength : {
-								min : 3,
-								max : 50,
-							},
-							notEmpty : {
-								message : 'Masukkan nama lokasi'
-							}
-						}
-					},
-					alamat : {
-						validators : {
-							stringLength : {
-								min : 5,
-								max : 100,
-							},
-							notEmpty : {
-								message : 'Masukkan alamat lokasi'
-							}
-						}
-					},
-
-					no_telp : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan nomor telepon'
-							},
-							phone : {
-								country : 'INA',
-								message : 'Masukkan dengan awalan +62'
-							}
-						}
-					},
-					nama_provinsi : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih provinsi'
-							}
-						}
-					},
-					nama_kota : {
-						validators : {
-							notEmpty : {
-								message : 'Pilih kota'
-							}
-						}
-					},
-					kuota_peng : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pengawas'
-							}
-						}
-					},
-					kuota_pendaftar : {
-						validators : {
-							notEmpty : {
-								message : 'Masukkan jumlah kuota pendaftar'
-							}
-						}
-					},
-
-				}
-			})
-
-			.on('success.form.bv', function(e) {
-				$('#success_message').slideDown({
-					opacity : "show"
-				}, "slow") // Do something ...
-				$('#reg_form').data('bootstrapValidator').resetForm();
-
-				// Prevent form submission
-				e.preventDefault();
-
-				// Get the form instance
-				var $form = $(e.target);
-
-				// Get the BootstrapValidator instance
-				var bv = $form.data('bootstrapValidator');
-
-			});
-		});
-	</script>
+	
 
 </body>
 
