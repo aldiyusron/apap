@@ -15,7 +15,7 @@ import mosing.model.ProvinsiModel;
 @Mapper
 public interface ProvinsiMapper {
 	
-	@Select("select * from provinsi where id_provinsi=#{id_provinsi}")
+	@Select("SELECT * FROM PROVINSI WHERE id_provinsi=#{id_provinsi}")
 	@Results(value = {
 			@Result(property="nama_provinsi", column="nama_provinsi"),
 			@Result(property="id_negara", column="id_negara"),
@@ -25,16 +25,16 @@ public interface ProvinsiMapper {
 	})
 	ProvinsiModel selectProvinsiDanKotanya(@Param("id_provinsi") int id_provinsi);
 	
-	@Select("select id_kota, nama_kota from provinsi join kota "
-			+ "on provinsi.id_provinsi=kota.id_provinsi "
-			+ "where provinsi.id_provinsi=#{id_provinsi}")
+	@Select("SELECT id_kota, nama_kota FROM PROVINSI p JOIN KOTA k "
+			+ "ON p.id_provinsi=k.id_provinsi "
+			+ "WHERE p.id_provinsi=#{id_provinsi}")
 	@Results(value = {
 			@Result(property="id_kota", column="id_kota"),
 			@Result(property="nama_kota", column="nama_kota")
 	})
 	List<KotaModel> selectAllKota(@Param("id_provinsi") int id_provinsi);
 	
-	@Select("select * from provinsi")
+	@Select("SELECT * FROM PROVINSI")
 	@Results(value = {
 			@Result(property="id_provinsi", column="id_provinsi"),
 			@Result(property="nama_provinsi", column="nama_provinsi"),

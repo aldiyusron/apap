@@ -1,5 +1,7 @@
 package mosing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,18 @@ public class DetailUjianServiceDatabase implements DetailUjianService {
 	@Override
 	public DetailUjianModel selectDetail(int id_jalur) {
 		return detailUjianMapper.selectDetail(id_jalur);
+	}
+
+	@Override
+	public List<DetailUjianModel> selectAllDetail() {
+		// TODO Auto-generated method stub
+		return detailUjianMapper.selectAllDetail();
+	}
+
+	@Override
+	public void addDetail(DetailUjianModel detail) {
+		// TODO Auto-generated method stub
+		detailUjianMapper.addDetail(detail);
 	}
 	
 //	@Override

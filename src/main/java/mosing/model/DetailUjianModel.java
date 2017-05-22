@@ -15,6 +15,6 @@ public class DetailUjianModel {
 	private String no_ujian;
 	private int id_jalur;
 	private int id_lokasi;
-	private Time waktu_ujian;
-	private Date tanggal_ujian;
+//	private Time waktu_ujian;
+	private Date waktu_ujian;
 }
