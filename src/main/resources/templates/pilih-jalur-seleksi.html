@@ -16,10 +16,12 @@
 <title>Penerimaan UI | Seleksi Pendaftar</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
-
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
+	rel="stylesheet" />
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -119,7 +121,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -132,12 +134,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -153,49 +155,44 @@
 		</div>
 
 	</div>
-	<div class="container">
+	<div class="container ">
 		<h1>Daftar Jalur Masuk</h1>
 
-		<div class="row" style="margin-bottom: -60px">
+		<div class="row bg-light-gray">
 			<div id="exTab3" class="container">
 
-				<div class="tab-content clearfix" style="padding: 50px">
-					<form th:action="@{/jalur-masuk/add}" method="post" id="contact_form" data-toggle="validator"
-							role="form">
-						
-						<table id="daftarJalurMasuk" class="table stripe">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Nama Jalur Masuk</th>
-									<th>Status</th>
-									<th></th>
-								</tr>
-							</thead>
+				<table id="daftarJalurMasuk" class="table stripe">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Nama Jalur Masuk</th>
+							<th>Status</th>
+							<th></th>
+						</tr>
+					</thead>
 
-							<tbody>
-								<div th:each="jalur,iterationStatus: ${allJalur}">
-									<tr>
-										<td scope="row" th:text="${iterationStatus.count}">No.</td>
-										<td scope="row" th:text="${jalur.nama}">Nama Jalur Masuk</td>
-										<div th:if="${jalur.status}==1">
-											<td scope="row">Aktif</td>
-										</div>
-										<div th:if="${jalur.status}==0">
-											<td scope="row">Tidak Aktif</td>
-										</div>
-										<td><a th:href="'/lihat/fakultas/'+ ${jalur.id_jalur}"
-											style="float: right"> <span class="input-group-btn">
-													<button type="button" class="btn btn-sm btn-custom" id="as"
-														name="as" value="Go" th:text="Terima"></button>
-											</span>
-										</a></td>
-									</tr>
+					<tbody>
+						<div th:each="jalur,iterationStatus: ${allJalur}">
+							<tr>
+								<td scope="row" th:text="${iterationStatus.count}">No.</td>
+								<td scope="row" th:text="${jalur.nama}">Nama Jalur Masuk</td>
+								<div th:if="${jalur.status}==1">
+									<td scope="row">Aktif</td>
 								</div>
-							</tbody>
-						</table>
-					</form>
-				</div>
+								<div th:if="${jalur.status}==0">
+									<td scope="row">Tidak Aktif</td>
+								</div>
+								<td><a th:href="'/a6/lihat/fakultas/'+ ${jalur.id_jalur}"
+									style="float: left; width: 80%; margin-top: 10%"> <span
+										class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-warning1" id="as"
+												name="as" value="Go" th:text="Terima"></button>
+									</span>
+								</a></td>
+							</tr>
+						</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -270,7 +267,7 @@
 	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 
 	<!-- Plugin JavaScript -->
 	<!-- <script src= "//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
@@ -297,10 +294,10 @@
 	</script>
 
 	<!-- Contact Form JavaScript -->
-	<script th:src="@{js/jqBootstrapValidation.js}"></script>
+	<script th:src="@{/js/jqBootstrapValidation.js}"></script>
 
 	<!-- Theme JavaScript -->
-	<script th:src="@{js/agency.min.js}"></script>
+	<script th:src="@{/js/agency.min.js}"></script>
 	<script>
 		$(document).ready(function() {
 			$("#daftarJalurMasuk").DataTable();

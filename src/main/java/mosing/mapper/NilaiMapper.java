@@ -14,24 +14,24 @@ import mosing.model.PendaftarModel;
 
 @Mapper
 public interface NilaiMapper {
-	@Insert("INSERT INTO nilai_rapor (no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, "
-			+ "kkm_biologi, kkm_sejarah, kkm_geografi, kkm_ekonomi, "
+	@Insert("INSERT INTO NILAI_RAPOR (no_daftar, kkm_mtk, kkm_kimia, kkm_fisika, "
+			+ "kkm_biologi, kkm_sejarah, kkm_geografi, kkm_ekonomi, kkm_sosiologi, "
 			+ "kkm_bindo, kkm_bing, mtk, kimia, fisika, biologi, sejarah, geografi, "
-			+ "ekonomi, bindo, bing, semester) VALUES" + "(#{no_daftar}, #{kkm_mtk}, #{kkm_kimia}, #{kkm_fisika}, "
-			+ "#{kkm_biologi}, #{kkm_sejarah}, #{kkm_geografi}, #{kkm_ekonomi}, "
+			+ "ekonomi, sosiologi, bindo, bing, semester) VALUES" + "(#{no_daftar}, #{kkm_mtk}, #{kkm_kimia}, #{kkm_fisika}, "
+			+ "#{kkm_biologi}, #{kkm_sejarah}, #{kkm_geografi}, #{kkm_ekonomi}, #{kkm_sosiologi}, "
 			+ "#{kkm_bindo}, #{kkm_bing}, #{mtk}, #{kimia}, #{fisika}, #{biologi}, #{sejarah}, #{geografi}, "
-			+ "#{ekonomi}, #{bindo}, #{bing}, #{semester})")
+			+ "#{ekonomi}, #{sosiologi}, #{bindo}, #{bing}, #{semester})")
 	void addNilai(NilaiModel nilai);
 
-	@Select("select * from nilai_rapor where no_daftar=#{no_daftar}")
+	@Select("SELECT * FROM NILAI_RAPOR WHERE no_daftar=#{no_daftar}")
 	List<NilaiModel> selectNilai(@Param("no_daftar") int no_daftar);
 
-	@Update("UPDATE nilai_rapor SET kkm_mtk = #{kkm_mtk}, kkm_fisika = #{kkm_fisika}, kkm_biologi = #{kkm_biologi}, "
-			+ "kkm_sejarah = #{kkm_sejarah}, kkm_geografi = #{kkm_geografi}, kkm_ekonomi = #{kkm_ekonomi}, kkm_bindo = #{kkm_bindo}, "
+	@Update("UPDATE NILAI_RAPOR SET kkm_mtk = #{kkm_mtk}, kkm_fisika = #{kkm_fisika}, kkm_biologi = #{kkm_biologi}, "
+			+ "kkm_sejarah = #{kkm_sejarah}, kkm_geografi = #{kkm_geografi}, kkm_ekonomi = #{kkm_ekonomi}, kkm_sosiologi = #{kkm_sosiologi}, kkm_bindo = #{kkm_bindo}, "
 			+ "kkm_bing = #{kkm_bing}, mtk = #{mtk}, kimia = #{kimia}, fisika = #{fisika}, biologi = #{biologi}, sejarah = #{sejarah}, geografi = #{geografi},"
-			+ " ekonomi=#{ekonomi}, bindo = #{bindo}, bing = #{bing} where semester = #{semester} and no_daftar=#{no_daftar}")
+			+ " ekonomi=#{ekonomi}, sosiologi=#{sosiologi}, bindo = #{bindo}, bing = #{bing} WHERE semester = #{semester} AND no_daftar=#{no_daftar}")
 	void updateNilai(NilaiModel nilai);
 
-	@Select("select * from nilai_ujian where no_daftar = #{no_daftar}")
+	@Select("SELECT * FROM NILAI_UJIAN WHERE no_daftar = #{no_daftar}")
 	NilaiUjianModel selectNilaiUjian(@Param("no_daftar") int no_daftar);
 }

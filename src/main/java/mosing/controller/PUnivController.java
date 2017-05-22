@@ -1,7 +1,9 @@
 package mosing.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mosing.model.CalonMahasiswaModel;
 import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.ListStrings;
@@ -28,6 +31,7 @@ import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.NilaiService;
 import mosing.service.PFakultasService;
+import mosing.service.PemimpinUnivService;
 import mosing.service.PendaftarService;
 import mosing.service.PenyeleksianService;
 import mosing.service.ProdiService;
@@ -57,6 +61,9 @@ public class PUnivController {
 
 	@Autowired
 	CalonMahasiswaService calonDAO;
+	
+	@Autowired
+	PemimpinUnivService pemimpinUnivDAO;
 
 	// nampilin jalur masuk
 	@RequestMapping("/seleksi-pendaftar")
@@ -66,7 +73,6 @@ public class PUnivController {
 
 		return "pilih-jalur-seleksi";
 	}
-
 	// nampilin list fakultas
 	@RequestMapping("/lihat/fakultas/{id_jalur}")
 	public String lihatFakultas(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
@@ -174,26 +180,143 @@ public class PUnivController {
 
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model){
-		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
-		List<FakultasModel> fakultas = fakultasDAO.selectAllFakultas();
-		model.addAttribute("jalurMasuk", jalurMasuk);
-		model.addAttribute("fakultas", fakultas);
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
 		return "dashboard";
 	}
+	
+	@RequestMapping("/dashboard/s1")
+	public String dashboardS1(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s1";
+	}
+	
+	@RequestMapping("/dashboard/s2")
+	public String dashboardS2(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s2";
+	}
+	
+	@RequestMapping("/dashboard/s3")
+	public String dashboardS3(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-s3";
+	}
+	
+	@RequestMapping("/dashboard/reg")
+	public String dashboardReg(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-reg";
+	}
+	
+	@RequestMapping("/dashboard/par")
+	public String dashboardPar(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-par";
+	}
+	
+	@RequestMapping("/dashboard/inter")
+	public String dashboardInter(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-inter";
+	}
+	
+	@RequestMapping("/dashboard/vok")
+	public String dashboardVok(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-vok";
+	}
+	
+	@RequestMapping("/dashboard/fakultas/{id_fakultas}")
+	public String dashboardFakultas(Model model){
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-fakultas";
+	}
+	
+	@RequestMapping("/dashboard/jalur/{id_jalur}")
+	public String dashboardJalur(Model model, @PathVariable("id_jalur") int id_jalur){
+		JalurMasukModel jalurMasuk = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
+		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		model.addAttribute("allJalurMasuk", allJalurMasuk);
+		model.addAttribute("jalurMasuk", jalurMasuk);
+		model.addAttribute("allFakultas", allFakultas);
+		return "dashboard-jalurMasuk";
+	}
 
-	@RequestMapping(value = "/sukses-seleksi")
+	@RequestMapping("/sukses-seleksi")
 	public String suksesSeleksi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model,
+			@RequestParam(value = "id_jalur", required = false) int id_jalur,
+			@RequestParam(value = "jenjang", required = false) String jenjang,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		List<CalonMahasiswaModel> pendaftarLulus = new ArrayList<CalonMahasiswaModel>();
+		List<PendaftarModel> pendaftars = new ArrayList<PendaftarModel>();
+		List<CalonMahasiswaModel> calons = calonDAO.selectAllCalon();
+		String latestNPM = calons.get(calons.size()-1).getNpm();
+		System.out.println(latestNPM);
+//		double npm = Double.parseDouble(latestNPM) + 1;
+		
+//		System.out.println(npm);
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
+				LocalDateTime now = LocalDateTime.now();
+				int year = now.getYear();
+				String yearNow = Integer.toString(year);
+				String newNPM = yearNow.substring(yearNow.length()-2, yearNow.length()) + "0";
+				String angka = "0123456789";
+				int n = angka.length();
+				Random random = new Random();
+				char angkaChar;
+				for(int j = 0; j < 7; j++)
+				{
+					angkaChar = angka.charAt(random.nextInt(n));
+					newNPM = newNPM + Character.toString(angkaChar);
+				}
 				String nomor = statusSubmit.getStrings().get(i);
 				int no_daftar = Integer.parseInt(nomor);
 				penyeleksianDAO.updateLulus(no_daftar);
+				PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
+				pendaftars.add(pendaftar);
+				CalonMahasiswaModel calon = new CalonMahasiswaModel(no_daftar, newNPM, id_prodi, id_jalur, jenjang);
+				pendaftarLulus.add(calon);
 			}
 		}
-		return "success-daftarpengawas"; //belum ganti bouz
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("pendaftars", pendaftars);
+		model.addAttribute("pendaftarLulus", pendaftarLulus);
+		return "success-menyeleksi";
 	}
 }

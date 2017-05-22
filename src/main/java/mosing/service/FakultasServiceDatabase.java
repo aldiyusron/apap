@@ -38,5 +38,5 @@ public class FakultasServiceDatabase implements FakultasService {
 	public FakultasModel selectFakultas(int id_fakultas) {
 		return fakultasMapper.selectFakultas(id_fakultas);
 	}
-
+	
 }

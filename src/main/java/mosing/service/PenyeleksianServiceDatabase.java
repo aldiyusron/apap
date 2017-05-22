@@ -45,9 +45,9 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	}
 
 	@Override
-	public void updatePenyeleksian(int no_daftar) {
+	public void deletePenyeleksian(PenyeleksianModel penyeleksian) {
 		// TODO Auto-generated method stub
-		penyeleksianMapper.updatePenyeleksian(no_daftar);
+		penyeleksianMapper.deletePenyeleksian(penyeleksian);
 	}
 
 	@Override
@@ -59,6 +59,5 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	@Override
 	public void updateRekomen(int no_daftar) {
 		penyeleksianMapper.updateRekomen(no_daftar);
-		
 	}
 }

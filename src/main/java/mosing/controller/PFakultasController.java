@@ -56,7 +56,7 @@ public class PFakultasController {
 		model.addAttribute("allJalur", jalurMasuk);
 		return "pilih-jalur-terima";
 	}
-	
+
 	@RequestMapping("/view/rec/jalur")
 	public String recPendaftar(Model model) {
 		List<JalurMasukModel> jalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
@@ -86,7 +86,7 @@ public class PFakultasController {
 	@RequestMapping("/view/pendaftar/{id_jalur}/{id_prodi}")
 	public String rekomendasikan(Model model, @PathVariable(value = "id_jalur") int id_jalur,
 			@PathVariable(value = "id_prodi") int id_prodi) {
-		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarNonRec(id_prodi, id_jalur);
+		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarNonRec(id_prodi);
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
 		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
@@ -159,10 +159,13 @@ public class PFakultasController {
 		model.addAttribute("pendaftar", pendaftar);
 		return "recommending";
 	}
-	
-	@RequestMapping(value = "/sukses-rekomendasi")
+
+	@RequestMapping("/sukses-rekomendasi")
 	public String suksesRekomendasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
-			BindingResult bindingResultStatus, Model model) {
+			BindingResult bindingResultStatus, Model model,
+			@RequestParam(value = "id_jalur", required = false) int id_jalur,
+			@RequestParam(value = "jenjang", required = false) String jenjang,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi) {
 		System.out.println("size:" + statusSubmit.getStrings().size());
 		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
 		System.out.println(statusSubmit.getStrings().get(0));
@@ -173,9 +176,15 @@ public class PFakultasController {
 				penyeleksianDAO.updateRekomen(no_daftar);
 			}
 		}
-		return "success-rekomendasi"; //belum ganti bouz
+		List<PendaftarModel> pendaftarRec = pendaftarDAO.selectAllPendaftarRec(id_prodi);
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalur", jalur);
+		model.addAttribute("pendaftarRec", pendaftarRec);
+		return "success-recommendation";
 	}
-	
+
 	@RequestMapping("/view/fakultas/rec/{id_jalur}")
 	public String lihatFakultasRec(Model model, @PathVariable(value = "id_jalur") int id_jalur) {
 		List<FakultasModel> fakultas = pfakultasDAO.selectAllFakultas();

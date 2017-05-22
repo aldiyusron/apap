@@ -7,19 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-<title>Penerimaan UI | Daftar Fakultas</title>
+<title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -34,7 +29,7 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
-
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
@@ -119,7 +114,7 @@
 						</a></li>
 						<li>
 							<form th:action="@{/logout}" method="post">
-								<button class="btn btn-danger navbar-btn" type="submit"
+								<button class="btn btn-s navbar-btn" type="submit"
 									value="Sign Out">Keluar</button>
 							</form>
 						</li>
@@ -132,12 +127,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -153,28 +148,45 @@
 		</div>
 
 	</div>
+	<br />
+	<br />
+	
 	<div class="container">
-		<h1>Daftar Fakultas</h1>
 
-		<div class="row" style="margin-bottom: -60px">
-			<div id="exTab3" class="container">
-				<ul th:each="fakultas,iterationStatus: ${fakultas}">
-					<li><button th:text="${fakultas.fakultas}"></button></li>
-					<ul th:each="prodi,iterationStatus: ${fakultas.listProdi}">
-						<li><a th:href="'/view/pendaftar/' + ${id_jalur} + '/' + ${prodi.id_prodi}"><button
-									th:text="${prodi.nama_prodi}"></button></a></li>
-					</ul>
-					<br />
-				</ul>
+		<div class ="team-member" style="margin-bottom: 5%">
+		<h1 style="float: left; margin-top: -2px">Daftar Fakultas</h1></div>
+		<div class="panel-group" style="margin-top: 20px">
+			<div class="panel panel-default">
+				<div id="newpost" class="panel-heading">
+					<h4 id="button" class="panel-title"
+						th:each="fakultas,iterationStatus: ${fakultas}"
+						style="padding: 5px">
+						<a data-toggle="collapse"
+							th:href="'#collapse' + ${iterationStatus.count}"
+							th:text="${fakultas.fakultas}"></a>
+
+						<div th:id="'collapse' + ${iterationStatus.count}"
+							class="panel-collapse collapse">
+							<ul class="list-group" style="margin-bottom:1%;margin-top:1%; margin-left:2%">
+								<li th:each="prodi,iterationStatus: ${fakultas.listProdi}" class="list-group-item"><a
+									th:href="'/a6/view/pendaftar/' + ${id_jalur} + '/' + ${prodi.id_prodi}"
+									th:text="${prodi.nama_prodi}" th:value="prodi.id_prodi"></a></li>
+							</ul>
+						</div>
+					</h4>
+				</div>
 			</div>
 		</div>
+		<div style="float: left; width: 10%">
+		<a th:href="'/a6/acceptPendaftar'" class="btn btn-warning"><i
+			class="fa fa-chevron-left">Kembali</i></a></div>
 	</div>
 
 
 	<div class="container bg-light-gray">
-		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
+		<div class="row" style="padding-top: 35px; padding-bottom: 10px">
 			<div class="col-sm-4">
-				<div style="margin-left: 12%">
+				<div style="margin-left: 45px">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
 						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
@@ -183,25 +195,25 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="team-member">
-					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
+					<h3 style="margin-left: -67.5px">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
 					<ul class="socialtitle"
-						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
-						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
-						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
-						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
+						style="list-style: none; margin-top: -217.75px; text-align: left; margin-left: 60px">
+						<li style="margin-bottom: 30px"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 37px"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 35px"><h4>penerimaan@ui.ac.id</h4></li>
 						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
 					</ul>
 				</div>
@@ -228,7 +240,7 @@
 		<div class="container bg-darkest-gray">
 			<div class="row">
 				<div class="col-md-4"
-					style="width: 100%; height: 50px; padding-top: 1.5%">
+					style="width: 500px; height: 50px; padding-top: 10px; margin-left: 350px">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
@@ -237,7 +249,6 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script th:src="@{/js/jquery.min.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
@@ -281,6 +292,10 @@
 		});
 	</script>-->
 	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
 		
 	</script>
@@ -288,7 +303,12 @@
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js">
 		
-	</script>
+	</script>	
+<!-- 	var button = document.getElementById('button'); button.onclick =
+	function() { var div = document.getElementById('newpost'); if
+	(div.style.display !== 'none') { div.style.display = 'none'; } else {
+	div.style.display = 'block'; } }; -->
+	
 	<script>
 		$(document).ready(function() {
 			$("#daftarJalurMasuk").DataTable();

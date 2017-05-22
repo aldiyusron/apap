@@ -1,7 +1,8 @@
 package mosing.model;
 
 import java.util.Date;
-import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class PendaftarModel {
 	private String no_id;
 	private String nama_id;
 	private String nama_ijazah;
+	private MultipartFile photo;
 	private String foto;
 	private String no_hp;
 	private String no_telp;
