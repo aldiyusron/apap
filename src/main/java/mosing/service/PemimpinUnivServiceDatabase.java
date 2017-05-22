@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import mosing.mapper.PUnivMapper;
 import mosing.mapper.PendaftarMapper;
 import mosing.model.PendaftarModel;
 
@@ -14,7 +15,7 @@ import mosing.model.PendaftarModel;
 public class PemimpinUnivServiceDatabase implements PemimpinUnivService {
 	
 	@Autowired
-	PendaftarMapper pendaftarMapper;
+	PUnivMapper punivMapper;
 	
 	@Override
 	public List<PendaftarModel> selectAllPendaftar() {
@@ -127,7 +128,7 @@ public class PemimpinUnivServiceDatabase implements PemimpinUnivService {
 	@Override
 	public List<PendaftarModel> selectAllPendaftarSNMPTN(int id_jalur) {
 		// TODO Auto-generated method stub
-		return null;
+		return punivMapper.selectAllPendaftarSNMPTN(id_jalur);
 	}
 
 	@Override
@@ -139,7 +140,7 @@ public class PemimpinUnivServiceDatabase implements PemimpinUnivService {
 	@Override
 	public List<PendaftarModel> selectAllPendaftarPPKB(int id_jalur) {
 		// TODO Auto-generated method stub
-		return null;
+		return punivMapper.selectAllPendaftarPPKB(id_jalur);
 	}
 
 	@Override

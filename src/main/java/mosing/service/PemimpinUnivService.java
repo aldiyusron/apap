@@ -5,25 +5,25 @@ import java.util.List;
 import mosing.model.PendaftarModel;
 
 public interface PemimpinUnivService {
-	List<PendaftarModel> selectAllPendaftar(); //dari tabel pendaftar
-	List<PendaftarModel> selectAllPendaftarLulus(int status); //dari tabel penyeleksian
-	List<PendaftarModel> selectAllPendaftarS1(int jenjang); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarS1Lulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarS2(int jenjang); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarS2Lulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarS3(int jenjang); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarS3Lulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarReguler(int nama_program); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarRegulerLulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarParalel(int nama_program); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarParalelLulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarInternasional(int nama_program); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarInternasionalLulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarFakultas(int id_prodi); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarFakultasLulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarProdi(int id_prodi); //dari tabel daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarProdiLulus(int status); //dari tabel penyeleksian & daftar_pilihan
-	List<PendaftarModel> selectAllPendaftarSNMPTN(int id_jalur);
+	List<PendaftarModel> selectAllPendaftar(); 
+	List<PendaftarModel> selectAllPendaftarLulus(int status); 
+	List<PendaftarModel> selectAllPendaftarS1(int jenjang); 
+	List<PendaftarModel> selectAllPendaftarS1Lulus(int status); 
+	List<PendaftarModel> selectAllPendaftarS2(int jenjang); 
+	List<PendaftarModel> selectAllPendaftarS2Lulus(int status); 
+	List<PendaftarModel> selectAllPendaftarS3(int jenjang); 
+	List<PendaftarModel> selectAllPendaftarS3Lulus(int status); 
+	List<PendaftarModel> selectAllPendaftarReguler(int nama_program); 
+	List<PendaftarModel> selectAllPendaftarRegulerLulus(int status); 
+	List<PendaftarModel> selectAllPendaftarParalel(int nama_program); 
+	List<PendaftarModel> selectAllPendaftarParalelLulus(int status); 
+	List<PendaftarModel> selectAllPendaftarInternasional(int nama_program); 
+	List<PendaftarModel> selectAllPendaftarInternasionalLulus(int status); 
+	List<PendaftarModel> selectAllPendaftarFakultas(int id_prodi); 
+	List<PendaftarModel> selectAllPendaftarFakultasLulus(int status);
+	List<PendaftarModel> selectAllPendaftarProdi(int id_prodi); 
+	List<PendaftarModel> selectAllPendaftarProdiLulus(int status); 
+	List<PendaftarModel> selectAllPendaftarSNMPTN(int id_jalur); //DONE
 	List<PendaftarModel> selectAllPendaftarSNMPTNLulus(int status);
 	List<PendaftarModel> selectAllPendaftarPPKB(int id_jalur);
 	List<PendaftarModel> selectAllPendaftarPPKBLulus(int status);

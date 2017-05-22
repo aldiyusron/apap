@@ -103,7 +103,7 @@ public class PUnivController {
 	public String listPendaftar(Model model, @PathVariable(value = "id_jalur") int id_jalur,
 			@PathVariable(value = "id_prodi") int id_prodi) {
 		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarSemua(id_prodi, id_jalur);
-		int pilihan = 0;
+		List<DaftarPilihanModel> daftarPilihan = new ArrayList<DaftarPilihanModel>();
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		
 		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
@@ -136,9 +136,10 @@ public class PUnivController {
 				pendaftar.get(i).setRata2(rata2);
 				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
 				penyeleksian.add(seleksi);
-				DaftarPilihanModel pilihann = daftarPilihanDAO.selectPilihan(no_daftar);
-				pilihan = pilihann.getPilihan();
+				DaftarPilihanModel pilihann = daftarPilihanDAO.selectPilihan2(no_daftar);
+				daftarPilihan.add(pilihann);
 				model.addAttribute("nilai", nilai);
+				model.addAttribute("daftarPilihan", daftarPilihan);
 			}
 		}
 
@@ -148,8 +149,7 @@ public class PUnivController {
 				NilaiUjianModel nilai = nilaiDAO.selectNilaiUjian(no_daftar);
 				double rata2Umum = (nilai.getBindo() + nilai.getBing() + nilai.getMtk_dasar() + nilai.getTpa()) / 4;
 				double rata2IPA = (nilai.getBiologi() + nilai.getFisika() + nilai.getKimia() + nilai.getMtk()) / 4;
-				double rata2IPS = (nilai.getEkonomi() + nilai.getSejarah() + nilai.getGeografi() + nilai.getSosiologi())
-						/ 4;
+				double rata2IPS = (nilai.getEkonomi() + nilai.getSejarah() + nilai.getGeografi() + nilai.getSosiologi()) / 4;
 				double rata2 = 0;
 				if (rata2IPA == 0) {
 					rata2 = (rata2Umum + rata2IPS) / 2;
@@ -161,7 +161,10 @@ public class PUnivController {
 				pendaftar.get(i).setRata2(rata2);
 				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
 				penyeleksian.add(seleksi);
+				DaftarPilihanModel pilihann = daftarPilihanDAO.selectPilihan2(no_daftar);
+				daftarPilihan.add(pilihann);
 				model.addAttribute("nilai", nilai);
+				model.addAttribute("daftarPilihan", daftarPilihan);
 			}
 		}
 
@@ -181,10 +184,10 @@ public class PUnivController {
 		
 		model.addAttribute("prodi", prodi);
 		model.addAttribute("jalur", jalur);
+		
 		model.addAttribute("penyeleksian", penyeleksian);
 		model.addAttribute("statusSubmit", new ListStrings());
 		model.addAttribute("pendaftar", pendaftar);
-		model.addAttribute("pilihan", pilihan);
 		return "view-all-pendaftar";
 	}
 
@@ -192,6 +195,68 @@ public class PUnivController {
 	public String dashboard(Model model){
 		List<JalurMasukModel> allJalurMasuk = jalurMasukDAO.selectAllJalurMasuk();
 		List<FakultasModel> allFakultas = fakultasDAO.selectAllFakultas();
+		List<PendaftarModel> allPendaftar = pendaftarDAO.selectAllPendaftar();
+		List<PenyeleksianModel> penyeleksian = penyeleksianDAO.selectAllPenyeleksian();
+		List<PendaftarModel> pendaftarSNMPTN = pemimpinUnivDAO.selectAllPendaftarSNMPTN(7);
+		List<PendaftarModel> pendaftarPPKB = pemimpinUnivDAO.selectAllPendaftarPPKB(4);
+		int countSNMPTN = 0;
+		int countSBMPTN = 0;
+		int countMASUKUIKUY = 0;
+		int countSIMAKS1 = 0;
+		int countSIMAKS2 = 0;
+		int countSIMAKPasca = 0;
+		int countPPKBUI = 0;
+		int countTS = 0;
+		int countOlim = 0;
+		
+		countSNMPTN = pendaftarSNMPTN.size();
+		countPPKBUI = pendaftarPPKB.size();
+		System.out.println(countPPKBUI);
+//		for (int i = 0; i < allJalurMasuk.size(); i++) {
+//			System.out.println(allJalurMasuk.get(i).getId_jalur());
+//			if (allJalurMasuk.get(i).getFlag_aktif() == 1 & allJalurMasuk.get(i).getId_jalur() == 7){
+//				for (int j = 1; j <= pendaftarSNMPTN.size(); j++){
+//					countSNMPTN++;
+//				}
+//			}
+//		}
+		
+//		for (int i = 0; i < allPendaftar.size(); i++){
+//			if (allJalurMasuk.get(i).getFlag_aktif() == 1) {
+//				for (int ii = 1; ii <= allJalurMasuk.size(); ii++) {
+//					if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countSIMAKS1++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countSIMAKS2++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countMASUKUIKUY++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countPPKBUI++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countSIMAKPasca++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countSBMPTN++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countSNMPTN++;
+//					} else if (allPendaftar.get(i).getNo_daftar() == penyeleksian.get(i).getNo_daftar() & penyeleksian.get(i).getId_jalur() == ii){
+//						countTS++;
+//					} else {
+//						countOlim++;
+//					}
+//				}
+//			}
+//			
+//		}
+		model.addAttribute("countSNMPTN", countSNMPTN);
+		System.out.println(countSNMPTN);
+		model.addAttribute("countSBMPTN", countSBMPTN);
+		model.addAttribute("countMASUKUIKUY", countMASUKUIKUY);
+		model.addAttribute("countSIMAKPasca", countSIMAKPasca);
+		model.addAttribute("countPPKBUI", countPPKBUI);
+		model.addAttribute("countTS", countTS);
+		model.addAttribute("countOlim", countOlim);
+		model.addAttribute("countSIMAKS2", countSIMAKS2);
+		model.addAttribute("countSIMAKS1", countSIMAKS1);
 		model.addAttribute("allJalurMasuk", allJalurMasuk);
 		model.addAttribute("allFakultas", allFakultas);
 		return "dashboard";

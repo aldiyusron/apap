@@ -17,9 +17,15 @@ public class DaftarPilihanServiceDatabase implements DaftarPilihanService {
 	DaftarPilihanMapper daftarPilihanMapper;
 	
 	@Override
-	public DaftarPilihanModel selectPilihan(int no_daftar) {
+	public List<DaftarPilihanModel> selectPilihan(int no_daftar) {
 		// TODO Auto-generated method stub
 		return daftarPilihanMapper.selectPilihan(no_daftar);
+	}
+
+	@Override
+	public DaftarPilihanModel selectPilihan2(int no_daftar) {
+		// TODO Auto-generated method stub
+		return daftarPilihanMapper.selectPilihan2(no_daftar);
 	}
 
 }

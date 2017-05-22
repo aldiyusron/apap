@@ -229,7 +229,7 @@
 						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-							<div id="morris-area-chart"></div>
+							<div id="morris-area-chartjalur"></div>
 						</div>
 						<!-- /.panel-body -->
 					</div>
@@ -318,6 +318,31 @@
 	
 	<script th:src="@{/js/sb-admin-2.js}"></script>
 	<script th:src="@{/js/morris-data.js}"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var x = [[${countSNMPTN}]];
+		var xy = [[${countPPKBUI}]];
+	    // dashboard
+	    Morris.Area({
+	        element: 'morris-area-chartjalur',
+	        data: [
+	            {y: 'SNMPTN', a: x, b: 0, c:0, d:0},
+	            {y: 'PPKB', a: xy, b: 0, c:0, d:100},
+	            {y: 'Talent Scouting', a: 100, b: 0, c:0, d:0},
+	            {y: 'SBMPTN', a: 20, b: 0, c:0, d:0},
+	            {y: 'SIMAK UI', a: 100, b: 100, c:100, d: 100},
+	            {y: 'Jalur Olimpiade', a: 100, b: 0, c:0, d:0}
+	          ],
+	          parseTime: false,
+	          xkey: 'y',
+	          ykeys: ['a'],
+	          labels: ['Pendaftar'],
+	        pointSize: 5,
+	        hideHover: 'auto',
+	        resize: true
+	    });  
+		/*]]>*/
+	</script>
 </body>
 
 </html>
