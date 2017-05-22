@@ -22,7 +22,7 @@ public interface ProdiTersediaMapper {
 			@Result(property = "id_fakultas", column = "id_fakultas")})
 	ProdiTersediaModel selectProdi(@Param("id_prodi") int id_prodi);
 	
-	@Select("SELECT id_prodi, nama_prodi, daya_tampung, id_fakultas, id_jalur FROM PRODI_TERSEDIA p WHERE id_jalur=#{id_jalur}")
+	@Select("SELECT id_prodi, nama_prodi, daya_tampung, id_fakultas, id_jalur FROM PRODI_TERSEDIA p WHERE id_jalur=#{id_jalur} AND flag_aktif = 1")
 	List<ProdiTersediaModel> selectAllProdi(@Param("id_jalur") int id_jalur);
 	
 	@Insert("INSERT INTO PRODI_TERSEDIA (nama_prodi, daya_tampung, id_fakultas, id_jalur, flag_aktif) VALUES (#{nama_prodi}, #{daya_tampung}, #{id_fakultas}, #{id_jalur}, 1)")

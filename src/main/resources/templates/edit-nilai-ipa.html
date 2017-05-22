@@ -9,7 +9,7 @@
 <meta name="author" content="" />
 
 
-<title>Penerimaan UI | Success</title>
+<title>Penerimaan UI | Edit Nilai Siswa</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
@@ -138,7 +138,7 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/a6/nilai-ips/update/submit"
+		<form class="well form-horizontal" action="/a6/nilai-ipa/update/submit"
 			method="post" id="contact_form" >
 			<fieldset>
 
@@ -266,8 +266,8 @@
 				<label class="col-md-4 control-label"></label>
 					<div class="col-md-4"><br />
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a href="/a6/daftar-siswa" style="width: 30%; margin-left:10px" class="btn btn-default">Batal</a>
-						
+							th:value="${_csrf.token}" /> <a th:href="@{'/batal-daftar/' + ${no_daftar}" style="width: 30%; margin-left:10px" class="btn btn-default">Batal</a>
+						<a class="btn btn-info" href="/a6/daftar-siswa">Kembali</a>
 						<button style="width: 90px; margin-left: 0px; margin-top:0px" value="save" name="action"
 							type="submit" class="btn btn-danger1">Simpan</button>
 					</div>

@@ -19,7 +19,7 @@ public interface PendaftarService {
 	List<PendaftarModel> selectAllPendaftarPPKB();
 	List<PendaftarModel> selectAllPendaftarNonRec(int id_prodi);
 	List<PendaftarModel> selectAllPendaftarRec(int id_fakultas);
-	PendaftarModel selectPPKB(String no_id);
+	PendaftarModel selectPPKB(int no_daftar);
 	PendaftarModel selectPendaftarLulus(int no_daftar);
 	PendaftarModel selectNama(int no_daftar);
 	void deletePendaftar(int no_daftar);

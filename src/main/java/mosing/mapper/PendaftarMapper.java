@@ -58,7 +58,7 @@ public interface PendaftarMapper {
 	List<PendaftarModel> selectAllPendaftar();
 
 	@Update("UPDATE PENDAFTAR SET nama_id = #{nama_id}, nama_ijazah=#{nama_ijazah}, jenis_kelamin=#{jenis_kelamin}, no_id=#{no_id}, "
-			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_daftar=#{no_daftar}")
+			+ "nama_lembaga=#{nama_lembaga}, jurusan=#{jurusan} WHERE no_id=#{no_id}")
 	void updateDataPendaftar(PendaftarModel pendaftar);
 
 	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn ON pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN  d ON pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr ON "
@@ -83,13 +83,12 @@ public interface PendaftarMapper {
 
 	@Select("SELECT * FROM PENDAFTAR"
 			+ " JOIN PENYELEKSIAN ON PENDAFTAR.no_daftar = PENYELEKSIAN.no_daftar"
-			+ " JOIN JALUR_MASUK ON PENYELEKSIAN.id_jalur = JALUR_MASUK.id_jalur WHERE JALUR_MASUK.id_jalur=4 AND no_id=#{no_id}")
-	PendaftarModel selectPPKB(@Param("no_id") String no_id);
+			+ " JOIN JALUR_MASUK ON PENYELEKSIAN.id_jalur = JALUR_MASUK.id_jalur WHERE JALUR_MASUK.id_jalur=4 AND PENDAFTAR.no_daftar=#{no_daftar}")
+	PendaftarModel selectPPKB(@Param("no_daftar") int no_daftar);
 	
 	@Select("SELECT * FROM CALON_MAHASISWA WHERE no_daftar=#{no_daftar}")
 	PendaftarModel selectPendaftarLulus(@Param("no_daftar") int no_daftar);
 	
-
 	@Delete("DELETE FROM PENDAFTAR WHERE no_daftar=#{no_daftar}")
 	void deletePendaftar(@Param("no_daftar") int no_daftar);
 

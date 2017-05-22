@@ -107,6 +107,7 @@ public class PendaftarController {
 
 	@Autowired
 	RiwayatPendaftaranService riwayatDAO;
+	
 
 	@RequestMapping("/pendaftar/uploadFoto/{username}")
 	public String uploadFoto(Model model, @PathVariable(value = "username") String username) {
@@ -415,27 +416,25 @@ public class PendaftarController {
 			return "form-nilai-ips";
 	}
 
-	@RequestMapping("/data-pendaftar/update/{no_id}")
-	public String updateData(Model model, @PathVariable(value = "no_id") String no_id) {
+	@RequestMapping("/data-pendaftar/update/{no_daftar}")
+	public String updateData(Model model, @PathVariable(value = "no_daftar") int no_daftar) {
 		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
-		List<JalurMasukModel> jalurUndangan = jalurMasukDAO.selectAllJalurUndangan();
 		JalurMasukModel jalurPPKB = jalurMasukDAO.selectJalurMasuk(4);
 		List<ProdiTersediaModel> prodi = jalurPPKB.getListProdi();
-		model.addAttribute("jalurUndangan", jalurUndangan);
 		model.addAttribute("allLPT", allLPT);
 		model.addAttribute("prodi", prodi);
-		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar(no_id);
+		PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
 		if (pendaftar != null) {
 			model.addAttribute("pendaftar", pendaftar);
-			return "edit-siswa";
+			return "form-update-data-pendaftar";
 		} else {
-			model.addAttribute("no_id", no_id);
+			model.addAttribute("no_daftar", no_daftar);
 			return "error-update";
 		}
 	}
 
-	@RequestMapping(value = "/data-pendaftar/update/submit", method = RequestMethod.POST)
-	public String dataUpdateSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
+	@RequestMapping(value = "/data-pendaftar/update/submit/{no_daftar}", method = RequestMethod.POST)
+	public String dataUpdateSubmit(Model model, @PathVariable(value = "no_daftar") int no_daftar, @RequestParam(value = "no_id", required = false) String no_id,
 			@RequestParam(value = "id_prodi", required = false) int id_prodi,
 			@RequestParam(value = "nama_id", required = false) String nama_id,
 			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
@@ -451,21 +450,19 @@ public class PendaftarController {
 
 		byte jk = Byte.parseByte(jenis_kelamin);
 
-		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
+		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar3(no_daftar);
 		PendaftarModel pendaftar = new PendaftarModel(pendaftar2.getId_user(), no_id, nama_id, nama_ijazah, null, null,
-				null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
+				null, null, null, null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, no_daftar);
 		pendaftarDAO.updateDataPendaftar(pendaftar);
-		pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
-		model.addAttribute("pendaftar2", pendaftar2);
 		return "success-update-data";
 	}
 	
-	@RequestMapping("/detail-siswa/{no_id}")
-	public String detailSiswa(Model model, @PathVariable(value = "no_id") String no_id) {
+	@RequestMapping("/detail-siswa/{no_daftar}")
+	public String detailSiswa(Model model, @PathVariable(value = "no_daftar") int no_daftar) {
 		// ganti jadi selectPPKB nih selectPendaftar
-		PendaftarModel pendaftar = pendaftarDAO.selectPPKB(no_id);
-		int no_daftar = pendaftarDAO.selectPPKB(no_id).getNo_daftar();
+		PendaftarModel pendaftar = pendaftarDAO.selectPPKB(no_daftar);
 		List<NilaiModel> nilai = nilaiDAO.selectNilai(no_daftar);
+		
 		int kkm_mtk = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_mtk();
 		int kkm_kimia = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_kimia();
 		int kkm_fisika = nilaiDAO.selectNilai(no_daftar).get(1).getKkm_fisika();

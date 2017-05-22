@@ -56,8 +56,8 @@ public class PendaftarServiceDatabase implements PendaftarService {
 	}
 
 	@Override
-	public PendaftarModel selectPPKB(String no_id) {
-		return pendaftarMapper.selectPPKB(no_id);
+	public PendaftarModel selectPPKB(int no_daftar) {
+		return pendaftarMapper.selectPPKB(no_daftar);
 	}
 
 	@Override

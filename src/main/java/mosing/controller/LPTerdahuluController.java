@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mosing.service.JalurMasukService;
@@ -13,6 +14,7 @@ import mosing.service.PendaftarService;
 import mosing.service.UserAdmisiService;
 import mosing.model.JalurMasukModel;
 import mosing.model.LPTerdahuluModel;
+import mosing.model.PendaftarModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.model.UserAdmisiModel;
 
@@ -49,5 +51,11 @@ public class LPTerdahuluController {
 		List<UserAdmisiModel> user = userDAO.selectAllLPTUser();
 		model.addAttribute("user", user);
 		return "LPTUserList";
+	}
+	
+	@RequestMapping("/batal-daftar/{no_daftar}")
+	public String batalDaftar(@PathVariable("no_daftar") int no_daftar) {
+		pendaftarDAO.deletePendaftar(no_daftar);
+		return "home";
 	}
 }
