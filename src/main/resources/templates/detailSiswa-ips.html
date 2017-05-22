@@ -9,7 +9,7 @@
 <meta name="author" content="" />
 
 
-<title>Penerimaan UI | Success</title>
+<title>Penerimaan UI | Detail Siswa IPS</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
@@ -152,7 +152,7 @@
 
 				<!-- <input type="hidden"
 					name="jurusan" readonly="readonly" th:value="${pendaftar2.jurusan}" /> -->
-<div class="isilist">
+				<div class="isilist">
 					<table class="table table-striped">
 						<thead>
 							<dl class="dl-horizontal" style="margin-left: 392.75px">
@@ -174,8 +174,8 @@
 					</table>
 				</div>
 				<h4 align="center" style="margin-left: 25px">Nilai</h4>
-				<hr align="center" style="width: 65px; margin-right: 503.5px"/>
-				
+				<hr align="center" style="width: 65px; margin-right: 503.5px" />
+
 				<input type="hidden" name="no_daftar" readonly="readonly"
 					th:value="${no_daftar}" />
 				<div class="form-group">
@@ -197,11 +197,13 @@
 
 								<td>Matematika</td>
 
-								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5><!-- <input type="text" name="kkm_mtk"
+								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5>
+									<!-- <input type="text" name="kkm_mtk"
 									class="resizedTextBox" readonly="readonly"
 									th:value="${kkm_mtk}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'mtk' + ${iterationStatus.count}"
 										th:value="${nilai.mtk}" /> --></td>
 								</div>
@@ -209,12 +211,14 @@
 							<tr>
 
 								<td>Geografi</td>
-								
-									<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5><!-- <input type="text" name="kkm_mtk"
+
+								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5>
+									<!-- <input type="text" name="kkm_mtk"
 									class="resizedTextBox" readonly="readonly"
 									th:value="${kkm_mtk}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'mtk' + ${iterationStatus.count}"
 										th:value="${nilai.mtk}" /> --></td>
 								</div>
@@ -222,27 +226,31 @@
 							<tr>
 
 								<td>Ekonomi</td>
-									
-									<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5><!-- <input type="text" name="kkm_mtk"
+
+								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5>
+									<!-- <input type="text" name="kkm_mtk"
 									class="resizedTextBox" readonly="readonly"
 									th:value="${kkm_mtk}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'mtk' + ${iterationStatus.count}"
 										th:value="${nilai.mtk}" /> --></td>
 								</div>
-					
+
 							</tr>
 
 							<tr>
-							
+
 								<td>Sejarah</td>
-									
-									<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5><!-- <input type="text" name="kkm_mtk"
+
+								<td><h5 th:text="${kkm_mtk}" style="padding-left: 25px"></h5>
+									<!-- <input type="text" name="kkm_mtk"
 									class="resizedTextBox" readonly="readonly"
 									th:value="${kkm_mtk}" /> --></td>
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.mtk}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'mtk' + ${iterationStatus.count}"
 										th:value="${nilai.mtk}" /> --></td>
 								</div>
@@ -252,11 +260,14 @@
 
 								<td>Bahasa Indonesia</td>
 
-								<td><h5 th:text="${kkm_bindo}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+								<td><h5 th:text="${kkm_bindo}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
 									type="text" name="kkm_bindo" th:value="${kkm_bindo}" /> --></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.bindo}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.bindo}"
+											style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'bindo' + ${iterationStatus.count}"
 										th:value="${nilai.bindo}" /> --></td>
 								</div>
@@ -267,11 +278,13 @@
 
 								<td>Bahasa Inggris</td>
 
-								<td><h5 th:text="${kkm_bing}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+								<td><h5 th:text="${kkm_bing}" style="padding-left: 25px"></h5>
+									<!-- <input class="resizedTextBox" readonly="readonly"
 									type="text" name="kkm_bing" th:value="${kkm_bing}" /> --></td>
 
 								<div th:each="nilai,iterationStatus: ${nilai}">
-									<td><h5 th:text="${nilai.bing}" style="padding-left: 25px"></h5><!-- <input class="resizedTextBox" readonly="readonly"
+									<td><h5 th:text="${nilai.bing}" style="padding-left: 25px"></h5>
+										<!-- <input class="resizedTextBox" readonly="readonly"
 										type="text" th:name="'bing' + ${iterationStatus.count}"
 										th:value="${nilai.bing}" /> --></td>
 
@@ -289,8 +302,8 @@
 					<label class="control-label"></label>
 					<div class="col-md-4" style="display: inline">
 						<input type="hidden" th:name="${_csrf.parameterName}"
-							th:value="${_csrf.token}" /> <a
-							href="/a6/daftar-siswa" class="btn btn-default" style="margin-left: 400px">Kembali</a>
+							th:value="${_csrf.token}" /> <a href="/a6/daftar-siswa"
+							class="btn btn-default" style="margin-left: 400px">Kembali</a>
 					</div>
 				</div>
 			</fieldset>
@@ -304,7 +317,7 @@
 				<div style="margin-left: 12%">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
-						href="https://twitter.com/aldiyusron">Tweets by aldiyusron</a>
+						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
 					<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>

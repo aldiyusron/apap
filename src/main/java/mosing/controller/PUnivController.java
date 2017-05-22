@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mosing.model.CalonMahasiswaModel;
+import mosing.model.DaftarPilihanModel;
 import mosing.model.FakultasModel;
 import mosing.model.JalurMasukModel;
 import mosing.model.ListStrings;
@@ -27,6 +28,7 @@ import mosing.model.PendaftarModel;
 import mosing.model.PenyeleksianModel;
 import mosing.model.ProdiTersediaModel;
 import mosing.service.CalonMahasiswaService;
+import mosing.service.DaftarPilihanService;
 import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.NilaiService;
@@ -64,6 +66,9 @@ public class PUnivController {
 	
 	@Autowired
 	PemimpinUnivService pemimpinUnivDAO;
+	
+	@Autowired
+	DaftarPilihanService daftarPilihanDAO;
 
 	// nampilin jalur masuk
 	@RequestMapping("/seleksi-pendaftar")
@@ -98,8 +103,9 @@ public class PUnivController {
 	public String listPendaftar(Model model, @PathVariable(value = "id_jalur") int id_jalur,
 			@PathVariable(value = "id_prodi") int id_prodi) {
 		List<PendaftarModel> pendaftar = pendaftarDAO.selectAllPendaftarSemua(id_prodi, id_jalur);
+		int pilihan = 0;
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
-
+		
 		List<PenyeleksianModel> penyeleksian = new ArrayList<PenyeleksianModel>();
 		if (jalur.getJenis_jalur() == 0 & jalur.getNama_jenjang().equalsIgnoreCase("S1")) {
 			for (int i = 0; i < pendaftar.size(); i++) {
@@ -130,6 +136,8 @@ public class PUnivController {
 				pendaftar.get(i).setRata2(rata2);
 				PenyeleksianModel seleksi = penyeleksianDAO.selectPenyeleksian2(no_daftar);
 				penyeleksian.add(seleksi);
+				DaftarPilihanModel pilihann = daftarPilihanDAO.selectPilihan(no_daftar);
+				pilihan = pilihann.getPilihan();
 				model.addAttribute("nilai", nilai);
 			}
 		}
@@ -170,11 +178,13 @@ public class PUnivController {
 			}
 		}
 		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		
 		model.addAttribute("prodi", prodi);
 		model.addAttribute("jalur", jalur);
 		model.addAttribute("penyeleksian", penyeleksian);
 		model.addAttribute("statusSubmit", new ListStrings());
 		model.addAttribute("pendaftar", pendaftar);
+		model.addAttribute("pilihan", pilihan);
 		return "view-all-pendaftar";
 	}
 

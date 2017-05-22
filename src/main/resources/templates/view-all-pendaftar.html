@@ -13,7 +13,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<title>Penerimaan UI | Seleksi Pendaftar</title>
+<title>Penerimaan UI | Lihat Semua Pendaftar</title>
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap Core CSS -->
 <link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
@@ -184,6 +184,7 @@
 										<th>Nomor Pendaftaran</th>
 										<th>Rata-rata Nilai</th>
 										<th>Asal Sekolah</th>
+										<th>Pilihan</th>
 										<th>Keterangan</th>
 										<th></th>
 									</tr>
@@ -198,6 +199,7 @@
 											<td th:text="${pendaftar.no_daftar}">Nomor Pendaftaran</td>
 											<td th:text="${pendaftar.rata2}">Rata-rata Nilai</td>
 											<td th:text="${pendaftar.nama_lembaga}">Asal Sekolah</td>
+											<td th:text="${pilihan}">Pilihan</td>
 											<div th:each="penyeleksian,iterationStatus: ${penyeleksian}">
 												<div
 													th:if="${penyeleksian.no_daftar} eq ${pendaftar.no_daftar}">

@@ -98,7 +98,7 @@ public interface PendaftarMapper {
 	void updateDataDiriLengkap(PendaftarModel pendaftar);
 	
 	@Select("SELECT p.* FROM PENDAFTAR p, PENYELEKSIAN pn, PRODI_TERSEDIA pr, DAFTAR_PILIHAN d WHERE pn.no_daftar=p.no_daftar AND pn.no_daftar=d.no_daftar AND "
-			+ "pr.id_prodi = d.id_prodi AND pn.status=0 AND d.id_prodi = #{id_prodi} AND pn.id_jalur=#{id_jalur}")
+			+ "pr.id_prodi = d.id_prodi AND pn.status=0 AND d.id_prodi = #{id_prodi} AND d.no_daftar = p.no_daftar AND pn.id_jalur=#{id_jalur}")
 	List<PendaftarModel> selectAllPendaftarSemua(@Param("id_prodi")int id_prodi, @Param("id_jalur")int id_jalur);
 	
 	@Select("SELECT * FROM PENDAFTAR WHERE no_daftar=#{no_daftar}")
