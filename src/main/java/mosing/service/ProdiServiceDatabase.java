@@ -27,4 +27,16 @@ public class ProdiServiceDatabase implements ProdiService {
 	{
 		return prodiMapper.selectAllProdi(id_jalur);
 	}
+	
+	@Override
+	public List<ProdiTersediaModel> selectAllProdiFak(int id_fakultas)
+	{
+		return prodiMapper.selectAllProdiFak(id_fakultas);
+	}
+	
+	@Override
+	public List<ProdiTersediaModel> selectAllProdiTersedia()
+	{
+		return prodiMapper.selectAllProdiTersedia();
+	}
 }

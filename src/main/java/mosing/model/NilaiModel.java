@@ -16,6 +16,7 @@ public class NilaiModel {
 	private int kkm_biologi;
 	private int kkm_sejarah;
 	private int kkm_geografi;
+	private int kkm_sosiologi;
 	private int kkm_ekonomi;
 	private int kkm_bindo;
 	private int kkm_bing;
@@ -26,6 +27,7 @@ public class NilaiModel {
 	private int sejarah;
 	private int geografi;
 	private int ekonomi;
+	private int sosiologi;
 	private int bindo;
 	private int bing;
 	private int semester;

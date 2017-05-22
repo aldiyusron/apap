@@ -1,5 +1,7 @@
 package mosing.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ public class PenyeleksianModel {
 	private int no_daftar;
 	private byte status;
 	private int id_jalur;
-	private int status_rekomen;
+	private byte status_rekomen;
+	private MultipartFile fileBerkas;
 	private String berkas;
 }

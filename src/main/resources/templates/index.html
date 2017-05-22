@@ -11,10 +11,10 @@
 <title>Penerimaan UI | Beranda</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -114,12 +114,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -140,8 +140,8 @@
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Penerimaan Mahasiswa Baru UI 2017</div>
-				<a href="/register" class="page-scroll btn btn-xl">Buat Akun
-					Pendaftaran</a> <a th:href="'/login'" class="page-scroll btn btn-xl">Masuk</a>
+				<a href="/a6/register" class="page-scroll btn btn-xl">Buat Akun
+					Pendaftaran</a> <a th:href="'/a6/login'" class="page-scroll btn btn-xl">Masuk</a>
 			</div>
 		</div>
 	</header>
@@ -220,14 +220,16 @@
 				<div id="box-new" style="padding-bottom: 35px; margin-top: 62px">
 					<h4 style="padding-left: 5%">Lihat Hasil Seleksi</h4>
 					<div class="panel-heading">
-						<form action="/lihat-hasil" method="post" id="contact_form">
+						<form action="/a6/lihat-hasil" method="post" id="contact_form">
 							<div class="form-group">
 								<label for="no_daftar">No. Ujian:</label> <input type="text"
-									class="form-control" name="no_daftar" id="no_daftar" required="required"/>
+									class="form-control" name="no_daftar" id="no_daftar"
+									required="required" />
 							</div>
 							<div class="form-group">
-								<label for="nama_jalur">Jalur Masuk:</label> <select required="required"
-									class="form-control selectpicker" id="id_jalur" name="id_jalur">
+								<label for="nama_jalur">Jalur Masuk:</label> <select
+									required="required" class="form-control selectpicker"
+									id="id_jalur" name="id_jalur">
 									<option value="">Jalur Masuk</option>
 									<div th:each="pilihJalur,iterationStatus: ${allJalurMasuk}">
 										<option th:value="${pilihJalur.id_jalur}"

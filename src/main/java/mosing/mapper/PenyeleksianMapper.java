@@ -2,6 +2,7 @@ package mosing.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,10 +22,19 @@ public interface PenyeleksianMapper {
 	
 	@Select("SELECT p.* FROM PENYELEKSIAN p WHERE p.no_daftar = #{no_daftar}")
 	PenyeleksianModel selectPenyeleksian2(@Param("no_daftar") int no_daftar);
-	
+
 	@Update("UPDATE PENYELEKSIAN SET berkas=#{berkas} WHERE no_daftar=#{no_daftar}")
 	void updateBerkas(@Param("berkas") String berkas, @Param("no_daftar") int no_daftar);
 	
 	@Select("SELECT * from PENYELEKSIAN")
 	List<PenyeleksianModel> selectAllPenyeleksian();
+	
+	@Delete("DELETE FROM PENYELEKSIAN WHERE no_daftar=#{no_daftar}")
+	void deletePenyeleksian(PenyeleksianModel penyeleksian);
+
+	@Update("UPDATE PENYELEKSIAN SET status = 1, status_rekomen = 1 WHERE no_daftar = #{no_daftar}")
+	void updateLulus(@Param("no_daftar") int no_daftar);
+	
+	@Update("UPDATE PENYELEKSIAN SET status_rekomen = 1 WHERE no_daftar = #{no_daftar}")
+	void updateRekomen(@Param("no_daftar") int no_daftar);
 }

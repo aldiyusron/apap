@@ -27,7 +27,6 @@ public interface LokasiMapper {
 	LokasiModel selectLokasi(@Param("id_lokasi") int id_lokasi);
 	
 	@Select("SELECT * FROM LOKASI WHERE flag_aktif = 1")
-	
 	List<LokasiModel> selectAllLokasi();
 
 	@Insert("INSERT INTO LOKASI (id_jalur, alamat, no_telp, nama_lokasi, nama_provinsi, nama_kota, kuota_peng, kuota_pendaftar, flag_aktif) VALUES (#{id_jalur}, #{alamat}, #{no_telp}, #{nama_lokasi}, #{nama_provinsi}, #{nama_kota}, #{kuota_peng}, #{kuota_pendaftar}, 1)")

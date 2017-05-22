@@ -22,7 +22,8 @@ import mosing.service.DetailUjianService;
 import mosing.service.FakultasService;
 import mosing.service.JalurMasukService;
 import mosing.service.LokasiService;
-import mosing.service.ProdiService;
+import mosing.service.PFakultasService;
+import mosing.service.ProdiTersediaService;
 
 @Controller
 public class JalurMasukController {
@@ -30,7 +31,7 @@ public class JalurMasukController {
 	JalurMasukService JalurMasukDAO;
 	
 	@Autowired
-	ProdiService ProdiDAO;
+	ProdiTersediaService ProdiDAO;
 	
 	@Autowired
 	DetailUjianService detailDAO;
@@ -39,7 +40,7 @@ public class JalurMasukController {
 	LokasiService lokasiDAO;
 	
 	@Autowired
-	FakultasService fakultasDAO;
+	PFakultasService pfakultasDAO;
 
 	@RequestMapping("/jalur-masuk")
 	public String lihatDaftarJalurMasuk(Model model) {
@@ -57,17 +58,13 @@ public class JalurMasukController {
 			model.addAttribute("jalur_masuk", jalur_masuk);
 			List<LokasiModel> listLokasi = lokasiDAO.selectLokasiJalur(id_jalur);
 			model.addAttribute("listLokasi", listLokasi);
+	
+			List<FakultasModel> allFakultas = pfakultasDAO.selectAllFakultas();
+			model.addAttribute("allFakultas", allFakultas);
 			
-			List<ProdiTersediaModel> allProdi = ProdiDAO.selectAllProdi(id_jalur);
-			int id_fakultas = 0;
-			for(int i = 0; i < allProdi.size(); i++){
-				id_fakultas = allProdi.get(i).getId_fakultas();
-				
-			}
-			FakultasModel fakultas = fakultasDAO.selectFakultas(id_fakultas);
-			String nama_fakultas = fakultas.getFakultas();
-			model.addAttribute("nama_fakultas", nama_fakultas);
-			model.addAttribute("allProdi", allProdi);
+			List<ProdiTersediaModel> listProdi = ProdiDAO.selectAllProdi(id_jalur);
+			model.addAttribute("listProdi", listProdi);
+			
 			return "view-jalurmasuk";
 		} else {
 			model.addAttribute("id_jalur", id_jalur);
@@ -77,7 +74,7 @@ public class JalurMasukController {
 
 	@RequestMapping("/jalur-masuk/add")
 	public String add() {
-		return "form-addjalur"; // masih belum bener pagenya
+		return "form-addjalur";
 	}
 
 	@RequestMapping("/jalur-masuk/add/submit")
@@ -88,9 +85,8 @@ public class JalurMasukController {
 			@RequestParam(value = "nama_jenjang", required = false) String nama_jenjang,
 			@RequestParam(value = "nama_program", required = false) String nama_program,
 			@RequestParam(value = "jenis_jalur", required = false) String jenis_jalur,
-			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian,
-			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
-
+			@RequestParam(value = "persyaratan", required = false) String persyaratan,
+			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian) throws ParseException {
 		if (status.equalsIgnoreCase("Aktif")) {
 			status = "1";
 		}
@@ -113,7 +109,6 @@ public class JalurMasukController {
 
 		JalurMasukModel jalur_masuk = new JalurMasukModel(0, nama, tgl_buka, tgl_tutup, stat, nama_jenjang,
 				nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
-
 		JalurMasukDAO.addJalurMasuk(jalur_masuk);
 		return "success-addjalur"; // belum bener
 	}
@@ -138,9 +133,8 @@ public class JalurMasukController {
 			@RequestParam(value = "nama_jenjang", required = false) String nama_jenjang,
 			@RequestParam(value = "nama_program", required = false) String nama_program,
 			@RequestParam(value = "jenis_jalur", required = false) String jenis_jalur,
-			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian,
-			@RequestParam(value = "persyaratan", required = false) String persyaratan) throws ParseException {
-
+			@RequestParam(value = "persyaratan", required = false) String persyaratan,
+			@RequestParam(value = "waktu_ujian", required = false) String waktu_ujian) throws ParseException {
 		if (status.equalsIgnoreCase("Aktif"))
 			status = "1";
 		else
@@ -151,6 +145,7 @@ public class JalurMasukController {
 		else
 			jenis_jalur = "0";
 		byte stat = Byte.parseByte(status);
+
 		byte jenisjalur = Byte.parseByte(jenis_jalur);
 		DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 		DateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
@@ -158,8 +153,9 @@ public class JalurMasukController {
 		Date tgl_buka = format1.parse(tanggal_buka);
 		Date tgl_tutup = format2.parse(tanggal_tutup);
 		Date waktu = format3.parse(waktu_ujian);
-		System.out.println(id_jalur);
-		System.out.print(persyaratan);
+
+		JalurMasukModel jalur = JalurMasukDAO.selectJalurMasuk(id_jalur);
+
 		JalurMasukModel jalur_masuk = new JalurMasukModel(id_jalur, nama, tgl_buka, tgl_tutup, stat, nama_jenjang, nama_program, jenisjalur, persyaratan, waktu, 1, null, null);
 
 		JalurMasukDAO.updateJalurMasuk(jalur_masuk);

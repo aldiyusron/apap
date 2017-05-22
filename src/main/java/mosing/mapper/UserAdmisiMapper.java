@@ -27,6 +27,12 @@ public interface UserAdmisiMapper {
 	@Update("UPDATE USER SET password = #{password} WHERE username = #{username}")
 	void updateUser(UserAdmisiModel user);
 	
+	@Update("UPDATE USER SET email = #{email} WHERE username = #{username}")
+	void updateEmail(UserAdmisiModel user);
+	
 	@Select("SELECT * FROM USER")
 	List<UserAdmisiModel> selectAllUser();
+	
+	@Select("SELECT * FROM USER WHERE email IS NULL")
+	List<UserAdmisiModel> selectAllLPTUser();
 }

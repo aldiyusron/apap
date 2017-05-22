@@ -48,4 +48,16 @@ public class UserAdmisiServiceDatabase implements UserAdmisiService {
 	{
 		return userAdmisiMapper.selectAllUser();
 	}
+
+	@Override
+	public void updateEmail(UserAdmisiModel user) {
+		// TODO Auto-generated method stub
+		userAdmisiMapper.updateEmail(user);
+	}
+
+	@Override
+	public List<UserAdmisiModel> selectAllLPTUser() {
+		// TODO Auto-generated method stub
+		return userAdmisiMapper.selectAllLPTUser();
+	}
 }

@@ -8,13 +8,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Penerimaan UI | Detail Jalur Masuk</title>
+<title>Penerimaan UI | Sukses Daftar Seleksi</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/a6/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/a6/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -29,13 +29,7 @@
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
 	rel="stylesheet" />
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
-
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
@@ -121,7 +115,7 @@
 						<li>
 							<form th:action="@{/logout}" method="post">
 								<button class="btn btn-s navbar-btn" type="submit"
-									value="Sign Out" style="height: 34px; width: 80px">Keluar</button>
+									value="Sign Out">Keluar</button>
 							</form>
 						</li>
 					</ul>
@@ -133,12 +127,12 @@
 	<div class="container">
 		<div class="logomosing" style="margin-top: 15px">
 			<ul>
-				<a id="logo"><img src="/img/MOSINGlogo.png" alt="logo" /></a>
+				<a id="logo"><img src="/a6/img/MOSINGlogo.png" alt="logo" /></a>
 			</ul>
 		</div>
 		<div class="navbar-collapse2">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" style="color: black" href="/">Beranda</a>
+				<li><a class="page-scroll" style="color: black" href="/a6">Beranda</a>
 				</li>
 				<li><a class="page-scroll" style="color: black" href="#">Program</a>
 				</li>
@@ -154,6 +148,8 @@
 		</div>
 
 	</div>
+	<br />
+	<br />
 	<div class="container">
 		<h1>Detail Jalur Masuk</h1>
 		<br />
@@ -171,14 +167,14 @@
 					<div class="isilist">
 						<div id="edit-delete" class="btn-group btn-group-justified"
 							style="margin-left: 47.75%; margin-top: -1.5%;">
-							<a th:href="'/jalur-masuk/update/'+ ${id_jalur}"> <span
+							<a th:href="'/a6/jalur-masuk/update/'+ ${id_jalur}"> <span
 								class="btn-group">
 									<button type="button" class="btn btn-md btn-custom" id="as"
 										name="as" value="Go">
 										<span class="glyphicon glyphicon-edit"></span>
 									</button>
 							</span>
-							</a> <a th:href="'/jalur-masuk/delete/'+ ${id_jalur}"> <span
+							</a> <a th:href="'/a6/jalur-masuk/delete/'+ ${id_jalur}"> <span
 								class="btn-group">
 									<button type="button" class="btn btn-md btn-custom" id="as"
 										name="as" value="Go">
@@ -228,44 +224,75 @@
 									<br />
 									<dt>Waktu Ujian</dt>
 									<dd
-										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'dd-MMM-yyyy')}"></dd>
+										th:text="${#dates.format(jalur_masuk.waktu_ujian, 'DD-MMM-YYYY')}"></dd>
 									<br />
 									<dt>Persyaratan</dt>
 									<dd th:text="${jalur_masuk.persyaratan}"></dd>
-									
+
 								</dl>
 							</thead>
 						</table>
-						<a href="/jalur-masuk" class="btn btn-danger1"
+						<a href="/a6/jalur-masuk" class="btn btn-danger1"
 							style="width: 10%; margin-left: 46.5%; margin-bottom: 20px">Kembali</a>
 					</div>
 				</div>
-				<div class="tab-content clearfix"
-					style="padding-top: 15px">
+				<div class="tab-content clearfix" style="padding-top: 15px">
 					<h3>Daftar Program Studi yang Dibuka</h3>
-					<table id="tableDetail" class="table stripe"
+					<form
+						th:action="@{'/prodi-tersedia/add/' + ${jalur_masuk.id_jalur}}"
+						method="post">
+						<input class="btn btn-danger1"
+							style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
+							type="submit" value="+ Tambah Prodi" /> <br />
+					</form>
+
+					<table id="daftarProdi" class="table stripe"
 						th:if="${jalur_masuk.listProdi} != NULL">
 						<thead>
 							<tr>
 								<th>No.</th>
 								<th>Nama Prodi</th>
 								<th>Daya Tampung</th>
-								<th>Fakultas</th>
+								<th>Nama Fakultas</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 
 						<tbody>
-							<div th:each="prodi,iterationStatus: ${jalur_masuk.listProdi}">
-								<!-- Belum bener -->
-							<tr>
-								<td th:text="${iterationStatus.count}">No.</td>
-								<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
-								<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
-								<td th:text="${nama_fakultas}">Nama Fakultas</td>
-							</tr>
+							<div th:each="prodi,iterationStatus: ${listProdi}" style="padding-left: 10px">
+								<tr>
+									<td th:text="${iterationStatus.count}">No.</td>
+									<td th:text="${prodi.nama_prodi}">Nama Jalur Masuk</td>
+									<td th:text="${prodi.daya_tampung}">Daya Tampung</td>
+									<div th:each="fakultas, iterationStatus: ${allFakultas}">
+										<div th:if="${fakultas.id_fakultas eq prodi.id_fakultas}">
+											<td th:text="${fakultas.fakultas}">Nama Fakultas</td>
+										</div></div>
+									<td><a
+										th:href="'/a6/prodi-tersedia/update/'+ ${prodi.id_prodi}"> <span
+											class="input-group-btn">
+												<button type="button" class="btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-edit" style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
+									
+									<td><a
+										th:href="'/a6/prodi-tersedia/delete/'+ ${prodi.id_prodi}"> <span
+											class="input-group-btn">
+												<button type="button" class="btn-sm btn-custom" id="as"
+													name="as" value="Go">
+													<span class="glyphicon glyphicon-trash"
+														style="float: right"></span>
+												</button>
+										</span>
+									</a></td>
+								</tr>
 							</div>
-							</tbody>
-				</table>
+						</tbody>
+					</table>
 				</div>
 
 				<p th:if="${jalur_masuk.listProdi} eq 1">Belum punya prodi</p>
@@ -275,13 +302,15 @@
 
 	<div th:unless="${jalur_masuk.jenis_jalur} eq 0">
 		<div class="container">
-		
-		<div class="row" style="margin-bottom: -60px">
-		
-			<div id="exTab3" class="container">
-				<div class="tab-content clearfix">
-				<h3>Daftar Lokasi Ujian</h3>
-						<form th:action="@{'/lokasi-ujian/add/' + ${jalur_masuk.id_jalur}}" method="post">
+
+			<div class="row" style="margin-bottom: -60px">
+
+				<div id="exTab3" class="container">
+					<div class="tab-content clearfix">
+						<h3>Daftar Lokasi Ujian</h3>
+						<form
+							th:action="@{'/lokasi-ujian/add/' + ${jalur_masuk.id_jalur}}"
+							method="post">
 							<input class="btn btn-danger1"
 								style="width: 18%; margin-bottom: 5px; margin-top: 5px; float: right"
 								type="submit" value="+ Tambah Lokasi Ujian" /> <br />
@@ -316,7 +345,7 @@
 										<td th:text="${lokasi.kuota_pendaftar}">Kuota Pendaftar</td>
 										<td th:text="${lokasi.kuota_peng}">Kuota Pengawas</td>
 										<td><a
-											th:href="'/lokasi-ujian/update/'+ ${lokasi.id_lokasi}"> <span
+											th:href="'/a6/lokasi-ujian/update/'+ ${lokasi.id_lokasi}"> <span
 												class="input-group-btn">
 													<button type="button" class="btn-sm btn-custom" id="as"
 														name="as" value="Go">
@@ -326,7 +355,7 @@
 											</span>
 										</a></td>
 										<td><a
-											th:href="'/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
+											th:href="'/a6/lokasi-ujian/delete/'+ ${lokasi.id_lokasi}"> <span
 												class="input-group-btn">
 													<button type="button" class="btn-sm btn-custom" id="as"
 														name="as" value="Go">
@@ -339,18 +368,18 @@
 								</div>
 							</tbody>
 						</table>
-					
+
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	
+
 
 	<div class="container bg-light-gray">
-		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
+		<div class="row" style="padding-top: 35px; padding-bottom: 10px">
 			<div class="col-sm-4">
-				<div style="margin-left: 12%">
+				<div style="margin-left: 45px">
 					<a class="twitter-timeline" data-lang="en" data-width="300"
 						data-height="300" data-theme="dark" data-link-color="#FAD136"
 						href="https://twitter.com/simak_ui">Tweets by SIMAK_UI</a>
@@ -359,25 +388,25 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="team-member">
-					<h3 style="margin-left: -27.5%">MEDIA SOSIAL</h3>
+					<h3 style="margin-left: -67.5px">MEDIA SOSIAL</h3>
 					<hr />
 					<ul class="social-buttons" style="list-style: none">
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.twitter.com/simak_ui"><i
 								class="fa fa-twitter"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="http://www.facebook.com/simak.ui/"><i
 								class="fa fa-facebook"></i></a></li>
-						<li style="margin-bottom: 5%"><a
+						<li style="margin-bottom: 15px"><a
 							href="mailto:penerimaan@ui.ac.id"><i
 								class="glyphicon glyphicon-envelope"></i></a></li>
 						<li><a href="#"><i class="fa fa-phone"></i></a></li>
 					</ul>
 					<ul class="socialtitle"
-						style="list-style: none; margin-top: -63%; text-align: left; margin-left: 20%">
-						<li style="margin-bottom: 17%"><h4>@SIMAK_UI</h4></li>
-						<li style="margin-bottom: 15%"><h4>SIMAK-UI</h4></li>
-						<li style="margin-bottom: 10%"><h4>penerimaan@ui.ac.id</h4></li>
+						style="list-style: none; margin-top: -217.75px; text-align: left; margin-left: 60px">
+						<li style="margin-bottom: 30px"><h4>@SIMAK_UI</h4></li>
+						<li style="margin-bottom: 37px"><h4>SIMAK-UI</h4></li>
+						<li style="margin-bottom: 35px"><h4>penerimaan@ui.ac.id</h4></li>
 						<li><h4>(021)78849129, 7864126, 78849124</h4></li>
 					</ul>
 				</div>
@@ -404,7 +433,7 @@
 		<div class="container bg-darkest-gray">
 			<div class="row">
 				<div class="col-md-4"
-					style="width: 100%; height: 50px; padding-top: 1.5%">
+					style="width: 500px; height: 50px; padding-top: 10px; margin-left: 350px">
 					<span class="copyright" style="color: #fed136">Penerimaan
 						Mahasiswa Baru - Universitas Indonesia</span>
 				</div>
@@ -437,14 +466,14 @@
 
 	<!-- Theme JavaScript -->
 	<script th:src="@{/js/agency.min.js}"></script>
-	<script>
-			$(document).ready(function() {
-				$("#tableDetail").DataTable();
-			});
-			
+	<script>			
 			$(document).ready(function() {
 				$("#daftarLokasi").DataTable();
+				$("#daftarProdi").DataTable();
 			});
-		</script>
+			
+	</script>
+	
+	
 </body>
 </html>

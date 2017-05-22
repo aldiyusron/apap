@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>A6</groupId>
-	<artifactId>MOSING</artifactId>
+	<artifactId>A6</artifactId>
 	<version>1</version>
-
-	<name>MOSING</name>
+	
+	<name>A6</name>
 	<description>MOSING (ADMISI)</description>
 
 	<parent>
@@ -15,6 +15,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<relativePath /> <!-- lookup parent from repository -->
 		<version>1.4.0.RELEASE</version>
+
 	</parent>
 
 	<properties>
@@ -29,15 +30,15 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-tomcat</artifactId>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.7</version>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -70,11 +71,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-		
+
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-test</artifactId> 
+			<version>4.0.4.RELEASE</version> </dependency> -->
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
-	<finalName>a6</finalName>
+		<finalName>a6</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -83,6 +92,4 @@
 		</plugins>
 	</build>
 
-
-	<packaging>jar</packaging>
 </project>
