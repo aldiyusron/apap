@@ -34,6 +34,15 @@
 <!-- Theme CSS -->
 <link th:href="@{/css/agency.min.css}" rel="stylesheet" />
 
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('send').onclick = function(e) {
+			alert(document.getElementById("name").value);
+			return false;
+		}
+	}
+</script>
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -138,8 +147,9 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/a6/jalur-masuk/add/submit"
-			method="post" id="contact_form">
+		<form name="myForm" class="well form-horizontal"
+			action="/a6/jalur-masuk/add/submit" method="post" id="contact_form"
+			onsubmit="return validateForm()">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -280,19 +290,21 @@
 					<label for="waktu_ujian" class="col-md-4 control-label">Waktu
 						Ujian </label>
 					<div class="col-md-4 selectContainer">
-						<div class='input-group date' id='datetimepicker'>
+						<div class="input-group date" id="datetimepicker">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
-								name="waktu_ujian" placeholder="MM/DD/YYYY HH:MM A"
-								class="form-control" type="text" required="required" />
+								id="waktu_ujian" name="waktu_ujian"
+								placeholder="MM/DD/YYYY HH:MM A" class="form-control"
+								type="text" />
 						</div>
 					</div>
-					<script type="text/javascript">
-            			$(document).ready(function () {
-              				$('#datetimepicker').datetimepicker();
-           			 });
-   					 </script>
 				</div>
+
+				<script type="text/javascript">
+					$(function() {
+						$("#datetimepicker").datetimepicker();
+					});
+				</script>
 
 				<!-- Text input-->
 
@@ -385,7 +397,7 @@
 	</div>
 
 	<!-- /.container -->
-	
+
 	<div class="container bg-light-gray">
 		<div class="row" style="padding-top: 5%; padding-bottom: 2%">
 			<div class="col-sm-4">
@@ -460,7 +472,7 @@
 	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
 	<script th:src="@{/js/transition.js}"></script>
 	<script th:src="@{/js/collapse.js}"></script>
-	
+
 	<!-- Plugin JavaScript -->
 
 	<script
@@ -512,9 +524,50 @@
 				});
 		$('.select').selectpicker();
 	</script>
+	<script>
+		function validateForm() {
+			var x = Date.parse(document.forms["myForm"]["tanggal_buka"].value);
+			var y = Date.parse(document.forms["myForm"]["tanggal_tutup"].value);
+			var z = Date.parse(document.forms["myForm"]["waktu_ujian"].value);
+			if (x > y) {
+				alert("Tanggal buka lebih dari tanggal tutup");
+				return false;
+			} else if (y > z) {
+				alert("Waktu ujian sebelum tanggal tutup");
+				return false;
+			}
+		};
+	</script>
+	<!-- <script>
+ 	function checkDateRange() {
+ 	   // Parse the entries
+ 	   var startDate = Date.parse(start);
+ 	   var endDate = Date.parse(end);
+ 	   // Make sure they are valid
+ 	    if (isNaN(startDate)) {
+ 	      alert("The start date provided is not valid, please enter a valid date.");
+ 	      return false;
+ 	   }
+ 	   if (isNaN(endDate)) {
+ 	       alert("The end date provided is not valid, please enter a valid date.");
+ 	       return false;
+ 	   }
+ 	   // Check the date range, 86400000 is the number of milliseconds in one day
+ 	   var difference = (endDate - startDate) / (86400000 * 7);
+ 	   if (difference < 0) {
+ 	       alert("The start date must come before the end date.");
+ 	       return false;
+ 	   }
+ 	   if (difference <= 1) {
+ 	       alert("The range must be at least seven days apart.");
+ 	       return false;
+ 	    }
+ 	   return true;
+ 	}
+	</script> -->
 	<script type="text/javascript" src="./scripts/moment.min.js"></script>
-<script type="text/javascript"
-	src="./scripts/bootstrap-datetimepicker.*js"></script>
+	<script type="text/javascript"
+		src="./scripts/bootstrap-datetimepicker.*js"></script>
 </body>
 
 </html>

@@ -151,8 +151,8 @@
 	</div>
 	<!-- TINGGAL HEADER SAMA FOOTER -->
 	<div class="container">
-		<form class="well form-horizontal" action="/a6/jalur-masuk/update/submit"
-			method="post" id="contact_form" th:object="${jalur}">
+		<form class="well form-horizontal" name="myForm" action="/a6/jalur-masuk/update/submit"
+			method="post" id="contact_form" th:object="${jalur}" onsubmit="return validateForm()">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -250,7 +250,7 @@
 								class="glyphicon glyphicon-tag"></i></span> <select
 								class="custom-select" required="required" name="jenis_jalur"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenis jalur masuk</option>
 								<option name="jenis_jalur" required="required"
 									value="Jalur Tulis" selected="selected">Jalur Tulis</option>
 								<option name="jenis_jalur" required="required"
@@ -262,7 +262,7 @@
 								class="glyphicon glyphicon-tag"></i></span> <select
 								class="custom-select" required="required" name="jenis_jalur"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenis jalur masuk</option>
 								<option name="jenis_jalur" required="required"
 									value="Jalur Tulis">Jalur Tulis</option>
 								<option name="jenis_jalur" required="required"
@@ -283,11 +283,11 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenjang jalur masuk</option>
 								<option name="nama_jenjang" required="required" value="S1"
 									selected="selected">S1</option>
 								<option name="nama_jenjang" required="required" value="S2">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
+								<option name="nama_jenjang" required="required" value="S3">S3</option>
 								<option name="nama_jenjang" required="required"
 									value="Spesialis">Spesialis</option>
 							</select>
@@ -299,11 +299,11 @@
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
 
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenjang jalur masuk</option>
 								<option name="nama_jenjang" required="required" value="S1">S1</option>
 								<option name="nama_jenjang" required="required" value="S2"
 									selected="selected">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
+								<option name="nama_jenjang" required="required" value="S3">S3</option>
 								<option name="nama_jenjang" required="required"
 									value="Spesialis">Spesialis</option>
 							</select>
@@ -313,11 +313,11 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenjang jalur masuk</option>
 								<option name="nama_jenjang" required="required" value="S1">S1</option>
 								<option name="nama_jenjang" required="required" value="S2">S2</option>
 								<option name="nama_jenjang" required="required" value="S3"
-									selected="selected">S2</option>
+									selected="selected">S3</option>
 								<option name="nama_jenjang" required="required"
 									value="Spesialis">Spesialis</option>
 							</select>
@@ -328,10 +328,10 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								class="custom-select" required="required" name="nama_jenjang"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Jenjang jalur masuk</option>
 								<option name="nama_jenjang" required="required" value="S1">S1</option>
 								<option name="nama_jenjang" required="required" value="S2">S2</option>
-								<option name="nama_jenjang" required="required" value="S3">S2</option>
+								<option name="nama_jenjang" required="required" value="S3">S3</option>
 								<option name="nama_jenjang" required="required"
 									value="Spesialis" selected="selected">Spesialis</option>
 							</select>
@@ -349,7 +349,7 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								name="nama_program" required="required" class="custom-select"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Program jalur masuk</option>
 								<option value="Reguler" selected="selected">Reguler</option>
 								<option value="Paralel">Paralel</option>
 								<option value="Kelas Internasional">Kelas Internasional</option>
@@ -362,7 +362,7 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								name="nama_program" required="required" class="custom-select"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Program jalur masuk</option>
 								<option value="Reguler">Reguler</option>
 								<option value="Paralel" selected="selected">Paralel</option>
 								<option value="Kelas Internasional">Kelas Internasional</option>
@@ -375,7 +375,7 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								name="nama_program" required="required" class="custom-select"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Program jalur masuk</option>
 								<option value="Reguler">Reguler</option>
 								<option value="Paralel">Paralel</option>
 								<option value="Kelas Internasional" selected="selected">Kelas
@@ -388,7 +388,7 @@
 								class="glyphicon glyphicon-education"></i></span> <select
 								name="nama_program" required="required" class="custom-select"
 								style="height: 35px">
-								<option value="">Status jalur masuk</option>
+								<option value="">Program jalur masuk</option>
 								<option value="Reguler">Reguler</option>
 								<option value="Paralel">Paralel</option>
 								<option value="Kelas Internasional">Kelas Internasional</option>
@@ -406,8 +406,8 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input
 								id="waktu_ujian" name="waktu_ujian"
-								placeholder="BB/HH/TTTT JJ:MM AM/PM" class="form-control"
-								type="text" required="true" th:value="${jalur.waktu_ujian}" />
+								placeholder="DD/MM/YYYY JJ:MM AM/PM" class="form-control"
+								type="text" th:value="${jalur.waktu_ujian}" />
 						</div>
 					</div>
 				</div>
@@ -559,6 +559,21 @@
 					})
 				});
 		$('.select').selectpicker();
+	</script>
+	
+	<script>
+		function validateForm() {
+			var x = Date.parse(document.forms["myForm"]["tanggal_buka"].value);
+			var y = Date.parse(document.forms["myForm"]["tanggal_tutup"].value);
+			var z = Date.parse(document.forms["myForm"]["waktu_ujian"].value);
+			if (x > y) {
+				alert("Tanggal buka lebih dari tanggal tutup");
+				return false;
+			} else if (y > z) {
+				alert("Waktu ujian sebelum tanggal tutup");
+				return false;
+			}
+		};
 	</script>
 
 </body>
