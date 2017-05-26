@@ -14,6 +14,6 @@ public interface DaftarPilihanMapper {
 	@Select("SELECT * FROM DAFTAR_PILIHAN WHERE no_daftar=#{no_daftar}")
 	List<DaftarPilihanModel> selectPilihan(@Param("no_daftar") int no_daftar);
 	
-	@Select("SELECT * FROM DAFTAR_PILIHAN WHERE no_daftar=#{no_daftar}")
+	@Select("SELECT * FROM DAFTAR_PILIHAN WHERE no_daftar=#{no_daftar} ")
 	DaftarPilihanModel selectPilihan2(@Param("no_daftar") int no_daftar);
 }

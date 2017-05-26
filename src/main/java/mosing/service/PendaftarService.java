@@ -26,4 +26,5 @@ public interface PendaftarService {
 	void updateDataDiriLengkap(PendaftarModel pendaftar);
 	List<PendaftarModel> selectAllPendaftarSemua(int id_prodi, int id_jalur);
 	PendaftarModel selectPendaftar3(int no_daftar);
+	List<PendaftarModel> selectAllPendaftarIca();
 }

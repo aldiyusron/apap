@@ -57,7 +57,7 @@ public class PenyeleksianServiceDatabase implements PenyeleksianService {
 	}
 
 	@Override
-	public void updateRekomen(int no_daftar) {
-		penyeleksianMapper.updateRekomen(no_daftar);
+	public void updateRekomen(int no_daftar, byte status_rekomen) {
+		penyeleksianMapper.updateRekomen(no_daftar, status_rekomen);
 	}
 }

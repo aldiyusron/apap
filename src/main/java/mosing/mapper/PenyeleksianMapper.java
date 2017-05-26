@@ -35,6 +35,6 @@ public interface PenyeleksianMapper {
 	@Update("UPDATE PENYELEKSIAN SET status = 1, status_rekomen = 1 WHERE no_daftar = #{no_daftar}")
 	void updateLulus(@Param("no_daftar") int no_daftar);
 	
-	@Update("UPDATE PENYELEKSIAN SET status_rekomen = 1 WHERE no_daftar = #{no_daftar}")
-	void updateRekomen(@Param("no_daftar") int no_daftar);
+	@Update("UPDATE PENYELEKSIAN SET status_rekomen = #{status_rekomen} WHERE no_daftar = #{no_daftar}")
+	void updateRekomen(@Param("no_daftar") int no_daftar, @Param("status_rekomen") byte status_rekomen);
 }

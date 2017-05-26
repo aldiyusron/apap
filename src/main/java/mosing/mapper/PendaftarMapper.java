@@ -70,11 +70,8 @@ public interface PendaftarMapper {
 //	List<PendaftarModel> selectAllPendaftarNonRec(@Param("id_prodi") int id_prodi, @Param("id_jalur")int id_jalur);
 
 	@Select("SELECT * FROM PENDAFTAR JOIN PENYELEKSIAN ON PENDAFTAR.no_daftar = PENYELEKSIAN.no_daftar"
-			+ "JOIN NILAI_RAPOR ON PENYELEKSIAN.no_daftar = NILAI_RAPOR.no_daftar" + "WHERE PENYELEKSIAN.id_jalur = 4")
-	@Results(value = { @Result(property = "nama_id", column = "nama_id"),
-			@Result(property = "no_daftar", column = "no_daftar"),
-			@Result(property = "nama_lembaga", column = "nama_lembaga"),
-			@Result(property = "status_rekomen", column = "status_rekomen") })
+			+ " JOIN NILAI_RAPOR ON PENYELEKSIAN.no_daftar = NILAI_RAPOR.no_daftar" + " WHERE PENYELEKSIAN.id_jalur = 4")
+	
 	List<PendaftarModel> selectAllPendaftarPPKB();
 
 	@Select("SELECT p.* FROM PENDAFTAR p JOIN PENYELEKSIAN pn ON pn.no_daftar=p.no_daftar JOIN DAFTAR_PILIHAN d ON pn.no_daftar=d.no_daftar JOIN PRODI_TERSEDIA pr ON "
@@ -106,5 +103,8 @@ public interface PendaftarMapper {
 
 	@Select("SELECT NAMA_ID FROM PENDAFTAR WHERE no_daftar=#{no_daftar}")
 	PendaftarModel selectNama(@Param("no_daftar") int no_daftar);
+	
+	@Select("SELECT * FROM PENDAFTAR")
+	List<PendaftarModel> selectAllPendaftarIca();
 	
 }

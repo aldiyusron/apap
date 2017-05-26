@@ -121,4 +121,10 @@ public class PendaftarServiceDatabase implements PendaftarService {
 		// TODO Auto-generated method stub
 		return pendaftarMapper.selectPendaftar3(no_daftar);
 	}
+
+	@Override
+	public List<PendaftarModel> selectAllPendaftarIca() {
+		// TODO Auto-generated method stub
+		return pendaftarMapper.selectAllPendaftarIca();
+	}
 }

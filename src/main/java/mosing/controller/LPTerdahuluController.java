@@ -26,10 +26,10 @@ public class LPTerdahuluController {
 
 	@Autowired
 	PendaftarService pendaftarDAO;
-	
+
 	@Autowired
 	JalurMasukService jalurMasukDAO;
-	
+
 	@Autowired
 	UserAdmisiService userDAO;
 
@@ -44,18 +44,32 @@ public class LPTerdahuluController {
 		model.addAttribute("allLPT", allLPT);
 		return "form-data-terdahulu";
 	}
-	
+
 	@RequestMapping("/LPT/list/user")
-	public String listUser(Model model)
-	{
+	public String listUser(Model model) {
 		List<UserAdmisiModel> user = userDAO.selectAllLPTUser();
 		model.addAttribute("user", user);
 		return "LPTUserList";
 	}
-	
+
 	@RequestMapping("/batal-daftar/{no_daftar}")
 	public String batalDaftar(@PathVariable("no_daftar") int no_daftar) {
 		pendaftarDAO.deletePendaftar(no_daftar);
 		return "home";
+	}
+
+	@RequestMapping("/data-pendaftar/back")
+	public String addDataBack(Model model) {
+		List<PendaftarModel> allPendaftar = pendaftarDAO.selectAllPendaftarIca();
+		PendaftarModel pendaftar = allPendaftar.get(allPendaftar.size() - 1);
+		model.addAttribute("pendaftar", pendaftar);
+		List<LPTerdahuluModel> allLPT = lptDAO.selectAllLPT();
+		List<JalurMasukModel> jalurUndangan = jalurMasukDAO.selectAllJalurUndangan();
+		JalurMasukModel jalurPPKB = jalurMasukDAO.selectJalurMasuk(4);
+		List<ProdiTersediaModel> prodi = jalurPPKB.getListProdi();
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jalurUndangan", jalurUndangan);
+		model.addAttribute("allLPT", allLPT);
+		return "form-data-terdahulu-back";
 	}
 }

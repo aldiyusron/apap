@@ -160,28 +160,89 @@ public class PFakultasController {
 		return "recommending";
 	}
 
-	@RequestMapping("/sukses-rekomendasi")
-	public String suksesRekomendasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
+	@RequestMapping("/view/pendaftar/{id_jalur}/{id_prodi}/confirm")
+	public String konfirmasi(@ModelAttribute(value = "statusSubmit") @Valid ListStrings statusSubmit,
 			BindingResult bindingResultStatus, Model model,
-			@RequestParam(value = "id_jalur", required = false) int id_jalur,
+			@RequestParam(value = "id_jalur", required = false) Integer id_jalur,
 			@RequestParam(value = "jenjang", required = false) String jenjang,
 			@RequestParam(value = "id_prodi", required = false) int id_prodi) {
-		System.out.println("size:" + statusSubmit.getStrings().size());
-		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
-		System.out.println(statusSubmit.getStrings().get(0));
+
+		List<PendaftarModel> pendaftarRec = new ArrayList<PendaftarModel>();
 		for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
 			if (statusSubmit.getStrings().get(i) != null) {
 				String nomor = statusSubmit.getStrings().get(i);
 				int no_daftar = Integer.parseInt(nomor);
-				penyeleksianDAO.updateRekomen(no_daftar);
+				PendaftarModel pendaftar = pendaftarDAO.selectPendaftar3(no_daftar);
+				pendaftarRec.add(pendaftar);
+				byte status_rekomen = Byte.parseByte("1");
+				penyeleksianDAO.updateRekomen(no_daftar, status_rekomen);
 			}
 		}
-		List<PendaftarModel> pendaftarRec = pendaftarDAO.selectAllPendaftarRec(id_prodi);
+		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
+		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
+		model.addAttribute("prodi", prodi);
+		model.addAttribute("jenjang", jenjang);
+		model.addAttribute("jalur", jalur);
+//		model.addAttribute("statusKonf", statusSubmit);
+//		model.addAttribute("statusSubmit", new ListStrings());
+//		model.addAttribute("nomorDaftar", new ArrayList<Integer>());
+		model.addAttribute("pendaftarRec", pendaftarRec);
+		return "konfirmasi-rekomen";
+	}
+
+	@RequestMapping("/view/pendaftar/{id_jalur}/{id_prodi}/back")
+	public String back(Model model, @PathVariable(value = "id_jalur") int id_jalur,
+			@PathVariable(value = "id_prodi") int id_prodi) {
+
+		List<PendaftarModel> pendaftarSucRec = pendaftarDAO.selectAllPendaftarRec(id_prodi);
+		for(int i = 0; i < pendaftarSucRec.size(); i++)
+		{
+			int no_daftar = pendaftarSucRec.get(i).getNo_daftar();
+			byte status_rekomen = Byte.parseByte("0");
+			penyeleksianDAO.updateRekomen(no_daftar, status_rekomen);
+		}
+		model.addAttribute("id_jalur", id_jalur);
+		model.addAttribute("id_prodi", id_prodi);
+		return "redirect:/view/pendaftar/" + id_jalur + '/' + id_prodi;
+	}
+
+	@RequestMapping("/sukses-rekomendasi")
+	public String suksesRekomendasi(
+//			@RequestParam(value = "nomorDaftar", required = false) ArrayList<Integer> nomorDaftar,
+			// @ModelAttribute(value = "statusSubmit") @Valid ListStrings
+			// statusSubmit,
+			// @RequestParam(value = "pendaftarRec", required = false)
+			// ArrayList<PendaftarModel> pendaftarRec,
+			Model model,
+			@RequestParam(value = "id_jalur", required = false) Integer id_jalur,
+			@RequestParam(value = "jenjang", required = false) String jenjang,
+			@RequestParam(value = "id_prodi", required = false) Integer id_prodi) {
+
+		// System.out.println("size:" + pendaftarRec.size());
+		// System.out.println("size:" + statusSubmit.getStrings().size());
+//		System.out.println("binding result:" + bindingResultStatus.getModel().toString());
+		// System.out.println(statusSubmit.getStrings().get(0));
+//		for (int i = 0; i < nomorDaftar.size(); i++) {
+//			if (nomorDaftar.get(i) != null) {
+//				// String nomor = statusSubmit.getStrings().get(i);
+//				int no_daftar = nomorDaftar.get(i);
+//				byte status_rekomen = Byte.parseByte("1");
+//				penyeleksianDAO.updateRekomen(no_daftar, status_rekomen);
+//			}
+//		}
+		// for (int i = 0; i < statusSubmit.getStrings().size(); i++) {
+		// if (statusSubmit.getStrings().get(i) != null) {
+		// String nomor = statusSubmit.getStrings().get(i);
+		// int no_daftar = Integer.parseInt(nomor);
+		// penyeleksianDAO.updateRekomen(no_daftar);
+		// }
+		// }
+		List<PendaftarModel> pendaftarSucRec = pendaftarDAO.selectAllPendaftarRec(id_prodi);
 		JalurMasukModel jalur = jalurMasukDAO.selectJalurMasuk(id_jalur);
 		ProdiTersediaModel prodi = prodiDAO.selectProdi(id_prodi);
 		model.addAttribute("prodi", prodi);
 		model.addAttribute("jalur", jalur);
-		model.addAttribute("pendaftarRec", pendaftarRec);
+		model.addAttribute("pendaftarSucRec", pendaftarSucRec);
 		return "success-recommendation";
 	}
 

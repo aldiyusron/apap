@@ -411,6 +411,77 @@ public class PendaftarController {
 		else
 			return "form-nilai-ips";
 	}
+	
+	@RequestMapping("/data-pendaftar/update/submit")
+	public String dataUpdateSubmit(Model model, @RequestParam(value = "no_id", required = false) String no_id,
+			@RequestParam(value = "id_prodi", required = false) int id_prodi,
+			@RequestParam(value = "nama_id", required = false) String nama_id,
+			@RequestParam(value = "nama_ijazah", required = false) String nama_ijazah,
+			@RequestParam(value = "jenis_id", required = false) String jenis_id,
+			@RequestParam(value = "jenis_kelamin", required = false) String jenis_kelamin,
+			@RequestParam(value = "nama_lembaga", required = false) String nama_lembaga,
+			@RequestParam(value = "jurusan", required = false) String jurusan) throws ParseException {
+
+		if (jenis_kelamin.equalsIgnoreCase("Laki-laki"))
+			jenis_kelamin = "1";
+		else
+			jenis_kelamin = "0";
+
+		byte jk = Byte.parseByte(jenis_kelamin);
+		JalurMasukModel jalurPPKB = jalurMasukDAO.selectJalurMasuk(4);
+		List<UserAdmisiModel> allUser = userDAO.selectAllUser();
+		String id = allUser.get(allUser.size() - 1).getId_user();
+		int latestID = Integer.parseInt(id);
+		int newID = latestID + 1;
+
+		boolean whiteSpace = nama_id.contains(" ");
+		String username = "";
+		if (whiteSpace == false) {
+			username = nama_id.toLowerCase();
+		} else {
+			String[] parts = nama_id.split("\\s+");
+			username = (parts[0] + parts[1]).toLowerCase();
+
+		}
+		String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		int n = alphabet.length();
+
+		Random random = new Random();
+
+		String passwordFinal = "";
+		char password;
+		for (int i = 0; i < 20; i++) {
+			password = alphabet.charAt(random.nextInt(n));
+			passwordFinal = passwordFinal + Character.toString(password);
+		}
+
+		UserAdmisiModel newUser = new UserAdmisiModel(null, username, passwordFinal, null, "ROLE_PEND");
+		PendaftarModel pendaftar = new PendaftarModel(newID, no_id, nama_id, nama_ijazah, null, null, null, null, null,
+				null, null, jenis_id, null, null, null, null, jk, 0, nama_lembaga, jurusan, 0);
+
+		userDAO.addUser(newUser);
+		pendaftarDAO.updateDataDiriLengkap(pendaftar);
+		PendaftarModel pendaftar2 = pendaftarDAO.selectPendaftar(no_id);
+		// return "success-datadiri";
+		byte status = 0;
+		byte status_rekomen = 0;
+		PenyeleksianModel penyeleksian = new PenyeleksianModel(pendaftar2.getNo_daftar(), status, 4, status_rekomen,
+				null, null);
+		penyeleksianDAO.addPenyeleksian(penyeleksian);
+		DaftarPilihanModel pilihan = new DaftarPilihanModel(pendaftar2.getNo_daftar(), jalurPPKB.getNama_jenjang(),
+				jalurPPKB.getNama_program(), id_prodi, 1);
+		pendaftarDAO.addDaftarPilihan(pilihan);
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		String tahun = String.valueOf(year);
+		RiwayatPendaftaranModel riwayat = new RiwayatPendaftaranModel(pendaftar2.getNo_daftar(), tahun, 4,
+				jalurPPKB.getNama_jenjang(), jalurPPKB.getNama_program());
+		riwayatDAO.addRiwayat(riwayat);
+		model.addAttribute("pendaftar2", pendaftar2);
+		if (pendaftar2.getJurusan().equalsIgnoreCase("IPA"))
+			return "form-nilai-ipa";
+		else
+			return "form-nilai-ips";
+	}
 
 	@RequestMapping("/data-pendaftar/update/{no_daftar}")
 	public String updateData(Model model, @PathVariable(value = "no_daftar") int no_daftar) {
